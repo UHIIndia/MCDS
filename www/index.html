@@ -15,6 +15,13 @@
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
+    <!-- angular-translate js -->
+    <script src="lib/angular-translate/angular-translate.js"></script>
+
+    <!-- angular-translate-loader-static-files js -->
+    <script src="lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+
+
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
@@ -31,6 +38,13 @@
       <ion-nav-back-button>
       </ion-nav-back-button>
     </ion-nav-bar>
+    <p>{{ 'INTRO_TEXT' | translate }}</p>
+    <h1>{{ 'HEADLINE' | translate }}</h1>
+   <div ng-controller="TranslateCtrl">
+      <button ng-click="changeLanguage('hi')" translate="BUTTON_TEXT_DE"></button>
+      <button ng-click="changeLanguage('en')" translate="BUTTON_TEXT_EN"></button>
+    </div>
+
     <!--
       The views will be rendered in the <ion-nav-view> directive below
       Templates are in the /templates folder (but you could also

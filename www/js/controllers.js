@@ -17,4 +17,10 @@ angular.module('starter.controllers', [])
   $scope.settings = {
     enableFriends: true
   };
+})
+
+.controller('TranslateCtrl', function($translate, $scope){
+	$scope.changeLanguage = function(langKey) {
+		$translate.use(langKey);
+	};
 });
