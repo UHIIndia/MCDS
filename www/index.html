@@ -9,6 +9,7 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link href="css/fonts.css" rel="stylesheet">
+    <link href="css/login.css" rel="stylesheet">
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
@@ -36,15 +37,13 @@
     <!--
       The nav bar that will be updated as we navigate between views.
     -->
-    <ion-nav-bar class="bar-stable">
-      <ion-nav-back-button>
-      </ion-nav-back-button>
-    </ion-nav-bar>
-    <p>{{ 'INTRO_TEXT' | translate }}</p>
-    <h1>{{ 'HEADLINE' | translate }}</h1>
-   <div ng-controller="TranslateCtrl">
-      <button ng-click="changeLanguage('hi')" translate="BUTTON_TEXT_DE"></button>
-      <button ng-click="changeLanguage('en')" translate="BUTTON_TEXT_EN"></button>
+    <div class="hide">
+      <p>{{ 'INTRO_TEXT' | translate }}</p>
+      <h1>{{ 'HEADLINE' | translate }}</h1>
+      <div ng-controller="TranslateCtrl">
+        <button ng-click="changeLanguage('hi')" translate="BUTTON_TEXT_DE"></button>
+        <button ng-click="changeLanguage('en')" translate="BUTTON_TEXT_EN"></button>
+       </div>
     </div>
 
     <!--

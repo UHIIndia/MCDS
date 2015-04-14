@@ -1,0 +1,88 @@
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+	.app-login-top .container {
+		width: 100%;
+		padding: 0;
+	}
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+}
+@media screen and (max-width: 767px) {
+	.app-login-top .container {
+		width: 100%;
+		padding: 0;
+	}
+	.app-login-top .left-block {
+		width: 100%;
+	}
+	.app-login-top .right-block {
+		width: 100%;
+		font-size: 16px;
+		padding: 10px 5px;
+	}
+	.right-block .home-txt {
+		float: left;
+		width: 70%;
+	}
+	.home-txt .women-empower-logo {
+		display: inline;
+		float: left;
+		width: 80px;
+		position: static;
+	}
+	.app-login-top .right-block span {
+		height: 60px;
+		width: 80px;
+		background-size: 100%;
+	}
+	.app-login-bottom {
+		padding: 10px 0;
+	}
+	.app-login-bottom label.control-label {
+		font-size: 16px;
+		margin-right: 0;
+		width: 30%;
+		float: left;
+	}
+	.app-login-bottom input[type="text"] {
+		margin-right: 0;
+		margin-bottom: 5px;
+		width: 70%;
+	}
+	.app-login-btn {
+		float: right;
+	}
+	.app-login-bottom {
+		box-shadow: 0 -3px 0 rgba(0, 0, 0, 0.3);
+	}
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+	.app-login-top .left-block {
+		float: left;
+		width: 70%;
+	}
+	.app-login-top .right-block {
+		font-size: 35px;
+		padding: 20px 35px;
+		width: 30%;
+	}
+	.home-txt .women-empower-logo {
+		right: 154px;
+		top: 63px;
+		width: 130px;
+	}
+	.app-login-bottom label.control-label {
+		font-size: 25px;
+	}
+	.app-login-bottom input[type="text"] {
+		margin-right: 25px;
+		width: 85px;
+	}
+	.app-login-bottom label.control-label {
+		margin-right: 10px;
+	}
+
+	.app-login-btn {
+		width: 100px;
+	}
+}

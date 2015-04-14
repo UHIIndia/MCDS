@@ -1,24 +1,32 @@
-<!--
-Create tabs with an icon and label, using the tabs-positive style.
-Each tab's child <ion-nav-view> directive will have its own
-navigation history that also transitions its views in and out.
--->
-<ion-tabs class="tabs-icon-top tabs-color-active-positive">
+<div class="app-login-wrapper">
+  <div class="app-login-top">
+    <div class="container">
+      <div class="left-block"><img src="img/home-img.gif" class="img-responsive">
+      </div>
+      <div class="right-block">
 
-  <!-- Dashboard Tab -->
-  <ion-tab title="Status" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" href="#/tab/dash">
-    <ion-nav-view name="tab-dash"></ion-nav-view>
-  </ion-tab>
+        <div class="home-txt">
+          <img src="img/women-empowerment-logo.png" class="img-responsive women-empower-logo">
+          Mother and Child Protection Card
+        </div>
+        <span>National Rural Health Mission</span>
+      </div>
 
-  <!-- Chats Tab -->
-  <ion-tab title="Chats" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" href="#/tab/chats">
-    <ion-nav-view name="tab-chats"></ion-nav-view>
-  </ion-tab>
-
-  <!-- Account Tab -->
-  <ion-tab title="Account" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/tab/account">
-    <ion-nav-view name="tab-account"></ion-nav-view>
-  </ion-tab>
-
-
-</ion-tabs>
+    </div>
+  </div>
+  <div class="app-login-bottom">
+    <div class="container">
+      <form class="form-horizontal">
+        <label class="control-label">CITY</label>
+        <input type="text" placeholder="123">
+        <label class="control-label">SLUM</label>
+        <input type="text" placeholder="512">
+        <label class="control-label">WORKER</label>
+        <input type="text" placeholder="123">
+        <button class="app-login-btn">
+          Enter
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
