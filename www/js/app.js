@@ -40,11 +40,59 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
   // setup the abstract state for the home directive
   .state('home', {
     url: "/home",
-    //abstract: true,
     templateUrl: "templates/home.html",
     controller: 'HomeController'
   })
-  ;
+  .state('add', {
+    url: "/add",
+    templateUrl: "templates/add.html",
+    controller: 'AddController'
+  })
+  .state('anc', {
+    url: "/anc",
+    templateUrl: "templates/anc.html",
+    controller: 'AncController'
+  })
+  .state('fp', {
+    url: "/fp",
+    templateUrl: "templates/fp.html",
+    controller: 'FpController'
+  })
+  .state('mapWomen', {
+    url: "/map-women",
+    templateUrl: "templates/map-women.html",
+    controller: 'MapWomenController'
+  })
+  .state('mapChildren', {
+    url: "/map-children",
+    templateUrl: "templates/map-children.html",
+    controller: 'MapChildrenController'
+  })
+  .state('listWomen', {
+    url: "/list-women",
+    templateUrl: "templates/list-women.html",
+    controller: 'ListWomenController'
+  })
+  .state('listChildren', {
+    url: "/list-children",
+    templateUrl: "templates/list-children.html",
+    controller: 'ListChildrenController'
+  })
+  .state('reportWomen', {
+    url: "/report-women",
+    templateUrl: "templates/report-women.html",
+    controller: 'ReportWomenController'
+  })
+  .state('reportChildren', {
+    url: "/report-children",
+    templateUrl: "templates/report-children.html",
+    controller: 'ReportChildrenController'
+  })
+  .state('film', {
+    url: "/film",
+    templateUrl: "templates/film.html",
+    controller: 'FilmController'
+  });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');
