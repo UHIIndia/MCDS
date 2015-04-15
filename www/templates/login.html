@@ -1,0 +1,42 @@
+<div class="app-login-wrapper">
+    <div class="app-login-top">
+        <div class="container">
+            <div class="left-block"><img src="img/home-img.gif" class="img-responsive">
+            </div>
+            <div class="right-block">
+
+                <div class="home-txt">
+                    <img src="img/women-empowerment-logo.png" class="img-responsive women-empower-logo">
+                    Mother and Child Protection Card
+                </div>
+                <span>National Rural Health Mission</span>
+            </div>
+
+        </div>
+    </div>
+    <div class="app-login-bottom">
+        <div class="container">
+            <form class="form-horizontal" name="loginForm" novalidate>
+                <div>
+                    <label class="control-label">CITY</label>
+                    <input type="text" value="542">
+                </div>
+                <div>
+                    <label class="control-label">SLUM</label>
+                    <input type="text" value="123">
+                </div>
+                <div>
+                    <label class="control-label">WORKER</label>
+                    <div class="has-error">
+                        <input type="text" ng-model="workerCode" name="workerCode" required>
+                        <span ng-show="required">Required</span>
+                        <span ng-show="incorrect">Incorrect code</span>
+                    </div>
+                </div>
+                <button type="submit" class="app-login-btn" ng-click="enterHome()">
+                    Enter
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

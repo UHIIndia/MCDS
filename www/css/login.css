@@ -47,7 +47,6 @@
 	right: 150px;
 	top: 58px;
 }
-}
 .women-empower-logo {
 	float: left;
 	position: relative;
@@ -72,6 +71,7 @@
 .app-login-bottom label.control-label {
 	font-family: OpenSans-Regular;
 	font-size: 30px;
+	float:left;
 	margin-right: 15px;
 	vertical-align: middle;
 	padding-top: 0;
@@ -80,14 +80,28 @@
 	width: 90px;
 	margin-right: 45px;
 	padding-left:5px;
+	margin-top: 7px;
 	border: 1px #a8a8a8 solid;
 	border-radius: 3px;
 	height: 27px;
 	display:inline-block;
 }
+.app-login-bottom form >div{
+	float:left;
+}
+.app-login-bottom .has-error{
+	float:left;
+}
+.app-login-bottom .has-error span{
+	display:block;
+	text-transform: capitalize;
+	color:#cc0000;
+
+}
 .app-login-btn {
 	background: #89c53f;
 	border: 1px #598c1a solid;
+	margin-top:4px
 	color: #fff;
 	height: 32px;
 	width: 120px;
