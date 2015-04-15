@@ -42,7 +42,7 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
     url: "/home",
     //abstract: true,
     templateUrl: "templates/home.html",
-    controller: 'LoginController'
+    controller: 'HomeController'
   })
   ;
 

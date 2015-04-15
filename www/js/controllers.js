@@ -24,6 +24,46 @@ angular.module('starter.controllers', [])
 		$translate.use(langKey);
 	};
 })
+.controller('HomeController', function($scope, $location) {
+
+  //code for tap on enter button
+  $scope.mapWomen = function(){
+     alert("mapWomen");
+  }
+
+  $scope.listWomen = function(){
+      $location.path("/listWomen");
+  }
+
+  $scope.reportWomen = function(){
+      alert("reportWomen");
+  }
+
+  $scope.showFilmsPregnant = function(){
+      alert("showFilmsPregnant");
+  }
+
+  $scope.showFilmsFP = function(){
+      alert("showFilmsFP");
+  }
+
+  $scope.mapBabies = function(){
+      alert("mapBabies");
+  }
+
+  $scope.listBabies = function(){
+      alert("listBabies");
+  }
+
+  $scope.reportBabies = function(){
+      alert("reportBabies");
+  }
+
+  $scope.showFilmsBabies = function(){
+      alert("showFilmsBabies");
+  }
+
+})
 
 .controller('LoginController', function($scope, $location) {
 
@@ -31,17 +71,18 @@ angular.module('starter.controllers', [])
   $scope.enterHome = function(){
     var code = 123;
     if(code == $scope.workerCode){
-      $scope.required = false;
-      $scope.incorrect = false;
+      $scope.required = false; 
+      $scope.incorrect = false; 
+      $scope.workerCode ="";
       //$window.location.href = '/home';
       $location.path("/home");
     }else if( $scope.workerCode == "" ||  $scope.workerCode == undefined){
-      $scope.required = true;
-      $scope.incorrect = false;
+      $scope.required = true; 
+      $scope.incorrect = false; 
     }else{
-      $scope.incorrect = true;
-      $scope.required = false;
-    }
+      $scope.incorrect = true; 
+      $scope.required = false; 
+    } 
   }
 
 });
