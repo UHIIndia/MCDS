@@ -85,4 +85,44 @@ angular.module('starter.controllers', [])
     } 
   }
 
+})
+
+.controller('AddController', function($scope) {
+
+})
+
+.controller('AncController', function($scope) {
+
+})
+
+.controller('FpController', function($scope) {
+
+})
+
+.controller('MapWomenController', function($scope) {
+
+})
+
+.controller('MapChildrenController', function($scope) {
+
+})
+
+.controller('ListWomenController', function($scope) {
+
+})
+
+.controller('ListChildrenController', function($scope) {
+
+})
+
+.controller('ReportWomenController', function($scope) {
+
+})
+
+.controller('ReportChildrenController', function($scope) {
+
+})
+
+.controller('FilmController', function($scope) {
+
 });
