@@ -7,65 +7,37 @@
 
 }
 .app-login-top {
-	background: #e9ffbb; /* Old browsers */
-	background: -moz-linear-gradient(top,  #e9ffbb 0%, #d3f885 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e9ffbb), color-stop(100%,#d3f885)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  #e9ffbb 0%,#d3f885 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  #e9ffbb 0%,#d3f885 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  #e9ffbb 0%,#d3f885 100%); /* IE10+ */
-	background: linear-gradient(to bottom,  #e9ffbb 0%,#d3f885 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9ffbb', endColorstr='#d3f885',GradientType=0 ); /* IE6-9 */
-	position: relative;
-	z-index: 1;
+	padding-top: 15px;
+	background-color: #d4fb83;
+}
+.app-login-top .container{
+	background-color:#8ac63f;
+	border: 10px #000 solid;
+	padding:0;
 }
 
 .app-login-top .left-block {
+	background-color:#fffcd5;
 	float: left;
+	width:65%;
+	border-right:10px #000 solid;
+}
+.app-login-top .right-block {
+	float: left;
+	width:35%;
+}
+.app-login-top .logos{
+	margin:15px 3px;
+}
+.app-login-top .right-block p{
+	font-size:45px;
+	font-family: OpenSans-Bold;
+	text-align: center;
+	padding-top: 40px;
 }
 
-.app-login-top .right-block {
-	font-family: OpenSans-Bold;
-	font-size: 45px;
-	font-size: 45px;
-	position: relative;
-	text-align: center;
-	width: 210px;
-	float: left;
-	word-wrap: normal;
-}
-.app-login-top .right-block span {
-	background: url("../img/rural-health-logo.png") left bottom no-repeat;
-	width: 143px;
-	height: 103px;
-	text-indent: -9999px;
-	font-size: 14px;
-	text-align: center;
-	display: inline-block;
-}
-.home-txt .women-empower-logo {
-	position: absolute;
-	right: 150px;
-	top: 58px;
-}
-.women-empower-logo {
-	float: left;
-	position: relative;
-	top: 30px;
-}
 .app-login-bottom {
-	background: #d6fc88; /* Old browsers */
-	background: -moz-linear-gradient(top,  #d6fc88 0%, #d3f885 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d6fc88), color-stop(100%,#d3f885)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  #d6fc88 0%,#d3f885 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  #d6fc88 0%,#d3f885 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  #d6fc88 0%,#d3f885 100%); /* IE10+ */
-	background: linear-gradient(to bottom,  #d6fc88 0%,#d3f885 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d6fc88', endColorstr='#d3f885',GradientType=0 ); /* IE6-9 */
-	padding: 35px 0;
-	box-shadow: 0 -5px 7px rgba(0,0,0, 0.3);
-	position: relative;
-	z-index: 2;
-	text-transform: uppercase;
+	padding: 35px 0 24px;
 }
 
 .app-login-bottom label.control-label {
@@ -101,7 +73,7 @@
 .app-login-btn {
 	background: #89c53f;
 	border: 1px #598c1a solid;
-	margin-top:4px
+	margin-top:4px;
 	color: #fff;
 	height: 32px;
 	width: 120px;
