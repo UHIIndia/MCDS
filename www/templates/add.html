@@ -1,1 +1,42 @@
-<div>This is view for Add.</div>
+<!-- Add woman details  -->
+<div id="details">
+
+House # <input type="text" ng-model="woman.house" required></br>
+Woman Name <input type="text" ng-model="woman.name" required></br>
+Husband Name <input type="text" ng-model="woman.husbandName"></br>
+Phone # +91 <input type="tel" ng-model="woman.phone"/></br>
+Number of previous pregnancies  <input type="text" ng-model="woman.pregNo"/></br>
+Number of live births <input type="text" ng-model="woman.liveBirths"/></br>
+Woman DOB <input type="date" ng-model="woman.dob" ng-blur="setAge(true);" required/></br>
+Age <input type="text" ng-model="woman.age" ng-blur="setDob(true)" required></br>
+LMP <input type="date" ng-model="woman.currentPreg.LMP" ng-blur="setEDD();"/></br>
+EDD <input type="date" ng-model="woman.currentPreg.EDD" ng-blur="setLMP();"/></br>
+<img alt="image of woman" ng-src="{{imgURI}}"/><button ng-click="captureImage();">Capture Image</button><br>
+<span>{{woman.visibleID}}</span>
+All Living Children<input type="text"/ ng-model="woman.livingChildren"></br>
+<div id="childDetails"> child Details:
+<ul id="childDetailsHeader">
+<li><span> Name </span></li>
+<li><span> Age </span></li>
+<li><span> Sex </span> </li>
+<li><button ng-click="addMoreChildren();">+ Child</button></li>
+</ul>
+<ul class="childDetailsDataEntry" ng-repeat="child in children">
+<li><input type="text" placeholder="Name" ng-model="child.name"></li>
+<li><input type="date" placeholder="Name" ng-model="child.dob" ng-blur="setAge(false,$index);"></li>
+<li><input type="text" placeholder="Age" ng-model="child.age" ng-blur="setDob(false, $index);"></li>
+<li> <input type="text" placeholder="Sex" ng-model="child.sex"></li>
+</ul>  
+</div>
+<button ng-click="saveDetails();" value="save">Save</button>
+<div id="links">
+<div>
+<a href="#/fp/{{woman.visibleID}}"> Family Planning</a> <a href="#/anc/{{woman.visibleID}}"> Pregnent ANC</a>
+</div>
+<ul>
+	<li ng-repeat ="child in savedChildren">
+		<a href="#/child/{{child.visibleID}}"><span> Name: {{child.name}}</span><br><span></span>Age: {{child.age}}</a>
+	</li>
+	
+</ul>
+</div>

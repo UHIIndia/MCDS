@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controllers', 'starter.services', 'ngCordova'])
 
 
 .run(function($ionicPlatform) {
@@ -44,7 +44,7 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
     controller: 'HomeController'
   })
   .state('add', {
-    url: "/add",
+    url: "/add/{id}",
     templateUrl: "templates/add.html",
     controller: 'AddController'
   })

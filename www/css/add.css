@@ -1,0 +1,13 @@
+div {
+	overflow: auto !important;
+}
+.pane {
+	position: absolute;
+}
+input {
+	border: 1px solid !important;
+}
+
+li {
+	display: inline-block;
+}
