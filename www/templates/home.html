@@ -92,9 +92,15 @@
 
 
 <div class="home-page-footer clearfix">
-        <a href="#/login" class="pull-left footer-btn"><i class="icon-exit">&nbsp;</i>Exit</a>
-        <a href="#" class="pull-right footer-btn"><i class="icon-add-new"></i>Add New</a>
-     </div>
+       <div class="col-sm-3 col-xs-3 text-left"><a href="#" class="footer-btn"><i class="icon-exit">&nbsp;</i>Exit</a></div>
+        <div class="col-sm-6 col-xs-5 text-center go-to">       
+            <div class="col-sm-3 col-xs-4"><input type="text" class="form-control" placeholder="House No." ng-model="houseNo"></div>
+             <div class="col-sm-3 col-xs-4"><input type="text" class="form-control" placeholder="Women No." ng-model="womanNo"></div>
+             <div class="col-sm-3 col-xs-4"><input type="text" class="form-control" placeholder="Child No." ng-model="childNo"></div>
+              <div class="col-sm-2  col-xs-2"><a href="javascript:void(0)" ng-click="goTo();" class="footer-btn">GO</a> </div>
+            </div>
+        <div class="col-sm-3  col-xs-4 text-right"><a href="#/addWoman/" class="footer-btn"><i class="icon-add-new"></i>Add New</a></div>
+</div>
 
 
    </div>

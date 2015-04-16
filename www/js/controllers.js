@@ -24,47 +24,61 @@ angular.module('starter.controllers', [])
 		$translate.use(langKey);
 	};
 })
-.controller('HomeController', function($scope, $location) {
+.controller('HomeController', ['$scope','UtilityService','$location',function($scope, UtilityService,$location) {
 
   //code for tap on enter button
   $scope.mapWomen = function(){
-     alert("mapWomen");
+      $location.path("/mapWoman");
   }
-
+  
   $scope.listWomen = function(){
-      $location.path("/listWomen");
+      $location.path("/listWoman");
   }
 
   $scope.reportWomen = function(){
-      alert("reportWomen");
+      $location.path("/reportWoman");
   }
 
   $scope.showFilmsPregnant = function(){
-      alert("showFilmsPregnant");
+      $location.path("/filmsWoman");
   }
 
   $scope.showFilmsFP = function(){
-      alert("showFilmsFP");
+     $location.path("/filmsWoman");
   }
 
   $scope.mapBabies = function(){
-      alert("mapBabies");
+      $location.path("/mapChild");
   }
 
   $scope.listBabies = function(){
-      alert("listBabies");
+      $location.path("/listChild");
   }
 
   $scope.reportBabies = function(){
-      alert("reportBabies");
+      $location.path("/reportChild");
   }
 
   $scope.showFilmsBabies = function(){
-      alert("showFilmsBabies");
+      $location.path("/filmsChild");
   }
 
-})
-
+  $scope.goTo= function(){
+    if(!$scope.houseNo){
+      alert('Please put a house no. to go to woman or child page');    
+    } else{
+      if($scope.womanNo) {
+       if($scope.childNo){ // go to child page
+        $location.path('/child/'+$scope.houseNo+"."+$scope.womanNo+"."+$scope.childNo);
+       } else { //go to woman page
+        $location.path('/addWoman/'+$scope.houseNo+"."+$scope.womanNo);
+       }             
+      } else {
+       alert('Please put a woman no. to go to woman or child page')
+      }
+    }
+ }
+}])
 .controller('LoginController', function($scope, $location) {
 
   //code for tap on enter button
