@@ -284,43 +284,62 @@ angular.module('starter.services', [])
     generateWomanID: function(houseCode, womanNo){
       return cityCode+slumCode+workerCode+houseCode+womanNo;
     },
+    showMonthFromDate:function(date){
+        var dateArray = date.split("/");
+        return dateArray[1];
+    },
+    convertDateFormat:function(date){
+        var day=date.getDate();
+        var month=date.getMonth()+1;
+        var year=date.getFullYear();
+        return day+"/"+month+"/"+year;
+    },
     showMonth:function(monthNo){
 
         switch(monthNo) {
-        case 0:
+        case 1:
+        case 01:
             return "Jan"
             break;
-        case 1:
+        case 2:
+        case 02:
             return "Feb"
             break;
-        case 2:
+        case 3:
+        case 03:
             return "Mar"
             break;
-        case 3:
+        case 4:
+        case 04:
             return "Apr"
             break;
-        case 4:
+        case 5:
+        case 05:
             return "May"
             break;
-        case 5:
+        case 6:
+        case 06:
             return "Jun"
             break;
-        case 6:
+        case 7:
+        case 07:
             return "Jul"
             break;
-        case 7:
+        case 8:
+        case 08:
             return "Aug"
             break;   
-        case 8:
+        case 9:
+        case 09:
             return "Sep"
             break;
-        case 9:
+        case 10:
             return "Oct"
             break;
-        case 10:
+        case 11:
             return "Nov"
             break;
-        case 11:
+        case 12:
             return "Dec"
             break;
         default:

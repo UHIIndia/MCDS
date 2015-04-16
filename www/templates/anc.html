@@ -1,1 +1,420 @@
-<div>This is view for ANC.</div>
+    <!--app tab start-->
+  <ul class="app-tabs">
+    <li class="light-green-bg col-lg-2"><a href="#">Main Page</a></li>
+    <li class="active dark-green-bg col-lg-1"><a href="#"><i class="icon-add-new">&nbsp;</i><span>Add</span></a></li>
+    <li class="pink-bg col-lg-1"><a href="#"><i class="icon-map-women-sm">&nbsp;</i><span>Map</span></a></li>
+    <li class="blue-bg col-lg-1"><a href="#"><i class="icon-map-babies-sm">&nbsp;</i><span>Map</span></a></li>
+    <li class="pink-bg col-lg-1"><a href="#"><i class="icon-list-women-sm">&nbsp;</i><span>List</span></a></li>
+    <li class="blue-bg col-lg-1"><a href="#"><i class="icon-list-babies-sm">&nbsp;</i><span>List</span></a></li>
+    <li class="pink-bg col-lg-1"><a href="#"><i class="icon-report-women-sm">&nbsp;</i><span>Report</span></a></li>
+    <li class="blue-bg col-lg-1"><a href="#"><i class="icon-report-babies-sm">&nbsp;</i><span>Report</span></a></li>
+    <li class="pink-bg col-lg-1"><a href="#"><i class="icon-films-fp-sm">&nbsp;</i><span>Films</span></a></li>
+    <li class="blue-bg col-lg-1"><a href="#"><i class="icon-films-babies-sm">&nbsp;</i><span>Films</span></a></li>
+     <li class="dark-green-bg col-lg-1"><a href="" class="settings-icon">Settings</a></li>   
+  </ul>
+
+  <!--add new form start-->
+  <!--form left-->
+  <div class="tabs-content clearfix pink-bg">
+  <div class="clearfix anc-calender-wrapper">
+  <div class="clearfix anc-calender-top">
+  <!--ANC top left column-->
+  <div class="col-sm-9">
+  <div class="clearfix">
+      <div class="col-sm-2">
+
+      </div>
+      <div class="col-sm-10 maternal-outcome">
+       <label class="col-sm-4">Maternal Outcome:</label>
+        <label for="radio1" class="col-sm-3"><input type="radio" name="radio" id="radio1"> Healthy</label>
+        <label for="radio1" class="col-sm-3"><input type="radio" name="radio" id="radio1"> Weak/Sick</label>
+        <label for="radio1" class="col-sm-2"><input type="radio" name="radio" id="radio1"> Dead</label>
+      </div>
+  </div> 
+   <div class="clearfix">
+       <div class="col-sm-2">
+          &nbsp;
+      </div>
+      <div class="col-sm-10 anc-calender-head">
+        <div class="col-sm-12 months-name">
+          <div class="col-sm-1">&nbsp;</div>
+          <div class="col-sm-1" ng-repeat="month in monthsArray"><div class="vertical-txt">{{month.monthName}}</div></div>
+          <div class="col-sm-1">&nbsp;</div>
+          <div class="col-sm-1">&nbsp;</div>
+        </div>
+        <div class="col-sm-12 months-activity">
+        <div class="vertical-txt month-heading">Months</div>
+          <div class="col-sm-1"><div class="vertical-txt">Past 3 Years</div></div>
+          <div class="col-sm-1">1st <img src="img/maternal-1st.gif" class="img-responsive"></div>
+          <div class="col-sm-1">2nd <img src="img/maternal-2nd.gif" class="img-responsive"></div>
+          <div class="col-sm-1">3rd <img src="img/maternal-3rd.gif" class="img-responsive"></div>
+          <div class="col-sm-1">4th <img src="img/maternal-4th.gif" class="img-responsive"></div>
+          <div class="col-sm-1">5th <img src="img/maternal-5th.gif" class="img-responsive"></div>
+          <div class="col-sm-1">6th <img src="img/maternal-6th.gif" class="img-responsive"></div>
+          <div class="col-sm-1">7th <img src="img/maternal-7th.gif" class="img-responsive"></div>
+          <div class="col-sm-1">8th <img src="img/maternal-8th.gif" class="img-responsive"></div>
+          <div class="col-sm-1">9th <img src="img/maternal-9th.gif" class="img-responsive"></div>
+          <div class="col-sm-1"><div class="vertical-txt">Total at Delivery</div></div>
+          <div class="col-sm-1"><div class="vertical-txt">After Post Delivery</div></div>
+        </div>
+      </div>
+    </div>  
+  </div>
+<!--ANC top right column-->
+  <div class="col-sm-3">
+  <!--Mother age details Form-->
+    <div class="mother-age-details">
+    <form class="form-horizontal clearfix">
+      <div class="col-xs-8">
+        <div class="form-group">
+          <label class="col-xs-3 control-label">DOB</label>
+          <div class="col-xs-9"><input type="text" class="form-control" ng-model="DOB" ></div>
+        </div>
+         <div class="form-group">
+          <label class="col-xs-3 control-label">Age</label>
+          <div class="col-xs-9"><input type="text" class="form-control" ng-model="Age"></div>
+        </div>
+         <div class="form-group">
+          <label class="col-xs-3 control-label">LMP</label>
+          <div class="col-xs-9"><input type="text" class="form-control" ng-model="LMP"></div>
+        </div>
+         <div class="form-group">
+          <label class="col-xs-3 control-label">EDD</label>
+          <div class="col-xs-9"><input type="text" class="form-control" ng-model="EDD"></div>
+        </div>
+      </div>
+      <div class="col-xs-4">
+        <div class="mother-profile-pic">
+            Mother photo
+        </div>
+        <div>Leela</div>
+      </div>
+    </form>
+    </div>
+  <!--Mother delivery details Form-->  
+    <div class="mother-delivery-details">
+    <form class="form-horizontal clearfix">
+    <div class="form-group  delivery-date">
+      <div class="col-sm-12">
+        <label class="control-label col-sm-2">DOD</label>
+        <div class="col-sm-6">
+           <div class="input-group date-picker">
+          <span class="input-group-btn"><i class="icon-date-small">&nbsp;</i></span>
+          <input type="text" class="form-control" placeholder="12/12/1986">
+        </div>
+      </div>
+    
+      <div class="col-sm-4 delivery-child">
+            <!-- <a href="#">
+               <i class="icon-girl-small">&nbsp;</i>
+            </a>
+            <a href="#">
+                <!--<i class="icon-boy-small">&nbsp;</i>
+            </a>-->
+      </div>
+      </div>
+      </div>
+      <div class="form-group birth-outcome">
+        <div class="col-sm-12">
+               <h5>Birth Outcome</h5>
+        <label class="control-label" for="radio1"><input type="radio" id="radio1" name="radio">Live Birth</label> 
+        <label class="control-label" for="radio2"><input type="radio" id="radio2" name="radio">Dead</label> 
+        <label class="control-label" for="radio3"><input type="radio" id="radio3" name="radio"> Misscarriage<br />/Still Birth</label> 
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+  <!--anc calender body-->
+  <div class="clearfix anc-calender-bottom">
+  anc row
+    <div class="anc-row clearfix">
+      <div class="col-sm-9">
+        <div class="col-sm-2 anc-video">
+          <div>
+            <img src="img/video-screen1.gif" class="img-responsive">
+           <div> ASHA AWW VISIT</div>
+          </div>
+        </div>
+       
+        <div class="col-sm-10 anc-outcome">
+          <div class="col-sm-1 healthy">&nbsp;</div>
+          <div ng-class="{'col-sm-1':true,'weak': month.monthNo === nextAshaVisitMonth}" ng-repeat="month in monthsArray">{{ month.monthNo}}
+            <span ng-show="lastAshaVistMonth == month.monthNo">{{lastAshaVistDate}}</span></div>
+          <div class="col-sm-1">{{ashaCountTotal}}</div>
+          <div class="col-sm-1">&nbsp;</div>
+        </div> 
+      </div>
+      <div class="col-sm-3 anc-calender-add">
+      <form class="form-horizontal">
+        <div class="form-group">
+        <div class="col-sm-12">
+          <div class="col-sm-3">
+            <p class="input-group">
+                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="ashaCalendarDate" is-open="opened"  max-date="getDate()" datepicker-options="dateOptions"  ng-required="true"  close-text="Close" />
+                <span class="input-group-btn">
+                 <button type="button" class="btn btn-default" ng-click="open($event,'asha')"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </p>
+          </div>
+          <div class="col-sm-9 radio-group"> 
+          </div>
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+      ANM row
+    <div class="anc-row clearfix">
+      <div class="col-sm-9">
+        <div class="col-sm-2 anc-video">
+          <div>
+            <img src="img/video-screen1.gif" class="img-responsive">
+           <div>ANM. DOC. CHECKUP</div>
+          </div>
+        </div>
+        <div class="col-sm-10 anc-outcome">
+          <div class="col-sm-1 healthy">&nbsp;</div>
+           <div ng-class="{'col-sm-1':true,'weak': month.monthNo === nextANMVisitMonth}" ng-repeat="month in monthsArray"> <span ng-show="lastANMVistMonth == month.monthNo">{{lastANMVisitDate}}</span></div>
+          <div class="col-sm-1">{{ANMCountTotal}}</div>
+          <div class="col-sm-1">&nbsp;</div>
+        </div>
+      </div>
+      <div class="col-sm-3 anc-calender-add">
+      <form class="form-horizontal">
+           <div class="form-group">
+        <div class="col-sm-12 text-right">           
+             <label class="control-label">TT in Last Pregnancy</label> <input type="text" class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+        <div class="col-sm-12">
+          <div class="col-sm-3">
+              <p class="input-group">
+                <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="ANMCalendarDate" is-open="openedANM"  ng-required="true"close-text="Close" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="open($event,'anm')"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </p>
+          </div>
+          <div class="col-sm-9 radio-group">
+          </div>
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+          <!-- <weight row -->
+    <div class="anc-row clearfix">
+      <div class="col-sm-9">
+        <div class="col-sm-2 anc-video">
+          <div>
+            <img src="img/video-screen1.gif" class="img-responsive">
+           <div>Weight</div>
+          </div>
+        </div>
+        <div class="col-sm-10 anc-outcome">
+          <div class="col-sm-1 healthy">&nbsp;</div>
+           <div ng-class="{'col-sm-1':true,'dead':nextIFAVisit == month.monthNo && weightAlert == true}" ng-repeat="month in monthsArray"> <span ng-show="lastWeightMonth == month.monthNo">{{lastWeightDate}}</span></div>
+          <div class="col-sm-1">{{lastWeight}}</div>
+          <div class="col-sm-1">&nbsp;</div>
+        </div>
+      </div>
+      <div class="col-sm-3 anc-calender-add">
+      <form class="form-horizontal">
+        <div class="form-group">
+        <div class="col-sm-12">
+          <div class="col-sm-3">
+            <p class="input-group">
+                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="WeightCalendarDate" is-open="openedWeight" ng-required="true" close-text="Close" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="open($event,'weight')"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </p>
+          </div>
+          <div class="col-sm-9 text-right">
+            <label class="control-label">Weight</label> <input type="text" class="form-control" ng-model="enteredWeight"><label class="control-label">Kg</label>
+          </div>
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- HB TEST -->
+    <div class="anc-row clearfix">
+      <div class="col-sm-9">
+        <div class="col-sm-2 anc-video">
+          <div>
+            <img src="img/video-screen1.gif" class="img-responsive">
+           <div>Anaemia</div>
+          </div>
+        </div>
+        <div class="col-sm-10 anc-outcome">
+          <div class="col-sm-1 healthy">&nbsp;</div>
+           <div ng-class="{'col-sm-1':true,'dead': month.monthNo == lastHBMonth && alertHB == true}" ng-repeat="month in monthsArray"> <span ng-show="lastHBMonth == month.monthNo">{{lastHBValue}}</span></div>
+          <div class="col-sm-1">{{lastHBValue}}</div>
+          <div class="col-sm-1">&nbsp;</div>
+        </div>
+      </div>
+      <div class="col-sm-3 anc-calender-add">
+      <form class="form-horizontal">
+           <div class="form-group">
+        <div class="col-sm-12 text-right">           
+           
+          </div>
+        </div>
+        <div class="form-group">
+        <div class="col-sm-12">
+          <div class="col-sm-3">
+              <p class="input-group">
+                <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="HBCalendarDate" is-open="openedHB"  ng-required="true"close-text="Close" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="open($event,'HB')"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </p>
+          </div>
+          <div class="col-sm-9 radio-group">
+            <label class="control-label">HB 10</label> <input type="text" class="form-control" ng-model="enteredHB">
+          </div>
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+    <!--HB TEST ENDS
+
+     <!--PALE EYE
+    <div class="anc-row clearfix">
+      <div class="col-sm-9">
+        <div class="col-sm-2 anc-video">
+          <div>
+            <img src="img/video-screen1.gif" class="img-responsive">
+           <div>Pale Eyeeeee</div>
+          </div>
+        </div>
+        <div class="col-sm-10 anc-outcome">
+          <div class="col-sm-1 healthy">&nbsp;</div>
+           <div ng-class="{'col-sm-1':true,'dead': month.monthNo == symptomData[0].month&& alertPaleEye == true}" ng-repeat="month in monthsArray"> 
+            <span></span>
+            <span ng-show="month.monthNo == symptomData[0].month">{{symptomData[0].value + " "+symptomData[0].month}}</span>
+          </div>
+          <div class="col-sm-1">{{symptomData[0].value}}</div>
+          <div class="col-sm-1">&nbsp;</div>
+        </div>
+      </div>
+      <div class="col-sm-3 anc-calender-add">
+      <form class="form-horizontal">
+           <div class="form-group">
+        <div class="col-sm-12 text-right">           
+           
+          </div>
+        </div>
+        <div class="form-group">
+        <div class="col-sm-12">
+          <div class="col-sm-3">
+              <p class="input-group">
+                <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="PaleCalendarDate" is-open="openedPale"  ng-required="true"close-text="Close" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="open($event,'Pale')"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </p>
+          </div>
+          <div class="col-sm-9 radio-group">
+              <label for="radio5" class="control-label"><input type="radio" ng-model="paleOutcome"  ng-value="'no'"  name="PaleEyeCheck" id="radio5" ng-change='newPaleEyeValue(paleOutcome)'>No</label>
+             <label for="radio4" class="control-label"><input type="radio" ng-model="paleOutcome" name="PaleEyeCheck" ng-value="'yes'" id="radio4" ng-change='newPaleEyeValue(paleOutcome)'>Yes</label> 
+          </div>
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+    <!--PALE EYE ENDS
+
+     <!--Night Blindness-->
+    <div class="anc-row clearfix">
+      <div class="col-sm-9">
+        <div class="col-sm-2 anc-video">
+          <div>
+            <img src="img/video-screen1.gif" class="img-responsive">
+           <div>Night Blind</div>
+          </div>
+        </div>
+        <div class="col-sm-10 anc-outcome">
+          <div class="col-sm-1 healthy">&nbsp;</div>
+           <div ng-class="{'col-sm-1':true,'dead': month.monthNo == lastNightBlindMonth && alertNightBlind == true}" ng-repeat="month in monthsArray"> <span ng-show="lastPaleEyeMonth == month.monthNo">{{lastNightBlindnessValue}}</span></div>
+          <div class="col-sm-1">{{lastPaleEyeValue}}</div>
+          <div class="col-sm-1">&nbsp;</div>
+        </div>
+      </div>
+      <div class="col-sm-3 anc-calender-add">
+      <form class="form-horizontal">
+           <div class="form-group">
+        <div class="col-sm-12 text-right">           
+           
+          </div>
+        </div>
+        <div class="form-group">
+        <div class="col-sm-12">
+          <div class="col-sm-3">
+              <p class="input-group">
+                <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="NightBlindCalendarDate" is-open="openedNightBlind"  ng-required="true"close-text="Close" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="open($event,'NB')"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </p>
+          </div>
+          <div class="col-sm-9 radio-group">
+              <label for="radio5" class="control-label"><input type="radio" ng-model="paleOutcome"  ng-value="'no'"  name="PaleEyeCheck" id="radio5" ng-change='newPaleEyeValue(paleOutcome)'>No</label>
+             <label for="radio4" class="control-label"><input type="radio" ng-model="paleOutcome" name="PaleEyeCheck" ng-value="'yes'" id="radio4" ng-change='newPaleEyeValue(paleOutcome)'>Yes</label> 
+          </div>
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+    <!--Night Blindness ENDS-->
+
+     <!--IFA Tablets row-->
+    <div class="anc-row clearfix">
+      <div class="col-sm-9">
+        <div class="col-sm-2 anc-video">
+          <div>
+            <img src="img/video-screen1.gif" class="img-responsive">
+           <div>IFA Tablets</div>
+          </div>
+        </div>
+        <div class="col-sm-10 anc-outcome">
+          <div class="col-sm-1 healthy">&nbsp;</div>
+         <!--  <div ng-class="{'col-sm-1':true,'dead': month.monthNo == lastHBMonth && alertHB == true}" ng-repeat="month in monthsArray"> <span ng-show="lastHBMonth == month.monthNo">{{lastHBValue}}</span></div>-->
+           <div ng-class="{'col-sm-1':true,'weak':month.monthNo == nextIFAVisit  && alertIFA == true}" ng-repeat="month in monthsArray"> <span ng-show="lastIFAMonth == month.monthNo">{{lastIFACount}}</span></div>
+          <div class="col-sm-1">{{totalIFACount}}</div>
+          <div class="col-sm-1">&nbsp;</div>
+        </div>
+      </div>
+      <div class="col-sm-3 anc-calender-add">
+      <form class="form-horizontal">
+        <div class="form-group">
+        <div class="col-sm-12">
+          <div class="col-sm-3">
+            <p class="input-group">
+                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="IFACalendarDate" is-open="openedIFA" ng-required="true" close-text="Close" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="open($event,'IFA')"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </p>
+          </div>
+          <div class="col-sm-9 text-right">
+            <label class="control-label">Quantity</label> <input type="text" class="form-control" ng-model="enteredIFA"><label class="control-label">Kg</label>
+          </div>
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="row"><div class="col-sm-12 text-right"><button class="default-btn">Save</button></div></div>
+      </div>
+<!--anc-calender-wrapper ends here-->
+ </div>

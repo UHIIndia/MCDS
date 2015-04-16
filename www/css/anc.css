@@ -1,0 +1,241 @@
+.anc-calender-top > div:first-child , .anc-calender-bottom > .anc-row > div, .anc-calender-bottom .anc-outcome{
+	padding: 0;
+}
+.anc-calender-top > div:last-child {
+	padding-right: 0;
+}
+.anc-calender-bottom .anc-video{
+	padding-left: 0;
+}
+.anc-video > div img{
+	display: inline-block;
+}
+.anc-video > div{
+	text-align: center;
+	font-size: 12px;
+}
+.maternal-outcome{
+	background: #f467a7;
+	border: 1px #fff solid;
+	border-radius: 6px;
+	padding:15px;
+}
+.maternal-outcome label{
+	padding-left: 0;
+	font-size: 16px;
+}
+.mother-age-details{
+	border: 1px #fff solid;
+	border-radius: 6px;
+	background: #f467a7;
+	margin-bottom:15px;
+	padding:10px;
+}
+.mother-age-details .form-group{
+	margin-bottom:13px;
+}
+.mother-age-details .form-group:last-child{
+	margin-bottom:0;
+}
+.mother-age-details .form-horizontal .control-label{
+	padding-top: 0;
+}
+.mother-age-details .form-horizontal >div:first-child{
+padding-left:0;
+}
+.mother-age-details input[type="text"], .mother-delivery-details input[type="text"]{
+	height: 20px;
+	border: 1px #a8a8a8 solid;
+	padding: 2px;
+}
+.mother-profile-pic{
+	background: #ccc;
+	width:74px;
+	height:86px;
+	margin-left: -15px;
+	border: 1px #fff solid;
+}
+.mother-profile-pic + div{
+	margin-top:6px;
+}
+.mother-delivery-details{
+	background: #b2dfee;
+	border: 1px #fff solid;
+	border-radius: 6px;
+	padding:10px;
+}
+.mother-delivery-details .form-group{
+	margin-bottom: 0;
+}
+.mother-delivery-details .delivery-date label{
+	padding:0 10px 0 0;
+}
+.mother-delivery-details .delivery-date label ~ div{
+	padding: 0;
+}
+.mother-delivery-details .delivery-date .delivery-child{
+	padding:0 5px;
+}
+.mother-delivery-details .delivery-date .delivery-child a{
+	width: 27px;
+	height: 27px;
+	display: inline-block;
+	background: #fff;
+	border-radius: 3px;
+	padding:5px;
+	border: 1px #a6a6a6 solid;
+}
+.icon-girl-small{
+	 background-position: -133px -558px !important;
+    height:18px;
+    width:18px;
+}
+.icon-boy-small{
+	 background-position: -133px -582px !important;
+    height:18px;
+    width:18px;
+}
+}
+.mother-delivery-details .birth-outcome{
+	margin:0;
+}
+.mother-delivery-details .birth-outcome h5{
+	margin-bottom: 2px;
+}
+.mother-delivery-details .birth-outcome > div{
+	float: left;
+	padding-right:12px;
+	font-size: 11px;
+}
+.mother-delivery-details .birth-outcome > div label{
+	vertical-align: text-top;
+	text-align: left;
+	padding-top: 0;
+	margin-right:13px;
+}
+.mother-delivery-details .birth-outcome > div label:last-child{
+	margin-right: 0;
+}
+.icon-date-small{
+	 background-position: -134px -532px !important;
+    height:18px;
+    width:18px;
+}
+
+.anc-calender-head{
+	font-family: OpenSans-Semibold;
+	padding: 0;
+}
+.anc-calender-head .months-name, .anc-calender-head .months-activity{
+	padding: 0;
+}
+.anc-calender-head .months-name > div{
+	height: 60px;
+}
+.anc-calender-head .months-activity > div{
+	position: relative;
+	background: #fff;
+	height:136px;
+	border: 1px #000 solid;
+	border-right:none;
+	text-align: center;
+	padding: 0;
+	overflow: hidden;
+}
+.anc-calender-head .months-activity > div img{
+	max-width: 47px;
+	margin:0 auto;
+}
+.anc-calender-head .months-activity > div:nth-child(2) .vertical-txt{
+	left: 25%;
+}
+.anc-calender-head .months-activity > div:last-child{
+	border-right: 1px #000 solid;
+}
+.vertical-txt{
+    position: absolute;
+   /*border: 1px solid black;
+    background-color: red;*/
+    -ms-transform: rotate(-90deg);
+    -ms-transform-origin:0 0;
+    -webkit-transform: rotate(-90deg); 
+    -webkit-transform-origin: 0 0;
+    transform: rotate(-90deg);
+    transform-origin:0 0;
+    width: 133px;
+    top: 100%;
+    left: 3px;
+    padding: 0 10px;
+  font-size: 16px;
+  line-height: 1.3;
+}
+.anc-calender-head .months-name .vertical-txt{
+  width: 60px;
+  left: 50%;
+  margin: 0 auto;
+  transform-origin: -10px 0px;
+}
+.month-heading{
+  transform-origin: 0 100%;
+  font-size: 18px;
+  width: 90px;
+  right: 100%;
+  position: absolute !important;
+  left: 108px;
+  top: -20px;
+  background: transparent !important;
+  border: none !important;
+}
+.anc-row{
+	margin:15px 0;
+}
+.anc-outcome > div{
+	height: 106px;
+	border:1px #000 solid;
+	border-right:none;
+	background: #fff;
+	text-align: center;
+}
+.anc-outcome > div span{
+	display: block;
+	padding-top: 40px;
+}
+.anc-outcome > div:last-child{
+	border-right: 1px #000 solid;
+}
+.anc-outcome .healthy{
+background: #d9d9d9;
+}
+.anc-outcome .weak{
+background: #ffff00;
+}
+.anc-outcome .dead{
+background: #ff0000;
+}
+.anc-calender-add{
+	background: #f9f9f9;
+	border: 1px #000 solid;
+	border-left:none;
+	height: 106px;
+}
+.anc-calender-add .form-horizontal {
+	padding:15px 0;
+}
+
+.anc-calender-add .radio-group label.control-label{
+	float: right;
+	margin-right:15px;
+	vertical-align: middle;
+	font-size: 16px;
+}
+.anc-calender-add .radio-group > label.control-label:first-child{
+	margin-right: 0;
+}
+.anc-calender-add .radio-group label input[type="radio"]{
+	margin-right: 5px;
+}
+.anc-calender-add input[type="text"]{
+	width:40px;
+	display: inline-block;
+	  margin: 0 10px;
+}
