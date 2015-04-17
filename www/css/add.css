@@ -1,7 +1,290 @@
-#details input {
-	border: 1px solid !important;
+.addnew-form-wrapper .form-horizontal .control-label{
+	text-align: left;
 }
+.addnew-form-wrapper .basic-info{
+	padding:15px 0 0 0;
+	margin-bottom: 15px;
+	background:#d3d3d3;
+}
+.addnew-form-wrapper .basic-info >div{
+	background: #d3d3d3;
+	padding-top: 15px;
+	padding-bottom: 47px;
+}
+.icon-phone{
+	background-position: -218px -244px !important;
+	width:9px;
+	height:18px;
+	margin: 0 3px;
+}
+.addnew-form-wrapper .mother-info{
+	padding:0;
+	margin-bottom: 15px;
+}
+.addnew-form-wrapper .mother-info > div{
+	background: #faafba;
+	padding-top: 15px;
+}
+.addnew-form-wrapper .mother-info + div{
+	padding-right: 0;
+}
+.addnew-form-wrapper .mother-info form  > div:last-child{
+	padding-left: 0;
+}
+.mother-info .pregnant-status > div:first-child{
+	float: left;
+}
+.mother-info .pregnant-status > div:last-child{
+	float: right;
+}
+.mother-info .pregnant-status > div i{
+	vertical-align: middle;
+}
+.pregnant-status input[type=radio]:not(old):checked + label {
+	background-position: -218px -21px !important;
+}
+.pregnant-status input[type=radio]:not(old) + label {
+	background-position: -218px 9px !important;
+}
+.icon-date{
+	background-position: -133px -456px !important;
+	width:33px;
+	height:33px;
+	cursor: pointer;
+}
+.date-picker .input-group-btn{
+	padding: 0 0 0 6px;
+}
+.icon-pregnant-no{
+	background-position: -68px -245px !important;
+	width:44px;
+	height:44px;
+}
+.icon-pregnant-yes{
+	background-position: -218px -65px !important;
+	width:19px;
+	height:44px;
+}
+.mother-info .align-top{
+	padding-top: 0;
+}
+/*.women-age-block{
+	margin:0 -15px;
+}
+.women-age-block label{
+	padding-left:0;
+}
+.women-age-block div{
+	padding-left:0;
+	padding-right: 0;
+	}*/
+	.women-profile-pic{
+		background: #b2b2b2;
+		border: 1px #fff solid;
+		max-width:87px;
+		height:100px;
+		margin:0 auto 4px auto;
+	}
+	.women-profile-pic ~ div{
+		text-align: center;
+		word-wrap:break-word;
+		padding-bottom: 4px;
+		font-size: 14px;
+	}
+	.child-details-header .form-group{
+		background:#61caec;
+		margin-bottom:0;
+		padding:7px 15px;
+	}
+	.child-details-header .form-group > div{
+		padding: 0;
+	}
+	.child-details-header span{
+		font-weight: bold;
+		display: inline-block;
+	}
+	.child-details-header > div > div:last-child{
+		padding-left: 0;
+	}
+	.child-details-header > div > div:last-child button{
+		float: right;
+	}
+	.child-details .child-entries{
+		background:#b2dfee;
+		height:66px;
+		overflow: auto;
+		padding-top: 18px;
+	}
+	.child-entries .form-group {
+		margin: 0 0 18px 0;
+	}
+	.child-entries .form-group > div{
+		padding-left: 0;
+		padding-right: 10px;
+	}
+	.child-entries .form-group > div:last-child{
+		padding-right: 0;
+	}
+	.child-details .child-entries .select-child a{
+		display: inline-block;
+		padding:2px;
+		border: 1px #a6a6a6 solid;
+		border-radius:3px;
+	}
+	.child-details .child-entries .select-child a.girl-child{
+		background:#faafba;
+	}
+	.child-details .child-entries .select-child a.boy-child{
+		background:#92d7ed;
+	}
+	.icon-select-girl {
+		background-position: -218px -125px !important;
+		height:27px;
+		width:27px;
+	}
+	.icon-select-boy {
+		background-position: -218px -165px !important;
+		height:27px;
+		width:27px;
+	}
+	.child-details-footer{
+		background:#d1ecf5;
+		text-align: right;
+		padding:10px;
+	}
+	.child-details .child-entries .select-child a i.inactive{
+		opacity: 0.4;
+	}
 
-#details li {
-	display: inline-block;
-}
+	.save-form{
+		background: #e9ffbb; /* Old browsers */
+		background: -moz-linear-gradient(top,  #e9ffbb 0%, #d6fc88 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e9ffbb), color-stop(100%,#d6fc88)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top,  #e9ffbb 0%,#d6fc88 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top,  #e9ffbb 0%,#d6fc88 100%); /* Opera 11.10+ */
+		background: -ms-linear-gradient(top,  #e9ffbb 0%,#d6fc88 100%); /* IE10+ */
+		background: linear-gradient(to bottom,  #e9ffbb 0%,#d6fc88 100%); /* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9ffbb', endColorstr='#d6fc88',GradientType=0 ); /* IE6-9 */
+		padding:8px;
+		box-shadow:0 -5px 7px rgba(0,0,0,0.3); 
+	}
+	.tabs-content{
+		padding:15px;
+	}
+	.addnew-form-links{
+		margin-top: 15px;
+		padding:0;
+	}
+	.addnew-form-links label{
+		padding-top: 7px;
+	}
+	.addnew-form-links >div:first-child{
+		padding: 0 15px 0 0;
+	}
+	.addnew-form-links >div:last-child{
+		padding:10px;
+		background:#d3d3d3;
+	}
+	.addnew-form-links .women-links{
+		background:#d3d3d3;
+	}
+	.addnew-form-links .women-links > div{
+		padding-left: 0;
+		margin-top: 15px;
+		margin-bottom: 15px;
+	}
+	.addnew-form-links .women-links > div:last-child{
+		padding-right: 0;
+	}
+
+	.addnew-form-links .child-links{
+		overflow: scroll;
+		white-space: nowrap;
+		width: 100%;
+	}
+	.addnew-form-links .women-links a{
+		display:inline-block;
+		border-radius:6px;
+		width: 66px;
+		text-align: center;
+		color:#000;	
+		background: #faafba;
+		border: 1px #a6a6a6 solid;
+		padding:5px;
+		margin: 14px 0 44px;
+		position: relative;
+		box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.8);
+		-moz-box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.8);
+		-webkit-box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.8), inset 0 5px 5px rgba(255,255,255,0.8);
+	}
+	.addnew-form-links .women-links a:hover{
+		text-decoration: none;
+	}
+	.icon-women {
+		background-position: -5px -523px !important;
+		height:68px;
+		width:67px;
+	}
+	.icon-pregnant-women {
+		background-position: -218px -65px !important;
+		width: 19px;
+		height: 44px;
+	}
+	.icon-arrow-right{
+		background-position: -218px -205px !important;
+		height:18px;
+		width:18px;
+		vertical-align: middle;
+	}
+	.addnew-form-links a span {
+		display: block;
+		font-size: 16px;
+		padding-top: 15px;
+	}
+	.child-links > div{
+		display: inline-block;
+		margin:10px;	
+		width:90px;
+		font-size: 12px;
+		text-align: center;
+	}
+	.child-links > div:first-child{
+		margin-left: 0;
+	}
+	.child-links > div span{
+		display: block;
+		margin-top: 3px;
+	}
+	.child-links > div a{
+		background: #b2dfee;
+		border: 1px #a6a6a6 solid;
+		border-radius: 6px;
+		display:inline-block;
+		text-align: center;
+		width:66px;
+		padding:5px;
+		position: relative;
+		box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.8);
+		-moz-box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.8);
+		-webkit-box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.8), inset 0 5px 5px rgba(255,255,255,0.8);
+	}
+	.icon-girl{
+		background-position: -5px -607px !important;
+		height:48px;
+		width:50px;
+	}
+	.icon-boy{
+		background-position: -88px -607px !important;
+		height:48px;
+		width:50px;
+	}
+	.icon-plus{
+		background-position: -132px -502px !important;
+		height:21px;
+		width:21px;
+	}
+	.child-links > div a .icon-plus, .women-links > div a .icon-plus{
+		position: absolute;
+		right:3px;
+		top: 5px;
+	}
