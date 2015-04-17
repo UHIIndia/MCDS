@@ -1,5 +1,5 @@
 <!-- Add woman details  -->
-<div id="details">
+<!--<div id="details">
 
 House # <input type="text" ng-model="woman.house" required></br>
 Woman Name <input type="text" ng-model="woman.name" required></br>
@@ -39,4 +39,195 @@ All Living Children<input type="text"/ ng-model="woman.livingChildren"></br>
 	</li>
 	
 </ul>
+</div>-->
+
+  <!--add new form start-->
+    <!--form left-->
+    <div class="tabs-content clearfix dark-green-bg">
+      <div class="clearfix addnew-form-wrapper">
+        
+        <div class="col-sm-6 mother-info">
+          <div class="clearfix">
+            <form class="form-horizontal clearfix">
+
+
+              <div class="col-sm-3 clearfix text-center">
+               <div class="women-profile-pic"><img  ng-src="{{imgURI}}"></div>
+               <div>{{woman.name}}</div>
+               <div>{{woman.visibleID}}</div>
+               <button class="default-btn" ng-click="captureImage();">Change</button>
+               
+             </div>
+
+             <div class="col-sm-9">            
+
+              <div class="form-group">
+               <label class="control-label col-sm-5">Name</label>
+               <div class="col-sm-7">
+                 <input  type="text" class="form-control" ng-model="woman.name" required>
+               </div>
+             </div>
+
+
+             <div class="form-group">
+               <label class="control-label col-sm-5">Date of Birth</label>
+               <div class="col-sm-7">
+                <div class="input-group date-picker">
+                  <input type="text" class="form-control" ng-model="woman.dob" ng-blur="setAge(true);" required>
+                  <span class="input-group-btn"><i class="icon-date">&nbsp;</i></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+             <label class="control-label col-sm-5">Age</label>
+             <div class="col-sm-7">
+              <input type="text" class="form-control" ng-model="woman.age" ng-blur="setDob(true)" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+           <label class="control-label col-sm-5 align-top">No. of Prev. Pregnancies</label>
+           <div class="col-sm-7">
+            <input type="text" class="form-control" ng-model="woman.pregNo">
+          </div>
+        </div>
+        <div class="form-group">
+         <label class="control-label col-sm-5  align-top">No. of Live Birth(s)</label>
+         <div class="col-sm-7">
+          <input type="text"  class="form-control" ng-model="woman.liveBirths">
+        </div>
+      </div>
+
+      <div class="form-group">
+       <label class="control-label col-sm-5  align-top">Currently Pregnant</label>
+       <div class="col-sm-7 pregnant-status">
+        
+        
+         <div>
+           <input type="radio" name="yesNoRadio" id="yesRadio"><label for="yesRadio">Yes <i class="icon-pregnant-yes">&nbsp;</i></label>
+         </div>
+         <div>
+           <input type="radio" name="yesNoRadio" id="noRadio"><label for="noRadio">No <i class="icon-pregnant-no">&nbsp;</i></label>                   
+         </div>
+       </div>
+     </div>
+
+     
+   </div>
+ </form>
+
+ <!--child details form-->
+
+
+
+
+ 
+ 
 </div>
+</div>
+<!--basic info form-->
+<div class="col-sm-6">
+  <div class="clearfix basic-info">
+    <form class="form-horizontal">
+      <div class="col-sm-12">
+        <div class="form-group">
+          <label class="control-label col-sm-4">House No.</label>
+          <div class="col-sm-8"><input type="text" class="form-control" ng-model="woman.house" required>
+            <span class="error">House Name Required</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-4">Husband Name</label>
+          <div class="col-sm-8"><input type="text" class="form-control"  ng-model="woman.husbandName"></div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-4">Phone # <i class="icon-phone">&nbsp;</i> +91</label>
+          <div class="col-sm-8"><input type="tel" ng-model="woman.phone" class="form-control"></div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="clearfix">
+   <form class="form-horizontal clearfix child-details" id="childDetails">
+     <div class="col-sm-12 child-details-header" id="childDetailsHeader">
+       <div class="form-group">
+        <div class="col-sm-4">
+         <span>Name</span>
+       </div>
+       <div class="col-sm-4">
+        <span>Date of Birth</span>
+      </div>
+      <div class="col-sm-2">
+       <span>Age</span>
+     </div>
+     <div class="col-sm-2">
+      
+       <span>Sex</span>        
+     </div>
+   </div>
+ </div>
+ <div class="col-sm-12 child-entries">
+
+
+<div class="form-group"  ng-repeat="child in children">
+  <div class="col-sm-4">
+   <input type="text" class="form-control" ng-model="child.name">
+ </div>
+ <div class="col-sm-4">
+   <div class="input-group date-picker">
+    <input type="text" class="form-control" ng-model="child.dob" ng-blur="setAge(false,$index);">
+    <span class="input-group-btn"><i class="icon-date">&nbsp;</i></span>
+  </div>
+</div>
+<div class="col-sm-2">
+  <input type="text" class="form-control" ng-model="child.age" ng-blur="setDob(false, $index);">
+</div>   
+<div class="col-sm-2 select-child">
+  <a href="#" class="girl-child"><i class="icon-select-girl">&nbsp;</i></a>
+  <a href="#" class="boy-child"><i class="icon-select-boy inactive">&nbsp;</i></a>
+</div>        
+</div>
+</div>  
+<div class="child-details-footer col-sm-12">
+  <button class="default-btn" ng-click="addMoreChildren();">Add Row</button>
+</div>    
+</form>
+</div>
+</div>
+<!--child info form-->
+
+
+<div class="save-form col-sm-12 text-right"><button class="default-btn" ng-click="saveDetails();">Save</button></div>
+
+<!--women links-->
+<div class="addnew-form-links col-sm-12">
+  <div class="col-sm-6">
+    <div class="women-links col-sm-12">
+     <div class="col-sm-12"><h4>Go to Woman</h4></div>
+     <div class="col-sm-12 text-center">
+     <a href="#/fp/{{woman.visibleID}}" ng-hide="true"><i class="icon-women">&nbsp;</i></a> <a href="#/anc/{{woman.visibleID}}"><i class="icon-pregnant-women">&nbsp;</i></a>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-6">
+ <div class="col-sm-12"> <label class="control-label col-sm-9">Number of Living Children</label> <div class="col-sm-3"><input type="text" class="form-control" ng-model="woman.livingChildren"></div></div>
+ <div class="col-sm-12"><h4>Go to Specific Child</h4></div>
+ <div class="child-links col-sm-12">
+
+
+
+<div ng-repeat ="child in savedChildren">
+ <a href="#/child/{{child.visibleID}}">
+  <i class="icon-girl">&nbsp;</i>
+</a>
+<span><b>Name:</b> {{child.name}}</span>
+<span><b>Age:</b> {{child.age}}</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--addnew-form-wrapper ends here-->
