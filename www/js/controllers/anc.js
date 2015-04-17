@@ -417,7 +417,7 @@ angular.module('starter.controllers')
                 if($scope.enteredPaleEyeValue == undefined){
                     alert(" please select one ");
                 }else{
-                    checkUp(0,2,true);
+                    
                     var currentPaleEyeValue = $scope.enteredPaleEyeValue;
                     var currentPaleEyeDate = UtilityService.convertDateFormat($scope.PaleCalendarDate);
                     var currentPaleEyeMonth = UtilityService.showMonthFromDate(currentPaleEyeDate);
@@ -427,8 +427,62 @@ angular.module('starter.controllers')
                         $scope.alertPaleEye = false;
                     }
                     $scope.lastPaleEyeValue=currentPaleEyeValue;
+                    checkUp(0,currentPaleEyeMonth,currentPaleEyeValue);
                 }
             }
+        }
+    );
+
+      $scope.NightBlindCalendarDate = todayDate;
+     var NightBlindInitializing = true;
+    $scope.$watch(function(scope) {console.log('bling val changing --------------');return $scope.blindOutcome},
+        function() {
+            // ....
+
+            /*if (NightBlindInitializing) {
+                $timeout(function() { NightBlindInitializing = false; });
+            }else {*/
+                console.log('bling val changing insidethe better plc --------------');
+                if($scope.enteredBlindValue == undefined){
+                    console.log(" please select one ");
+                }else{
+                    var currentBlindValue = $scope.enteredBlindValue;
+                    var currentBlindDate = UtilityService.convertDateFormat($scope.NightBlindCalendarDate);
+                    var currentBlindMonth = UtilityService.showMonthFromDate(currentBlindDate);
+                    if(currentBlindValue == 'yes'){
+                        $scope.alertPaleEye = true;
+                    }else{
+                        $scope.alertPaleEye = false;
+                    }
+                   // $scope.lastPaleEyeValue=currentBlindValue;
+                    checkUp(1,currentBlindMonth,currentBlindValue);
+                }
+            //}
+        }
+    );
+ $scope.$watch(function(scope) {console.log('bling val changing --------------');return $scope.NightBlindCalendarDate},
+        function() {
+            // ....
+
+            /*if (NightBlindInitializing) {
+                $timeout(function() { NightBlindInitializing = false; });
+            }else {*/
+                console.log('bling val changing insidethe better plc --------------');
+                if($scope.NightBlindCalendarDate == undefined){
+                    console.log(" please select one ");
+                }else{
+                    var currentBlindValue = $scope.enteredBlindValue;
+                    var currentBlindDate = UtilityService.convertDateFormat($scope.NightBlindCalendarDate);
+                    var currentBlindMonth = UtilityService.showMonthFromDate(currentBlindDate);
+                    if(currentBlindValue == 'yes'){
+                        $scope.alertPaleEye = true;
+                    }else{
+                        $scope.alertPaleEye = false;
+                    }
+                   // $scope.lastPaleEyeValue=currentBlindValue;
+                    checkUp(1,currentBlindMonth,currentBlindValue);
+                }
+            //}
         }
     );
     function checkUp(symptomIndex, month, value){
@@ -437,15 +491,21 @@ angular.module('starter.controllers')
     }
     $scope.symptomData =[
         {
-            month: 1,
-            value:true
+            month: lastPaleEyeMonth,
+            value:lastPaleEyeValue
         },{
-            month: 1,
-            value:true
+            month: 2,
+            value:'yes'
         }];
-    $scope.newPaleEyeValue = function(value){
-        $scope.enteredPaleEyeValue=value;
+    $scope.newPaleEyeValue = function(value,option){
+        if(option == 'pale'){
+             $scope.enteredPaleEyeValue=value;
+         }else{
+             $scope.enteredBlindValue=value;
+         }
+       
     }
+
 
 
 //LOGIC FOR IFA Tab;lets
@@ -534,6 +594,7 @@ angular.module('starter.controllers')
     $scope.openedWeight=false;
     $scope.openedHB = false;
     $scope.openedPale=false;
+    $scope.openedNightBlind=false;
     $scope.open = function($event,name) {
         $event.preventDefault();
         $event.stopPropagation();
@@ -550,6 +611,8 @@ angular.module('starter.controllers')
             $scope.openedPale = true;
         }else if(name == "IFA"){
             $scope.openedIFA = true;
+        }else if(name == "NB"){
+             $scope.openedNightBlind=true;
         }
     }
     $scope.openANM = function($event) {console.log("inside")

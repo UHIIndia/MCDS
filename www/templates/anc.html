@@ -68,19 +68,19 @@
       <div class="col-xs-8">
         <div class="form-group">
           <label class="col-xs-3 control-label">DOB</label>
-          <div class="col-xs-9"><input type="text" class="form-control" ng-model="DOB" ></div>
+          <div class="col-xs-9"><input type="text" class="form-control" ng-model="ancDOB" ></div>
         </div>
          <div class="form-group">
           <label class="col-xs-3 control-label">Age</label>
-          <div class="col-xs-9"><input type="text" class="form-control" ng-model="Age"></div>
+          <div class="col-xs-9"><input type="text" class="form-control" ng-model="ancAge"></div>
         </div>
          <div class="form-group">
           <label class="col-xs-3 control-label">LMP</label>
-          <div class="col-xs-9"><input type="text" class="form-control" ng-model="LMP"></div>
+          <div class="col-xs-9"><input type="text" class="form-control" ng-model="ancLMP" ng-blur="setLMP();"></div>
         </div>
          <div class="form-group">
           <label class="col-xs-3 control-label">EDD</label>
-          <div class="col-xs-9"><input type="text" class="form-control" ng-model="EDD"></div>
+          <div class="col-xs-9"><input type="text" class="form-control" ng-model="ancEDD" ng-blur="setEDD();"></div>
         </div>
       </div>
       <div class="col-xs-4">
@@ -242,7 +242,7 @@
       </div>
     </div>
 
-    <!-- HB TEST -->
+     HB TEST 
     <div class="anc-row clearfix">
       <div class="col-sm-9">
         <div class="col-sm-2 anc-video">
@@ -283,9 +283,9 @@
         </form>
       </div>
     </div>
-    <!--HB TEST ENDS
+    <!--HB TEST ENDS-->
 
-     <!--PALE EYE
+    <!-- PALE EYE -->
     <div class="anc-row clearfix">
       <div class="col-sm-9">
         <div class="col-sm-2 anc-video">
@@ -296,7 +296,7 @@
         </div>
         <div class="col-sm-10 anc-outcome">
           <div class="col-sm-1 healthy">&nbsp;</div>
-           <div ng-class="{'col-sm-1':true,'dead': month.monthNo == symptomData[0].month&& alertPaleEye == true}" ng-repeat="month in monthsArray"> 
+           <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[0].month && symptomData[0].value == 'yes'}" ng-repeat="month in monthsArray"> 
             <span></span>
             <span ng-show="month.monthNo == symptomData[0].month">{{symptomData[0].value + " "+symptomData[0].month}}</span>
           </div>
@@ -322,8 +322,8 @@
               </p>
           </div>
           <div class="col-sm-9 radio-group">
-              <label for="radio5" class="control-label"><input type="radio" ng-model="paleOutcome"  ng-value="'no'"  name="PaleEyeCheck" id="radio5" ng-change='newPaleEyeValue(paleOutcome)'>No</label>
-             <label for="radio4" class="control-label"><input type="radio" ng-model="paleOutcome" name="PaleEyeCheck" ng-value="'yes'" id="radio4" ng-change='newPaleEyeValue(paleOutcome)'>Yes</label> 
+              <label for="radio5" class="control-label"><input type="radio" ng-model="paleOutcome"  ng-value="'no'"  name="PaleEyeCheck" id="radio5" ng-change="newPaleEyeValue(paleOutcome,'pale')">No</label>
+             <label for="radio4" class="control-label"><input type="radio" ng-model="paleOutcome" name="PaleEyeCheck" ng-value="'yes'" id="radio4" ng-change="newPaleEyeValue(paleOutcome,'pale')">Yes</label> 
           </div>
           </div>
         </div>
@@ -343,8 +343,11 @@
         </div>
         <div class="col-sm-10 anc-outcome">
           <div class="col-sm-1 healthy">&nbsp;</div>
-           <div ng-class="{'col-sm-1':true,'dead': month.monthNo == lastNightBlindMonth && alertNightBlind == true}" ng-repeat="month in monthsArray"> <span ng-show="lastPaleEyeMonth == month.monthNo">{{lastNightBlindnessValue}}</span></div>
-          <div class="col-sm-1">{{lastPaleEyeValue}}</div>
+           <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[1].month && symptomData[1].value == 'yes'}" ng-repeat="month in monthsArray">
+            <span ng-show="symptomData[1].month == month.monthNo">{{symptomData[1].value}}</span>
+            {{ month.monthNo}}
+          </div>
+          <div class="col-sm-1">{{symptomData[0].value}}</div>
           <div class="col-sm-1">&nbsp;</div>
         </div>
       </div>
@@ -366,8 +369,10 @@
               </p>
           </div>
           <div class="col-sm-9 radio-group">
-              <label for="radio5" class="control-label"><input type="radio" ng-model="paleOutcome"  ng-value="'no'"  name="PaleEyeCheck" id="radio5" ng-change='newPaleEyeValue(paleOutcome)'>No</label>
-             <label for="radio4" class="control-label"><input type="radio" ng-model="paleOutcome" name="PaleEyeCheck" ng-value="'yes'" id="radio4" ng-change='newPaleEyeValue(paleOutcome)'>Yes</label> 
+              <label for="radio15" class="control-label"><input type="radio" ng-model="blindOutcome"  ng-value="'no'"  name="BlindCheck" 
+                id="radio15" ng-change="newPaleEyeValue(blindOutcome,'blind')">No</label>
+             <label for="radio14" class="control-label"><input type="radio" ng-model="blindOutcome" name="BlindCheck" ng-value="'yes'" 
+              id="radio14" ng-change="newPaleEyeValue(blindOutcome,'blind')">Yes</label> 
           </div>
           </div>
         </div>
