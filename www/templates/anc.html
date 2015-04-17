@@ -345,9 +345,9 @@
           <div class="col-sm-1 healthy">&nbsp;</div>
            <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[1].month && symptomData[1].value == 'yes'}" ng-repeat="month in monthsArray">
             <span ng-show="symptomData[1].month == month.monthNo">{{symptomData[1].value}}</span>
-            {{ month.monthNo}}
+           
           </div>
-          <div class="col-sm-1">{{symptomData[0].value}}</div>
+          <div class="col-sm-1">{{symptomData[1].value}}</div>
           <div class="col-sm-1">&nbsp;</div>
         </div>
       </div>

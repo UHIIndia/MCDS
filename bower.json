@@ -10,6 +10,7 @@
     "angular-translate-loader-static-files": "~2.6.1",
     "bootstrap": "~3.3.4",
     "ngCordova": "~0.1.14-alpha",
-    "angular-bootstrap": "~0.12.1"
+    "angular-bootstrap": "~0.12.1",
+    "underscore": "~1.8.3"
   }
 }

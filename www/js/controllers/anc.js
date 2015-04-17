@@ -33,7 +33,7 @@ angular.module('starter.controllers')
             "LMP":"9/12/2014",
             "EDD":"2/08/2015"
         },
-        "ANC":[{"currentMonth":null,
+        "ANC":[{"Month":1,
             "ANC":null,
             "Weight":null,
             "WeightDate":"2/2/2015",
@@ -61,7 +61,8 @@ angular.module('starter.controllers')
             "BirthOutcome":null,
             "BirthWeight":null
         },{
-            "Month1":null,
+            "Month":2,
+            "currentMonth":2,
             "ANC1":null,
             "Weight":45,
             "WeightDate":"2/4/2015",
@@ -146,6 +147,14 @@ angular.module('starter.controllers')
             console.log(lastAshaVistMonth);
         }
     })
+    $scope.lastAshaVistDate = _.chain(womanData.ANC)
+        .pluck('ANMVisit')
+        .sortBy(function(e) {
+            return new Date(e);
+        })
+        .last()
+        .value();
+        
     var ashaInitializing = true;
     $scope.lastAshaVistDate = (lastAshaVistDate == undefined ?'': lastAshaVistDate);
     $scope.lastAshaVistMonth = (lastAshaVistMonth == undefined?'':lastAshaVistMonth);
@@ -389,8 +398,17 @@ angular.module('starter.controllers')
     var lastPaleEyeValue,lastPaleEyeDate;
     var PaleEyeArray=[];
     var PaleEyeDateArray=[];
+    lastPaleEyeObject=_.chain(womanData.ANC).map(function(e) { 
+        return {month: e.Month, value: e.PaleEye};
+        })
+        .filter(function(e){ 
+            return e.value;
+        })
+        .sortBy('month')
+        .last()
+        .value()
 //need to apply the loop as a the last anc object can be empty for HB
-    angular.forEach(womanData.ANC, function(ANCObj, index){
+  /*  angular.forEach(womanData.ANC, function(ANCObj, index){
         if(ANCObj.PaleEye != null){console.log("in");
             PaleEyeArray.push(ANCObj.PaleEye);
             PaleEyeDateArray.push(ANCObj.PaleEyeDate);
@@ -400,10 +418,10 @@ angular.module('starter.controllers')
             console.log(lastPaleEyeMonth);
         }
     })
-
-    $scope.lastPaleEyeValue = (lastPaleEyeValue == undefined ?'':lastPaleEyeValue);
-    $scope.lastPaleEyeMonth = (lastPaleEyeMonth == undefined?'': lastPaleEyeMonth);
-    if(lastPaleEyeValue.toLowerCase() == "yes" ){
+*/
+    $scope.lastPaleEyeValue = lastPaleEyeObject.value;
+    $scope.lastPaleEyeMonth = lastPaleEyeObject.month;
+    if( $scope.lastPaleEyeValue.toLowerCase() == "yes" ){
         $scope.alertPaleEye = true;
     }
     var PaleInitializing = true;
@@ -433,56 +451,27 @@ angular.module('starter.controllers')
         }
     );
 
-      $scope.NightBlindCalendarDate = todayDate;
-     var NightBlindInitializing = true;
-    $scope.$watch(function(scope) {console.log('bling val changing --------------');return $scope.blindOutcome},
-        function() {
-            // ....
+    $scope.NightBlindCalendarDate = todayDate;
 
-            /*if (NightBlindInitializing) {
-                $timeout(function() { NightBlindInitializing = false; });
-            }else {*/
-                console.log('bling val changing insidethe better plc --------------');
-                if($scope.enteredBlindValue == undefined){
-                    console.log(" please select one ");
-                }else{
-                    var currentBlindValue = $scope.enteredBlindValue;
-                    var currentBlindDate = UtilityService.convertDateFormat($scope.NightBlindCalendarDate);
-                    var currentBlindMonth = UtilityService.showMonthFromDate(currentBlindDate);
-                    if(currentBlindValue == 'yes'){
-                        $scope.alertPaleEye = true;
-                    }else{
-                        $scope.alertPaleEye = false;
-                    }
-                   // $scope.lastPaleEyeValue=currentBlindValue;
-                    checkUp(1,currentBlindMonth,currentBlindValue);
+     function updateBlindRow() {
+        var currentBlindValue = $scope.enteredBlindValue;
+        var currentBlindDate = UtilityService.convertDateFormat($scope.NightBlindCalendarDate);
+        var currentBlindMonth = UtilityService.showMonthFromDate(currentBlindDate);
+        checkUp(1,currentBlindMonth,currentBlindValue);
+     }
+
+    $scope.$watch(function(scope) {return $scope.blindOutcome},
+        function(n) {
+                if(n && $scope.enteredBlindValue) {
+                    updateBlindRow();
                 }
-            //}
         }
     );
- $scope.$watch(function(scope) {console.log('bling val changing --------------');return $scope.NightBlindCalendarDate},
+    $scope.$watch(function(scope) {return $scope.NightBlindCalendarDate},
         function() {
-            // ....
-
-            /*if (NightBlindInitializing) {
-                $timeout(function() { NightBlindInitializing = false; });
-            }else {*/
-                console.log('bling val changing insidethe better plc --------------');
-                if($scope.NightBlindCalendarDate == undefined){
-                    console.log(" please select one ");
-                }else{
-                    var currentBlindValue = $scope.enteredBlindValue;
-                    var currentBlindDate = UtilityService.convertDateFormat($scope.NightBlindCalendarDate);
-                    var currentBlindMonth = UtilityService.showMonthFromDate(currentBlindDate);
-                    if(currentBlindValue == 'yes'){
-                        $scope.alertPaleEye = true;
-                    }else{
-                        $scope.alertPaleEye = false;
-                    }
-                   // $scope.lastPaleEyeValue=currentBlindValue;
-                    checkUp(1,currentBlindMonth,currentBlindValue);
-                }
-            //}
+            if($scope.enteredBlindValue){
+                updateBlindRow();
+            }
         }
     );
     function checkUp(symptomIndex, month, value){
@@ -491,8 +480,10 @@ angular.module('starter.controllers')
     }
     $scope.symptomData =[
         {
-            month: lastPaleEyeMonth,
-            value:lastPaleEyeValue
+             month: lastPaleEyeObject.month,
+             value: lastPaleEyeObject.value
+            //month: 1,
+            //value: lastPaleEyeObject.month
         },{
             month: 2,
             value:'yes'
@@ -546,7 +537,7 @@ angular.module('starter.controllers')
                 $timeout(function() { IFAInitializing = false; });
             }else {
                 if($scope.enteredIFA == undefined){
-                    alert(" please enter one ");
+                    console.log(" please enter one ");
                 }else{
                     var currentIFA = $scope.enteredIFA;
                     totalIFACount=totalIFACount+currentIFA;
