@@ -140,6 +140,13 @@
 	background: #d9d9d9;
 	border: 1px #fff solid;
 }
+.current-fp-method h3{
+	font-size: 16px;
+	background: #ececec;
+	margin:0;
+	padding:8px 0;
+	text-align: center;
+}
 
 .current-fp-method .fp-methods{
 	padding: 10px;
@@ -149,54 +156,121 @@
 .current-fp-method .fp-methods > div{
 	margin-bottom: 10px;
 }
-.current-fp-method .fp-methods > div:first-child{
+.current-fp-method .fp-methods > div:last-child{
+	margin-bottom:0;
+}
+.current-fp-method .fp-methods > div:nth-child(1) > div:first-child{
 	background: #7f7f7f;
 	border: 1px #fff solid;
+	height:42px;
 }
-.current-fp-method .fp-methods > div:nth-child(2) > div:first-child, 
-.current-fp-method .fp-methods > div:nth-child(3) > div:first-child,
-.current-fp-method .fp-methods > div:nth-child(4) > div:first-child{
+.current-fp-method .fp-methods > div > div{
+
+}
+.current-fp-method .fp-methods .align-left{
 	padding:0 3px 0 0;
 }
-.current-fp-method .fp-methods > div:nth-child(2) > div:last-child,
-.current-fp-method .fp-methods > div:nth-child(3) > div:last-child,
-.current-fp-method .fp-methods > div:nth-child(4) > div:last-child{
+.current-fp-method .fp-methods .align-right{
 	padding:0 0 0 3px;
 }
+.current-fp-method .fp-methods .align-left > div:first-child,
+.current-fp-method .fp-methods .align-right > div:first-child{
+	height:42px;
+	border: 1px #fff solid;
+	overflow: hidden;
+}
 
-.current-fp-method .fp-methods > div:nth-child(2) > div:first-child > div:first-child{
+.current-fp-method .fp-methods > div:nth-child(2) .align-left div:first-child{
 	background: #5b9bd5;
-	border: 1px #fff solid;
 }
-.current-fp-method .fp-methods > div:nth-child(2) > div:last-child > div:first-child{
+.current-fp-method .fp-methods > div:nth-child(2) .align-right > div:first-child{
 	background: #00b050;
-	border: 1px #fff solid;
 }
 
-.current-fp-method .fp-methods > div:nth-child(3) > div:first-child > div:first-child{
+.current-fp-method .fp-methods > div:nth-child(3) .align-left > div:first-child{
 	background: #ed7d31;
-	border: 1px #fff solid;
 }
-.current-fp-method .fp-methods > div:nth-child(3) > div:last-child > div:first-child{
+.current-fp-method .fp-methods > div:nth-child(3) .align-right > div:first-child{
 	background: #7030a0;
-	border: 1px #fff solid;
 }
 
-.current-fp-method .fp-methods > div:nth-child(4) > div:first-child > div:first-child{
+.current-fp-method .fp-methods > div:nth-child(4) .align-left > div:first-child{
 	background: #ff0066;
-	border: 1px #fff solid;
 }
-.current-fp-method .fp-methods > div:nth-child(4) > div:last-child > div:first-child{
+.current-fp-method .fp-methods > div:nth-child(4) .align-right > div:first-child{
 	background: #2f5496;
-	border: 1px #fff solid;
 }
 
 .fp-methods span.circle{
 		display: inline-block;
 	  background: #fff;
-	  height: 44px;
+	  height:40px;
+	  width: 40px;
 	  border-radius: 50%;
-	  width: 76px;
 	  line-height: 43px;
 	  overflow: hidden;
+}
+.fp-methods span.square{
+	display: inline-block;
+	width: 44px;
+	height: 40px;
+	background: #fff;
+}
+.fp-methods span.circle img,  .fp-methods span.square img{
+	margin:0 auto;
+	display: inline-block;
+}
+.condom-yesno{
+	font-family: OpenSans-Semibold;
+	border:1px #000 solid;
+	padding: 10px;
+	font-size: 12px;
+	background: #d9d9d9;
+	margin-top: 15px;
+}
+.condom-yesno ul{
+	padding: 0;
+	list-style: none;
+	text-align: center;
+}
+.condom-yesno ul li{
+	display: inline;
+}
+.condom-yesno ul li div{
+	display: inline-block;
+	  margin: 0 5px;
+}
+.condom-yesno ul li div span{
+	display: block;
+	font-size: 14px;
+}
+.condom-yesno ul li div span.circle{
+	display: inline-block;
+		width: 36px;
+	height: 36px;
+	background: #fff;
+	  border-radius: 50%;
+	  overflow: hidden;
+}
+.condom-yesno ul li label{
+	display: inline-block;
+	background: #ccc;
+	border: 1px #fff solid;
+	width: 38px;
+	height: 38px;
+	position: relative;
+}
+.condom-yesno ul li:first-child label{
+	background: #7f7f7f;
+}
+.condom-yesno ul li:last-child label{
+	background: #5b9bd5;
+}
+.condom-yesno ul li div input[type="radio"]{
+	position: absolute;
+	z-index: 1;
+	height: 40px;
+	left: 0;
+	right: 0;
+	margin:0 auto;
 }

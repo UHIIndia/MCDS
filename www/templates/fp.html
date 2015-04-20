@@ -168,27 +168,33 @@
 </div>
 </div>
 <div class="col-md-3">
-    <div class="row method well">
-        <div class="col-md-12">
-            <div class="h4">Current FP Method</div>
-            <ul>
-                <li>None</li>
-                <li>Condom</li>
-                <li>OCP</li>
-                <li>DMPA</li>
-                <li>IUCD</li>
-                <li>Female Sterilization</li>
-                <li>Male Sterilization</li>
-            </ul>
-        </div>
-    </div>
-    <div class="row follow-up-question well">
-        <div class="col-md-12">
-            <br>
-            <div>Did you use a condom last time when you had sex?</div>
-            <div>No Yes</div>
-        </div>
-    </div>
+          <!--current fp methods-->
+              <div class="current-fp-method">
+                <h3>Current FP Method</h3>
+                <div class="fp-methods">
+                  <div class="clearfix"><div><span class="circle">&nbsp;</span></div><div>None</div></div>
+                  <div class="clearfix">
+                   <div class="col-sm-6 align-left"><div><span class="circle"><img src="img/condom-pic.png" class="img-responsive"></span></div><div>Condom</div></div>
+                   <div class="col-sm-6 align-right"><div><span class="circle"><img src="img/ocp-pic.png" class="img-responsive"></div><div>OCP</div></div>
+                  </div>
+                  <div class="clearfix">
+                   <div class="col-sm-6 align-left"><div><span class="circle"><img src="img/dmpa-pic.png"  class="img-responsive"></div><div>DMPA</div></div>
+                   <div class="col-sm-6 align-right"><div><span class="circle"><img src="img/iucd-pic.png"  class="img-responsive"></div><div>IUCD</div></div>
+                  </div>
+                   <div class="clearfix">
+                   <div class="col-sm-6 align-left"><div><span class="square"><img src="img/fst-pic.png"  class="img-responsive"></div><div>F-St</div></div>
+                   <div class="col-sm-6 align-right"><div><span class="square"><img src="img/mst-pic.png"  class="img-responsive"></div><div>M-St</div></div>
+                  </div>
+                </div>
+              </div>
+        <!--Did you use-->
+              <div class="condom-yesno">
+                <p>Did you use a condom last time when you had sex? </p>
+                <ul>
+                  <li><div><label for="noCondom"><input type="radio" name="condomSex" id="noCondom"><span class="circle">&nbsp;</span></label><span>Yes</span></div></li>
+                  <li><div><label for="yesCondom"><input type="radio" name="condomSex" id="YesCondom"><span class="circle"><img src="img/condom-pic.png" class="img-responsive"></span></label><span>No</span></div></li>
+                </ul>
+              </div>
 </div>
 </div>
 <div class="row save">
