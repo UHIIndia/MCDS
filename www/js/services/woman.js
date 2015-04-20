@@ -13,7 +13,13 @@ angular.module('starter.services')
       return houseCode+"."+(womanNo+1);
   };
   // this function return a id i.e house#.womanNo , this will be visible to user 
-  var generateActualWomanID = function(name, dob){  
+  var generateActualWomanID = function(name, dob){
+    if(!angular.isDate(dob)){
+      //its a dd/mm/yyyy string 
+      var arr = dob.split('/');
+      var mmddyyyyStr = arr[1]+"/"+arr[0]+"/"+arr[2];
+      dob = new Date(mmddyyyyStr);
+    } 
    var nameCode, dd= dob.getDate(), mm=dob.getMonth()+1, yyyy= dob.getFullYear();
    name ? nameCode = name.substring(0,2).toUpperCase() : nameCode = "NA";
    if(dd< 10)  dd ="0"+ dd;;
@@ -34,12 +40,11 @@ angular.module('starter.services')
     },
     updateWomanDetails: function(womanObj){
       // save woman related details to 
-      var womanDetails = this.getWomanDetails(womanObj.womanID);
-      angular.forEach(womanObj, function(value, key){
-        
-          womanDetails[key] = value;
-      
+      var womanDetails = this.getWomanDetails(womanObj.visibleID);
+      angular.forEach(womanObj, function(value, key){        
+          womanDetails[key] = value;      
       });
+      FileService.writeToLocalStorage(womenList, true);
     },
     addNewWoman: function (womanObj) {
       var womanID = generateActualWomanID(womanObj.name, womanObj.dob);

@@ -28,10 +28,9 @@ if($stateParams.id){
 } else{
   $scope.woman ={};
   $scope.children=[{}];
-  $scope.savedChildren =[];
-  
+  $scope.savedChildren =[];  
 }
- // For auto updating of age 
+ 
 
 // setting age based on dob
 $scope.setAge = function(inYear, index){
@@ -49,21 +48,29 @@ $scope.setAge = function(inYear, index){
 
 //setting dob based on age 
 $scope.setDob = function(inYear, index){
-  var age;
+  var age, date, mm, dateStr;      
     if(inYear){
       //this is for woman
       age= $scope.woman.age;
-      if(age){
-        $scope.woman.dob = UtilityService.calcDob(age, inYear);
+      if(age){  
+        date = UtilityService.calcDob(age, inYear);
+         mm = date.getMonth()+1;
+         if(mm < 10)  mm = "0"+mm;
+         dateStr =date.getDate()+"/"+mm+"/"+date.getFullYear();
+         $scope.woman.dob =  dateStr;
       }
     } else{
       //this is for child
      var child = $scope.children[index];
      age = child.age;
-     if(age) child.dob = UtilityService.calcDob(age, inYear);
-    }
-  
-  
+     if(age) {
+       date = UtilityService.calcDob(age, inYear);
+       mm = date.getMonth()+1;
+       if(mm < 10)  mm = "0"+mm;
+       dateStr =date.getDate()+"/"+mm+"/"+date.getFullYear();
+       child.dob = dateStr;
+     }
+    }  
 }
 //function for setting Expected delivery date based on LMP
 $scope.setEDD = function(){
@@ -150,7 +157,6 @@ $scope.saveDetails = function($event){
   if(!$scope.woman.womanID){
     //add new woman and new children in woman liat and child list
     $scope.woman.womanID = WomanService.addNewWoman($scope.woman);  
-   // save woman image to a data storage
   } else {
     // this is an update
     WomanService.updateWomanDetails($scope.woman);
@@ -193,8 +199,13 @@ $scope.saveDetails = function($event){
     } 
     
   });
- // number of living children 
-     $scope.woman.livingChildren = $scope.savedChildren.length;
+ // update child related data (livingChildren and dob of youngest child)
+  if($scope.savedChildren.length){
+    $scope.woman.livingChildren = $scope.savedChildren.length;
+    $scope.woman.youngestChildDob = $scope.savedChildren[0].dob; // array is already sorted from youngest to oldest
+    WomanService.updateWomanDetails($scope.woman);
+  }
+      
  //alert('saved successfully');
 };
 // event handler for add more children 
@@ -203,6 +214,7 @@ $scope.addMoreChildren = function($event){
  // var childRows = angular.element('.childDetails')
   var childObj={}
   $scope.children.push(childObj);
+  $scope.isOpenPosition[$scope.children.length-1] = false;
 };
 // navigate to family planning page
 $scope.goToFP = function(){
@@ -218,7 +230,33 @@ $scope.goToANC = function(){
   }
   $location.path("/ANC/"+ $scope.woman.visibleID);
 };
-
+$scope.dateFormat = "dd/MM/yyyy";
+$scope.getMaxDate = function(isWoman) {
+ var currDate =new Date(),
+     day= currDate.getDate(),
+     month = currDate.getMonth()+1,
+     year= currDate.getFullYear();
+ if(isWoman){
+  // woman should not be less than 11 years old
+  return year-11+"-"+month+"-"+day;
+ } else {
+  // should not select a future date than currebt date
+  return year +"-"+month+"-"+day;
+ }
+};
+$scope.isWomanDobCalenderOpen = false;
+$scope.isOpenPosition = {"0": false};
+  
+$scope.openCalender = function($event, isWoman, $index) {
+ $event.preventDefault();
+ $event.stopPropagation();
+  if(isWoman) {
+   //open woman calender
+    $scope.isWomanDobCalenderOpen=true;
+  } else {
+    $scope.isOpenPosition[$index] = true;
+  }
+ }
 $scope.validations = {
  validateSave: function(){
   var woman = $scope.woman; var childList =$scope.children;
@@ -248,5 +286,6 @@ $scope.validations = {
   return null;
  }   
 }
+  
 
 }]);
