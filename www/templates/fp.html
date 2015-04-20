@@ -20,8 +20,8 @@
        <div class="row">
           <div class="col-sm-2">
            <div class="women-profile-pic"></div>
-           <div>Lata</div>
-           <div>A-26.1</div>
+           <div>{{ woman.name }}</div>
+           <div>{{ woman.visibleID }}</div>
        </div>
        <div class="col-sm-10 fp-women-child-wrapper">
         <div class="pink-block fp-block-women">
@@ -30,19 +30,25 @@
                   <div class="col-sm-12">
                       <div class="form-group col-sm-3">
                         <label class="control-label col-sm-3">Age</label>
-                        <div class="col-sm-9"><input type="text" class="form-control"></div>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" value="{{ woman.age }}" disabled="">
+                        </div>
                     </div>
                     <div class="form-group col-sm-5">
                         <label class="control-label col-sm-7">No. Pregnancies</label>
-                        <div class="col-sm-5"><input type="text" class="form-control"></div>
+                        <div class="col-sm-5">
+                          <input type="text" class="form-control" value="{{ woman.pregNo }}" disabled="">
+                        </div>
                     </div>
                     <div class="form-group col-sm-4">
                         <label class="control-label col-sm-7">No. Children</label>
-                        <div class="col-sm-5"><input type="text" class="form-control"></div>
+                        <div class="col-sm-5">
+                          <input type="text" class="form-control" value="{{ woman.livingChildren }}" disabled="">
+                        </div>
                     </div>
                 </div>
             </div>
-        </form>  
+        </form>
     </div>
 
     <div class="blue-block fp-block-child">
@@ -52,11 +58,20 @@
               <div class="form-group">
                 <div class="col-sm-6">
                   <label class="control-label col-sm-8">Age of youngest child</label>
-                  <div class="col-sm-4"><input type="text" class="form-control"></div>
+                  <div class="col-sm-4">
+                    <input type="text" class="form-control" value="{{ woman.ageYoungestChild }}" disabled="">
+                  </div>
               </div>
               <div class="col-sm-6">
                   <label class="control-label col-sm-2">Sex</label>
-                  <div class="col-sm-9 select-sex"><a href="#" class="girl-child"><i class="icon-girl">&nbsp;</i></a> <a href="#" class="boy-child"><i class="icon-boy">&nbsp;</i></a></div>
+                  <div class="col-sm-9 select-sex">
+                    <div class="girl-child" ng-class="{'active': (woman.genderYoungestChild === 'f')}">
+                      <i class="icon-girl">&nbsp;</i>
+                    </div>
+                    <div class="boy-child" ng-class="{'active': (woman.genderYoungestChild === 'm')}">
+                      <i class="icon-boy">&nbsp;</i>
+                    </div>
+                  </div>
               </div>
           </div>
       </div>
@@ -66,13 +81,25 @@
           <div class="form-group">
             <div class="col-sm-6 radio-group">
               <label class="control-label">Currently breastfeeding?</label>
-              <div><input type="radio" id="breastFeedingYes" name="breastFeeding"><label for="breastFeedingYes">Yes</label></div>
-              <div><input type="radio" id="breastFeedingNo" name="breastFeeding"><label for="breastFeedingNo">No</label></div>
+              <div>
+                <input type="radio" id="breast-feeding-yes" ng-model="woman.isBreastFeeding" ng-value="true">
+                <label for="breast-feeding-yes">Yes</label>
+              </div>
+              <div>
+                <input type="radio" id="breast-feeding-no" ng-model="woman.isBreastFeeding" ng-value="false">
+                <label for="breast-feeding-no">No</label>
+              </div>
           </div>
           <div class="col-sm-6 radio-group">
-              <label class="control-label">Currently  pregnant</label>
-              <div><input type="radio" id="breastFeedingYes" name="breastFeeding"><label for="breastFeedingYes">Yes</label></div>
-              <div><input type="radio" id="breastFeedingNo" name="breastFeeding"><label for="breastFeedingNo">No</label></div>
+              <label class="control-label">Currently pregnant</label>
+              <div>
+                <input type="radio" id="is-pregnant-yes" ng-model="woman.isPregnant" ng-value="true" disabled="">
+                <label for="is-pregnant-yes">Yes</label>
+              </div>
+              <div>
+                <input type="radio" id="is-pregnant-no" ng-model="woman.isPregnant" ng-value="false" disabled="">
+                <label for="is-pregnant-no">No</label>
+              </div>
           </div>
       </div>
   </div>

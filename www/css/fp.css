@@ -35,23 +35,35 @@
 	margin-left:10px;
 	margin-right: 0;
 }
-.select-sex a{
+.select-sex{
 	padding: 5px;
 	display: inline-block;
 }
-.select-sex a.girl-child{
+.select-sex .girl-child{
 	background: #faafba;
-		box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.8);
-		-moz-box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.8);
-		-webkit-box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.8), inset 0 5px 5px rgba(255,255,255,0.8);
-
+	box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.8);
+	-moz-box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.8);
+	-webkit-box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.8), inset 0 5px 5px rgba(255,255,255,0.8);
+  opacity: 0.3;
+  display: inline-block;
+  padding: 5px;
+  width: 38px;
 }
-.select-sex a.boy-child{
-		background: #61caec;
-		box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.8);
-		-moz-box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.8);
-		-webkit-box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.8), inset 0 5px 5px rgba(255,255,255,0.8);
-
+.select-sex .girl-child.active{
+  opacity: 1;
+}
+.select-sex .boy-child{
+	background: #61caec;
+	box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.8);
+	-moz-box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.8);
+	-webkit-box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.8), inset 0 5px 5px rgba(255,255,255,0.8);
+  opacity: 0.3;
+  display: inline-block;
+  padding: 5px;
+  width: 38px;
+}
+.select-sex .boy-child.active{
+  opacity: 1;
 }
 .select-sex  .icon-girl {
   background-position: -217px -125px !important;
@@ -106,7 +118,7 @@
 .fp-calender-head > div:first-child, .fp-calender-body > div > div:first-child{
 	width:10.5%;
 	height:40px;
-	border-bottom: 1px #000 solid;	
+	border-bottom: 1px #000 solid;
 }
 .fp-calender-head > div:last-child, .fp-calender-body > div > div:last-child{
 	width:89.5%;
