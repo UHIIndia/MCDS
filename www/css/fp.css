@@ -1,0 +1,202 @@
+.fp-women-child-wrapper{
+	padding-left: 0;
+}
+.fp-block-women, .fp-block-child{
+	padding: 10px;
+	margin-bottom: 15px;
+}
+.fp-block-child .form-group{
+	margin-bottom: 0;
+}
+.fp-block-women label, .fp-block-child label{
+	padding-left: 0;
+	padding-right: 0;
+	text-align: left !important;
+}
+.fp-block-child .radio-group:first-child{
+	padding-right: 0;
+}
+.fp-block-child .radio-group:first-child + .radio-group{
+	padding-left: 35px;
+}
+.fp-block-women .form-group{
+	margin:0;
+	padding-left: 0;
+}
+.fp-block-women .form-group:last-child > div{
+	padding-right: 0;
+}
+.fp-block-women .form-group:last-child{
+	padding-right: 0;
+}
+.fp-block-child .radio-group label + div , .fp-block-child .radio-group > div{
+	float:none;
+	display: inline-block;
+	margin-left:10px;
+	margin-right: 0;
+}
+.select-sex a{
+	padding: 5px;
+	display: inline-block;
+}
+.select-sex a.girl-child{
+	background: #faafba;
+		box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.8);
+		-moz-box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.8);
+		-webkit-box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.8), inset 0 5px 5px rgba(255,255,255,0.8);
+
+}
+.select-sex a.boy-child{
+		background: #61caec;
+		box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.8);
+		-moz-box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.8);
+		-webkit-box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.8), inset 0 5px 5px rgba(255,255,255,0.8);
+
+}
+.select-sex  .icon-girl {
+  background-position: -217px -125px !important;
+  height:27px;
+  width:27px;
+}
+.select-sex  .icon-boy {
+  background-position: -217px -165px !important;
+  height:27px;
+  width:27px;
+}
+
+.fp-wrapper > .row:first-child > div:first-child{
+	padding-right: 0;
+}
+
+.fp-wrapper > .row > div:first-child{
+	width:78.4%;
+}
+.fp-wrapper > .row > div:last-child{
+	width:21.6%;
+}
+.fp-movies-wrapper{
+	border: 1px #000 solid;
+	margin-bottom: 15px;
+}
+.fp-movies-wrapper .movies-msg{
+	font-family: OpenSans-Semibold;
+	background: #d9d9d9;
+	padding:4px 10px;
+	font-size: 14px;
+}
+.fp-movies-wrapper .movies-msg p{
+	padding-top:10px;
+}
+.fp-movies-wrapper .fp-movies{
+	background: #f0f0f0;
+}
+
+.fp-calender{
+	background: #f0f0f0;
+	border: 1px #000 solid;
+	border-bottom: none;
+	text-align: center;
+}
+.fp-calender .fp-calender-head{
+	font-family: OpenSans-Semibold;
+	background: #dfdfdf;
+	font-size: 16px;
+	height: 40px;
+}
+.fp-calender-head > div:first-child, .fp-calender-body > div > div:first-child{
+	width:10.5%;
+	height:40px;
+	border-bottom: 1px #000 solid;	
+}
+.fp-calender-head > div:last-child, .fp-calender-body > div > div:last-child{
+	width:89.5%;
+	height: 40px;
+	border-bottom: 1px #000 solid;
+}
+.fp-calender-head > div:last-child > div{
+	height: 100%;
+}
+.fp-calender .fp-calender-head > div:first-child, .fp-calender-body > div > div:first-child{
+	border-right:1px #000 solid;
+}
+.fp-calender .fp-calender-head > div, .fp-calender-body > div > div{
+	padding: 0;
+}
+.fp-calender .fp-calender-head > div:last-child > div, .fp-calender-body > div > div:last-child > div{
+	border-right:1px #000 solid;
+}
+.fp-calender .fp-calender-head > div:last-child > div:last-child, .fp-calender-body > div > div:last-child > div:last-child{
+	border-right:none;
+}
+.fp-calender-body > div > div:first-child, .fp-calender-body > div > div:last-child > div,  .fp-calender-body > div > div:last-child{
+	height: 34px;
+}
+.fp-calender-body{
+	height: 80px;
+	overflow: auto;
+}
+
+.current-fp-method{
+	background: #d9d9d9;
+	border: 1px #fff solid;
+}
+
+.current-fp-method .fp-methods{
+	padding: 10px;
+	border: none;
+	text-align: center;
+}
+.current-fp-method .fp-methods > div{
+	margin-bottom: 10px;
+}
+.current-fp-method .fp-methods > div:first-child{
+	background: #7f7f7f;
+	border: 1px #fff solid;
+}
+.current-fp-method .fp-methods > div:nth-child(2) > div:first-child, 
+.current-fp-method .fp-methods > div:nth-child(3) > div:first-child,
+.current-fp-method .fp-methods > div:nth-child(4) > div:first-child{
+	padding:0 3px 0 0;
+}
+.current-fp-method .fp-methods > div:nth-child(2) > div:last-child,
+.current-fp-method .fp-methods > div:nth-child(3) > div:last-child,
+.current-fp-method .fp-methods > div:nth-child(4) > div:last-child{
+	padding:0 0 0 3px;
+}
+
+.current-fp-method .fp-methods > div:nth-child(2) > div:first-child > div:first-child{
+	background: #5b9bd5;
+	border: 1px #fff solid;
+}
+.current-fp-method .fp-methods > div:nth-child(2) > div:last-child > div:first-child{
+	background: #00b050;
+	border: 1px #fff solid;
+}
+
+.current-fp-method .fp-methods > div:nth-child(3) > div:first-child > div:first-child{
+	background: #ed7d31;
+	border: 1px #fff solid;
+}
+.current-fp-method .fp-methods > div:nth-child(3) > div:last-child > div:first-child{
+	background: #7030a0;
+	border: 1px #fff solid;
+}
+
+.current-fp-method .fp-methods > div:nth-child(4) > div:first-child > div:first-child{
+	background: #ff0066;
+	border: 1px #fff solid;
+}
+.current-fp-method .fp-methods > div:nth-child(4) > div:last-child > div:first-child{
+	background: #2f5496;
+	border: 1px #fff solid;
+}
+
+.fp-methods span.circle{
+		display: inline-block;
+	  background: #fff;
+	  height: 44px;
+	  border-radius: 50%;
+	  width: 76px;
+	  line-height: 43px;
+	  overflow: hidden;
+}

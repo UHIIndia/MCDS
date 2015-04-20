@@ -1,0 +1,62 @@
+.default-btn{
+	font-family: OpenSans-Semibold;
+	background:#89c53f;
+	font-size: 18px;
+	height:34px;
+	color: #fff;
+	border: 1px #598c1a solid;
+	border-radius:3px;
+	padding:0 10px;
+	line-height: 33px;
+}
+.form-control{
+	border: 2px #a8a8a8 solid;
+	border-radius: 3px;
+	padding:6px;
+}
+.light-green-bg{
+	background: #d4fb83;
+}
+.dark-green-bg{
+	background: #89c53f;
+}
+.pink-bg{
+	background: #faafba;
+}
+.blue-bg{
+	background: #b2dfee;
+}
+.pink-block{
+	border:1px #fff solid;
+	background: #f467a7;
+}
+.blue-block{
+	border:1px #fff solid;
+	background: #b2dfee;
+}
+input[type="radio"]:not(old){
+	width   : 28px;
+	margin  : 0;
+	padding : 0;
+	opacity : 0;
+}
+input[type=radio]:not(old) + label{
+	display      : inline-block;
+	margin-left  : -28px;
+	padding-left : 28px;
+	background:url("../img/sprite.png") 0 0 no-repeat;
+	background-position: -218px 0 !important;
+	line-height  : 24px;
+}
+input[type=radio]:not(old):checked + label{
+	background-position :-218px -30px !important;
+}
+
+.row{
+	width: auto;
+	padding: 0;
+}
+
+.error{
+	color:#e2354f;
+}
