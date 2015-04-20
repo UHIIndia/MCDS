@@ -46,10 +46,10 @@ angular.module('starter.controllers')
                 if($scope.childNo){ // go to child page
                     $location.path('/child/'+$scope.houseNo+"."+$scope.womanNo+"."+$scope.childNo);
                 } else { //go to woman page
-                    $location.path('/addWoman/'+$scope.houseNo+"."+$scope.womanNo);
+                    $location.path('/add/'+$scope.houseNo+"."+$scope.womanNo);
                 }
             } else {
-                alert('Please put a woman no. to go to woman or child page')
+                alert('Please put a woman no. to go to woman or child page');
             }
         }
     }
