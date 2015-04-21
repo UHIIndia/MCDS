@@ -17,6 +17,12 @@ angular.module('uhiApp.services')
      return workerCode;
     },
     calcAge: function(dob, inYear){
+      if(!angular.isDate(dob)){
+        //its a dd/mm/yyyy string 
+        var arr = dob.split('/');
+        var mmddyyyyStr = arr[1]+"/"+arr[0]+"/"+arr[2];
+        dob = new Date(mmddyyyyStr);
+      }
         var currDate =new Date(),
         diffYear = currDate.getFullYear() - dob.getFullYear(),
         diffMonth = currDate.getMonth() - dob.getMonth();
@@ -64,17 +70,7 @@ angular.module('uhiApp.services')
     },
     generateWomanID: function(houseCode, womanNo){
       return cityCode+slumCode+workerCode+houseCode+womanNo;
-    },
-    showMonthFromDate:function(date){
-        var dateArray = date.split("/");
-        return dateArray[1];
-    },
-    convertDateFormat:function(date){
-        var day=date.getDate();
-        var month=date.getMonth()+1;
-        var year=date.getFullYear();
-        return day+"/"+month+"/"+year;
-    },
+    },   
     showMonthFromDate:function(date){console.log("showMonFromDate")
         var dateArray = date.split("/");
         return dateArray[1];
@@ -85,7 +81,7 @@ angular.module('uhiApp.services')
         var year=date.getFullYear();
         return day+"/"+month+"/"+year;
     },
-     setMaxMinDate:function(date){
+    setMaxMinDate:function(date){
     var day=date.getDate();
     var month=date.getMonth()+1;
     var year=date.getFullYear();
@@ -174,7 +170,7 @@ angular.module('uhiApp.services')
        var imgURL = cordova.file.externalDataDirectory + folder+"/"+fileName+".jpg";
        return imgURL;
      } catch(e){
-      alert("this is browser, set a default Image");
+      //alert("this is browser, set a default Image");
       return;
      }
      
@@ -228,6 +224,15 @@ angular.module('uhiApp.services')
     }
   
     
+    },
+    convertToDate: function(date){
+      if(!angular.isDate(date)){
+        //its a dd/mm/yyyy string 
+        var arr = date.split('/');
+        var mmddyyyyStr = arr[1]+"/"+arr[0]+"/"+arr[2];
+        date = new Date(mmddyyyyStr);
+      }
+      return date;
     }
   }
 }]);

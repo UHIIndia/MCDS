@@ -7,8 +7,7 @@ if($stateParams.id){
  if($scope.woman){
   // update age for woman
   $scope.woman.age = (function(){
-   if($scope.woman.dob){
-    $scope.woman.dob = new Date($scope.woman.dob);
+   if($scope.woman.dob){    
     return UtilityService.calcAge($scope.woman.dob, true);
    } 
   }());
@@ -17,10 +16,10 @@ if($stateParams.id){
   imgURI ? $scope.imgURI =imgURI : $scope.imgURI ="img/ionic.png";
   
   $scope.children = ChildService.getChildren($scope.woman.womanID);
-  angular.forEach($scope.children, function(childObj, index){
-   childObj.dob = new Date(childObj.dob);
+  angular.forEach($scope.children, function(childObj, index){   
    childObj.age = UtilityService.calcAge(childObj.dob, false);
   });
+   $scope.savedChildren =angular.copy($scope.children);
  } else {
   alert("Woman Not in list, Navigating back to home page");
   $location.path("/home");
@@ -270,6 +269,14 @@ $scope.getChildIcon = function(child){
   } else {
     return "icon-girl";
   }
+}
+$scope.selectedGenderForChild = function(child, isGirl) {
+  if(child.sex === 'F' && isGirl){
+    return "";
+  } else if(child.sex === 'M' && !isGirl){
+    return "";
+  } 
+  return "inactive";
 }
 $scope.validations = {
  validateSave: function(){

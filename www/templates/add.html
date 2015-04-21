@@ -151,8 +151,8 @@
   <input type="text" class="form-control" ng-model="child.age" ng-blur="setDob(false, $index);">
 </div>   
 <div class="col-sm-2 select-child">
-  <div class="girl-child"><input type="radio" ng-model="child.sex" value="F"><i class="icon-select-girl">&nbsp;</i></div>
-  <div class="boy-child"><input type="radio" ng-model="child.sex" value="M"><i class="icon-select-boy inactive">&nbsp;</i></div>
+  <div class="girl-child"><input type="radio" ng-model="child.sex" value="F"><i class="icon-select-girl" ng-class="selectedGenderForChild(child,true);">&nbsp;</i></div>
+  <div class="boy-child"><input type="radio" ng-model="child.sex" value="M"><i class="icon-select-boy" ng-class="selectedGenderForChild(child, false);">&nbsp;</i></div>
 </div>        
 </div>
 </div>  

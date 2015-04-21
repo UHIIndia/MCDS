@@ -12,17 +12,19 @@ angular.module('uhiApp.services')
     return mothersVisibleID +"."+(childNo+1);
   }
   var generateActualChildID = function(motherID, name, dob) { 
-    if(!angular.isDate(dob)){
-      //its a dd/mm/yyyy string 
-      var arr = dob.split('/');
-      var mmddyyyyStr = arr[1]+"/"+arr[0]+"/"+arr[2];
-      dob = new Date(mmddyyyyStr);
-    } 
-    var nameCode, dd= dob.getDate(), mm=dob.getMonth()+1, yyyy= dob.getFullYear();
+   var nameCode,dobCode; 
+    if(angular.isDate(dob)){
+      var dd= dob.getDate(), mm=dob.getMonth()+1, yyyy= dob.getFullYear();
+      if(dd< 10)  dd ="0"+ dd;
+      if(mm < 10) mm ="0"+mm;
+      dobCode = dd+mm+yyyy;
+    } else {
+      //its a dd/mm/yyyy string
+      dobCode = dob.replace(/\//g, "");
+    }
    name ? nameCode = name.substring(0,2).toUpperCase() : nameCode = "NA";
-   if(dd < 10)  dd ="0"+ dd;;
-   if(mm < 10) mm ="0"+mm;
-    return motherID+nameCode+dd+mm+yyyy;
+   
+    return motherID+nameCode+dobCode;
   }
   return {
     isChildRegistered: function(childID){
