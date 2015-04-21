@@ -3,39 +3,39 @@ angular.module('starter.controllers')
 
     //code for tap on enter button
     $scope.mapWomen = function(){
-        $location.path("/mapWoman");
+        $location.path("/map-women");
     }
 
     $scope.listWomen = function(){
-        $location.path("/listWoman");
+        $location.path("/list-women");
     }
 
     $scope.reportWomen = function(){
-        $location.path("/reportWoman");
+        $location.path("/report-women");
     }
 
     $scope.showFilmsPregnant = function(){
-        $location.path("/filmsWoman");
+        $location.path("/film");
     }
 
     $scope.showFilmsFP = function(){
-        $location.path("/filmsWoman");
+        $location.path("/film");
     }
 
     $scope.mapBabies = function(){
-        $location.path("/mapChild");
+        $location.path("/map-children");
     }
 
     $scope.listBabies = function(){
-        $location.path("/listChild");
+        $location.path("/list-children");
     }
 
     $scope.reportBabies = function(){
-        $location.path("/reportChild");
+        $location.path("/report-children");
     }
 
     $scope.showFilmsBabies = function(){
-        $location.path("/filmsChild");
+        $location.path("/film");
     }
 
     $scope.goTo= function(){
