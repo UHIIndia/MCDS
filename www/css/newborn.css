@@ -1,0 +1,83 @@
+.newborn-wrapper .light-blue-block{
+	padding-top: 15px;
+}
+.newborn-wrapper .light-blue-block label{
+	text-align: left;
+	padding-top: 7px;
+}
+.newborn-wrapper .light-blue-block label, .newborn-wrapper .light-blue-block label + div{
+	padding-left:0;
+	padding-right: 0;
+
+}
+.newborn-wrapper .light-blue-block > div > div{
+	padding-left: 0;
+}
+.newborn-wrapper .light-blue-block > div:last-child{
+	padding-right: 0;
+}
+
+.newborn-thead-wrapper > div > div:first-child,
+.newborn-tbody-wrapper > div > div > div:first-child{
+	padding-left: 0;
+}
+.newborn-thead-wrapper .newborn-thead{
+	background: #fff;
+	padding-right: 0;
+	padding-left: 0;
+	border:1px #000 solid;
+	height: 57px;
+	margin-bottom: 5px;
+}
+.newborn-thead-wrapper .newborn-thead > div{
+	border-right:1px #000 solid;
+	height: 55px;	
+	padding: 3px;
+}
+
+.newborn-thead-wrapper .newborn-thead > div:last-child{
+	border-right: none;
+	background: #f9f9f9;
+}
+.newborn-thead-wrapper .newborn-thead .day{
+	font-family: OpenSans-Semibold;
+	font-size: 16px;
+	text-align: center;
+}
+.newborn-thead-wrapper .newborn-thead .date{
+	font-size: 11px;
+	margin-top: 5px;
+	text-align: center;
+}
+.newborn-thead .birth-situation > div{
+	float: left;
+	margin-right:10px;
+}
+.newborn-tbody-wrapper > div{
+	margin-bottom: 10px;
+}
+.newborn-tbody-wrapper .newborn-tbody{
+	border: 1px #000 solid;
+	padding-left:0;
+	padding-right: 0;
+}
+.newborn-tbody-wrapper .newborn-tbody > div{
+	border-right:1px #000 solid;
+	height: 103px;
+}
+.newborn-tbody-wrapper .newborn-tbody > div:last-child{
+	border-right:none;
+	background: #f9f9f9;
+}
+.radio-group > div {
+	float: right;
+	margin-right: 20px;
+}
+.radio-group > div:first-child{
+	margin-right: 0;
+}
+.newborn-tbody input[type="text"] {
+  width: 40px;
+  display: inline-block;
+  margin: 0 10px;
+}

@@ -34,6 +34,10 @@
 	border:1px #fff solid;
 	background: #b2dfee;
 }
+.light-blue-block{
+	border:1px #fff solid;
+	background: #d9eff7;
+}
 input[type="radio"]:not(old){
 	width   : 28px;
 	margin  : 0;

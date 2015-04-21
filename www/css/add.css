@@ -158,7 +158,7 @@
 		text-align: right;
 		padding:10px;
 	}
-	.child-details .child-entries .select-child a i.inactive{
+	.child-details .child-entries .select-child div i.inactive{
 		opacity: 0.4;
 	}
 

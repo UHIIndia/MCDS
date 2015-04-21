@@ -92,6 +92,10 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
     url: "/film",
     templateUrl: "templates/film.html",
     controller: 'FilmController'
+  })
+  .state('newborn', {
+    url: "/newborn",
+    templateUrl: "templates/new-born.html"
   });
 
   // if none of the above states are matched, use this as the fallback
