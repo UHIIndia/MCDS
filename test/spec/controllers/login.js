@@ -4,7 +4,7 @@ describe('Controller: LoginController', function(){
   var scope, location;
 
   // load the controller's module
-  beforeEach(module('starter.controllers'));
+  beforeEach(module('uhiApp.controllers'));
 
   beforeEach(inject(function($rootScope, $controller, _$location_) {
     scope = $rootScope.$new();
