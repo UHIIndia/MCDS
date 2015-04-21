@@ -106,4 +106,3 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
     });
 $translateProvider.preferredLanguage('en');
 });
-
