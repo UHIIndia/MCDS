@@ -65,16 +65,32 @@ angular.module('starter.services')
     generateWomanID: function(houseCode, womanNo){
       return cityCode+slumCode+workerCode+houseCode+womanNo;
     },
-        showMonthFromDate:function(date){
-            var dateArray = date.split("/");
-            return dateArray[1];
-        },
-        convertDateFormat:function(date){
-            var day=date.getDate();
-            var month=date.getMonth()+1;
-            var year=date.getFullYear();
-            return day+"/"+month+"/"+year;
-        },
+    showMonthFromDate:function(date){
+        var dateArray = date.split("/");
+        return dateArray[1];
+    },
+    convertDateFormat:function(date){
+        var day=date.getDate();
+        var month=date.getMonth()+1;
+        var year=date.getFullYear();
+        return day+"/"+month+"/"+year;
+    },
+    showMonthFromDate:function(date){console.log("showMonFromDate")
+        var dateArray = date.split("/");
+        return dateArray[1];
+    },
+    convertDateFormat:function(date){
+        var day=date.getDate();
+        var month=date.getMonth()+1;
+        var year=date.getFullYear();
+        return day+"/"+month+"/"+year;
+    },
+     setMaxMinDate:function(date){
+    var day=date.getDate();
+    var month=date.getMonth()+1;
+    var year=date.getFullYear();
+    return year+"/"+month+"/"+day;
+    },
     showMonth:function(monthNo){
 
         switch(monthNo) {
