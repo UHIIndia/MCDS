@@ -88,10 +88,15 @@ angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controlle
     templateUrl: "templates/report-children.html",
     controller: 'ReportChildrenController'
   })
-  .state('film', {
-    url: "/film",
-    templateUrl: "templates/film.html",
-    controller: 'FilmController'
+  .state('filmWomen', {
+    url: "/film-women",
+    templateUrl: "templates/film-women.html",
+    controller: 'FilmWomenController'
+  })
+  .state('filmChildren', {
+    url: "/film-children",
+    templateUrl: "templates/film-children.html",
+    controller: 'FilmChildrenController'
   })
   .state('newborn', {
     url: "/newborn",
