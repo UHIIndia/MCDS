@@ -1,4 +1,4 @@
-angular.module('starter.services')
+angular.module('uhiApp.services')
 .factory('ChildService', ['FileService','UtilityService',function(FileService, UtilityService){
   var childrenList = FileService.readFromLocalStorage(false);
   var generateVisibleChildID = function(mothersVisibleID) {

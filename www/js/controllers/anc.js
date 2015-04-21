@@ -1,4 +1,4 @@
-angular.module('starter.controllers')
+angular.module('uhiApp.controllers')
 .controller('AncController', function($scope,$timeout,UtilityService,$location) {
 
     var womanData={ "womanID": "0121230250012001", // city+slum+worker+house+woman

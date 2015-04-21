@@ -1,4 +1,4 @@
-angular.module('starter.controllers')
+angular.module('uhiApp.controllers')
 .controller('AddController', ['$scope','$location','$stateParams','WomanService','ChildService','UtilityService','$cordovaCamera',function ($scope, $location, $stateParams, WomanService, ChildService, UtilityService, $cordovaCamera){
  var imgData;
 if($stateParams.id){

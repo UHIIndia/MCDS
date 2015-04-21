@@ -1,4 +1,4 @@
-angular.module('starter.controllers')
+angular.module('uhiApp.controllers')
 .controller('FilmChildrenController', function($scope) {
 
 });

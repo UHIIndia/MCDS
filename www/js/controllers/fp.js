@@ -1,4 +1,4 @@
-angular.module('starter.controllers').controller('FpController', function($scope, WomanService, familyPlanning) {
+angular.module('uhiApp.controllers').controller('FpController', function($scope, WomanService, familyPlanning) {
   var id = 'A-102.1';
   $scope.woman = WomanService.getWomanDetails(id);
 

@@ -1,4 +1,4 @@
-angular.module('starter.controllers')
+angular.module('uhiApp.controllers')
 .controller('HomeController', ['$scope','UtilityService','$location',function($scope, UtilityService,$location) {
 
     //code for tap on enter button

@@ -1,4 +1,4 @@
-angular.module('starter.services')
+angular.module('uhiApp.services')
 .factory('WomanService',['FileService','UtilityService', function(FileService, UtilityService){
   var womenList = FileService.readFromLocalStorage(true);
   // this function return a id i.e house#.womanNo , this will be visible to user 

@@ -1,4 +1,4 @@
-angular.module('starter.services')
+angular.module('uhiApp.services')
 .factory('UtilityService',['$cordovaFile', '$cordovaCamera', function($cordovaFile, $cordovaCamera){
   var cityCode="500", slumCode="200", workerCode="100";
  var dataDir, folder="images";  

@@ -1,4 +1,4 @@
-angular.module('starter.services').factory('familyPlanning',function(){
+angular.module('uhiApp.services').factory('familyPlanning',function(){
 
   var familyPlanningMethods = [
     {

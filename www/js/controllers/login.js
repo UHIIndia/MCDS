@@ -1,4 +1,4 @@
-angular.module('starter.controllers')
+angular.module('uhiApp.controllers')
 .controller('LoginController', function($scope, $location) {
 
     //code for tap on enter button

@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'pascalprecht.translate', 'starter.controllers', 'starter.services', 'ngCordova', 'ui.bootstrap'])
+angular.module('uhiApp', ['ionic', 'pascalprecht.translate', 'uhiApp.controllers', 'uhiApp.services', 'ngCordova', 'ui.bootstrap'])
 
 
 .run(function($ionicPlatform) {

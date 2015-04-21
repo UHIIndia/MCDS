@@ -1,4 +1,4 @@
-angular.module('starter.services')
+angular.module('uhiApp.services')
 .factory('FileService', function(){
   var jsonFilePath="";  
   var localStorageKey = 'UHI_MCAS';
