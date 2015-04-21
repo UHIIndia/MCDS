@@ -27,10 +27,17 @@ if($stateParams.id){
  }
 } else{
   $scope.woman ={};
+  $scope.woman.isPregnant = 'false' // default not pregnant
   $scope.children=[{}];
   $scope.savedChildren =[];  
 }
  
+$scope.isWomanPregnant = function(){
+  if($scope.woman && $scope.woman.isPregnant === 'true'){
+    return true;
+  }
+  return false;
+}
 
 // setting age based on dob
 $scope.setAge = function(inYear, index){
@@ -257,6 +264,13 @@ $scope.openCalender = function($event, isWoman, $index) {
     $scope.isOpenPosition[$index] = true;
   }
  }
+$scope.getChildIcon = function(child){
+  if(child.sex === 'M'){
+    return 'icon-boy';
+  } else {
+    return "icon-girl";
+  }
+}
 $scope.validations = {
  validateSave: function(){
   var woman = $scope.woman; var childList =$scope.children;

@@ -173,10 +173,10 @@
     <div class="women-links col-sm-12">
      <div class="col-sm-12"><h4>Go to Woman</h4></div>
      <div class="col-sm-12 text-center">
-     <a href="#/fp" ng-show="{{woman.isPregnant !=='true'}}">
+     <a href="#/fp" ng-show="!isWomanPregnant();">
          <i class="icon-women">&nbsp;</i>
      </a>
-     <a href="#/anc" ng-show="{{woman.isPregnant === 'true'}}">
+     <a href="#/anc" ng-show="isWomanPregnant();">
          <i class="icon-pregnant-women">&nbsp;</i>
      </a>
     </div>
@@ -192,7 +192,7 @@
 
 <div ng-repeat ="child in savedChildren">
  <a href="#/child/{{child.visibleID}}">
-  <i class="icon-girl">&nbsp;</i>
+  <i ng-class="getChildIcon(child);">&nbsp;</i>
 </a>
 <span><b>Name:</b> {{child.name}}</span>
 <span><b>Age:</b> {{child.age}}</span>
