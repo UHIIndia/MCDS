@@ -2,9 +2,9 @@ angular.module('starter.controllers')
 .controller('AncController', function($scope,$timeout,UtilityService,$location) {
 
     var womanData={ "womanID": "0121230250012001", // city+slum+worker+house+woman
-        "name": "seema",
-        "dob": "16/12/1988",
-        "age": "26",
+        "name": null,
+        "dob":  '20/12/1989',//'20/12/1989',
+        "age":  26,
         "husbandName":"govind",
         "phone":  "5388234458",
         "house":"0012",
@@ -31,7 +31,7 @@ angular.module('starter.controllers')
         },
         "currentPreg":{
             "LMP":"9/12/2014",
-            "EDD":"2/08/2015"
+            "EDD":"2/10/2015"
         },
         "ANC":[{"Month":1,
             "ANC":null,
@@ -48,7 +48,7 @@ angular.module('starter.controllers')
             "Bp":null,
             "Swelling":null,
             "Headache":null,
-            "UrineAlbumin":null,
+            "UrineProtein":"yes",
             "UrineSugar":null,
             "NightBlindness":null,
             "FoulSmellingDischarge":null,
@@ -71,19 +71,19 @@ angular.module('starter.controllers')
             "HBDate":"2/4/2015",
             "PaleEye":"yes",
             "PaleEyeDate":"2/4/2015",
-            "Bleeding1":null,
-            "Malaria":null,
+            "Bleeding":'yes',
+            "Malaria":'yes',
             "IFATablets":30,
             "IFADate":"2/4/2015",
             "Bp":null,
-            "Swelling":null,
-            "Headache":null,
-            "UrineAlbumin":null,
-            "UrineSugar":null,
-            "NightBlindness":null,
-            "FoulSmellingDischarge":null,
-            "Fever":null,
-            "OtherInfection":null,
+            "Swelling":'yes',
+            "Headache":'yes',
+            "UrineProtein":"no",
+            "UrineSugar":"yes",
+            "NightBlindness":'yes',
+            "FoulSmellingDischarge":"yes",
+            "Fever":"yes",
+            "OtherInfection":"yes",
             "ASHAVisit":null,
             "ANMVisit":"2/4/2015",
             "DeliveryDate":null,
@@ -94,10 +94,6 @@ angular.module('starter.controllers')
     };
 
 //display DOB,Age,LMP,EDD,and the months by calling service 9/2/2015  2/11/2015       date month year
-    var dobDate = womanData.dob;
-    var age = womanData.age;
-    var LMP =  womanData.currentPreg.LMP; // 9/2/2015
-    var EDD = womanData.currentPreg.EDD;
     var pregnancyMonthNo;
     var AshaVisitArray=[];
     var ANMVisitArray=[];
@@ -105,39 +101,92 @@ angular.module('starter.controllers')
     var  ashaCountTotal=0;
     var ANMCountTotal=0;
     var pregnancyMonthNoArray=[];
+    var monthNo,LMP,EDD,currentMonth;
+    $scope.dateOfDelivery=true;
+    $scope.enterButton = false;
+    $scope.pregWomanExist=true;
+    $scope.disableButton=false;
+    womanData.currentPreg.LMP =null;
+    $scope.ancDOB = womanData.dob;
+    $scope.ancAge =womanData.age;
+    $scope.newWoman=false;
 
-    $scope.DOB = dobDate;
-    $scope.Age = age;
-    $scope.LMP = LMP;
-    $scope.EDD = EDD;
+    $scope.enterPregnantWomanDetails=function(){
+        if($scope.LMPCalendarDate && $scope.EDDCalendarDate){
+              $scope.pregWomanExist=true;
+              $scope.newWoman=true;
+              showPregDetails($scope.LMPCalendarDate,$scope.EDDCalendarDate);
+        }
+        //$scope.pregWomanExist=true;
+       // $scope.newWoman=true;
+       // $scope.newWoman=true;
+        //showPregDetails("25/02/15","1/05/2015");
+             
+     }
+     //check for whther the woman has prgnant details or she is a new woman
+    if(womanData.currentPreg.LMP == null || womanData.currentPreg.EDD == null ){           //a new woamn
+        $scope.enterButton=true;
+        $scope.pregWomanExist=false;
+      
+        // showPregDetails(LMP,EDD);
+    }else{
+        var LMP =  womanData.currentPreg.LMP; // 9/2/2015
+        var EDD = womanData.currentPreg.EDD;
+        showPregDetails(LMP,EDD);
+    }
+
+    function showPregDetails(LMP,EDD){
+       
+    $scope.pregWomanExist=true;                //already exists
+    $scope.disableButton=true;       
+    $scope.LMPCalendarDate = LMP;
+    $scope.EDDCalendarDate = EDD;
+    
     $scope.monthsArray = [];
     $scope.chooseMonth = 5;
     var todayDate=new Date();
-    $scope.ashaCalendarDate = todayDate; //set the calendar date to today
-    $scope.ANMCalendarDate=todayDate;
+   
+   
     $scope.totalAshaCount = 0;
-    var currentMonth = todayDate.getMonth()+1;         //get the current month
+     currentMonth = todayDate.getMonth()+1;         //get the current month
+
 
     //need to derive the first month of pregnancy
     var d = new Date();
-    var deliveryDateMonth = UtilityService.showMonthFromDate(EDD);
+    var deliveryDateMonth = UtilityService.showMonthFromDate($scope.EDDCalendarDate);
     if(deliveryDateMonth <= 8){
         deliveryDateMonth =parseInt(deliveryDateMonth)+ 12;
     }
-    pregnancyMonthNo = deliveryDateMonth-8;
+    monthNo = deliveryDateMonth-8;
     for(var i = 0; i <9;i++){
-        if(pregnancyMonthNo == 13){         //MOVE TO JANUARY
-            pregnancyMonthNo = 1;
+        if(monthNo == 13){         //MOVE TO JANUARY
+            monthNo = 1;
         }
-        var monthName = UtilityService.showMonth(pregnancyMonthNo);
-        var month={'monthNo':pregnancyMonthNo,'monthName':monthName};
+        var monthName = UtilityService.showMonth(monthNo);
+        var month={'monthNo':monthNo,'monthName':monthName,'pregnancyMonthNo':i+1};
         $scope.monthsArray.push(month);
-        pregnancyMonthNo++;
+        monthNo++;
 
     }
-
+    //SET VARIABLE FOR CLASS IN FP METHOD
+    if(currentMonth == $scope.monthsArray[7].monthNo){ //if the current month is the 8th month
+        $scope.FPmonth1=0;
+        $scope.FPmonth2 = currentMonth;
+        $scope.FPmonth3 = currentMonth+1;       
+    }else if(currentMonth == $scope.monthsArray[8].monthNo){
+    ////if the current month is the 9th month
+        $scope.FPmonth1=0;
+        $scope.FPmonth2 = 0;
+        $scope.FPmonth3 = currentMonth;       
+    }else{
+        $scope.FPmonth1=$scope.monthsArray[6].monthNo;
+        $scope.FPmonth2 = $scope.monthsArray[7].monthNo;
+        $scope.FPmonth3 = $scope.monthsArray[8].monthNo;       
+    }
     //logic for asha visit and ANMVisit
-    angular.forEach(womanData.ANC, function(ANCObj, index){
+    $scope.ashaCalendarDate = todayDate; //set the calendar date to today
+    if($scope.newWoman == false){
+        angular.forEach(womanData.ANC, function(ANCObj, index){
         if(ANCObj.ASHAVisit != null){console.log("in");
             ashaCountTotal++;
             console.log(ANCObj.ASHAVisit);
@@ -146,24 +195,34 @@ angular.module('starter.controllers')
             lastAshaVistMonth = UtilityService.showMonthFromDate(lastAshaVistDate);
             console.log(lastAshaVistMonth);
         }
-    })
-    $scope.lastAshaVistDate = _.chain(womanData.ANC)
+        })
+        $scope.lastAshaVistDate = (lastAshaVistDate == undefined ?'': lastAshaVistDate);
+        $scope.lastAshaVistMonth = (lastAshaVistMonth == undefined?'':lastAshaVistMonth);
+        if($scope.lastAshaVistMonth == currentMonth){
+            if(currentMonth == 12){
+                 $scope.nextAshaVisitMonth =1;   
+            }else{
+                $scope.nextAshaVisitMonth = currentMonth+1;
+            }
+            
+        }else{
+            $scope.nextAshaVisitMonth = currentMonth;
+        }
+    }else{
+            $scope.nextAshaVisitMonth = currentMonth;
+            $scope.lastAshaVistDate='';
+    }
+    
+  /*  $scope.lastAshaVistDate = _.chain(womanData.ANC)
         .pluck('ANMVisit')
         .sortBy(function(e) {
             return new Date(e);
         })
         .last()
         .value();
-        
-    var ashaInitializing = true;
-    $scope.lastAshaVistDate = (lastAshaVistDate == undefined ?'': lastAshaVistDate);
-    $scope.lastAshaVistMonth = (lastAshaVistMonth == undefined?'':lastAshaVistMonth);
-    if($scope.lastAshaVistMonth == currentMonth){
-        $scope.nextAshaVisitMonth = currentMonth+1;
-    }else{
-        $scope.nextAshaVisitMonth = currentMonth;
-    }
+    */    
     $scope.ashaCountTotal = ashaCountTotal;
+    var ashaInitializing = true;
     $scope.$watch(function(scope) {return $scope.ashaCalendarDate},
         function() {
             if (ashaInitializing) {
@@ -180,7 +239,11 @@ angular.module('starter.controllers')
                 $scope.lastAshaVistMonth=ashaCalendarMonth;
                 $scope.lastAshaVistDate =ashaCalendarDate;
                 if($scope.lastAshaVistMonth == currentMonth){
-                    $scope.nextAshaVisitMonth = currentMonth+1;
+                    if(currentMonth == 12){
+                         $scope.nextAshaVisitMonth =1;   
+                    }else{
+                        $scope.nextAshaVisitMonth = currentMonth+1;
+                    }
                 }else{
                     $scope.nextAshaVisitMonth = currentMonth;
                 }
@@ -189,45 +252,67 @@ angular.module('starter.controllers')
     );
     //logic for ANC CheckUp
     // if(currentMonth != )
-    angular.forEach(womanData.ANC, function(ANCObj, index){
-        if(ANCObj.ANMVisit != null){console.log("in");
-            ANMCountTotal++;
-            ANMVisitArray.push(ANCObj.ANMVisit);
-            lastANMVisitDate= ANMVisitArray[ANMVisitArray.length-1];
-            lastANMVistMonth = UtilityService.showMonthFromDate(lastANMVisitDate);
-            console.log(lastANMVistMonth);
+    $scope.ANMCalendarDate=todayDate;
+    if($scope.newWoman == false){
+        angular.forEach(womanData.ANC, function(ANCObj, index){
+            if(ANCObj.ANMVisit != null){console.log("in");
+                ANMCountTotal++;
+                lastANMVisitDate= ANCObj.ANMVisit;
+                lastANMVistMonth = UtilityService.showMonthFromDate(lastANMVisitDate);
+                console.log(lastANMVistMonth);
+            }
+        })
+        $scope.lastANMVisitDate = (lastANMVisitDate == undefined ?'': lastANMVisitDate);
+        $scope.lastANMVistMonth = (lastANMVistMonth == undefined?'':lastANMVistMonth);
+
+        if($scope.lastANMVistMonth == currentMonth){
+            if(currentMonth == $scope.monthsArray[7].monthNo){        // if current mon is 8    next visit is 9
+                if(currentMonth == 12){
+                    $scope.nextANMVisitMonth = 1; 
+                }else{
+                    $scope.nextANMVisitMonth = currentMonth + 1;  
+                }                  //   checked
+            }else if(currentMonth == $scope.monthsArray[8].monthNo){   //if current month is 9  nect visit is 10 and it goes out
+                if(currentMonth == 12){
+                    $scope.nextANMVisitMonth = 1; 
+                }else{
+                    $scope.nextANMVisitMonth = currentMonth + 1;  
+                }                            //
+            }else{
+                if(currentMonth == 12){
+                    $scope.nextANMVisitMonth = 2; 
+                }else{
+                    $scope.nextANMVisitMonth = currentMonth + 2;  
+                }                                                      //if current mon is 7or less..it will add 2.. //checked
+            }
+        }else{
+            if(currentMonth == $scope.monthsArray[7].monthNo ){             //if current month is 8
+                if($scope.lastANMVistMonth == currentMonth - 1){                         //if calendar mon is 7 an d current is 8
+                    $scope.nextANMVisitMonth = currentMonth + 1;                       //checked
+                }else if($scope.lastANMVistMonth == 12 &&  currentMonth == 1){
+                    $scope.nextANMVisitMonth = 2;
+                }else{
+                    $scope.nextANMVisitMonth = currentMonth;                       //if cal month is 6 or less and current is 8 ..
+                }
+            }else if(currentMonth == $scope.monthsArray[8].monthNo ){       //if the current mon is 9
+                $scope.nextANMVisitMonth = currentMonth;                               //
+            }else{                                                  //if the current month is 7  or less
+                if($scope.lastANMVistMonth == currentMonth - 1){                    //if the calendar mon is 1 less
+                    $scope.nextANMVisitMonth = currentMonth + 1;                      //checked
+                }else if($scope.lastANMVistMonth == 12 &&  currentMonth == 1){
+                    $scope.nextANMVisitMonth = 2;
+                }else{
+                    $scope.nextANMVisitMonth=currentMonth;                         //checked
+                }
+            }
         }
-    })
+    } else{
+                $scope.nextANMVisitMonth=currentMonth; 
+                $scope.lastANMVisitDate='';
+    } 
     // var month={'monthNo':
     var ANMInitializing = true;
-    $scope.lastANMVisitDate = (lastANMVisitDate == undefined ?'': lastANMVisitDate);
-    $scope.lastANMVistMonth = (lastANMVistMonth == undefined?'':lastANMVistMonth);
-
-    if($scope.lastANMVistMonth == currentMonth){
-        if(currentMonth == $scope.monthsArray[7].monthNo){        // if current mon is 8    next visit is 9
-            $scope.nextANMVisitMonth = currentMonth + 1;                           //   checked
-        }else if(currentMonth == $scope.monthsArray[8].monthNo){   //if current month is 9  nect visit is 10 and it goes out
-            $scope.nextANMVisitMonth = currentMonth + 1;                         //
-        }else{
-            $scope.nextANMVisitMonth = currentMonth + 2;    //if current mon is 7or less..it will add 2.. //checked
-        }
-    }else if($scope.lastANMVistMonth < currentMonth){
-        if(currentMonth == $scope.monthsArray[7].monthNo ){             //if current month is 8
-            if($scope.lastANMVistMonth == currentMonth - 1){                         //if calendar mon is 7 an d current is 8
-                $scope.nextANMVisitMonth = currentMonth + 1;                       //checked
-            }else{
-                $scope.nextANMVisitMonth = currentMonth;                       //if cal month is 6 or less and current is 8 ..
-            }
-        }else if(currentMonth == $scope.monthsArray[8].monthNo ){       //if the current mon is 9
-            $scope.nextANMVisitMonth = currentMonth;                               //
-        }else{                                                  //if the current month is 7  or less
-            if($scope.lastANMVistMonth == currentMonth - 1){                    //if the calendar mon is 1 less
-                $scope.nextANMVisitMonth = currentMonth + 1;                      //checked
-            }else{
-                $scope.nextANMVisitMonth=currentMonth;                         //checked
-            }
-        }
-    }
+    
     $scope.ANMCountTotal = ANMCountTotal;
     $scope.$watch(function(scope) {return $scope.ANMCalendarDate},
         function() {
@@ -248,80 +333,73 @@ angular.module('starter.controllers')
                 //if calendar month is equal to current month
                 if($scope.lastANMVistMonth == currentMonth){
                     if(currentMonth == $scope.monthsArray[7].monthNo){        // if current mon is 8    next visit is 9
-                        $scope.nextANMVisitMonth = currentMonth + 1;                           //checked
+                        if(currentMonth == 12){
+                            $scope.nextANMVisitMonth = 1; 
+                        }else{
+                            $scope.nextANMVisitMonth = currentMonth + 1;  
+                        }                  //   checked
                     }else if(currentMonth == $scope.monthsArray[8].monthNo){   //if current month is 9  nect visit is 10 and it goes out
-                        $scope.nextANMVisitMonth = currentMonth + 1;                         //checked
+                        if(currentMonth == 12){
+                            $scope.nextANMVisitMonth = 1; 
+                        }else{
+                            $scope.nextANMVisitMonth = currentMonth + 1;  
+                        }                            //
                     }else{
-                        $scope.nextANMVisitMonth = currentMonth + 2;    //if current mon is 7or less..it will add 2..checked
+                        if(currentMonth == 12){
+                            $scope.nextANMVisitMonth = 2; 
+                        }else{
+                            $scope.nextANMVisitMonth = currentMonth + 2;  
+                        }                                                      //if current mon is 7or less..it will add 2.. //checked
                     }
-                }else if($scope.lastANMVistMonth < currentMonth){
+                }else{
                     if(currentMonth == $scope.monthsArray[7].monthNo ){             //if current month is 8
                         if($scope.lastANMVistMonth == currentMonth - 1){                         //if calendar mon is 7 an d current is 8
                             $scope.nextANMVisitMonth = currentMonth + 1;                       //checked
+                        }else if($scope.lastANMVistMonth == 12 &&  currentMonth == 1){
+                            $scope.nextANMVisitMonth = 2;
                         }else{
-                            $scope.nextANMVisitMonth = currentMonth;                       //if cal month is 6 or less and current is 8 ..checked
+                            $scope.nextANMVisitMonth = currentMonth;                       //if cal month is 6 or less and current is 8 ..
                         }
                     }else if(currentMonth == $scope.monthsArray[8].monthNo ){       //if the current mon is 9
-                        $scope.nextANMVisitMonth = currentMonth;                               //checked
+                        $scope.nextANMVisitMonth = currentMonth;                               //
                     }else{                                                  //if the current month is 7  or less
                         if($scope.lastANMVistMonth == currentMonth - 1){                    //if the calendar mon is 1 less
-                            $scope.nextANMVisitMonth = currentMonth + 1;
+                            $scope.nextANMVisitMonth = currentMonth + 1;                      //checked
+                        }else if($scope.lastANMVistMonth == 12 &&  currentMonth == 1){
+                            $scope.nextANMVisitMonth = 2;
                         }else{
-                            $scope.nextANMVisitMonth=currentMonth;
+                            $scope.nextANMVisitMonth=currentMonth;                         //checked
                         }
                     }
                 }
-
-                /* if($scope.lastANMVistMonth ==   $scope.monthsArray[7].monthNo){
-                 $scope.nextANMVisitMonth = currentMonth + 1;
-                 }else if($scope.lastANMVistMonth == currentMonth && $scope.lastANMVistMonth < $scope.monthsArray[7].monthNo){
-                 //when cal and current months are same   will work for 1 2 3 4 5 6 7
-                 //if the last asha visit month is the current month ...then next action is 2 mons after it
-                 $scope.nextANMVisitMonth = currentMonth + 2;
-                 }else if($scope.lastANMVistMonth ==  currentMonth-1){ //when cal month is 1 mon less than current
-                 // if the last asha visit month is just a month before it....then next action is 1 mon after it
-                 $scope.nextANMVisitMonth = currentMonth + 1;
-
-                 }else{
-                 //otherwise the action is in current month   when the calendar mon is at least 2 mons less than current
-                 $scope.nextANMVisitMonth = currentMonth;
-                 }*/
             }
         }
     );
+
     // LOGIC FOR WT
     var WeightArray=[];
     var WeightDateArray=[];
     var lastWeightDate,lastWeightMonth,lastWeight;
     $scope.WeightCalendarDate=todayDate;
-    //logic for weight
-    angular.forEach(womanData.ANC, function(ANCObj, index){
-        if(ANCObj.Weight != null){console.log("in");
-            //ashaCountTotal++;
-            console.log(ANCObj.Weight);
-            WeightArray.push(ANCObj.Weight);
-            WeightDateArray.push(ANCObj.WeightDate);
-            lastWeight= WeightArray[WeightArray.length-1];
-            lastWeightDate= WeightDateArray[WeightDateArray.length-1];
-            lastWeightMonth = UtilityService.showMonthFromDate(lastWeightDate);
-            console.log(lastWeightMonth);
+    if($scope.newWoman == false){
+        var lastWtObject=_.chain(womanData.ANC).map(function(e) { 
+            return {month: e.Month, value: e.Weight};
+            })
+            .filter(function(e){ 
+                return e.value;
+            })
+            .sortBy('month')
+            .last()
+            .value();
+        if(lastWtObject.value < 40){
+            $scope.weightAlert = true;
         }
-    })
-    var WeightInitializing = true;
-    $scope.lastWeightDate = (lastWeightDate == undefined ?'':lastWeightDate);
-    $scope.lastWeightMonth = (lastWeightMonth == undefined?'':lastWeightMonth);
-    $scope.lastWeight = (lastWeight == undefined?'':lastWeight);
-    if($scope.lastWeight < 40){
-        $scope.weightAlert = true;
-    }
+     } else{
+
+     } 
     $scope.$watch(function(scope) {return $scope.WeightCalendarDate},
         function() {
-            if (WeightInitializing) {
-                $timeout(function() { WeightInitializing = false; });
-            } else {
-                if($scope.enteredWeight == undefined){
-                    alert(" please enter weight");
-                }else{
+                if($scope.enteredWeight){
                     var currentWt = $scope.enteredWeight;
                     var currentWtDate = UtilityService.convertDateFormat($scope.WeightCalendarDate);
                     var currentWtMonth = UtilityService.showMonthFromDate(currentWtDate);
@@ -333,72 +411,87 @@ angular.module('starter.controllers')
                         if(currentWtMonth ==  $scope.monthsArray[0].monthNo || currentWtMonth ==  $scope.monthsArray[1].monthNo || currentWtMonth ==  $scope.monthsArray[2].monthNo){
                         }else{
                             //if the current month is  other than 1st 2nd or 3rd and wt is not less than 40  ..then check if its less than last wt..
-                            if(currentWt < $scope.lastWeight){
+                            if(currentWt < lastWtObject.value ){
                                 $scope.weightAlert = true;
                             }
                         }
                     }
-                    $scope.lastWeight=currentWt;
+                    updateRow(4);
                 }
-            }
         }
     );
+    $scope.updateWeight=function(){
+        if(isNaN($scope.enteredWeight) == false){
+                    var currentWt = $scope.enteredWeight;
+                    var currentWtDate = UtilityService.convertDateFormat($scope.WeightCalendarDate);
+                    var currentWtMonth = UtilityService.showMonthFromDate(currentWtDate);
+                    $scope.lastWeightDate =currentWtDate;
+                    if(currentWt < 40){
+                        $scope.weightAlert = true;
+                    }else{
+                        //if the current month is 1st 2nd or 3rd and wt is not less than 40  ..then no need to check
+                        if(currentWtMonth ==  $scope.monthsArray[0].monthNo || currentWtMonth ==  $scope.monthsArray[1].monthNo || currentWtMonth ==  $scope.monthsArray[2].monthNo){
+                        }else{
+                            //if the current month is  other than 1st 2nd or 3rd and wt is not less than 40  ..then check if its less than last wt..
+                            if(currentWt < lastWtObject.value ){
+                                $scope.weightAlert = true;
+                            }
+                        }
+                    }
+                    updateRow(4);
+                }
+
+    }
 
 //LOGIC FOR ANAEMIA
     $scope.HBCalendarDate=todayDate;
-    var length,lastHBValue,lastHBDate;
-    var HBArray=[];
-    var HBDateArray=[];
-
-//need to apply the loop as a the last anc object can be empty for HB
-    angular.forEach(womanData.ANC, function(ANCObj, index){
-        if(ANCObj.HB != null){console.log("in");
-            //ashaCountTotal++;
-            console.log(ANCObj.Weight);
-            HBArray.push(ANCObj.HB);
-            HBDateArray.push(ANCObj.HBDate);
-            lastHBValue= HBArray[HBArray.length-1];
-            lastHBDate= HBDateArray[HBDateArray.length-1];
-            lastHBMonth = UtilityService.showMonthFromDate(lastHBDate);
-            console.log(lastWeightMonth);
+     if($scope.newWoman == false){
+        var lastHBObject=_.chain(womanData.ANC).map(function(e) { 
+            return {month: e.Month, value: e.HB};
+            })
+            .filter(function(e){ 
+                return e.value;
+            })
+            .sortBy('month')
+            .last()
+            .value();
+        if(lastHBObject.value < 10){
+            $scope.alertHB = true;
         }
-    })
+     }else{
 
-    $scope.lastHBValue = (lastHBValue == undefined ?'':lastHBValue);
-    $scope.lastHBMonth = (lastHBMonth == undefined?'': lastHBMonth);
-    if(lastHBValue < 10){
-        $scope.alertHB = true;
-    }
-    var HBInitializing = true;
+     }   
     $scope.$watch(function(scope) {return $scope.HBCalendarDate},
         function() {
-            if (HBInitializing) {
-                $timeout(function() { HBInitializing = false; });
-            }else {
-                if($scope.enteredHB == undefined){
-                    alert(" please enter HB");
-                }else{
+                if(isNaN($scope.enteredHB)== false){
                     var currentHB = $scope.enteredHB;
-                    var currentHBDate = UtilityService.convertDateFormat($scope.HBCalendarDate);
-                    var currentHBMonth = UtilityService.showMonthFromDate(currentHBDate);
                     if(currentHB < 10){
                         $scope.alertHB = true;
                     }else{
                         $scope.alertHB = false;
                     }
-                    $scope.lastHBValue=currentHB;
+                    updateRow(2);
                 }
-            }
         }
     );
+    $scope.updateHB=function(){
+        var enteredHB = $scope.enteredHB;
+            if(isNaN(enteredHB) == false){
+                var currentHB = enteredHB;
+                if(currentHB < 10){
+                    $scope.alertHB = true;
+                }else{
+                    $scope.alertHB = false;
+                }
+                updateRow(2);
+            }
 
 
+    }  
 //LOGIC FOR Pale Eye
     $scope.PaleCalendarDate = todayDate;
-    var lastPaleEyeValue,lastPaleEyeDate;
-    var PaleEyeArray=[];
-    var PaleEyeDateArray=[];
-    lastPaleEyeObject=_.chain(womanData.ANC).map(function(e) { 
+     if($scope.newWoman == false){
+     var lastPaleEyeObject=_.chain(womanData.ANC).map(function(e) { 
         return {month: e.Month, value: e.PaleEye};
         })
         .filter(function(e){ 
@@ -406,97 +499,106 @@ angular.module('starter.controllers')
         })
         .sortBy('month')
         .last()
-        .value()
-//need to apply the loop as a the last anc object can be empty for HB
-  /*  angular.forEach(womanData.ANC, function(ANCObj, index){
-        if(ANCObj.PaleEye != null){console.log("in");
-            PaleEyeArray.push(ANCObj.PaleEye);
-            PaleEyeDateArray.push(ANCObj.PaleEyeDate);
-            lastPaleEyeValue= PaleEyeArray[PaleEyeArray.length-1];
-            lastPaleEyeDate= PaleEyeDateArray[PaleEyeDateArray.length-1];
-            lastPaleEyeMonth = UtilityService.showMonthFromDate(lastPaleEyeDate);
-            console.log(lastPaleEyeMonth);
-        }
-    })
-*/
-    $scope.lastPaleEyeValue = lastPaleEyeObject.value;
-    $scope.lastPaleEyeMonth = lastPaleEyeObject.month;
-    if( $scope.lastPaleEyeValue.toLowerCase() == "yes" ){
-        $scope.alertPaleEye = true;
-    }
-    var PaleInitializing = true;
+        .value();
+     }else{
+
+     }   
     $scope.$watch(function(scope) {return $scope.PaleCalendarDate},
         function() {
-            // ....
-
-            if (PaleInitializing) {
-                $timeout(function() { PaleInitializing = false; });
-            }else {
-                if($scope.enteredPaleEyeValue == undefined){
-                    alert(" please select one ");
-                }else{
-                    
-                    var currentPaleEyeValue = $scope.enteredPaleEyeValue;
-                    var currentPaleEyeDate = UtilityService.convertDateFormat($scope.PaleCalendarDate);
-                    var currentPaleEyeMonth = UtilityService.showMonthFromDate(currentPaleEyeDate);
-                    if(currentPaleEyeValue == 'yes'){
-                        $scope.alertPaleEye = true;
-                    }else{
-                        $scope.alertPaleEye = false;
-                    }
-                    $scope.lastPaleEyeValue=currentPaleEyeValue;
-                    checkUp(0,currentPaleEyeMonth,currentPaleEyeValue);
+                if($scope.paleOutcome){
+                    updateRow(0);
                 }
-            }
         }
     );
+    $scope.updatePale=function(){
+        if($scope.paleOutcome) {
+                   updateRow(0);
+                }
+    }
 
+    //LOGIC FOR Night Blindness
     $scope.NightBlindCalendarDate = todayDate;
+     if($scope.newWoman == false){
+        var lastNightBlindObject=_.chain(womanData.ANC).map(function(e) { 
+        return {month: e.Month, value: e.NightBlindness};
+        })
+        .filter(function(e){ 
+            return e.value;
+        })
+        .sortBy('month')
+        .last()
+        .value();
+     }else{
 
-     function updateBlindRow() {
-        var currentBlindValue = $scope.enteredBlindValue;
-        var currentBlindDate = UtilityService.convertDateFormat($scope.NightBlindCalendarDate);
-        var currentBlindMonth = UtilityService.showMonthFromDate(currentBlindDate);
-        checkUp(1,currentBlindMonth,currentBlindValue);
      }
-
-    $scope.$watch(function(scope) {return $scope.blindOutcome},
-        function(n) {
-                if(n && $scope.enteredBlindValue) {
-                    updateBlindRow();
-                }
-        }
-    );
     $scope.$watch(function(scope) {return $scope.NightBlindCalendarDate},
         function() {
-            if($scope.enteredBlindValue){
-                updateBlindRow();
-            }
+                if($scope.blindOutcome){
+                    updateRow(1);
+                }
         }
     );
-    function checkUp(symptomIndex, month, value){
-        $scope.symptomData[symptomIndex].month = month;
-        $scope.symptomData[symptomIndex].value = value;
-    }
-    $scope.symptomData =[
-        {
-             month: lastPaleEyeObject.month,
-             value: lastPaleEyeObject.value
-            //month: 1,
-            //value: lastPaleEyeObject.month
-        },{
-            month: 2,
-            value:'yes'
-        }];
-    $scope.newPaleEyeValue = function(value,option){
-        if(option == 'pale'){
-             $scope.enteredPaleEyeValue=value;
-         }else{
-             $scope.enteredBlindValue=value;
-         }
-       
+    $scope.updateBlind=function(){
+        if($scope.blindOutcome) {
+                   updateRow(1);
+                }
     }
 
+    //LOGIC FOR Bleeding
+    $scope.BleedingCalendarDate = todayDate;
+     if($scope.newWoman == false){
+        var lastBleedingObject=_.chain(womanData.ANC).map(function(e) { 
+        return {month: e.Month, value: e.Bleeding};
+        })
+        .filter(function(e){ 
+            return e.value;
+        })
+        .sortBy('month')
+        .last()
+        .value();
+     }else{
+       
+     }   
+    $scope.$watch(function(scope) {return $scope.BleedingCalendarDate},
+        function() {
+                if($scope.bleedingOutcome){
+                    updateRow(3);
+                }
+        }
+    );
+    $scope.updateBleed=function(){
+        if($scope.bleedingOutcome) {
+                   updateRow(3);
+                }
+    }
+
+    //LOGIC FOR Malaria
+    $scope.MalariaCalendarDate = todayDate;
+    if($scope.newWoman == false){
+     var lastMalariaObject=_.chain(womanData.ANC).map(function(e) { 
+        return {month: e.Month, value: e.Malaria};
+        })
+        .filter(function(e){ 
+            return e.value;
+        })
+        .sortBy('month')
+        .last()
+        .value();
+     }else{
+
+     }   
+    $scope.$watch(function(scope) {return $scope.MalariaCalendarDate},
+        function() {
+                if($scope.malariaOutcome){
+                    updateRow(5);
+                }
+        }
+    );
+    $scope.updateMalaria=function(){
+        if($scope.malariaOutcome) {
+                   updateRow(5);
+                }
+    }
 
 
 //LOGIC FOR IFA Tab;lets
@@ -508,56 +610,419 @@ angular.module('starter.controllers')
     var lastIFACount=0;
 
 //need to apply the loop as a the last anc object can be empty for HB
-    angular.forEach(womanData.ANC, function(ANCObj, index){
-        if(ANCObj.IFATablets != null){console.log("in");
-            totalIFACount=parseInt(totalIFACount) + parseInt(ANCObj.IFATablets);
-            lastIFACount= ANCObj.IFATablets;
-            lastIFADate= ANCObj.IFADate;
-            lastIFAMonth = UtilityService.showMonthFromDate(lastIFADate);
+    if($scope.newWoman == false){
+        angular.forEach(womanData.ANC, function(ANCObj, index){
+            if(ANCObj.IFATablets != null){console.log("in");
+                totalIFACount=parseInt(totalIFACount) + parseInt(ANCObj.IFATablets);
+            }
+        })
+         var lastIFAObject=_.chain(womanData.ANC).map(function(e) { 
+            return {month: e.Month, value: e.IFATablets};
+            })
+            .filter(function(e){ 
+                return e.value;
+            })
+            .sortBy('month')
+            .last()
+            .value();
+        var lastPregnancyIFAMonth=   $scope.monthsArray[lastIFAObject.month-1].monthNo;
+       
+        lastIFACount=lastIFAObject.value;
+        $scope.lastPregnancyIFAMonth=lastPregnancyIFAMonth;
+        if(totalIFACount <= 100){
+            if(lastPregnancyIFAMonth == currentMonth){
+                if(currentMonth == 12){
+                     $scope.nextIFAVisit = 1;
+                }else{
+                     $scope.nextIFAVisit = currentMonth+1;
+                }
+            }else{
+                $scope.nextIFAVisit = currentMonth;
+            }
+            $scope.alertIFA = true;
         }
-    })
-
-    $scope.lastIFACount = (lastIFACount == 0 ?'':lastIFACount);
-    $scope.lastIFAMonth = (lastIFAMonth == undefined?'': lastIFAMonth);
-    $scope.totalIFACount = (totalIFACount == 0 ?'':totalIFACount);
-    console.log(currentMonth );
-    if(totalIFACount <= 100){
-        if($scope.lastIFAMonth == currentMonth){
-            $scope.nextIFAVisit = currentMonth+1;
-        }else{
+     }else{
             $scope.nextIFAVisit = currentMonth;
-        }
-        $scope.alertIFA = true;
-    }
-    console.log("next ifa  "+$scope.nextIFAVisit );
-    var IFAInitializing = true;
+            lastIFACount=0;
+             $scope.alertIFA = true;
+     }   
+      $scope.lastIFACount=lastIFACount;
+      $scope.totalIFACount=totalIFACount;
     $scope.$watch(function(scope) {return $scope.IFACalendarDate},
         function() {
-            if (IFAInitializing) {
-                $timeout(function() { IFAInitializing = false; });
-            }else {
-                if($scope.enteredIFA == undefined){
-                    console.log(" please enter one ");
-                }else{
+                if($scope.enteredIFA){
                     var currentIFA = $scope.enteredIFA;
-                    totalIFACount=totalIFACount+currentIFA;
-                    if(totalIFACount <100){
+                    totalIFACount = parseInt(totalIFACount) + parseInt(currentIFA);
+                    var lastPregnancyIFADate = UtilityService.convertDateFormat($scope.IFACalendarDate);
+                    var lastPregnancyIFAMonth = UtilityService.showMonthFromDate(lastPregnancyIFADate);
+                    $scope.lastPregnancyIFAMonth=lastPregnancyIFAMonth;
+                    $scope.lastPregnancyIFADate =lastPregnancyIFADate;
+                    if(totalIFACount <= 100){
+                        if(lastPregnancyIFAMonth == currentMonth){
+                            if(currentMonth == 12){
+                                 $scope.nextIFAVisit = 1;
+                            }else{
+                                 $scope.nextIFAVisit = currentMonth+1;
+                            }
+                        }else{
+                            $scope.nextIFAVisit = currentMonth;
+                        }
                         $scope.alertIFA = true;
+                    }else{
+                        $scope.alertIFA = false;
                     }
-                    var currentIFADate = UtilityService.convertDateFormat($scope.IFACalendarDate);
-                    var currentIFAMonth = UtilityService.showMonthFromDate(currentIFADate);
-                    $scope.lastIFAMonth=currentIFAMonth;
+                    $scope.totalIFACount=totalIFACount;
                     $scope.lastIFACount=currentIFA;
+
                 }
+        }
+    );
+    $scope.updateIFA=function(){
+         if(isNaN($scope.enteredIFA) == false){
+                    var currentIFA = $scope.enteredIFA;
+                    totalIFACount = parseInt(totalIFACount) + parseInt(currentIFA);
+                    var lastPregnancyIFADate = UtilityService.convertDateFormat($scope.IFACalendarDate);
+                    var lastPregnancyIFAMonth = UtilityService.showMonthFromDate(lastPregnancyIFADate);
+                    $scope.lastPregnancyIFAMonth=lastPregnancyIFAMonth;
+                    $scope.lastPregnancyIFADate =lastPregnancyIFADate;
+                    if(totalIFACount <= 100){
+                        if(lastPregnancyIFAMonth == currentMonth){
+                            if(currentMonth == 12){
+                                 $scope.nextIFAVisit = 1;
+                            }else{
+                                 $scope.nextIFAVisit = currentMonth+1;
+                            }
+                        }else{
+                            $scope.nextIFAVisit = currentMonth;
+                        }
+                        $scope.alertIFA = true;
+                    }else{
+                        $scope.alertIFA = false;
+                    }
+                    $scope.totalIFACount=totalIFACount;
+                    $scope.lastIFACount=currentIFA;
+
+                }
+
+
+    }
+ 
+//LOGIC FOR UP
+    $scope.UPCalendarDate = todayDate;
+    if($scope.newWoman == false){
+     var lastUPObject=_.chain(womanData.ANC).map(function(e) { 
+        return {month: e.Month, value: e.UrineProtein};
+        })
+        .filter(function(e){ 
+            return e.value;
+        })
+        .sortBy('month')
+        .last()
+        .value();
+     }else{
+
+     }   
+    $scope.$watch(function(scope) {return $scope.UPCalendarDate},
+        function() {
+                if($scope.UPOutcome){
+                    updateRow(6);
+                }
+        }
+    );
+    $scope.updateUP=function(){
+        if($scope.UPOutcome) {
+                   updateRow(6);
+                }
+    }
+
+    
+//LOGIC FOR Swelling
+    $scope.SwellingCalendarDate = todayDate;
+    if($scope.newWoman == false){
+     var lastSwellingObject=_.chain(womanData.ANC).map(function(e) { 
+        return {month: e.Month, value: e.Swelling};
+        })
+        .filter(function(e){ 
+            return e.value;
+        })
+        .sortBy('month')
+        .last()
+        .value();
+    }else{
+
+    }    
+    $scope.$watch(function(scope) {return $scope.SwellingCalendarDate},
+        function() {
+                if($scope.SwellingOutcome){
+                    updateRow(7);
+                }
+        }
+    );
+    $scope.updateSwelling=function(){
+        if($scope.SwellingOutcome) {
+                   updateRow(7);
+                }
+    }
+
+    //LOGIC FOR Fits
+    $scope.FitsCalendarDate = todayDate;
+    if($scope.newWoman == false){
+     var lastFitsObject=_.chain(womanData.ANC).map(function(e) { 
+        return {month: e.Month, value: e.Headache};
+        })
+        .filter(function(e){ 
+            return e.value;
+        })
+        .sortBy('month')
+        .last()
+        .value();
+     }else{
+
+     }   
+    $scope.$watch(function(scope) {return $scope.FitsCalendarDate},
+        function() {
+                if($scope.FitsOutcome){
+                    updateRow(8);
+                }
+        }
+    );
+    $scope.updateFits=function(){
+        if($scope.FitsOutcome) {
+                   updateRow(8);
+                }
+    }
+    /*"UrineSugar":"yes",
+            "NightBlindness":'yes',
+            "FoulSmellingDischarge":"yes",
+            "Fever":"yes",
+            "OtherInfection":"yes",*/
+
+    //LOGIC FOR US
+    $scope.USCalendarDate = todayDate;
+    if($scope.newWoman == false){
+     var lastUSObject=_.chain(womanData.ANC).map(function(e) { 
+        return {month: e.Month, value: e.UrineSugar};
+        })
+        .filter(function(e){ 
+            return e.value;
+        })
+        .sortBy('month')
+        .last()
+        .value();
+     }else{
+
+     }   
+    $scope.$watch(function(scope) {return $scope.USCalendarDate},
+        function() {
+                if($scope.USOutcome){
+                    updateRow(9);
+                }
+        }
+    );
+    $scope.updateUS=function(){
+        if($scope.USOutcome) {
+                   updateRow(9);
+                }
+    }
+
+    //LOGIC FOR fever
+    $scope.FeverCalendarDate = todayDate;
+    if($scope.newWoman == false){
+     var lastFeverObject=_.chain(womanData.ANC).map(function(e) { 
+        return {month: e.Month, value: e.Fever};
+        })
+        .filter(function(e){ 
+            return e.value;
+        })
+        .sortBy('month')
+        .last()
+        .value();
+    }else{
+
+    }    
+    $scope.$watch(function(scope) {return $scope.FeverCalendarDate},
+        function() {
+                if($scope.FeverOutcome){
+                    updateRow(10);
+                }
+        }
+    );
+    $scope.updateFever=function(){
+        if($scope.FeverOutcome) {
+                   updateRow(10);
+                }
+    }
+
+    //LOGIC FOR Foulsmell
+    $scope.FoulSmellCalendarDate = todayDate;
+    if($scope.newWoman == false){
+         var lastFoulSmellObject=_.chain(womanData.ANC).map(function(e) { 
+        return {month: e.Month, value: e.FoulSmellingDischarge};
+        })
+        .filter(function(e){ 
+            return e.value;
+        })
+        .sortBy('month')
+        .last()
+        .value();
+    }else{
+
+    }    
+    
+    $scope.$watch(function(scope) {return $scope.FoulSmellCalendarDate},
+        function() {
+                if($scope.FoulSmellOutcome){
+                    updateRow(11);
+                }
+        }
+    );
+    $scope.updateFoulSmell=function(){
+        if($scope.FoulSmellOutcome) {
+                   updateRow(11);
+                }
+    }
+
+    //LOGIC FOR Weakness
+    $scope.WeaknessCalendarDate = todayDate;
+     var weaknessObject=_.chain(womanData.ANC).map(function(e) { 
+        return {month: e.Month, value: e.OtherInfection};
+        })
+        .filter(function(e){ 
+            return e.value;
+        })
+        .sortBy('month')
+        .last()
+        .value();
+    $scope.$watch(function(scope) {return $scope.WeaknessCalendarDate},
+        function() {
+                if($scope.WeaknessOutcome){
+                    updateRow(12);
+                }
+        }
+    );
+    $scope.updateWeakness=function(){
+        if($scope.WeaknessOutcome) {
+                   updateRow(12);
+                }
+    }
+
+
+     function updateRow(index) {
+        var currentValue,currentMonth,currentDate;
+        if(index == 0){  //pale 0
+            currentValue= $scope.paleOutcome;
+            currentDate= UtilityService.convertDateFormat($scope.PaleCalendarDate);
+        }else if(index == 1){
+            currentValue= $scope.blindOutcome;
+            currentDate= UtilityService.convertDateFormat($scope.NightBlindCalendarDate);
+        }else if(index == 2){
+            currentValue= $scope.enteredHB;
+            currentDate= UtilityService.convertDateFormat($scope.HBCalendarDate);   
+        }else if(index == 3){
+            currentValue= $scope.bleedingOutcome;
+            currentDate= UtilityService.convertDateFormat($scope.BleedingCalendarDate);   
+        }else if(index == 4){
+            currentValue= $scope.enteredWeight;
+            currentDate= UtilityService.convertDateFormat($scope.WeightCalendarDate);   
+        }else if(index == 5){
+            currentValue= $scope.malariaOutcome;
+            currentDate= UtilityService.convertDateFormat($scope.MalariaCalendarDate);   
+        }else if(index == 6){
+            currentValue= $scope.UPOutcome;
+            currentDate= UtilityService.convertDateFormat($scope.UPCalendarDate);   
+        }else if(index == 7){
+            currentValue= $scope.SwellingOutcome;
+            currentDate= UtilityService.convertDateFormat($scope.SwellingCalendarDate);   
+        }else if(index == 8){
+            currentValue= $scope.FitsOutcome;
+            currentDate= UtilityService.convertDateFormat($scope.FitsCalendarDate);   
+        }else if(index == 9){
+            currentValue= $scope.USOutcome;
+            currentDate= UtilityService.convertDateFormat($scope.USCalendarDate);   
+        }else if(index == 10){
+            currentValue= $scope.FeverOutcome;
+            currentDate= UtilityService.convertDateFormat($scope.FeverCalendarDate);   
+        }else if(index == 11){
+            currentValue= $scope.FoulSmellOutcome;
+            currentDate= UtilityService.convertDateFormat($scope.FoulSmellCalendarDate);   
+        }else if(index == 12){
+            currentValue= $scope.WeaknessOutcome;
+            currentDate= UtilityService.convertDateFormat($scope.WeaknessCalendarDate);   
+        }
+        var currentMonth = UtilityService.showMonthFromDate(currentDate);
+        checkUp(index,currentMonth,currentValue);
+     }
+
+   
+    function checkUp(symptomIndex, month, value){
+        $scope.symptomData[symptomIndex].month = month;
+        $scope.symptomData[symptomIndex].value = value;
+    }
+    $scope.symptomData =[];
+    if($scope.newWoman ==false){
+        $scope.symptomData =[
+        {////pale 0   
+             month: $scope.monthsArray[lastPaleEyeObject.month -1].monthNo,
+             value: lastPaleEyeObject.value
+        },{  ////NB 1
+            month: $scope.monthsArray[lastNightBlindObject.month-1].monthNo,
+            value:lastNightBlindObject.value
+        },{//2 HB
+            month: $scope.monthsArray[lastHBObject.month-1].monthNo,
+            value:lastHBObject.value
+        },{//3 BLEEDIN
+            month: $scope.monthsArray[lastBleedingObject.month-1].monthNo,
+            value:lastBleedingObject.value
+        },{//4  for weight
+            month: $scope.monthsArray[lastWtObject.month-1].monthNo,
+            value:lastWtObject.value
+        },{//5 MALARIA
+            month: $scope.monthsArray[lastMalariaObject.month-1].monthNo,
+            value:lastMalariaObject.value
+        },{//6
+            month: $scope.monthsArray[lastUPObject.month-1].monthNo,
+            value:lastUPObject.value
+        },{//7   SWELLING
+            month: $scope.monthsArray[lastSwellingObject.month-1].monthNo,
+            value:lastSwellingObject.value
+        },{//8
+            month: $scope.monthsArray[lastFitsObject.month-1].monthNo,
+            value:lastFitsObject.value
+        },{//9
+            month: $scope.monthsArray[lastUSObject.month-1].monthNo,
+            value:lastUSObject.value
+        },{//10
+            month: $scope.monthsArray[lastFeverObject.month-1].monthNo,
+            value:lastFeverObject.value
+        },{//11
+            month: $scope.monthsArray[lastFoulSmellObject.month-1].monthNo,
+            value:lastFoulSmellObject.value
+        },{//12
+            month: $scope.monthsArray[weaknessObject.month-1].monthNo,
+            value:weaknessObject.value
+        }];
+    }else{
+        for(var i=0;i<13;i++){
+            $scope.symptomData.push({month:0,value:''});
+        }
+    }
+    
+
+    //watch Dod    
+    $scope.$watch(function(scope) {return $scope.DODCalendarDate},
+        function() {
+            if($scope.DODCalendarDate){
+            $scope.dateOfDelivery = false;
             }
         }
     );
+
     $scope.getDate=function(){
         var today=new Date();
         var currentMonth=today.getMonth()+1;
         var currentDay=today.getDate();
         var currentYear=today.getFullYear();
-        return currentYear+"-"+currentMonth+"-"+currentDay;
+        return currentYear+"/"+currentMonth+"/"+currentDay;
     }
     $scope.format = 'dd/MM/yy';
 
@@ -586,6 +1051,18 @@ angular.module('starter.controllers')
     $scope.openedHB = false;
     $scope.openedPale=false;
     $scope.openedNightBlind=false;
+    $scope.openedBleeding=false;
+    $scope.openedMalaria=false;//UPCalendarDate
+    $scope.openedUP=false;//openedFits
+    $scope.openedSwelling=false;
+    $scope.openedFits=false;//openedUS
+    $scope.openedUS=false;//openedUS
+    $scope.openedFever=false;//openedUS
+    $scope.openedFoulSmell=false;//openedUS
+    $scope.openedWeakness=false;//openedUS
+    $scope.openedEDD=false;//openedUS
+    $scope.openedLMP=false;//openedUS openedDOD
+    $scope.openedDOD=false;
     $scope.open = function($event,name) {
         $event.preventDefault();
         $event.stopPropagation();
@@ -604,14 +1081,35 @@ angular.module('starter.controllers')
             $scope.openedIFA = true;
         }else if(name == "NB"){
              $scope.openedNightBlind=true;
+        }else if(name == "Bleeding"){
+             $scope.openedBleeding=true;
+        }else if(name == "Malaria"){
+             $scope.openedMalaria=true;
+        }else if(name == "UP"){
+             $scope.openedUP=true;
+        }else if(name == "Swelling"){
+             $scope.openedSwelling=true;
+        }else if(name == "Fits"){
+             $scope.openedFits=true;
+        }else if(name == "US"){
+             $scope.openedUS=true;
+        }else if(name == "Fever"){
+             $scope.openedFever=true;
+        }else if(name == "FoulSmell"){
+             $scope.openedFoulSmell=true;
+        }else if(name == "Weakness"){
+             $scope.openedWeakness=true;
+        }else if(name == "EDD"){
+             $scope.openedEDD=true;
+        }else if(name == "LMP"){
+             $scope.openedLMP=true;
+        }else if(name == "DOD"){
+             $scope.openedDOD=true;
         }
     }
-    $scope.openANM = function($event) {console.log("inside")
-        $event.preventDefault();
-        $event.stopPropagation();
 
-    }
-
+    //function for setting Expected delivery date based on LMP
+    
     $scope.negate = function(param) {
         return !param;
     };
@@ -620,6 +1118,11 @@ angular.module('starter.controllers')
         formatYear: 'yy',
         startingDay: 1
     }
+
+   
+     /*$scope.setMternalOutcome =function(x){
+         alert(x);
+     }*/
 
     //$scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     //$scope.format = $scope.formats[0];
@@ -646,6 +1149,130 @@ angular.module('starter.controllers')
     $scope.range = function(n) {
         return new Array(n);
     }
+}
+$scope.opened=false;
+    $scope.openedANM=false;
+    $scope.openedWeight=false;
+    $scope.openedHB = false;
+    $scope.openedPale=false;
+    $scope.openedNightBlind=false;
+    $scope.openedBleeding=false;
+    $scope.openedMalaria=false;//UPCalendarDate
+    $scope.openedUP=false;//openedFits
+    $scope.openedFits=false;//openedUS
+    $scope.openedUS=false;//openedUS
+    $scope.openedFever=false;//openedUS
+    $scope.openedFoulSmell=false;//openedUS
+    $scope.openedWeakness=false;//openedUS
+    $scope.openedEDD=false;//openedUS
+    $scope.openedLMP=false;//openedUS openedDOD
+    $scope.openedDOD=false;
+    $scope.open = function($event,name) {
+        $event.preventDefault();
+        $event.stopPropagation();
+
+        if(name == "asha"){
+            $scope.opened = true;
+        }else if(name == "anm"){
+            $scope.openedANM = true;
+        }else if(name == "weight"){
+            $scope.openedWeight = true;
+        }else if(name == "HB"){
+            $scope.openedHB = true;
+        }else if(name == "Pale"){
+            $scope.openedPale = true;
+        }else if(name == "IFA"){
+            $scope.openedIFA = true;
+        }else if(name == "NB"){
+             $scope.openedNightBlind=true;
+        }else if(name == "Bleeding"){
+             $scope.openedBleeding=true;
+        }else if(name == "Malaria"){
+             $scope.openedMalaria=true;
+        }else if(name == "UP"){
+             $scope.openedUP=true;
+        }else if(name == "Fits"){
+             $scope.openedFits=true;
+        }else if(name == "US"){
+             $scope.openedUS=true;
+        }else if(name == "Fever"){
+             $scope.openedFever=true;
+        }else if(name == "FoulSmell"){
+             $scope.openedFoulSmell=true;
+        }else if(name == "Weakness"){
+             $scope.openedWeakness=true;
+        }else if(name == "EDD"){
+             $scope.openedEDD=true;
+        }else if(name == "LMP"){
+             $scope.openedLMP=true;
+        }else if(name == "DOD"){
+             $scope.openedDOD=true;
+        }
+    }
+    $scope.setEDD = function(){
+
+        if($scope.LMPCalendarDate){
+            var LMPDate = $scope.LMPCalendarDate,
+                isEligibleForEDD,
+                currDate = new Date(),
+                ineligibleDate;  //an edd is set only if lmp is 45 days before the current date
+
+            if(LMPDate){
+                ineligibleDate = UtilityService.addDaysToDate(LMPDate, 44);
+                // if current date is equal to or greater than in eligible date then set edd after 40 weeks of LMP date
+                isEligibleForEDD = new Date(currDate.getFullYear(), currDate.getMonth(), currDate.getDate()).getTime() - ineligibleDate.getTime() >= 0;
+                if(isEligibleForEDD){
+                    var EDDCalendarDate = UtilityService.addDaysToDate(LMPDate, 279);
+                     $scope.EDDCalendarDate  =UtilityService.convertDateFormat($scope.EDDCalendarDate );
+                     $scope.LMPCalendarDate  =UtilityService.convertDateFormat(LMPCalendarDate);
+                } else{
+                    $scope.EDDCalendarDate ="";
+                }
+
+            }
+        }
+
+    };
+     //SETMAX EDD
+        var today=new Date();
+        var maxEdd = UtilityService.addDaysToDate(today, 235);
+        $scope.maxEDD = UtilityService.setMaxMinDate(maxEdd);
+
+     //SETMIN EDD   
+        $scope.minEDD = UtilityService.setMaxMinDate(today);
+
+    $scope.setLMP = function(){
+        if($scope.EDDCalendarDate){
+            var EDDDate = $scope.EDDCalendarDate,
+            //isEligibleForEDD,
+                currDate = new Date();  //an edd is set only if lmp is 45 days before the current date
+
+            if(EDDDate){
+                var LMPCalendarDate = UtilityService.subtractDaysFromDate(EDDDate, 279);
+                $scope.LMPCalendarDate  =UtilityService.convertDateFormat(LMPCalendarDate);
+                $scope.EDDCalendarDate =UtilityService.convertDateFormat($scope.EDDCalendarDate);
+
+            }
+        }
+    }
+    
+        //save button functionality
+     $scope.saveANCDetails =function(){
+        if($scope.DODCalendarDate){
+            if($scope.MaternalOutcome  && $scope.BirthOutcome ){
+            alert("details saved");
+            }else if($scope.MaternalOutcome == undefined){
+                 alert("please select maternal outcome");
+            }else if($scope.BirthOutcome == undefined){
+                  alert("please select birth outcome");
+            }
+        }else{
+            alert("details saved");
+        }
+        
+
+    }
+
 
     /* $scope.color = {
      name: 'blue'
@@ -655,37 +1282,5 @@ angular.module('starter.controllers')
      "value": "green"
      };*/
     //code for tap on enter button
-    $scope.submitForm = function (pregnant,birthOutcome){
-        // alert($element.find('.unflashclass'));
-
-        //  alert(angular.element(elem.querySelector('.unflashclass')));
-        //alert(element(by.model('newBorn')));
-        alert(pregnant);
-        alert(birthOutcome);
-        $scope.unflashclass="flashclass";
-        if(birthOutcome =="Live birth"){
-
-
-        }
-        //alert($scope.pregnancyCondition);
-    }
-    $scope.submitAnswer=function(user){
-
-        alert(user.answer);
-
-    }
-
-    $scope.isPaleEye=function(value){
-        alert($scope.pale0);
-        //alert($scope.paleEyeCheck);
-        alert(value);
-        if(value== "Yes"){
-
-        }else{
-
-        }
-        // monthNo
-
-    }
-
+    
 });

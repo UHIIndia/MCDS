@@ -65,10 +65,10 @@
               <div class="col-sm-6">
                   <label class="control-label col-sm-2">Sex</label>
                   <div class="col-sm-9 select-sex">
-                    <div class="girl-child" ng-class="{'active': (woman.genderYoungestChild === 'f')}">
+                    <div class="girl-child" ng-class="{'active': woman.genderYoungestChild === 'f'}">
                       <i class="icon-girl">&nbsp;</i>
                     </div>
-                    <div class="boy-child" ng-class="{'active': (woman.genderYoungestChild === 'm')}">
+                    <div class="boy-child" ng-class="{'active': woman.genderYoungestChild === 'm'}">
                       <i class="icon-boy">&nbsp;</i>
                     </div>
                   </div>
@@ -195,33 +195,72 @@
 </div>
 </div>
 <div class="col-md-3">
-          <!--current fp methods-->
-              <div class="current-fp-method">
-                <h3>Current FP Method</h3>
-                <div class="fp-methods">
-                  <div class="clearfix"><div><span class="circle">&nbsp;</span></div><div>None</div></div>
-                  <div class="clearfix">
-                   <div class="col-sm-6 align-left"><div><span class="circle"><img src="img/condom-pic.png" class="img-responsive"></span></div><div>Condom</div></div>
-                   <div class="col-sm-6 align-right"><div><span class="circle"><img src="img/ocp-pic.png" class="img-responsive"></div><div>OCP</div></div>
-                  </div>
-                  <div class="clearfix">
-                   <div class="col-sm-6 align-left"><div><span class="circle"><img src="img/dmpa-pic.png"  class="img-responsive"></div><div>DMPA</div></div>
-                   <div class="col-sm-6 align-right"><div><span class="circle"><img src="img/iucd-pic.png"  class="img-responsive"></div><div>IUCD</div></div>
-                  </div>
-                   <div class="clearfix">
-                   <div class="col-sm-6 align-left"><div><span class="square"><img src="img/fst-pic.png"  class="img-responsive"></div><div>F-St</div></div>
-                   <div class="col-sm-6 align-right"><div><span class="square"><img src="img/mst-pic.png"  class="img-responsive"></div><div>M-St</div></div>
-                  </div>
-                </div>
-              </div>
-        <!--Did you use-->
-              <div class="condom-yesno">
-                <p>Did you use a condom last time when you had sex? </p>
-                <ul>
-                  <li><div><label for="noCondom"><input type="radio" name="condomSex" id="noCondom"><span class="circle">&nbsp;</span></label><span>Yes</span></div></li>
-                  <li><div><label for="yesCondom"><input type="radio" name="condomSex" id="YesCondom"><span class="circle"><img src="img/condom-pic.png" class="img-responsive"></span></label><span>No</span></div></li>
-                </ul>
-              </div>
+  <!--current fp methods-->
+  <div class="current-fp-method">
+    <h3>Current FP Method</h3>
+    <div class="fp-methods">
+      <div class="clearfix" ng-click="selectFPMethod(0)" ng-class="{'active': FPMethod.id===0}">
+        <div>
+          <span class="circle">&nbsp;</span>
+        </div>
+        <div>None</div>
+      </div>
+      <div class="clearfix">
+        <div class="col-sm-6 align-left" ng-click="selectFPMethod(1)" ng-class="{'active': FPMethod.id===1}">
+          <div><span class="circle"><img src="img/condom-pic.png" class="img-responsive"></span></div>
+          <div>Condom</div>
+        </div>
+        <div class="col-sm-6 align-right" ng-click="selectFPMethod(2)" ng-class="{'active': FPMethod.id===2}">
+          <div>
+            <span class="circle"><img src="img/ocp-pic.png" class="img-responsive"></span>
+          </div>
+          <div>OCP</div>
+        </div>
+      </div>
+      <div class="clearfix">
+       <div class="col-sm-6 align-left" ng-click="selectFPMethod(3)" ng-class="{'active': FPMethod.id===3}">
+         <div>
+           <span class="circle">
+             <img src="img/dmpa-pic.png"  class="img-responsive">
+           </span>
+         </div>
+         <div>DMPA</div>
+       </div>
+       <div class="col-sm-6 align-right" ng-click="selectFPMethod(4)" ng-class="{'active': FPMethod.id===4}">
+         <div>
+           <span class="circle">
+             <img src="img/iucd-pic.png" class="img-responsive">
+           </span>
+         </div>
+         <div>IUCD</div>
+       </div>
+      </div>
+       <div class="clearfix">
+       <div class="col-sm-6 align-left" ng-click="selectFPMethod(5)" ng-class="{'active': FPMethod.id===5}">
+         <div>
+           <span class="square"><img src="img/fst-pic.png" class="img-responsive"></span>
+         </div>
+         <div>Female Sterilisation</div>
+       </div>
+       <div class="col-sm-6 align-right" ng-click="selectFPMethod(6)" ng-class="{'active': FPMethod.id===6}">
+         <div>
+           <span class="square">
+             <img src="img/mst-pic.png" class="img-responsive">
+           </span>
+         </div>
+         <div>Male Sterilisation</div>
+       </div>
+      </div>
+    </div>
+  </div>
+  <!--Did you use-->
+  <div class="condom-yesno" ng-show="false">
+    <p>Did you use a condom last time when you had sex? </p>
+    <ul>
+      <li><div><label for="noCondom"><input type="radio" name="condomSex" id="noCondom"><span class="circle">&nbsp;</span></label><span>Yes</span></div></li>
+      <li><div><label for="yesCondom"><input type="radio" name="condomSex" id="YesCondom"><span class="circle"><img src="img/condom-pic.png" class="img-responsive"></span></label><span>No</span></div></li>
+    </ul>
+  </div>
 </div>
 </div>
 <div class="row save">
