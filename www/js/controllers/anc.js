@@ -111,6 +111,24 @@ angular.module('uhiApp.controllers')
     $scope.ancAge =womanData.age;
     $scope.newWoman=false;
 
+    // run only on device
+    try{
+       $scope.path= cordova.file.externalDataDirectory+"videos"+"/"+"anc.mp4";
+    }catch(e){
+      $scope.path= "videos/sample.mp4";
+      console.log(e);
+    }
+
+    $scope.playVideoForVisit = function() {
+      $scope.showVideo = true;
+      document.getElementById('video1').play();
+    };
+
+    $scope.stopVideoForVisit = function() {
+      $scope.showVideo = false;
+      document.getElementById('video1').pause();
+    };
+
     $scope.enterPregnantWomanDetails=function(){
         if($scope.LMPCalendarDate && $scope.EDDCalendarDate){
               $scope.pregWomanExist=true;

@@ -20,6 +20,25 @@
 		text-align: center;
 		font-size: 12px;
 	}
+  .video-full-screen{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 480px;
+    height: 270px;
+    margin-left: -240px;
+    margin-top: -135px;
+    z-index: 4;
+  }
+  .video-overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 3;
+  }
 	.maternal-outcome, .delivery-details{
 		background: #f467a7;
 		border: 1px #fff solid;

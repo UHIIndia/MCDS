@@ -1151,3 +1151,13 @@
 </div>
 <!--anc-calender-wrapper ends here-->
 </div>
+
+<div ng-show="showVideo" ng-click="stopVideoForVisit()">
+    <div class="video-overlay"></div>
+    <div class="video-full-screen" ng-click="$event.stopPropagation()">
+      <video id="video1" class="video-full-screen" controls>
+        <source src="{{path}}" type="video/mp4">
+      </video>
+    </div>
+</div>
+
