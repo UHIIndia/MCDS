@@ -24,7 +24,7 @@
       <div class="col-sm-2">
 
       </div>
-      <div class="col-sm-10 maternal-outcome"  ng-show="pregWomanExist">
+     <!-- <div class="col-sm-10 maternal-outcome"  ng-show="pregWomanExist">
        <label class="col-sm-4">Maternal Outcome:</label>
         <label for="radiomaternal1" class="col-sm-3"><input type="radio" name="MO" id="radiomaternal1" ng-disabled="dateOfDelivery"
           ng-value="'Healthy'" ng-model="MaternalOutcome"> Healthy</label>
@@ -32,11 +32,53 @@
          ng-value="'Sick'" ng-model="MaternalOutcome"> Weak/Sick</label>
         <label for="radiomaternal3" class="col-sm-2"><input type="radio" name="MO" id="radiomaternal3" ng-disabled="dateOfDelivery" 
          ng-value="'Dead'" ng-model="MaternalOutcome" > Dead</label>
-      </div>
+      </div>-->
+        <div class="col-sm-10 delivery-details">
+                <form class="form-horizontal clearfix">
+                  <div class="col-sm-2">
+                    <label class="control-label col-sm-2 text-left">Age</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" ng-model="ancAge">
+                    </div>
+                  </div>
+                    <div class="col-sm-4">
+                    <label class="control-label col-sm-2 text-left">LMP</label>
+                    <div class="col-sm-10">
+                       <div class="input-group date-picker">  
+                      <!--max date year-month-date -->
+                          <input type="text" class="form-control" datepicker-popup=dd/MM/yy ng-model="LMPCalendarDate"  max-date="minEDD"
+                       is-open="openedLMP"  datepicker-options="dateOptions"  ng-required="true" ng-disabled="disableButton" close-text="Close"  ng-blur="setEDD();">
+                          <span class="input-group-btn">
+                           <button type="button" class="btn btn-default" ng-click="open($event,'LMP')" ng-disabled="disableButton"><i class="glyphicon glyphicon-calendar"></i></button>
+                          </span>
+                     </div>
+                    </div>
+                  </div>
+              <div class="col-sm-4">
+                    <label class="control-label col-sm-2 text-left">EDD</label>
+                    <div class="col-sm-10">
+                      <div class="input-group date-picker"> 
+                        <input type="text" class="form-control" datepicker-popup="dd/MM/yy" ng-model="EDDCalendarDate" max-date="maxEDD" 
+                        min-date ="minEDD"  is-open="openedEDD"  datepicker-options="dateOptions"  ng-required="true" ng-disabled="disableButton"  close-text="Close"  ng-blur="setLMP();"/>
+                        <span class="input-group-btn">
+                         <button type="button" class="btn btn-default" ng-click="open($event,'EDD')" ng-disabled="disableButton"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                     </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <button class="default-btn" ng-show = "enterButton" ng-click="enterPregnantWomanDetails()">Enter</button>
+                  </div>
+                </form>
+             </div>
   </div> 
    <div class="clearfix">
        <div class="col-sm-2">
-          &nbsp;
+          <div class="mother-profile">
+                  <div class="photo"><img src="img/mother.jpg" class="img-responsive"></div>
+                  <div>Leela</div>
+                </div>
       </div>
       <div class="col-sm-10 anc-calender-head">
         <div class="col-sm-12 months-name">
@@ -66,7 +108,7 @@
 <!--ANC top right column-->
   <div class="col-sm-3">
   <!--Mother age details Form-->
-    <div class="mother-age-details">
+<!--    <div class="mother-age-details">
     <form class="form-horizontal clearfix">
       <div class="col-xs-8">
         <div class="form-group">
@@ -79,15 +121,14 @@
         </div>
          <div class="form-group">
           <label class="col-xs-3 control-label">LMP</label>
-           <p class="input-group">                       <!--max date year-month-date -->
+           <p class="input-group">                       <!--max date year-month-date
                 <input type="text" class="form-control" datepicker-popup=dd/MM/yy ng-model="LMPCalendarDate"  max-date="minEDD"
              is-open="openedLMP"  datepicker-options="dateOptions"  ng-required="true" ng-disabled="disableButton" close-text="Close"  ng-blur="setEDD();">
                 <span class="input-group-btn">
                  <button type="button" class="btn btn-default" ng-click="open($event,'LMP')" ng-disabled="disableButton"><i class="glyphicon glyphicon-calendar"></i></button>
                 </span>
             </p>
-      <!--    <label class="col-xs-3 control-label">LMP</label>
-          <div class="col-xs-9"><input type="text" class="form-control" ng-model="woman.currentPreg.EDD" ng-blur="setLMP();"></div>-->
+     
         </div>
          <div class="form-group">
           <label class="col-xs-3 control-label">EDD</label>
@@ -98,7 +139,7 @@
                  <button type="button" class="btn btn-default" ng-click="open($event,'EDD')" ng-disabled="disableButton"><i class="glyphicon glyphicon-calendar"></i></button>
                 </span>
             </p>
-          <!--<div class="col-xs-9"><input type="text" class="form-control" ng-model="woman.currentPreg.LMP" ng-blur="setEDD();"></div>-->
+         
         </div>
       </div>
       <div class="col-xs-4">
@@ -109,9 +150,69 @@
       </div>
        <div class="row"><div class="col-sm-12 text-right"><button class="default-btn" ng-show = "enterButton" ng-click="enterPregnantWomanDetails()">Enter</button></div></div>
     </form>
-    </div>
-  <!--Mother delivery details Form-->  
-    <div class="mother-delivery-details" ng-show="pregWomanExist">
+    </div>-->
+
+
+
+          <!--birthoutcome Form-->  
+          <div class="birth-outcome" ng-show="pregWomanExist">
+            <form class="form-horizontal clearfix">
+            <h4>Birth Outcome:</h4>
+            <!--DOB starts-->
+              <div class="form-group  birth-date">
+                <div class="col-sm-12">
+                  <label class="control-label col-sm-2">DOB</label>
+                  <div class="col-sm-5">
+
+                       <div class="input-group date-picker"> 
+                <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="DODCalendarDate" is-open="openedDOD"  ng-required="true"close-text="Close" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="open($event,'DOD')"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </div>
+
+                </div>
+
+                <div class="col-sm-5 birth-child">
+                  <a href="#" class="girl-child">
+                    <i class="icon-girl-small">&nbsp;</i>
+                  </a>
+                  <a href="#" class="boy-child">
+                    <i class="icon-boy-small">&nbsp;</i>
+                  </a>
+                   <a href="#" class="misscarriage">
+                    <i class="icon-misscarriage">&nbsp;</i>
+                  </a>
+                </div>
+              </div>
+            </div>
+        <!--DOB ends-->
+         <div class="form-group">
+           <div class="radio-list clearfix col-sm-12">
+               <div>
+                 <input type="radio" id="radio1childOutcome"  name="radioBO" ng-disabled="dateOfDelivery" ng-value="'LiveBirth'" ng-model="BirthOutcome">
+                 <label for="radio1childOutcome">Live Birth</label>
+               </div>
+                <div>
+                 <input type="radio" id="radio2childOutcome" name="radioBO" ng-disabled="dateOfDelivery"ng-value="'Dead'" ng-model="BirthOutcome" ng-value="'LiveBirth'" ng-model="BirthOutcome">
+                 <label  for="radio2childOutcome">Dead</label>
+               </div>
+                <div>
+                 <input type="radio" id="radio3childOutcome" name="radioBO" ng-disabled="dateOfDelivery" ng-value="'Miscarriage'" ng-model="BirthOutcome">
+                 <label  for="radio3childOutcome">Misscarriage/Still birth</label>
+               </div>
+          </div>
+       </div>    
+     </form>
+   </div>
+
+
+
+
+
+
+
+   <!-- <div class="mother-delivery-details" ng-show="pregWomanExist">
     <form class="form-horizontal clearfix">
     <div class="form-group  delivery-date">
       <div class="col-sm-12">
@@ -125,18 +226,11 @@
                   <button type="button" class="btn btn-default" ng-click="open($event,'DOD')"><i class="glyphicon glyphicon-calendar"></i></button>
                 </span>
               </p>
-              <!--<i class="icon-date-small">&nbsp;</i></span>
-          <input type="text" class="form-control" ng-blur="setOutcome();">-->
         </div>
       </div>
     
       <div class="col-sm-4 delivery-child">
-            <!-- <a href="#">
-               <i class="icon-girl-small">&nbsp;</i>
-            </a>
-            <a href="#">
-                <!--<i class="icon-boy-small">&nbsp;</i>
-            </a>-->
+
       </div>
       </div>
       </div>
@@ -148,8 +242,42 @@
         <label class="control-label" for="radio3childOutcome"><input type="radio" id="radio3childOutcome" name="radioBO" ng-disabled="dateOfDelivery" ng-value="'Miscarriage'" ng-model="BirthOutcome"> Misscarriage<br />/Still Birth</label> 
         </div>
       </div>
+
+
       </form>
-    </div>
+    </div>-->
+
+    <!--maternal outcome-->
+         <div class="maternal-outcome"  ng-show="pregWomanExist">
+              <h4>Maternal Outcome:</h4>
+            <div class="radio-list clearfix">
+              <div>
+                 <input type="radio" name="MO" id="radiomaternal1" ng-disabled="dateOfDelivery"
+          ng-value="'Healthy'" ng-model="MaternalOutcome"><label for="radiomaternal1">Healthy</label>
+               </div>
+                <div>
+                 <input type="radio" name="MO" id="radiomaternal2" ng-disabled="dateOfDelivery" 
+         ng-value="'Sick'" ng-model="MaternalOutcome"><label for="radiomaternal2">Weak/Sick</label>
+               </div>
+                <div>
+                 <input type="radio" name="MO" id="radiomaternal3" ng-disabled="dateOfDelivery" 
+         ng-value="'Dead'" ng-model="MaternalOutcome" ><label for="radiomaternal3">Dead</label>
+               </div>
+                </div>
+             </div>
+
+                <!-- <div class="col-sm-10 maternal-outcome"  ng-show="pregWomanExist">
+       <label class="col-sm-4">Maternal Outcome:</label>
+        <label for="radiomaternal1" class="col-sm-3"><input type="radio" name="MO" id="radiomaternal1" ng-disabled="dateOfDelivery"
+          ng-value="'Healthy'" ng-model="MaternalOutcome"> Healthy</label>
+
+        <label for="radiomaternal2" class="col-sm-3"><input type="radio" name="MO" id="radiomaternal2" ng-disabled="dateOfDelivery" 
+         ng-value="'Sick'" ng-model="MaternalOutcome"> Weak/Sick</label>
+
+        <label for="radiomaternal3" class="col-sm-2"><input type="radio" name="MO" id="radiomaternal3" ng-disabled="dateOfDelivery" 
+         ng-value="'Dead'" ng-model="MaternalOutcome" > Dead</label>
+      </div>-->
+
   </div>
 </div>
   <!--anc calender body-->
