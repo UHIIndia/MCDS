@@ -20,6 +20,16 @@
 	vertical-align: middle;
 	margin-right: 3px;
 }
+.app-tabs .icon-add-new {
+	width: 27px;
+	height: 27px;
+	background-position: -218px -364px !important;
+}
+.app-tabs li:nth-child(2) a{
+	  padding: 5px 2px 0;
+	  height: 60px;
+  padding-top: 13px;
+}
 .app-tabs li:last-child{
 	min-width:44px;
 	border-right: none;
