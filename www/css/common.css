@@ -64,3 +64,8 @@ input[type=radio]:not(old):checked + label{
 .error{
 	color:#e2354f;
 }
+.input-group-btn button{
+	padding: 0;
+	background: transparent !important;
+	border: none;
+}

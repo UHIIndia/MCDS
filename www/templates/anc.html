@@ -1,29 +1,32 @@
     <!--app tab start-->
   <ul class="app-tabs">
     <li class="light-green-bg col-lg-2"><a href="#">Main Page</a></li>
-    <li class="active dark-green-bg col-lg-1"><a href="#"><i class="icon-add-new">&nbsp;</i><span>Add</span></a></li>
-    <li class="pink-bg col-lg-1"><a href="#"><i class="icon-map-women-sm">&nbsp;</i><span>Map</span></a></li>
-    <li class="blue-bg col-lg-1"><a href="#"><i class="icon-map-babies-sm">&nbsp;</i><span>Map</span></a></li>
-    <li class="pink-bg col-lg-1"><a href="#"><i class="icon-list-women-sm">&nbsp;</i><span>List</span></a></li>
-    <li class="blue-bg col-lg-1"><a href="#"><i class="icon-list-babies-sm">&nbsp;</i><span>List</span></a></li>
-    <li class="pink-bg col-lg-1"><a href="#"><i class="icon-report-women-sm">&nbsp;</i><span>Report</span></a></li>
-    <li class="blue-bg col-lg-1"><a href="#"><i class="icon-report-babies-sm">&nbsp;</i><span>Report</span></a></li>
-    <li class="pink-bg col-lg-1"><a href="#"><i class="icon-films-fp-sm">&nbsp;</i><span>Films</span></a></li>
-    <li class="blue-bg col-lg-1"><a href="#"><i class="icon-films-babies-sm">&nbsp;</i><span>Films</span></a></li>
+    <li class="active dark-green-bg col-lg-1"><a href="#/add/"><i class="icon-add-new">&nbsp;</i>Woman</a></li>
+    <li class="pink-bg col-lg-1"><a href="#/map-women"><i class="icon-map-women-sm">&nbsp;</i><span>Map</span></a></li>
+    <li class="blue-bg col-lg-1"><a href="#/map-children"><i class="icon-map-babies-sm">&nbsp;</i><span>Map</span></a></li>
+    <li class="pink-bg col-lg-1"><a href="#/list-women"><i class="icon-list-women-sm">&nbsp;</i><span>List</span></a></li>
+    <li class="blue-bg col-lg-1"><a href="#/list-children"><i class="icon-list-babies-sm">&nbsp;</i><span>List</span></a></li>
+    <li class="pink-bg col-lg-1"><a href="#/report-women"><i class="icon-report-women-sm">&nbsp;</i><span>Report</span></a></li>
+    <li class="blue-bg col-lg-1"><a href="#/report-children"><i class="icon-report-babies-sm">&nbsp;</i><span>Report</span></a></li>
+    <li class="pink-bg col-lg-1"><a href="#/film-women"><i class="icon-films-fp-sm">&nbsp;</i><span>Films</span></a></li>
+    <li class="blue-bg col-lg-1"><a href="#/film-children"><i class="icon-films-babies-sm">&nbsp;</i><span>Films</span></a></li>
      <li class="dark-green-bg col-lg-1"><a href="" class="settings-icon">Settings</a></li>   
   </ul>
 
-  <!--add new form start-->
-  <!--form left-->
-  <div class="tabs-content clearfix pink-bg">
-  <div class="clearfix anc-calender-wrapper">
-  <div class="clearfix anc-calender-top">
-  <!--ANC top left column-->
-  <div class="col-sm-9">
-  <div class="clearfix">
-      <div class="col-sm-2">
-
-      </div>
+    <!--add new form start-->
+    <!--form left-->
+    <div class="tabs-content clearfix pink-bg">
+      <div class="clearfix anc-calender-wrapper">
+        <div class="clearfix anc-calender-top">
+          <!--ANC top left column-->
+          <div class="col-sm-9">
+            <div class="clearfix">
+              <div class="col-sm-2">
+                <div class="mother-profile">
+                  <div class="photo"><img src="img/dummy-women.gif" class="img-responsive"></div>
+                  <div>Leela</div>
+                </div>
+              </div>
      <!-- <div class="col-sm-10 maternal-outcome"  ng-show="pregWomanExist">
        <label class="col-sm-4">Maternal Outcome:</label>
         <label for="radiomaternal1" class="col-sm-3"><input type="radio" name="MO" id="radiomaternal1" ng-disabled="dateOfDelivery"
@@ -32,81 +35,78 @@
          ng-value="'Sick'" ng-model="MaternalOutcome"> Weak/Sick</label>
         <label for="radiomaternal3" class="col-sm-2"><input type="radio" name="MO" id="radiomaternal3" ng-disabled="dateOfDelivery" 
          ng-value="'Dead'" ng-model="MaternalOutcome" > Dead</label>
-      </div>-->
-        <div class="col-sm-10 delivery-details">
-                <form class="form-horizontal clearfix">
-                  <div class="col-sm-2">
-                    <label class="control-label col-sm-2 text-left">Age</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" ng-model="ancAge">
-                    </div>
-                  </div>
-                    <div class="col-sm-4">
-                    <label class="control-label col-sm-2 text-left">LMP</label>
-                    <div class="col-sm-10">
-                       <div class="input-group date-picker">  
-                      <!--max date year-month-date -->
-                          <input type="text" class="form-control" datepicker-popup=dd/MM/yy ng-model="LMPCalendarDate"  max-date="minEDD"
-                       is-open="openedLMP"  datepicker-options="dateOptions"  ng-required="true" ng-disabled="disableButton" close-text="Close"  ng-blur="setEDD();">
-                          <span class="input-group-btn">
-                           <button type="button" class="btn btn-default" ng-click="open($event,'LMP')" ng-disabled="disableButton"><i class="glyphicon glyphicon-calendar"></i></button>
-                          </span>
-                     </div>
-                    </div>
-                  </div>
-              <div class="col-sm-4">
-                    <label class="control-label col-sm-2 text-left">EDD</label>
-                    <div class="col-sm-10">
-                      <div class="input-group date-picker"> 
-                        <input type="text" class="form-control" datepicker-popup="dd/MM/yy" ng-model="EDDCalendarDate" max-date="maxEDD" 
-                        min-date ="minEDD"  is-open="openedEDD"  datepicker-options="dateOptions"  ng-required="true" ng-disabled="disableButton"  close-text="Close"  ng-blur="setLMP();"/>
-                        <span class="input-group-btn">
-                         <button type="button" class="btn btn-default" ng-click="open($event,'EDD')" ng-disabled="disableButton"><i class="glyphicon glyphicon-calendar"></i></button>
-                        </span>
-                     </div>
-                    </div>
-                  </div>
+       </div>-->
+       <div class="col-sm-10 delivery-details">
+        <form class="form-horizontal clearfix">
+          <div class="col-sm-2">
+            <label class="control-label col-sm-4 text-left">Age</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" ng-model="ancAge">
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <label class="control-label col-sm-3 text-left">LMP</label>
+            <div class="col-sm-9">
+             <div class="input-group date-picker">  
+              <!--max date year-month-date -->
+              <input type="text" class="form-control" datepicker-popup=dd/MM/yy ng-model="LMPCalendarDate"  max-date="minEDD"
+              is-open="openedLMP"  datepicker-options="dateOptions"  ng-required="true" ng-disabled="disableButton" close-text="Close"  ng-blur="setEDD();">
+              <span class="input-group-btn">
+               <button type="button" class="btn btn-default" ng-click="open($event,'LMP')" ng-disabled="disableButton"><i class="icon-date-medium"></i></button>
+             </span>
+           </div>
+         </div>
+       </div>
+       <div class="col-sm-4">
+        <label class="control-label col-sm-3 text-left">EDD</label>
+        <div class="col-sm-9">
+          <div class="input-group date-picker"> 
+            <input type="text" class="form-control" datepicker-popup="dd/MM/yy" ng-model="EDDCalendarDate" max-date="maxEDD" 
+            min-date ="minEDD"  is-open="openedEDD"  datepicker-options="dateOptions"  ng-required="true" ng-disabled="disableButton"  close-text="Close"  ng-blur="setLMP();"/>
+            <span class="input-group-btn">
+             <button type="button" class="btn btn-default" ng-click="open($event,'EDD')" ng-disabled="disableButton"><i class="icon-date-medium"></i></button>
+           </span>
+         </div>
+       </div>
+     </div>
 
-                  <div class="col-sm-2">
-                    <button class="default-btn" ng-show = "enterButton" ng-click="enterPregnantWomanDetails()">Enter</button>
-                  </div>
-                </form>
-             </div>
-  </div> 
-   <div class="clearfix">
-       <div class="col-sm-2">
-          <div class="mother-profile">
-                  <div class="photo"><img src="img/mother.jpg" class="img-responsive"></div>
-                  <div>Leela</div>
-                </div>
-      </div>
-      <div class="col-sm-10 anc-calender-head">
-        <div class="col-sm-12 months-name">
-          <div class="col-sm-1">&nbsp;</div>
-          <div class="col-sm-1" ng-repeat="month in monthsArray"><div class="vertical-txt">{{month.monthName}}</div></div>
-          <div class="col-sm-1">&nbsp;</div>
-          <div class="col-sm-1">&nbsp;</div>
-        </div>
-        <div class="col-sm-12 months-activity" ng-show="pregWomanExist">
-        <div class="vertical-txt month-heading">Months</div>
-          <div class="col-sm-1"><div class="vertical-txt">Past 3 Years</div></div>
-          <div class="col-sm-1">1st <img src="img/maternal-1st.gif" class="img-responsive"></div>
-          <div class="col-sm-1">2nd <img src="img/maternal-2nd.gif" class="img-responsive"></div>
-          <div class="col-sm-1">3rd <img src="img/maternal-3rd.gif" class="img-responsive"></div>
-          <div class="col-sm-1">4th <img src="img/maternal-4th.gif" class="img-responsive"></div>
-          <div class="col-sm-1">5th <img src="img/maternal-5th.gif" class="img-responsive"></div>
-          <div class="col-sm-1">6th <img src="img/maternal-6th.gif" class="img-responsive"></div>
-          <div class="col-sm-1">7th <img src="img/maternal-7th.gif" class="img-responsive"></div>
-          <div class="col-sm-1">8th <img src="img/maternal-8th.gif" class="img-responsive"></div>
-          <div class="col-sm-1">9th <img src="img/maternal-9th.gif" class="img-responsive"></div>
-          <div class="col-sm-1"><div class="vertical-txt">Total at Delivery</div></div>
-          <div class="col-sm-1"><div class="vertical-txt">After Post Delivery</div></div>
-        </div>
-      </div>
-    </div>  
+     <div class="col-sm-2">
+      <button class="default-btn" ng-show = "enterButton" ng-click="enterPregnantWomanDetails()">Enter</button>
+    </div>
+  </form>
+</div>
+</div> 
+<div class="clearfix">
+ <div class="col-sm-2">
+   
+ </div>
+ <div class="col-sm-10 anc-calender-head">
+  <div class="col-sm-12 months-name">
+    <div class="col-sm-1">&nbsp;</div>
+    <div class="col-sm-1" ng-repeat="month in monthsArray"><div class="vertical-txt">{{month.monthName}}</div></div>
+    <div class="col-sm-1">&nbsp;</div>
+    <div class="col-sm-1">&nbsp;</div>
   </div>
+  <div class="col-sm-12 months-activity" ng-show="pregWomanExist">
+    <div class="vertical-txt month-heading">Months</div>
+    <div class="col-sm-1"><div class="vertical-txt">Past 3 Years</div></div>
+    <div class="col-sm-1">1st <img src="img/maternal-1st.gif" class="img-responsive"></div>
+    <div class="col-sm-1">2nd <img src="img/maternal-2nd.gif" class="img-responsive"></div>
+    <div class="col-sm-1">3rd <img src="img/maternal-3rd.gif" class="img-responsive"></div>
+    <div class="col-sm-1">4th <img src="img/maternal-4th.gif" class="img-responsive"></div>
+    <div class="col-sm-1">5th <img src="img/maternal-5th.gif" class="img-responsive"></div>
+    <div class="col-sm-1">6th <img src="img/maternal-6th.gif" class="img-responsive"></div>
+    <div class="col-sm-1">7th <img src="img/maternal-7th.gif" class="img-responsive"></div>
+    <div class="col-sm-1">8th <img src="img/maternal-8th.gif" class="img-responsive"></div>
+    <div class="col-sm-1">9th <img src="img/maternal-9th.gif" class="img-responsive"></div>
+    <div class="col-sm-1"><div class="vertical-txt">Till Date</div></div>
+    <div class="col-sm-1"><div class="vertical-txt">After Delivery</div></div>
+  </div>
+</div>
+</div>  
+</div>
 <!--ANC top right column-->
-  <div class="col-sm-3">
+<div class="col-sm-3">
   <!--Mother age details Form-->
 <!--    <div class="mother-age-details">
     <form class="form-horizontal clearfix">
@@ -150,61 +150,61 @@
       </div>
        <div class="row"><div class="col-sm-12 text-right"><button class="default-btn" ng-show = "enterButton" ng-click="enterPregnantWomanDetails()">Enter</button></div></div>
     </form>
-    </div>-->
+  </div>-->
 
 
 
-          <!--birthoutcome Form-->  
-          <div class="birth-outcome" ng-show="pregWomanExist">
-            <form class="form-horizontal clearfix">
-            <h4>Birth Outcome:</h4>
-            <!--DOB starts-->
-              <div class="form-group  birth-date">
-                <div class="col-sm-12">
-                  <label class="control-label col-sm-2">DOB</label>
-                  <div class="col-sm-5">
+  <!--birthoutcome Form-->  
+  <div class="birth-outcome" ng-show="pregWomanExist">
+    <form class="form-horizontal clearfix">
+      <h4>Birth Outcome:</h4>
+      <!--DOB starts-->
+      <div class="form-group  birth-date">
+        <div class="col-sm-12">
+          <label class="control-label col-sm-2">DOB</label>
+          <div class="col-sm-5">
 
-                       <div class="input-group date-picker"> 
-                <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="DODCalendarDate" is-open="openedDOD"  ng-required="true"close-text="Close" />
-                <span class="input-group-btn">
-                  <button type="button" class="btn btn-default" ng-click="open($event,'DOD')"><i class="glyphicon glyphicon-calendar"></i></button>
-                </span>
-              </div>
-
-                </div>
-
-                <div class="col-sm-5 birth-child">
-                  <a href="#" class="girl-child">
-                    <i class="icon-girl-small">&nbsp;</i>
-                  </a>
-                  <a href="#" class="boy-child">
-                    <i class="icon-boy-small">&nbsp;</i>
-                  </a>
-                   <a href="#" class="misscarriage">
-                    <i class="icon-misscarriage">&nbsp;</i>
-                  </a>
-                </div>
-              </div>
-            </div>
-        <!--DOB ends-->
-         <div class="form-group">
-           <div class="radio-list clearfix col-sm-12">
-               <div>
-                 <input type="radio" id="radio1childOutcome"  name="radioBO" ng-disabled="dateOfDelivery" ng-value="'LiveBirth'" ng-model="BirthOutcome">
-                 <label for="radio1childOutcome">Live Birth</label>
-               </div>
-                <div>
-                 <input type="radio" id="radio2childOutcome" name="radioBO" ng-disabled="dateOfDelivery"ng-value="'Dead'" ng-model="BirthOutcome" ng-value="'LiveBirth'" ng-model="BirthOutcome">
-                 <label  for="radio2childOutcome">Dead</label>
-               </div>
-                <div>
-                 <input type="radio" id="radio3childOutcome" name="radioBO" ng-disabled="dateOfDelivery" ng-value="'Miscarriage'" ng-model="BirthOutcome">
-                 <label  for="radio3childOutcome">Misscarriage/Still birth</label>
-               </div>
+           <div class="input-group date-picker"> 
+            <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="DODCalendarDate" is-open="openedDOD"  ng-required="true"close-text="Close" />
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open($event,'DOD')"><i class="icon-date-small"></i></button>
+            </span>
           </div>
-       </div>    
-     </form>
-   </div>
+
+        </div>
+
+        <div class="col-sm-5 birth-child">
+          <a href="#" class="girl-child">
+            <i class="icon-girl-small">&nbsp;</i>
+          </a>
+          <a href="#" class="boy-child">
+            <i class="icon-boy-small">&nbsp;</i>
+          </a>
+          <a href="#" class="misscarriage">
+            <i class="icon-misscarriage">&nbsp;</i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!--DOB ends-->
+    <div class="form-group">
+     <div class="radio-list clearfix col-sm-12">
+       <div>
+         <input type="radio" id="radio1childOutcome"  name="radioBO" ng-disabled="dateOfDelivery" ng-value="'LiveBirth'" ng-model="BirthOutcome">
+         <label for="radio1childOutcome">Live Birth</label>
+       </div>
+       <div>
+         <input type="radio" id="radio2childOutcome" name="radioBO" ng-disabled="dateOfDelivery"ng-value="'Dead'" ng-model="BirthOutcome" ng-value="'LiveBirth'" ng-model="BirthOutcome">
+         <label  for="radio2childOutcome">Dead</label>
+       </div>
+       <div>
+         <input type="radio" id="radio3childOutcome" name="radioBO" ng-disabled="dateOfDelivery" ng-value="'Miscarriage'" ng-model="BirthOutcome">
+         <label  for="radio3childOutcome">Misscarriage/Still birth</label>
+       </div>
+     </div>
+   </div>    
+ </form>
+</div>
 
 
 
@@ -248,23 +248,23 @@
     </div>-->
 
     <!--maternal outcome-->
-         <div class="maternal-outcome"  ng-show="pregWomanExist">
-              <h4>Maternal Outcome:</h4>
-            <div class="radio-list clearfix">
-              <div>
-                 <input type="radio" name="MO" id="radiomaternal1" ng-disabled="dateOfDelivery"
-          ng-value="'Healthy'" ng-model="MaternalOutcome"><label for="radiomaternal1">Healthy</label>
-               </div>
-                <div>
-                 <input type="radio" name="MO" id="radiomaternal2" ng-disabled="dateOfDelivery" 
+    <div class="maternal-outcome"  ng-show="pregWomanExist">
+      <h4>Maternal Outcome:</h4>
+      <div class="radio-list clearfix">
+        <div>
+         <input type="radio" name="MO" id="radiomaternal1" ng-disabled="dateOfDelivery"
+         ng-value="'Healthy'" ng-model="MaternalOutcome"><label for="radiomaternal1">Healthy</label>
+       </div>
+       <div>
+         <input type="radio" name="MO" id="radiomaternal2" ng-disabled="dateOfDelivery" 
          ng-value="'Sick'" ng-model="MaternalOutcome"><label for="radiomaternal2">Weak/Sick</label>
-               </div>
-                <div>
-                 <input type="radio" name="MO" id="radiomaternal3" ng-disabled="dateOfDelivery" 
+       </div>
+       <div>
+         <input type="radio" name="MO" id="radiomaternal3" ng-disabled="dateOfDelivery" 
          ng-value="'Dead'" ng-model="MaternalOutcome" ><label for="radiomaternal3">Dead</label>
-               </div>
-                </div>
-             </div>
+       </div>
+     </div>
+   </div>
 
                 <!-- <div class="col-sm-10 maternal-outcome"  ng-show="pregWomanExist">
        <label class="col-sm-4">Maternal Outcome:</label>
@@ -276,744 +276,805 @@
 
         <label for="radiomaternal3" class="col-sm-2"><input type="radio" name="MO" id="radiomaternal3" ng-disabled="dateOfDelivery" 
          ng-value="'Dead'" ng-model="MaternalOutcome" > Dead</label>
-      </div>-->
+       </div>-->
 
-  </div>
-</div>
-  <!--anc calender body-->
-  <div class="clearfix anc-calender-bottom" ng-show="pregWomanExist">
- 
+     </div>
+   </div>
+   <!--anc calender body-->
+   <div class="clearfix anc-calender-bottom" ng-show="pregWomanExist">
+     
     <div class="anc-row clearfix">
       <div class="col-sm-9">
         <div class="col-sm-2 anc-video">
           <div>
             <img src="img/video-screen1.gif" class="img-responsive">
-           <div> ASHA AWW VISIT</div>
+            <div> ASHA AWW VISIT</div>
           </div>
         </div>
-       
+        
         <div class="col-sm-10 anc-outcome">
           <div class="col-sm-1 healthy">&nbsp;</div>
           <div ng-class="{'col-sm-1':true,'weak': month.monthNo === nextAshaVisitMonth}" ng-repeat="month in monthsArray">
             <span ng-show="lastAshaVistMonth == month.monthNo">{{lastAshaVistDate}}</span></div>
-          <div class="col-sm-1">{{ashaCountTotal}}</div>
-          <div class="col-sm-1">&nbsp;</div>
-        </div> 
-      </div>
-      <div class="col-sm-3 anc-calender-add">
-      <form class="form-horizontal">
-        <div class="form-group">
-        <div class="col-sm-12">
-          <div class="col-sm-3">
-            <p class="input-group">
-                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="ashaCalendarDate" is-open="opened"  max-date="getDate()" datepicker-options="dateOptions"  ng-required="true"  close-text="Close" />
-                <span class="input-group-btn">
-                 <button type="button" class="btn btn-default" ng-click="open($event,'asha')"><i class="glyphicon glyphicon-calendar"></i></button>
-                </span>
-            </p>
-          </div>
-          <div class="col-sm-9 radio-group"> 
-          </div>
-          </div>
+            <div class="col-sm-1">{{ashaCountTotal}}</div>
+            <div class="col-sm-1">&nbsp;</div>
+          </div> 
         </div>
-        </form>
-      </div>
-    </div>
-      
-    <div class="anc-row clearfix">
+        <div class="col-sm-3 anc-calender-add">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <div class="col-sm-12">
+                <div class="col-sm-3">
+                  <div class="input-group">
+                    <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="ashaCalendarDate" is-open="opened"  max-date="getDate()" datepicker-options="dateOptions"  ng-required="true"  close-text="Close" ng-hide="true" />
+                    <span class="input-group-btn">
+                     <button type="button" class="btn btn-default" ng-click="open($event,'asha')"><i class="icon-date"></i></button>
+                   </span>
+                 </div>
+               </div>
+               <div class="col-sm-9 radio-group"> 
+               </div>
+             </div>
+           </div>
+         </form>
+       </div>
+     </div>
+     
+     <div class="anc-row clearfix">
       <div class="col-sm-9">
         <div class="col-sm-2 anc-video">
           <div>
             <img src="img/video-screen1.gif" class="img-responsive">
-           <div>ANM. DOC. CHECKUP</div>
+            <div>ANM. DOC. CHECKUP</div>
           </div>
         </div>
         <div class="col-sm-10 anc-outcome">
           <div class="col-sm-1 healthy">&nbsp;</div>
-           <div ng-class="{'col-sm-1':true,'weak': month.monthNo === nextANMVisitMonth}" ng-repeat="month in monthsArray"> <span ng-show="lastANMVistMonth == month.monthNo">{{lastANMVisitDate}}</span></div>
+          <div ng-class="{'col-sm-1':true,'weak': month.monthNo === nextANMVisitMonth}" ng-repeat="month in monthsArray"> <span ng-show="lastANMVistMonth == month.monthNo">{{lastANMVisitDate}}</span></div>
           <div class="col-sm-1">{{ANMCountTotal}}</div>
           <div class="col-sm-1">&nbsp;</div>
         </div>
       </div>
       <div class="col-sm-3 anc-calender-add">
-      <form class="form-horizontal">
-           <div class="form-group">
-        <div class="col-sm-12 text-right">           
+        <form class="form-horizontal">
+         <div class="form-group">
+          <div class="col-sm-12 text-right">           
             
           </div>
         </div>
         <div class="form-group">
-        <div class="col-sm-12">
-          <div class="col-sm-3">
-              <p class="input-group">
-                <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="ANMCalendarDate" is-open="openedANM"  ng-required="true"close-text="Close" />
+          <div class="col-sm-12">
+            <div class="col-sm-3">
+              <div class="input-group">
+                <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="ANMCalendarDate" is-open="openedANM"  ng-required="true"close-text="Close"  ng-hide="true" />
                 <span class="input-group-btn">
-                  <button type="button" class="btn btn-default" ng-click="open($event,'anm')"><i class="glyphicon glyphicon-calendar"></i></button>
+                  <button type="button" class="btn btn-default" ng-click="open($event,'anm')"><i class="icon-date"></i></button>
                 </span>
-              </p>
-          </div>
-          <div class="col-sm-9 radio-group">
-          </div>
+              </div>
+            </div>
+            <div class="col-sm-9 radio-group">
+            </div>
           </div>
         </div>
-        </form>
+      </form>
+    </div>
+  </div>
+  <!-- <weight row -->
+  <div class="anc-row clearfix">
+    <div class="col-sm-9">
+      <div class="col-sm-2 anc-video">
+        <div>
+          <img src="img/video-screen1.gif" class="img-responsive">
+          <div>Weight</div>
+        </div>
+      </div>
+      <div class="col-sm-10 anc-outcome">
+        <div class="col-sm-1 healthy">&nbsp;</div>
+        <div ng-class="{'col-sm-1':true,'dead':symptomData[4].month == month.monthNo && weightAlert == true}" ng-repeat="month in monthsArray"> <span ng-show="symptomData[4].month == month.monthNo">{{symptomData[4].value}}</span></div>
+        <div class="col-sm-1">{{symptomData[4].value}}</div>
+        <div class="col-sm-1">&nbsp;</div>
       </div>
     </div>
-          <!-- <weight row -->
-    <div class="anc-row clearfix">
-      <div class="col-sm-9">
-        <div class="col-sm-2 anc-video">
-          <div>
-            <img src="img/video-screen1.gif" class="img-responsive">
-           <div>Weight</div>
-          </div>
-        </div>
-        <div class="col-sm-10 anc-outcome">
-          <div class="col-sm-1 healthy">&nbsp;</div>
-           <div ng-class="{'col-sm-1':true,'dead':symptomData[4].month == month.monthNo && weightAlert == true}" ng-repeat="month in monthsArray"> <span ng-show="symptomData[4].month == month.monthNo">{{symptomData[4].value}}</span></div>
-          <div class="col-sm-1">{{symptomData[4].value}}</div>
-          <div class="col-sm-1">&nbsp;</div>
-        </div>
-      </div>
-      <div class="col-sm-3 anc-calender-add">
+    <div class="col-sm-3 anc-calender-add">
       <form class="form-horizontal">
         <div class="form-group">
-        <div class="col-sm-12">
-          <div class="col-sm-3">
-            <p class="input-group">
-                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="WeightCalendarDate" is-open="openedWeight" ng-required="true" close-text="Close" />
+          <div class="col-sm-12">
+            <div class="col-sm-3">
+              <div class="input-group">
+                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="WeightCalendarDate" is-open="openedWeight" ng-required="true" close-text="Close"  ng-hide="true" />
                 <span class="input-group-btn">
-                  <button type="button" class="btn btn-default" ng-click="open($event,'weight')"><i class="glyphicon glyphicon-calendar"></i></button>
+                  <button type="button" class="btn btn-default" ng-click="open($event,'weight')"><i class="icon-date"></i></button>
                 </span>
-            </p>
-          </div>
-          <div class="col-sm-9 text-right">
-            <label class="control-label">Weight</label> <input type="text" class="form-control" ng-model="enteredWeight" ng-blur="updateWeight();"><label class="control-label">Kg</label>
-          </div>
+              </div>
+            </div>
+            <div class="col-sm-9 text-right">
+              <label class="control-label">Weight</label> <input type="text" class="form-control" ng-model="enteredWeight" ng-blur="updateWeight();"><label class="control-label">Kg</label>
+            </div>
           </div>
         </div>
-        </form>
-      </div>
+      </form>
     </div>
+  </div>
 
-   <!--anaemia row-->
-    <div class="anc-row clearfix">
-      <div class="col-sm-9">
-        <div class="col-sm-2 anc-video">
-          <div>
-            <img src="img/video-screen1.gif" class="img-responsive">
-           <div>Anaemia</div>
-          </div>
-        </div>
-        <div class="col-sm-10 anc-outcome">
-          <div class="col-sm-1 healthy">&nbsp;</div>
-           <div ng-class="{'col-sm-1':true,'dead': month.monthNo == symptomData[2].month && alertHB == true}" ng-repeat="month in monthsArray"> <span ng-show="symptomData[2].month == month.monthNo">{{symptomData[2].value}}</span></div>
-          <div class="col-sm-1">{{symptomData[2].value}}</div>
-          <div class="col-sm-1">&nbsp;</div>
+  <!--anaemia row-->
+  <div class="anc-row clearfix">
+    <div class="col-sm-9">
+      <div class="col-sm-2 anc-video">
+        <div>
+          <img src="img/video-screen1.gif" class="img-responsive">
+          <div>Anaemia</div>
         </div>
       </div>
-      <div class="col-sm-3 anc-calender-add">
-      <form class="form-horizontal">
-           <div class="form-group">
-        <div class="col-sm-12 text-right">           
-           
-          </div>
-        </div>
-        <div class="form-group">
-        <div class="col-sm-12">
-          <div class="col-sm-3">
-              <p class="input-group">
-                <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="HBCalendarDate" is-open="openedHB"  ng-required="true"close-text="Close" />
-                <span class="input-group-btn">
-                  <button type="button" class="btn btn-default" ng-click="open($event,'HB')"><i class="glyphicon glyphicon-calendar"></i></button>
-                </span>
-              </p>
-          </div>
-          <div class="col-sm-9 radio-group">
-            <label class="control-label">HB 10</label> <input type="text" class="form-control" ng-model="enteredHB"  ng-blur="updateHB();"/>
-          </div>
-          </div>
-        </div>
-        </form>
+      <div class="col-sm-10 anc-outcome">
+        <div class="col-sm-1 healthy">&nbsp;</div>
+        <div ng-class="{'col-sm-1':true,'dead': month.monthNo == symptomData[2].month && alertHB == true}" ng-repeat="month in monthsArray"> <span ng-show="symptomData[2].month == month.monthNo">{{symptomData[2].value}}</span></div>
+        <div class="col-sm-1">{{symptomData[2].value}}</div>
+        <div class="col-sm-1">&nbsp;</div>
       </div>
     </div>
-    <!--HB TEST ENDS-->
+    <div class="col-sm-3 anc-calender-add">
+      <form class="form-horizontal">
+       <div class="form-group">
+        <div class="col-sm-12 text-right">           
+         
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-12">
+          <div class="col-sm-3">
+            <div class="input-group">
+              <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="HBCalendarDate" is-open="openedHB"  ng-required="true"close-text="Close"  ng-hide="true" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event,'HB')"><i class="icon-date"></i></button>
+              </span>
+            </div>
+          </div>
+          <div class="col-sm-9 radio-group">
+            <div>
+              <input type="text" class="form-control" ng-model="enteredHB"  ng-blur="updateHB();"/>
+              <label>HB 10</label> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<!--HB TEST ENDS-->
 
-    <!-- PALE EYE -->
-    <div class="anc-row clearfix">
-      <div class="col-sm-9">
-        <div class="col-sm-2 anc-video">
-          <div>
-            <img src="img/video-screen1.gif" class="img-responsive">
-           <div>Pale Eye</div>
-          </div>
-        </div>
-        <div class="col-sm-10 anc-outcome">
-          <div class="col-sm-1 healthy">&nbsp;</div>
-           <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[0].month && symptomData[0].value == 'yes'}" ng-repeat="month in monthsArray"> 
-            <span></span>
-            <span ng-show="month.monthNo == symptomData[0].month">{{symptomData[0].value}}</span>
-          </div>
-          <div class="col-sm-1">{{symptomData[0].value}}</div>
-          <div class="col-sm-1">&nbsp;</div>
-        </div>
-      </div>
-      <div class="col-sm-3 anc-calender-add">
-      <form class="form-horizontal">
-           <div class="form-group">
-        <div class="col-sm-12 text-right">           
-           
-          </div>
-        </div>
-        <div class="form-group">
-        <div class="col-sm-12">
-          <div class="col-sm-3">
-              <p class="input-group">
-                <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="PaleCalendarDate" is-open="openedPale"  ng-required="true"close-text="Close" />
-                <span class="input-group-btn">
-                  <button type="button" class="btn btn-default" ng-click="open($event,'Pale')"><i class="glyphicon glyphicon-calendar"></i></button>
-                </span>
-              </p>
-          </div>
-          <div class="col-sm-9 radio-group">
-              <label for="radio5" class="control-label"><input type="radio" ng-model="paleOutcome"  ng-value="'no'"  name="PaleEyeCheck" id="radio5" ng-change="updatePale()">No</label>
-             <label for="radio4" class="control-label"><input type="radio" ng-model="paleOutcome" name="PaleEyeCheck" ng-value="'yes'" id="radio4" ng-change="updatePale()">Yes</label> 
-          </div>
-          </div>
-        </div>
-        </form>
+<!-- PALE EYE -->
+<div class="anc-row clearfix">
+  <div class="col-sm-9">
+    <div class="col-sm-2 anc-video">
+      <div>
+        <img src="img/video-screen1.gif" class="img-responsive">
+        <div>Pale Eye</div>
       </div>
     </div>
+    <div class="col-sm-10 anc-outcome">
+      <div class="col-sm-1 healthy">&nbsp;</div>
+      <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[0].month && symptomData[0].value == 'yes'}" ng-repeat="month in monthsArray"> 
+        <span></span>
+        <span ng-show="month.monthNo == symptomData[0].month">{{symptomData[0].value}}</span>
+      </div>
+      <div class="col-sm-1">{{symptomData[0].value}}</div>
+      <div class="col-sm-1">&nbsp;</div>
+    </div>
+  </div>
+  <div class="col-sm-3 anc-calender-add">
+    <form class="form-horizontal">
+     <div class="form-group">
+      <div class="col-sm-12 text-right">           
+       
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-12">
+        <div class="col-sm-3">
+          <div class="input-group">
+            <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="PaleCalendarDate" is-open="openedPale"  ng-required="true"close-text="Close"  ng-hide="true" />
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open($event,'Pale')"><i class="icon-date"></i></button>
+            </span>
+          </div>
+        </div>
+        <div class="col-sm-9 radio-group">
+          <div>
+            <input type="radio" ng-model="paleOutcome"  ng-value="'no'"  name="PaleEyeCheck" id="radio5" ng-change="updatePale()">
+            <label for="radio5">No</label>
+          </div>
+          <div>
+            <input type="radio" ng-model="paleOutcome" name="PaleEyeCheck" ng-value="'yes'" id="radio4" ng-change="updatePale()">
+            <label for="radio4">Yes</label> 
+          </div>
+          
+          
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+</div>
     <!--PALE EYE ENDS
 
-     <!--Night Blindness-->
+    <!--Night Blindness-->
     <div class="anc-row clearfix">
       <div class="col-sm-9">
         <div class="col-sm-2 anc-video">
           <div>
             <img src="img/video-screen1.gif" class="img-responsive">
-           <div>Night Blind</div>
+            <div>Night Blind</div>
           </div>
         </div>
         <div class="col-sm-10 anc-outcome">
           <div class="col-sm-1 healthy">&nbsp;</div>
-           <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[1].month && symptomData[1].value == 'yes'}" ng-repeat="month in monthsArray">
+          <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[1].month && symptomData[1].value == 'yes'}" ng-repeat="month in monthsArray">
             <span ng-show="symptomData[1].month == month.monthNo">{{symptomData[1].value}}</span>
-           
+            
           </div>
           <div class="col-sm-1">{{symptomData[1].value}}</div>
           <div class="col-sm-1">&nbsp;</div>
         </div>
       </div>
       <div class="col-sm-3 anc-calender-add">
-      <form class="form-horizontal">
-           <div class="form-group">
-        <div class="col-sm-12 text-right">           
+        <form class="form-horizontal">
+         <div class="form-group">
+          <div class="col-sm-12 text-right">           
            
           </div>
         </div>
         <div class="form-group">
-        <div class="col-sm-12">
-          <div class="col-sm-3">
-              <p class="input-group">
-                <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="NightBlindCalendarDate" is-open="openedNightBlind"  ng-required="true"close-text="Close" />
+          <div class="col-sm-12">
+            <div class="col-sm-3">
+              <div class="input-group">
+                <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="NightBlindCalendarDate" is-open="openedNightBlind"  ng-required="true"close-text="Close"  ng-hide="true" />
                 <span class="input-group-btn">
-                  <button type="button" class="btn btn-default" ng-click="open($event,'NB')"><i class="glyphicon glyphicon-calendar"></i></button>
+                  <button type="button" class="btn btn-default" ng-click="open($event,'NB')"><i class="icon-date"></i></button>
                 </span>
-              </p>
-          </div>
-          <div class="col-sm-9 radio-group">
-              <label for="radio15" class="control-label"><input type="radio" ng-model="blindOutcome"  ng-value="'no'"  name="BlindCheck" 
-                id="radio15" ng-change="updateBlind()">No</label>
-             <label for="radio14" class="control-label"><input type="radio" ng-model="blindOutcome" name="BlindCheck" ng-value="'yes'" 
-              id="radio14" ng-change="updateBlind()">Yes</label> 
-          </div>
-          </div>
-        </div>
-        </form>
+              </div>
+            </div>
+            <div class="col-sm-9 radio-group">
+              <div>
+                <input type="radio" ng-model="blindOutcome"  ng-value="'no'"  name="BlindCheck" id="radio15" ng-change="updateBlind()">
+                <label for="radio15">No</label>
+              </div>
+              
+              <div>
+               <input type="radio" ng-model="blindOutcome" name="BlindCheck" ng-value="'yes'"  id="radio14" ng-change="updateBlind()">
+               <label for="radio14">Yes</label>
+             </div> 
+           </div>
+         </div>
+       </div>
+     </form>
+   </div>
+ </div>
+ <!--Night Blindness ENDS-->
+
+
+ <!--Bleeding-->
+ <div class="anc-row clearfix">
+  <div class="col-sm-9">
+    <div class="col-sm-2 anc-video">
+      <div>
+        <img src="img/video-screen1.gif" class="img-responsive">
+        <div>Bleeding</div>
       </div>
     </div>
-    <!--Night Blindness ENDS-->
-
-
-     <!--Bleeding-->
-    <div class="anc-row clearfix">
-      <div class="col-sm-9">
-        <div class="col-sm-2 anc-video">
-          <div>
-            <img src="img/video-screen1.gif" class="img-responsive">
-           <div>Bleeding</div>
-          </div>
-        </div>
-        <div class="col-sm-10 anc-outcome">
-          <div class="col-sm-1 healthy">&nbsp;</div>
-           <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[3].month && symptomData[3].value == 'yes'}" ng-repeat="month in monthsArray">
-            <span ng-show="symptomData[3].month == month.monthNo">{{symptomData[3].value}}</span>
-           
-          </div>
-          <div class="col-sm-1">{{symptomData[3].value}}</div>
-          <div class="col-sm-1">&nbsp;</div>
-        </div>
+    <div class="col-sm-10 anc-outcome">
+      <div class="col-sm-1 healthy">&nbsp;</div>
+      <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[3].month && symptomData[3].value == 'yes'}" ng-repeat="month in monthsArray">
+        <span ng-show="symptomData[3].month == month.monthNo">{{symptomData[3].value}}</span>
+        
       </div>
-      <div class="col-sm-3 anc-calender-add">
-      <form class="form-horizontal">
-           <div class="form-group">
-        <div class="col-sm-12 text-right">           
-           
-          </div>
-        </div>
-        <div class="form-group">
-        <div class="col-sm-12">
-          <div class="col-sm-3">
-              <p class="input-group">
-                <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="BleedingCalendarDate" is-open="openedBleeding"  ng-required="true" close-text="Close" />
-                <span class="input-group-btn">
-                  <button type="button" class="btn btn-default" ng-click="open($event,'Bleeding')"><i class="glyphicon glyphicon-calendar"></i></button>
-                </span>
-              </p>
-          </div>
-          <div class="col-sm-9 radio-group">
-              <label for="radio25" class="control-label"><input type="radio" ng-model="bleedingOutcome"  ng-value="'no'"  name="BleedCheck" 
-                id="radio25" ng-change="updateBleed()">No</label>
-             <label for="radio24" class="control-label"><input type="radio" ng-model="bleedingOutcome" name="BleedCheck" ng-value="'yes'" 
-              id="radio24" ng-change="updateBleed()">Yes</label> 
-          </div>
-          </div>
-        </div>
-        </form>
+      <div class="col-sm-1">{{symptomData[3].value}}</div>
+      <div class="col-sm-1">&nbsp;</div>
+    </div>
+  </div>
+  <div class="col-sm-3 anc-calender-add">
+    <form class="form-horizontal">
+     <div class="form-group">
+      <div class="col-sm-12 text-right">           
+       
       </div>
     </div>
-    <!--Bleeding ENDS-->
-
-
-     <!--Malaria-->
-    <div class="anc-row clearfix">
-      <div class="col-sm-9">
-        <div class="col-sm-2 anc-video">
+    <div class="form-group">
+      <div class="col-sm-12">
+        <div class="col-sm-3">
+          <div class="input-group">
+            <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="BleedingCalendarDate" is-open="openedBleeding"  ng-required="true" close-text="Close"  ng-hide="true" />
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open($event,'Bleeding')"><i class="icon-date"></i></button>
+            </span>
+          </div>
+        </div>
+        <div class="col-sm-9 radio-group">
           <div>
-            <img src="img/video-screen1.gif" class="img-responsive">
-           <div>Malaria</div>
+            <input type="radio" ng-model="bleedingOutcome"  ng-value="'no'"  name="BleedCheck" id="radio25" ng-change="updateBleed()">
+            <label for="radio25">No</label>
           </div>
+          
+          <div>
+            <input type="radio" ng-model="bleedingOutcome" name="BleedCheck" ng-value="'yes'"  id="radio24" ng-change="updateBleed()">
+            <label for="radio24">Yes</label> 
+          </div>
+          
         </div>
-        <div class="col-sm-10 anc-outcome">
-          <div class="col-sm-1 healthy">&nbsp;</div>
-           <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[5].month && symptomData[5].value == 'yes'}" ng-repeat="month in monthsArray">
-            <span ng-show="symptomData[5].month == month.monthNo">{{symptomData[5].value}}</span>
-           
-          </div>
-          <div class="col-sm-1">{{symptomData[5].value}}</div>
-          <div class="col-sm-1">&nbsp;</div>
-        </div>
-      </div>
-      <div class="col-sm-3 anc-calender-add">
-      <form class="form-horizontal">
-           <div class="form-group">
-        <div class="col-sm-12 text-right">           
-           
-          </div>
-        </div>
-        <div class="form-group">
-        <div class="col-sm-12">
-          <div class="col-sm-3">
-              <p class="input-group">
-                <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="MalariaCalendarDate" is-open="openedMalaria"  ng-required="true" close-text="Close" />
-                <span class="input-group-btn">
-                  <button type="button" class="btn btn-default" ng-click="open($event,'Malaria')"><i class="glyphicon glyphicon-calendar"></i></button>
-                </span>
-              </p>
-          </div>
-          <div class="col-sm-9 radio-group">
-              <label for="radio35" class="control-label"><input type="radio" ng-model="malariaOutcome"  ng-value="'no'"  name="MalariaCheck" 
-                id="radio35" ng-change="updateMalaria()">No</label>
-             <label for="radio34" class="control-label"><input type="radio" ng-model="malariaOutcome" name="MalariaCheck" ng-value="'yes'" 
-              id="radio34" ng-change="updateMalaria()">Yes</label> 
-          </div>
-          </div>
-        </div>
-        </form>
       </div>
     </div>
-    <!--Malaria ENDS-->
+  </form>
+</div>
+</div>
+<!--Bleeding ENDS-->
 
-     <!--IFA Tablets row-->
-    <div class="anc-row clearfix">
-      <div class="col-sm-9">
-        <div class="col-sm-2 anc-video">
-          <div>
-            <img src="img/video-screen1.gif" class="img-responsive">
-           <div>IFA Tablets</div>
+
+<!--Malaria-->
+<div class="anc-row clearfix">
+  <div class="col-sm-9">
+    <div class="col-sm-2 anc-video">
+      <div>
+        <img src="img/video-screen1.gif" class="img-responsive">
+        <div>Malaria</div>
+      </div>
+    </div>
+    <div class="col-sm-10 anc-outcome">
+      <div class="col-sm-1 healthy">&nbsp;</div>
+      <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[5].month && symptomData[5].value == 'yes'}" ng-repeat="month in monthsArray">
+        <span ng-show="symptomData[5].month == month.monthNo">{{symptomData[5].value}}</span>
+        
+      </div>
+      <div class="col-sm-1">{{symptomData[5].value}}</div>
+      <div class="col-sm-1">&nbsp;</div>
+    </div>
+  </div>
+  <div class="col-sm-3 anc-calender-add">
+    <form class="form-horizontal">
+     <div class="form-group">
+      <div class="col-sm-12 text-right">           
+       
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-12">
+        <div class="col-sm-3">
+          <div class="input-group">
+            <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="MalariaCalendarDate" is-open="openedMalaria"  ng-required="true" close-text="Close"  ng-hide="true" />
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open($event,'Malaria')"><i class="icon-date"></i></button>
+            </span>
           </div>
         </div>
-        <div class="col-sm-10 anc-outcome">
-          <div class="col-sm-1 healthy">&nbsp;</div>
-         <!--  <div ng-class="{'col-sm-1':true,'dead': month.monthNo == lastHBMonth && alertHB == true}" ng-repeat="month in monthsArray"> <span ng-show="lastHBMonth == month.monthNo">{{lastHBValue}}</span></div>-->
-           <div ng-class="{'col-sm-1':true,'weak':month.monthNo == nextIFAVisit  && alertIFA == true}" ng-repeat="month in monthsArray"> <span ng-show="lastPregnancyIFAMonth == month.monthNo">{{lastIFACount}}</span></div>
-          <div class="col-sm-1">{{totalIFACount}}</div>
-          <div class="col-sm-1">&nbsp;</div>
+        <div class="col-sm-9 radio-group">
+          <div>
+            <input type="radio" ng-model="malariaOutcome"  ng-value="'no'"  name="MalariaCheck"  id="radio35" ng-change="updateMalaria()">
+            <label for="radio35">No</label>
+          </div>
+          
+          <div>
+            <input type="radio" ng-model="malariaOutcome" name="MalariaCheck" ng-value="'yes'"  id="radio34" ng-change="updateMalaria()">
+            <label for="radio34">Yes</label> 
+          </div>  
+          
         </div>
       </div>
-      <div class="col-sm-3 anc-calender-add">
-      <form class="form-horizontal">
-        <div class="form-group">
+    </div>
+  </form>
+</div>
+</div>
+<!--Malaria ENDS-->
+
+<!--IFA Tablets row-->
+<div class="anc-row clearfix">
+  <div class="col-sm-9">
+    <div class="col-sm-2 anc-video">
+      <div>
+        <img src="img/video-screen1.gif" class="img-responsive">
+        <div>IFA Tablets</div>
+      </div>
+    </div>
+    <div class="col-sm-10 anc-outcome">
+      <div class="col-sm-1 healthy">&nbsp;</div>
+      <!--  <div ng-class="{'col-sm-1':true,'dead': month.monthNo == lastHBMonth && alertHB == true}" ng-repeat="month in monthsArray"> <span ng-show="lastHBMonth == month.monthNo">{{lastHBValue}}</span></div>-->
+      <div ng-class="{'col-sm-1':true,'weak':month.monthNo == nextIFAVisit  && alertIFA == true}" ng-repeat="month in monthsArray"> <span ng-show="lastPregnancyIFAMonth == month.monthNo">{{lastIFACount}}</span></div>
+      <div class="col-sm-1">{{totalIFACount}}</div>
+      <div class="col-sm-1">&nbsp;</div>
+    </div>
+  </div>
+  <div class="col-sm-3 anc-calender-add">
+    <form class="form-horizontal">
+      <div class="form-group">
         <div class="col-sm-12">
           <div class="col-sm-3">
-            <p class="input-group">
-                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="IFACalendarDate" is-open="openedIFA" ng-required="true" close-text="Close" />
-                <span class="input-group-btn">
-                  <button type="button" class="btn btn-default" ng-click="open($event,'IFA')"><i class="glyphicon glyphicon-calendar"></i></button>
-                </span>
-            </p>
+            <div class="input-group">
+              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="IFACalendarDate" is-open="openedIFA" ng-required="true" close-text="Close"  ng-hide="true" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event,'IFA')"><i class="icon-date"></i></button>
+              </span>
+            </div>
           </div>
           <div class="col-sm-9 text-right">
             <label class="control-label">Quantity</label> <input type="text" class="form-control" ng-model="enteredIFA" ng-blur="updateIFA();"><label class="control-label">Kg</label>
           </div>
-          </div>
         </div>
-        </form>
       </div>
-    </div>
+    </form>
+  </div>
+</div>
 
-  <!--Urine Protein row-->
-   <div class="anc-row clearfix">
-      <div class="col-sm-9">
-        <div class="col-sm-2 anc-video">
-          <div>
-            <img src="img/video-screen1.gif" class="img-responsive">
-           <div>Urine Protein</div>
-          </div>
-        </div>
-        <div class="col-sm-10 anc-outcome">
-          <div class="col-sm-1 healthy">&nbsp;</div>
-           <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[6].month && symptomData[6].value == 'yes'}" ng-repeat="month in monthsArray">
-            <span ng-show="symptomData[6].month == month.monthNo">{{symptomData[6].value == 'yes'?'+':'-'}}</span>
-           
-          </div>
-          <div class="col-sm-1">{{symptomData[6].value == 'yes'?'+':'-'}}</div>
-          <div class="col-sm-1">&nbsp;</div>
-        </div>
-      </div>
-      <div class="col-sm-3 anc-calender-add">
-      <form class="form-horizontal">
-           <div class="form-group">
-        <div class="col-sm-12 text-right">           
-           
-          </div>
-        </div>
-        <div class="form-group">
-        <div class="col-sm-12">
-          <div class="col-sm-3">
-              <p class="input-group">
-                <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="UPCalendarDate" is-open="openedUP"  ng-required="true" close-text="Close" />
-                <span class="input-group-btn">
-                  <button type="button" class="btn btn-default" ng-click="open($event,'UP')"><i class="glyphicon glyphicon-calendar"></i></button>
-                </span>
-              </p>
-          </div>
-          <div class="col-sm-9 radio-group">
-              <label for="radio55" class="control-label"><input type="radio" ng-model="UPOutcome"  ng-value="'no'"  name="UPCheck" 
-                id="radio55" ng-change="updateUP()">No</label>
-             <label for="radio54" class="control-label"><input type="radio" ng-model="UPOutcome" name="UPCheck" ng-value="'yes'" 
-              id="radio54" ng-change="updateUP()">Yes</label> 
-          </div>
-          </div>
-        </div>
-        </form>
-      </div>
-    </div>
-   <!--Urine Protein row ENDS-->
-
-   <!--Swelling row-->
-   <div class="anc-row clearfix">
-      <div class="col-sm-9">
-        <div class="col-sm-2 anc-video">
-          <div>
-            <img src="img/video-screen1.gif" class="img-responsive">
-           <div>Swelling</div>
-          </div>
-        </div>
-        <div class="col-sm-10 anc-outcome">
-          <div class="col-sm-1 healthy">&nbsp;</div>
-           <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[7].month && symptomData[7].value == 'yes'}" ng-repeat="month in monthsArray">
-            <span ng-show="symptomData[7].month == month.monthNo">{{symptomData[7].value}}</span>
-           
-          </div>
-          <div class="col-sm-1">{{symptomData[7].value}}</div>
-          <div class="col-sm-1">&nbsp;</div>
-        </div>
-      </div>
-      <div class="col-sm-3 anc-calender-add">
-      <form class="form-horizontal">
-           <div class="form-group">
-        <div class="col-sm-12 text-right">           
-           
-          </div>
-        </div>
-        <div class="form-group">
-        <div class="col-sm-12">
-          <div class="col-sm-3">
-              <p class="input-group">
-                <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="SwellingCalendarDate" is-open="openedSwelling"  ng-required="true" close-text="Close" />
-                <span class="input-group-btn">
-                  <button type="button" class="btn btn-default" ng-click="open($event,'Swelling')"><i class="glyphicon glyphicon-calendar"></i></button>
-                </span>
-              </p>
-          </div>
-          <div class="col-sm-9 radio-group">
-              <label for="radio65" class="control-label"><input type="radio" ng-model="SwellingOutcome"  ng-value="'no'"  name="SwellingCheck" 
-                id="radio65" ng-change="updateSwelling()">No</label>
-             <label for="radio64" class="control-label"><input type="radio" ng-model="SwellingOutcome" name="SwellingCheck" ng-value="'yes'" 
-              id="radio64" ng-change="updateSwelling()">Yes</label> 
-          </div>
-          </div>
-        </div>
-        </form>
-      </div>
-    </div>
-   <!--Swelling row ENDS-->
-
-   <!--Fits row-->
-   <div class="anc-row clearfix">
-      <div class="col-sm-9">
-        <div class="col-sm-2 anc-video">
-          <div>
-            <img src="img/video-screen1.gif" class="img-responsive">
-           <div>Fits/blurred vision/headache</div>
-          </div>
-        </div>
-        <div class="col-sm-10 anc-outcome">
-          <div class="col-sm-1 healthy">&nbsp;</div>
-           <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[8].month && symptomData[8].value == 'yes'}" ng-repeat="month in monthsArray">
-            <span ng-show="symptomData[8].month == month.monthNo">{{symptomData[8].value == 'yes'?'+':'-'}}</span>
-           
-          </div>
-          <div class="col-sm-1">{{symptomData[8].value == 'yes'?'+':'-'}}</div>
-          <div class="col-sm-1">&nbsp;</div>
-        </div>
-      </div>
-      <div class="col-sm-3 anc-calender-add">
-      <form class="form-horizontal">
-           <div class="form-group">
-        <div class="col-sm-12 text-right">           
-           
-          </div>
-        </div>
-        <div class="form-group">
-        <div class="col-sm-12">
-          <div class="col-sm-3">
-              <p class="input-group">
-                <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="FitsCalendarDate" is-open="openedFits"  ng-required="true" close-text="Close" />
-                <span class="input-group-btn">
-                  <button type="button" class="btn btn-default" ng-click="open($event,'Fits')"><i class="glyphicon glyphicon-calendar"></i></button>
-                </span>
-              </p>
-          </div>
-          <div class="col-sm-9 radio-group">
-              <label for="radio65Fits" class="control-label"><input type="radio" ng-model="FitsOutcome"  ng-value="'no'"  name="FitsCheck" 
-                id="radio65Fits" ng-change="updateFits()">No</label>
-             <label for="radio64Fits" class="control-label"><input type="radio" ng-model="FitsOutcome" name="FitsCheck" ng-value="'yes'" 
-              id="radio64Fits" ng-change="updateFits()">Yes</label> 
-          </div>
-          </div>
-        </div>
-        </form>
-      </div>
-    </div>
-   <!--Fits row ENDS-->
-
-   <!--Urine Sugar row-->
-   <div class="anc-row clearfix">
-      <div class="col-sm-9">
-        <div class="col-sm-2 anc-video">
-          <div>
-            <img src="img/video-screen1.gif" class="img-responsive">
-           <div>Urine Sugar</div>
-          </div>
-        </div>
-        <div class="col-sm-10 anc-outcome">
-          <div class="col-sm-1 healthy">&nbsp;</div>
-           <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[9].month && symptomData[9].value == 'yes'}" ng-repeat="month in monthsArray">
-            <span ng-show="symptomData[9].month == month.monthNo">{{symptomData[9].value == 'yes'?'+':'-'}}</span>
-           
-          </div>
-          <div class="col-sm-1">{{symptomData[9].value == 'yes'?'+':'-'}}</div>
-          <div class="col-sm-1">&nbsp;</div>
-        </div>
-      </div>
-      <div class="col-sm-3 anc-calender-add">
-      <form class="form-horizontal">
-           <div class="form-group">
-        <div class="col-sm-12 text-right">           
-           
-          </div>
-        </div>
-        <div class="form-group">
-        <div class="col-sm-12">
-          <div class="col-sm-3">
-              <p class="input-group">
-                <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="USCalendarDate" is-open="openedUS"  ng-required="true" close-text="Close" />
-                <span class="input-group-btn">
-                  <button type="button" class="btn btn-default" ng-click="open($event,'US')"><i class="glyphicon glyphicon-calendar"></i></button>
-                </span>
-              </p>
-          </div>
-          <div class="col-sm-9 radio-group">
-              <label for="radio75" class="control-label"><input type="radio" ng-model="USOutcome"  ng-value="'no'"  name="USCheck" 
-                id="radio75" ng-change="updateUS()">No</label>
-             <label for="radio76" class="control-label"><input type="radio" ng-model="USOutcome" name="USCheck" ng-value="'yes'" 
-              id="radio76" ng-change="updateUS()">Yes</label> 
-          </div>
-          </div>
-        </div>
-        </form>
-      </div>
-    </div>
-   <!--US row ENDS-->
-
-   <!--FEVER-->
-   <div class="anc-row clearfix">
-      <div class="col-sm-9">
-        <div class="col-sm-2 anc-video">
-          <div>
-            <img src="img/video-screen1.gif" class="img-responsive">
-           <div>Fever</div>
-          </div>
-        </div>
-        <div class="col-sm-10 anc-outcome">
-          <div class="col-sm-1 healthy">&nbsp;</div>
-           <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[10].month && symptomData[10].value == 'yes'}" ng-repeat="month in monthsArray">
-            <span ng-show="symptomData[10].month == month.monthNo">{{symptomData[10].value == 'yes'?'+':'-'}}</span>
-           
-          </div>
-          <div class="col-sm-1">{{symptomData[10].value == 'yes'?'+':'-'}}</div>
-          <div class="col-sm-1">&nbsp;</div>
-        </div>
-      </div>
-      <div class="col-sm-3 anc-calender-add">
-      <form class="form-horizontal">
-           <div class="form-group">
-        <div class="col-sm-12 text-right">           
-           
-          </div>
-        </div>
-        <div class="form-group">
-        <div class="col-sm-12">
-          <div class="col-sm-3">
-              <p class="input-group">
-                <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="FeverCalendarDate" is-open="openedFever"  ng-required="true" close-text="Close" />
-                <span class="input-group-btn">
-                  <button type="button" class="btn btn-default" ng-click="open($event,'Fever')"><i class="glyphicon glyphicon-calendar"></i></button>
-                </span>
-              </p>
-          </div>
-          <div class="col-sm-9 radio-group">
-              <label for="radioFever5" class="control-label"><input type="radio" ng-model="FeverOutcome"  ng-value="'no'"  name="FeverCheck" 
-                id="radioFever5" ng-change="updateFever()">No</label>
-             <label for="radioFever4" class="control-label"><input type="radio" ng-model="FeverOutcome" name="FeverCheck" ng-value="'yes'" 
-              id="radioFever4" ng-change="updateFever()">Yes</label> 
-          </div>
-          </div>
-        </div>
-        </form>
-      </div>
-    </div>
-   <!--FeverS row ENDS-->
-
-   <!--Fits row-->
-   <div class="anc-row clearfix">
-      <div class="col-sm-9">
-        <div class="col-sm-2 anc-video">
-          <div>
-            <img src="img/video-screen1.gif" class="img-responsive">
-           <div>Foul swelling Discharge</div>
-          </div>
-        </div>
-        <div class="col-sm-10 anc-outcome">
-          <div class="col-sm-1 healthy">&nbsp;</div>
-           <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[11].month && symptomData[11].value == 'yes'}" ng-repeat="month in monthsArray">
-            <span ng-show="symptomData[11].month == month.monthNo">{{symptomData[11].value == 'yes'?'+':'-'}}</span>
-           
-          </div>
-          <div class="col-sm-1">{{symptomData[11].value == 'yes'?'+':'-'}}</div>
-          <div class="col-sm-1">&nbsp;</div>
-        </div>
-      </div>
-      <div class="col-sm-3 anc-calender-add">
-      <form class="form-horizontal">
-           <div class="form-group">
-        <div class="col-sm-12 text-right">           
-           
-          </div>
-        </div>
-        <div class="form-group">
-        <div class="col-sm-12">
-          <div class="col-sm-3">
-              <p class="input-group">
-                <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="FoulSmellCalendarDate" is-open="openedFoulSmell"  ng-required="true" close-text="Close" />
-                <span class="input-group-btn">
-                  <button type="button" class="btn btn-default" ng-click="open($event,'FoulSmell')"><i class="glyphicon glyphicon-calendar"></i></button>
-                </span>
-              </p>
-          </div>
-          <div class="col-sm-9 radio-group">
-              <label for="radioFoulsmell65" class="control-label"><input type="radio" ng-model="FoulSmellOutcome"  ng-value="'no'"  name="FitsCheck"  id="radioFoulsmell65" ng-change="updateFoulSmell()">No</label>
-             <label for="radioFoulsmell64" class="control-label"><input type="radio" ng-model="FoulSmellOutcome" name="FitsCheck" ng-value="'yes'" id="radiFoulsmello64" ng-change="updateFoulSmell()">Yes</label> 
-          </div>
-          </div>
-        </div>
-        </form>
-      </div>
-    </div>
-   <!--FoulSmell row ENDS-->
-
-   <!--weakness row-->
-   <div class="anc-row clearfix">
-      <div class="col-sm-9">
-        <div class="col-sm-2 anc-video">
-          <div>
-            <img src="img/video-screen1.gif" class="img-responsive">
-           <div>Weakness/other illness</div>
-          </div>
-        </div>
-        <div class="col-sm-10 anc-outcome">
-          <div class="col-sm-1 healthy">&nbsp;</div>
-           <div class="col-sm-1" ng-repeat="month in monthsArray">
-            <span ng-show="symptomData[12].month == month.monthNo">{{symptomData[12].value == 'yes'?'+':'-'}}</span>
-           
-          </div>
-          <div class="col-sm-1">{{symptomData[13].value == 'yes'?'+':'-'}}</div>
-          <div class="col-sm-1">&nbsp;</div>
-        </div>
-      </div>
-      <div class="col-sm-3 anc-calender-add">
-      <form class="form-horizontal">
-           <div class="form-group">
-        <div class="col-sm-12 text-right">           
-           
-          </div>
-        </div>
-        <div class="form-group">
-        <div class="col-sm-12">
-          <div class="col-sm-3">
-              <p class="input-group">
-                <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="WeaknessCalendarDate" is-open="openedWeakness"  ng-required="true" close-text="Close" />
-                <span class="input-group-btn">
-                  <button type="button" class="btn btn-default" ng-click="open($event,'Weakness')"><i class="glyphicon glyphicon-calendar"></i></button>
-                </span>
-              </p>
-          </div>
-          <div class="col-sm-9 radio-group">
-              <label for="radioWeakness65" class="control-label"><input type="radio" ng-model="WeaknessOutcome"  ng-value="'no'"  name="WeaknessCheck" id="radioWeakness65" ng-change="updateWeakness()">No</label>
-             <label for="radioWeakness64" class="control-label"><input type="radio" ng-model="WeaknessOutcome" name="WeaknessCheck" ng-value="'yes'" id="radioWeakness64" ng-change="updateWeakness()">Yes</label> 
-          </div>
-          </div>
-        </div>
-        </form>
-      </div>
-    </div>
-   <!--Weakness row ENDS-->
-   <h4>Which FP Method you use</h4>
-<!--anc row-->
+<!--Urine Protein row-->
 <div class="anc-row clearfix">
+  <div class="col-sm-9">
+    <div class="col-sm-2 anc-video">
+      <div>
+        <img src="img/video-screen1.gif" class="img-responsive">
+        <div>Urine Protein</div>
+      </div>
+    </div>
+    <div class="col-sm-10 anc-outcome">
+      <div class="col-sm-1 healthy">&nbsp;</div>
+      <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[6].month && symptomData[6].value == 'yes'}" ng-repeat="month in monthsArray">
+        <span ng-show="symptomData[6].month == month.monthNo">{{symptomData[6].value == 'yes'?'+':'-'}}</span>
+        
+      </div>
+      <div class="col-sm-1">{{symptomData[6].value == 'yes'?'+':'-'}}</div>
+      <div class="col-sm-1">&nbsp;</div>
+    </div>
+  </div>
+  <div class="col-sm-3 anc-calender-add">
+    <form class="form-horizontal">
+     <div class="form-group">
+      <div class="col-sm-12 text-right">           
+       
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-12">
+        <div class="col-sm-3">
+          <div class="input-group">
+            <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="UPCalendarDate" is-open="openedUP"  ng-required="true" close-text="Close"  ng-hide="true" />
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open($event,'UP')"><i class="icon-date"></i></button>
+            </span>
+          </div>
+        </div>
+        <div class="col-sm-9 radio-group">
+          <div>
+            <input type="radio" ng-model="UPOutcome"  ng-value="'no'"  name="UPCheck"  id="radio55" ng-change="updateUP()">
+            <label for="radio55">No</label>
+          </div>
+          <div>
+            <input type="radio" ng-model="UPOutcome" name="UPCheck" ng-value="'yes'"  id="radio54" ng-change="updateUP()">
+            <label for="radio54">Yes</label> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+</div>
+<!--Urine Protein row ENDS-->
+
+<!--Swelling row-->
+<div class="anc-row clearfix">
+  <div class="col-sm-9">
+    <div class="col-sm-2 anc-video">
+      <div>
+        <img src="img/video-screen1.gif" class="img-responsive">
+        <div>Swelling</div>
+      </div>
+    </div>
+    <div class="col-sm-10 anc-outcome">
+      <div class="col-sm-1 healthy">&nbsp;</div>
+      <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[7].month && symptomData[7].value == 'yes'}" ng-repeat="month in monthsArray">
+        <span ng-show="symptomData[7].month == month.monthNo">{{symptomData[7].value}}</span>
+        
+      </div>
+      <div class="col-sm-1">{{symptomData[7].value}}</div>
+      <div class="col-sm-1">&nbsp;</div>
+    </div>
+  </div>
+  <div class="col-sm-3 anc-calender-add">
+    <form class="form-horizontal">
+     <div class="form-group">
+      <div class="col-sm-12 text-right">           
+       
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-12">
+        <div class="col-sm-3">
+          <div class="input-group">
+            <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="SwellingCalendarDate" is-open="openedSwelling"  ng-required="true" close-text="Close"  ng-hide="true" />
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open($event,'Swelling')"><i class="icon-date"></i></button>
+            </span>
+          </div>
+        </div>
+        <div class="col-sm-9 radio-group">
+          <div>
+            <input type="radio" ng-model="SwellingOutcome"  ng-value="'no'"  name="SwellingCheck" id="radio65" ng-change="updateSwelling()">
+            <label for="radio65">No</label>
+          </div>
+          <div>
+            <input type="radio" ng-model="SwellingOutcome" name="SwellingCheck" ng-value="'yes'"  id="radio64" ng-change="updateSwelling()">
+            <label for="radio64">Yes</label> 
+          </div>
+          
+          
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+</div>
+<!--Swelling row ENDS-->
+
+<!--Fits row-->
+<div class="anc-row clearfix">
+  <div class="col-sm-9">
+    <div class="col-sm-2 anc-video">
+      <div>
+        <img src="img/video-screen1.gif" class="img-responsive">
+        <div>Fits/blurred vision/headache</div>
+      </div>
+    </div>
+    <div class="col-sm-10 anc-outcome">
+      <div class="col-sm-1 healthy">&nbsp;</div>
+      <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[8].month && symptomData[8].value == 'yes'}" ng-repeat="month in monthsArray">
+        <span ng-show="symptomData[8].month == month.monthNo">{{symptomData[8].value == 'yes'?'+':'-'}}</span>
+        
+      </div>
+      <div class="col-sm-1">{{symptomData[8].value == 'yes'?'+':'-'}}</div>
+      <div class="col-sm-1">&nbsp;</div>
+    </div>
+  </div>
+  <div class="col-sm-3 anc-calender-add">
+    <form class="form-horizontal">
+     <div class="form-group">
+      <div class="col-sm-12 text-right">           
+       
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-12">
+        <div class="col-sm-3">
+          <div class="input-group">
+            <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="FitsCalendarDate" is-open="openedFits"  ng-required="true" close-text="Close"  ng-hide="true" />
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open($event,'Fits')"><i class="icon-date"></i></button>
+            </span>
+          </div>
+        </div>
+        <div class="col-sm-9 radio-group">
+          <div>
+            <input type="radio" ng-model="FitsOutcome"  ng-value="'no'"  name="FitsCheck" id="radio65Fits" ng-change="updateFits()">
+            <label for="radio65Fits">No</label>
+          </div>
+          <div>
+           <input type="radio" ng-model="FitsOutcome" name="FitsCheck" ng-value="'yes'"  id="radio64Fits" ng-change="updateFits()">
+           <label for="radio64Fits">Yes</label> 
+         </div>
+       </div>
+     </div>
+   </div>
+ </form>
+</div>
+</div>
+<!--Fits row ENDS-->
+
+<!--Urine Sugar row-->
+<div class="anc-row clearfix">
+  <div class="col-sm-9">
+    <div class="col-sm-2 anc-video">
+      <div>
+        <img src="img/video-screen1.gif" class="img-responsive">
+        <div>Urine Sugar</div>
+      </div>
+    </div>
+    <div class="col-sm-10 anc-outcome">
+      <div class="col-sm-1 healthy">&nbsp;</div>
+      <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[9].month && symptomData[9].value == 'yes'}" ng-repeat="month in monthsArray">
+        <span ng-show="symptomData[9].month == month.monthNo">{{symptomData[9].value == 'yes'?'+':'-'}}</span>
+        
+      </div>
+      <div class="col-sm-1">{{symptomData[9].value == 'yes'?'+':'-'}}</div>
+      <div class="col-sm-1">&nbsp;</div>
+    </div>
+  </div>
+  <div class="col-sm-3 anc-calender-add">
+    <form class="form-horizontal">
+     <div class="form-group">
+      <div class="col-sm-12 text-right">           
+       
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-12">
+        <div class="col-sm-3">
+          <div class="input-group">
+            <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="USCalendarDate" is-open="openedUS"  ng-required="true" close-text="Close"  ng-hide="true" />
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open($event,'US')"><i class="icon-date"></i></button>
+            </span>
+          </div>
+        </div>
+        <div class="col-sm-9 radio-group">
+          <div>
+            <input type="radio" ng-model="USOutcome"  ng-value="'no'"  name="USCheck" id="radio75" ng-change="updateUS()">
+            <label for="radio75">No</label>
+          </div>
+          <div>
+            <input type="radio" ng-model="USOutcome" name="USCheck" ng-value="'yes'" id="radio76" ng-change="updateUS()">
+            <label for="radio76">Yes</label> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+</div>
+<!--US row ENDS-->
+
+<!--FEVER-->
+<div class="anc-row clearfix">
+  <div class="col-sm-9">
+    <div class="col-sm-2 anc-video">
+      <div>
+        <img src="img/video-screen1.gif" class="img-responsive">
+        <div>Fever</div>
+      </div>
+    </div>
+    <div class="col-sm-10 anc-outcome">
+      <div class="col-sm-1 healthy">&nbsp;</div>
+      <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[10].month && symptomData[10].value == 'yes'}" ng-repeat="month in monthsArray">
+        <span ng-show="symptomData[10].month == month.monthNo">{{symptomData[10].value == 'yes'?'+':'-'}}</span>
+        
+      </div>
+      <div class="col-sm-1">{{symptomData[10].value == 'yes'?'+':'-'}}</div>
+      <div class="col-sm-1">&nbsp;</div>
+    </div>
+  </div>
+  <div class="col-sm-3 anc-calender-add">
+    <form class="form-horizontal">
+     <div class="form-group">
+      <div class="col-sm-12 text-right">           
+       
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-12">
+        <div class="col-sm-3">
+          <div class="input-group">
+            <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="FeverCalendarDate" is-open="openedFever"  ng-required="true" close-text="Close"  ng-hide="true" />
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open($event,'Fever')"><i class="icon-date"></i></button>
+            </span>
+          </div>
+        </div>
+        <div class="col-sm-9 radio-group">
+          <div>
+            <input type="radio" ng-model="FeverOutcome"  ng-value="'no'"  name="FeverCheck" id="radioFever5" ng-change="updateFever()">
+            <label for="radioFever5">No</label>
+          </div>
+          <div>
+            <input type="radio" ng-model="FeverOutcome" name="FeverCheck" ng-value="'yes'" id="radioFever4" ng-change="updateFever()">
+            <label for="radioFever4">Yes</label>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+</div>
+<!--FeverS row ENDS-->
+
+<!--Fits row-->
+<div class="anc-row clearfix">
+  <div class="col-sm-9">
+    <div class="col-sm-2 anc-video">
+      <div>
+        <img src="img/video-screen1.gif" class="img-responsive">
+        <div>Foul swelling Discharge</div>
+      </div>
+    </div>
+    <div class="col-sm-10 anc-outcome">
+      <div class="col-sm-1 healthy">&nbsp;</div>
+      <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[11].month && symptomData[11].value == 'yes'}" ng-repeat="month in monthsArray">
+        <span ng-show="symptomData[11].month == month.monthNo">{{symptomData[11].value == 'yes'?'+':'-'}}</span>
+        
+      </div>
+      <div class="col-sm-1">{{symptomData[11].value == 'yes'?'+':'-'}}</div>
+      <div class="col-sm-1">&nbsp;</div>
+    </div>
+  </div>
+  <div class="col-sm-3 anc-calender-add">
+    <form class="form-horizontal">
+     <div class="form-group">
+      <div class="col-sm-12 text-right">           
+       
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-12">
+        <div class="col-sm-3">
+          <div class="input-group">
+            <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="FoulSmellCalendarDate" is-open="openedFoulSmell"  ng-required="true" close-text="Close"  ng-hide="true" />
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open($event,'FoulSmell')"><i class="icon-date"></i></button>
+            </span>
+          </div>
+        </div>
+        <div class="col-sm-9 radio-group">
+          <div>
+            <input type="radio" ng-model="FoulSmellOutcome"  ng-value="'no'"  name="FitsCheck"  id="radioFoulsmell65" ng-change="updateFoulSmell()">
+            <label for="radioFoulsmell65">No</label>
+          </div>
+          <div>
+           <input type="radio" ng-model="FoulSmellOutcome" name="FitsCheck" ng-value="'yes'" id="radiFoulsmello64" ng-change="updateFoulSmell()">
+           <label for="radioFoulsmell64">Yes</label> 
+         </div>
+       </div>
+     </div>
+   </div>
+ </form>
+</div>
+</div>
+<!--FoulSmell row ENDS-->
+
+<!--weakness row-->
+<div class="anc-row clearfix">
+  <div class="col-sm-9">
+    <div class="col-sm-2 anc-video">
+      <div>
+        <img src="img/video-screen1.gif" class="img-responsive">
+        <div>Weakness/other illness</div>
+      </div>
+    </div>
+    <div class="col-sm-10 anc-outcome">
+      <div class="col-sm-1 healthy">&nbsp;</div>
+      <div class="col-sm-1" ng-repeat="month in monthsArray">
+        <span ng-show="symptomData[12].month == month.monthNo">{{symptomData[12].value == 'yes'?'+':'-'}}</span>
+        
+      </div>
+      <div class="col-sm-1">{{symptomData[13].value == 'yes'?'+':'-'}}</div>
+      <div class="col-sm-1">&nbsp;</div>
+    </div>
+  </div>
+  <div class="col-sm-3 anc-calender-add">
+    <form class="form-horizontal">
+     <div class="form-group">
+      <div class="col-sm-12 text-right">           
+       
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-12">
+        <div class="col-sm-3">
+          <div class="input-group">
+            <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="WeaknessCalendarDate" is-open="openedWeakness"  ng-required="true" close-text="Close"  ng-hide="true" />
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open($event,'Weakness')"><i class="icon-date"></i></button>
+            </span>
+          </div>
+        </div>
+        <div class="col-sm-9 radio-group">
+          <div>
+            <input type="radio" ng-model="WeaknessOutcome"  ng-value="'no'"  name="WeaknessCheck" id="radioWeakness65" ng-change="updateWeakness()">
+            <label for="radioWeakness65">No</label></div>
+            <div>            
+             <input type="radio" ng-model="WeaknessOutcome" name="WeaknessCheck" ng-value="'yes'" id="radioWeakness64" ng-change="updateWeakness()">
+             <label for="radioWeakness64">Yes</label> </div>
+           </div>
+         </div>
+       </div>
+     </form>
+   </div>
+ </div>
+ <!--Weakness row ENDS-->
+ <h4>Which FP Method you use</h4>
+ <!--anc row-->
+ <div class="anc-row clearfix">
   <div class="col-sm-9">
     <div class="col-sm-2 anc-video">
       <div>
@@ -1032,57 +1093,61 @@
     <form class="form-horizontal">
       <div class="form-group">
         <div class="col-sm-8 col-sm-offset-2">
-            <div class="input-group date-picker"> 
-                          <input type="text" class="form-control" placeholder="12/12/1986">
-                          <span class="input-group-btn"><i class="icon-date">&nbsp;</i></span>
-                      </div>
+          <div class="input-group date-picker"> 
+            <input type="text" class="form-control" placeholder="12/12/1986">
+            <span class="input-group-btn"><i class="icon-date">&nbsp;</i></span>
+          </div>
         </div>
       </div>
     </form>
   </div>
 </div>
-   <!--fp methods wrapper-->
- <div class="clearfix fp-methods-wrapper">
-   <div class="col-sm-2">
-    &nbsp;
-  </div>
-    <div class="col-sm-10 fp-methods">
-      <ul>
-        <li>
-        <div><span>&nbsp;</span></div>
-        <div>None</div>
-        </li>
-         <li>
-        <div><span><img src="img/condom-pic.png"></span></div>
-        <div>Condom</div>
-        </li>
-        <li>
-        <div><span><img src="img/ocp-pic.png"></span></div>
-        <div>OCP</div>
-        </li>
-        <li>
-        <div><span><img src="img/dmpa-pic.png"></span></div>
-        <div>DMPA</div>
-        </li>
-        <li>
-        <div><span><img src="img/iucd-pic.png"></span></div>
-        <div>IUCD</div>
-        </li>
-        <li>
-        <div><span><img src="img/fst-pic.png"></span></div>
-        <div>F-St</div>
-        </li>
-        <li>
-        <div><span><img src="img/mst-pic.png"></span></div>
-        <div>M-St</div>
-        </li>
-      </ul>
-  </div>
- </div>
+<!--fp methods wrapper-->
+<div class="clearfix fp-methods-wrapper">
+ <div class="col-sm-2">
+  &nbsp;
+</div>
+<div class="col-sm-10 fp-methods">
+  <ul>
+    <li>
+      <div><span>&nbsp;</span></div>
+      <div>None</div>
+    </li>
+    <li>
+      <div><span><img src="img/condom-pic.png"></span></div>
+      <div>Condom</div>
+    </li>
+    <li>
+      <div><span><img src="img/ocp-pic.png"></span></div>
+      <div>OCP</div>
+    </li>
+    <li>
+      <div><span><img src="img/dmpa-pic.png"></span></div>
+      <div>DMPA</div>
+    </li>
+    <li>
+      <div><span><img src="img/iucd-pic.png"></span></div>
+      <div>IUCD</div>
+    </li>
+    <li>
+      <div><span><img src="img/fst-pic.png"></span></div>
+      <div>F-St</div>
+    </li>
+    <li>
+      <div><span><img src="img/mst-pic.png"></span></div>
+      <div>M-St</div>
+    </li>
+  </ul>
+</div>
+</div>
 
+</div>
+<div class="row">
+  <div class="col-sm-12 text-right">
+    <button class="default-btn" ng-click="" ng-show="pregWomanExist" ng-disabled="dateOfDelivery">Go to new born</button>
+    <button class="default-btn" ng-click="saveANCDetails()"ng-show="pregWomanExist">Save</button>
   </div>
-  <div class="row"><div class="col-sm-12 text-right"><button class="default-btn" ng-click="saveANCDetails()"ng-show="pregWomanExist">Save</button></div></div>
-  <div class="row"><div class="col-sm-12 text-right"><button class="default-btn" ng-click="" ng-show="pregWomanExist" ng-disabled="dateOfDelivery">Go to new born</button></div></div>
-      </div>
+</div>
+</div>
 <!--anc-calender-wrapper ends here-->
- </div>
+</div>

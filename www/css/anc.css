@@ -1,196 +1,254 @@
 .anc-calender-top > div:first-child , .anc-calender-bottom > .anc-row > div, .anc-calender-bottom .anc-outcome{
-	padding: 0;
-}
-.anc-calender-top > div:last-child {
-	padding-right: 0;
-}
-.anc-calender-bottom .anc-video{
-	padding-left: 0;
-}
-.anc-video > div img{
-	display: inline-block;
-}
-.anc-video > div{
-	text-align: center;
-	font-size: 12px;
-}
-.maternal-outcome{
-	background: #f467a7;
-	border: 1px #fff solid;
-	border-radius: 6px;
-	padding:15px;
-}
-.maternal-outcome label{
-	padding-left: 0;
-	font-size: 16px;
-}
-.mother-age-details{
-	border: 1px #fff solid;
-	border-radius: 6px;
-	background: #f467a7;
-	margin-bottom:15px;
-	padding:10px;
-}
-.mother-age-details .form-group{
-	margin-bottom:13px;
-}
-.mother-age-details .form-group:last-child{
-	margin-bottom:0;
-}
-.mother-age-details .form-horizontal .control-label{
-	padding-top: 0;
-}
-.mother-age-details .form-horizontal >div:first-child{
-padding-left:0;
-}
-.mother-age-details input[type="text"], .mother-delivery-details input[type="text"]{
-	height: 20px;
-	border: 1px #a8a8a8 solid;
-	padding: 2px;
-}
-.mother-profile-pic{
-	background: #ccc;
-	width:74px;
-	height:86px;
-	margin-left: -15px;
-	border: 1px #fff solid;
-}
-.mother-profile-pic + div{
-	margin-top:6px;
-}
-.mother-delivery-details{
-	background: #b2dfee;
-	border: 1px #fff solid;
-	border-radius: 6px;
-	padding:10px;
-}
-.mother-delivery-details .form-group{
-	margin-bottom: 0;
-}
-.mother-delivery-details .delivery-date label{
-	padding:0 10px 0 0;
-}
-.mother-delivery-details .delivery-date label ~ div{
-	padding: 0;
-}
-.mother-delivery-details .delivery-date .delivery-child{
-	padding:0 5px;
-}
-.mother-delivery-details .delivery-date .delivery-child a{
-	width: 27px;
-	height: 27px;
-	display: inline-block;
-	background: #fff;
-	border-radius: 3px;
-	padding:5px;
-	border: 1px #a6a6a6 solid;
-}
-.icon-girl-small{
-	 background-position: -133px -558px !important;
-    height:18px;
-    width:18px;
-}
-.icon-boy-small{
-	 background-position: -133px -582px !important;
-    height:18px;
-    width:18px;
-}
-}
-.mother-delivery-details .birth-outcome{
-	margin:0;
-}
-.mother-delivery-details .birth-outcome h5{
-	margin-bottom: 2px;
-}
-.mother-delivery-details .birth-outcome > div{
-	float: left;
-	padding-right:12px;
-	font-size: 11px;
-}
-.mother-delivery-details .birth-outcome > div label{
-	vertical-align: text-top;
-	text-align: left;
-	padding-top: 0;
-	margin-right:13px;
-}
-.mother-delivery-details .birth-outcome > div label:last-child{
-	margin-right: 0;
-}
-.icon-date-small{
-	 background-position: -134px -532px !important;
-    height:18px;
-    width:18px;
-}
+		padding: 0;
+	}
+	.anc-calender-bottom{
+		margin:15px 0;
+		height: 210px;
+		overflow: auto;
+		overflow-x:hidden;
+	}
+	.anc-calender-top > div:last-child {
+		padding-right: 0;
+	}
+	.anc-calender-bottom .anc-video{
+		padding-left: 0;
+	}
+	.anc-video > div img{
+		display: inline-block;
+	}
+	.anc-video > div{
+		text-align: center;
+		font-size: 12px;
+	}
+	.maternal-outcome, .delivery-details{
+		background: #f467a7;
+		border: 1px #fff solid;
+		border-radius: 6px;
+		padding:5px 10px;
+	}
+	.delivery-details{
+		padding:12px;
+	}
+	.delivery-details .date-picker{
+		margin-left: -15px;
+	}
+	.maternal-outcome label{
+		padding-left: 0;
+		font-size: 16px;
+	}
+	.mother-profile{
+		margin-left: -15px;
+		text-align: center;	
+		position: absolute;
+		left: 50%;
+		-webkit-transform: translateX(-50%);
+		transform: translateX(-50%);
+	}
+	.mother-profile .photo{
+		width:96px;
+		height:111px;
+		border: 1px #fff solid;
+	}
+	.mother-profile .photo + div{
+		margin-top:6px;
+	}
+	.birth-outcome{
+		background: #b2dfee;
+		border: 1px #fff solid;
+		border-radius: 6px;
+		padding:5px 10px;
+		margin-bottom: 15px;
+	}
+	.birth-outcome h4, .maternal-outcome h4{
+		font-family: OpenSans-Semibold;
+		margin: 5px 0 7px;
+	}
+	.birth-outcome .form-group{
+		margin-bottom: 0;
+	}
+	.birth-outcome .birth-date{
+		margin-bottom:5px;
+	}
+	.birth-outcome .birth-date label{
+		padding:0;
+		text-align: left;
+	}
+	..birth-outcome .birth-date label ~ div{
+		padding: 0;
+	}
+	.birth-outcome .birth-date .birth-child{
+		padding-left: 5px;
+	}
+	
+	.birth-outcome .birth-date .birth-child a{
+		width: 27px;
+		height: 27px;
+		display: inline-block;
+		background: #fff;
+		border-radius: 3px;
+		padding:5px;
+		border: 1px #a6a6a6 solid;
+	}
+	.birth-outcome .birth-date .birth-child a.girl-child{
+		background: #faafba;
+		box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.8);
+		-moz-box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.8);
+		-webkit-box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.8), inset 0 5px 5px rgba(255,255,255,0.8);
+	}
+	.birth-outcome .birth-date .birth-child a.boy-child{
+		background: #61caec;
+		box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.8);
+		-moz-box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.8);
+		-webkit-box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.8), inset 0 5px 5px rgba(255,255,255,0.8);
+	}
+	.birth-outcome .birth-date .birth-child a.misscarriage{
+		background: #e2e2e2;
+		box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.8);
+		-moz-box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.8);
+		-webkit-box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.8), inset 0 5px 5px rgba(255,255,255,0.8);
+	}
+	.birth-outcome .birth-date input[type="text"]{
+		height: 20px;
+		border: 1px #a8a8a8 solid;
+		padding: 2px;
+		font-size: 12px;
+	}
+	.birth-outcome .birth-date label ~ div{
+		padding: 0;
+	}
+	.birth-outcome .radio-group > div{
+		float: left;
+		margin-right: 15px;
+	}
+	.icon-girl-small{
+		background-position: -133px -558px !important;
+		height:18px;
+		width:18px;
+	}
+	.icon-boy-small{
+		background-position: -133px -582px !important;
+		height:18px;
+		width:18px;
+	}
+	.icon-misscarriage{
+		background-position: -218px -285px !important;
+		height:18px;
+		width:18px;
+	}
+	.icon-date-small{
+		background-position: -134px -532px !important;
+		height:18px;
+		width:18px;
+	}
+	.icon-date-medium{
+		background-position: -218px -325px !important;
+		height:22px;
+		width:22px;
+	}
+	.delivery-details form > div {
+		padding-left: 0;
+	}
+	.delivery-details form > div:last-child{
+		padding-right: 0;
+		text-align: right;
+	}
+	.delivery-details form > div label + div{
+		padding-right: 0;
+	}
+	.delivery-details form > div label.control-label{
+		text-align: left;
+		padding: 0;
+	}
+	.delivery-details form input[type="text"]{
+		height: 22px;
+		border-radius: 3px;
+		border:1px #a8a8a8 solid;
+	}
+	.delivery-details button.default-btn{
+		height: 30px;
+		line-height: 30px;
+		font-size: 16px;
 
-.anc-calender-head{
-	font-family: OpenSans-Semibold;
-	padding: 0;
-}
-.anc-calender-head .months-name, .anc-calender-head .months-activity{
-	padding: 0;
-}
-.anc-calender-head .months-name > div{
-	height: 60px;
-}
-.anc-calender-head .months-activity > div{
-	position: relative;
-	background: #fff;
-	height:136px;
-	border: 1px #000 solid;
-	border-right:none;
-	text-align: center;
-	padding: 0;
-	overflow: hidden;
-}
-.anc-calender-head .months-activity > div img{
-	max-width: 47px;
-	margin:0 auto;
-}
-.anc-calender-head .months-activity > div:nth-child(2) .vertical-txt{
-	left: 25%;
-}
-.anc-calender-head .months-activity > div:last-child{
-	border-right: 1px #000 solid;
-}
-.vertical-txt{
-    position: absolute;
+	}
+	.maternal-outcome .radio-list > div, .birth-outcome .radio-list > div{
+		float: left;
+		margin-right:10px;
+	}
+	.maternal-outcome .radio-list > div:nth-child(2), .birth-outcome .radio-list > div:nth-child(2){
+		margin-left:20px;
+	}
+	.maternal-outcome .radio-list > div label, .birth-outcome .radio-list > div label{
+		font-size: 14px;
+	}
+	.anc-calender-head{
+		font-family: OpenSans-Semibold;
+		padding: 0;
+	}
+	.anc-calender-head .months-name, .anc-calender-head .months-activity{
+		padding: 0;
+	}
+	.anc-calender-head .months-name > div{
+		height: 60px;
+	}
+	.anc-calender-head .months-activity > div{
+		position: relative;
+		background: #fff;
+		height:136px;
+		border: 1px #000 solid;
+		border-right:none;
+		text-align: center;
+		padding: 0;
+		overflow: hidden;
+	}
+	.anc-calender-head .months-activity > div img{
+		max-width: 47px;
+		margin:0 auto;
+	}
+	.anc-calender-head .months-activity > div:nth-child(2) .vertical-txt{
+		left: 25%;
+	}
+	.anc-calender-head .months-activity > div:last-child{
+		border-right: 1px #000 solid;
+	}
+	.vertical-txt{
+		position: absolute;
    /*border: 1px solid black;
-    background-color: red;*/
-    -ms-transform: rotate(-90deg);
-    -ms-transform-origin:0 0;
-    -webkit-transform: rotate(-90deg); 
-    -webkit-transform-origin: 0 0;
-    transform: rotate(-90deg);
-    transform-origin:0 0;
-    width: 133px;
-    top: 100%;
-    left: 3px;
-    padding: 0 10px;
-  font-size: 16px;
-  line-height: 1.3;
+   background-color: red;*/
+   -ms-transform: rotate(-90deg);
+   -ms-transform-origin:0 0;
+   -webkit-transform: rotate(-90deg); 
+   -webkit-transform-origin: 0 0;
+   transform: rotate(-90deg);
+   transform-origin:0 0;
+   width: 133px;
+   top: 100%;
+   left: 3px;
+   padding: 0 10px;
+   font-size: 16px;
+   line-height: 1.3;
 }
 .anc-calender-head .months-name .vertical-txt{
-  width: 60px;
-  left: 50%;
-  margin: 0 auto;
-  transform-origin: -10px 0px;
+	width: 60px;
+	left: 50%;
+	margin: 0 auto;
+	transform-origin: -10px 0px;
 }
 .month-heading{
-  transform-origin: 0 100%;
-  font-size: 18px;
-  width: 90px;
-  right: 100%;
-  position: absolute !important;
-  left: 108px;
-  top: -20px;
-  background: transparent !important;
-  border: none !important;
+	transform-origin: 0 100%;
+	font-size: 18px;
+	width: 90px;
+	right: 100%;
+	position: absolute !important;
+	left: 108px;
+	top: -20px;
+	background: transparent !important;
+	border: none !important;
 }
 .anc-row{
-	margin:15px 0;
+	margin-bottom: 15px;
 }
 .anc-outcome > div{
-	height: 106px;
+	height: 96px;
 	border:1px #000 solid;
 	border-right:none;
 	background: #fff;
@@ -204,38 +262,104 @@ padding-left:0;
 	border-right: 1px #000 solid;
 }
 .anc-outcome .healthy{
-background: #d9d9d9;
+	background: #d9d9d9;
 }
 .anc-outcome .weak{
-background: #ffff00;
+	background: #ffff00;
 }
 .anc-outcome .dead{
-background: #ff0000;
+	background: #ff0000;
 }
 .anc-calender-add{
 	background: #f9f9f9;
 	border: 1px #000 solid;
 	border-left:none;
-	height: 106px;
+	height:96px;
+	padding:10px !important;
 }
 .anc-calender-add .form-horizontal {
-	padding:15px 0;
+	padding:0;
 }
-
-.anc-calender-add .radio-group label.control-label{
-	float: right;
-	margin-right:15px;
-	vertical-align: middle;
-	font-size: 16px;
-}
-.anc-calender-add .radio-group > label.control-label:first-child{
-	margin-right: 0;
-}
-.anc-calender-add .radio-group label input[type="radio"]{
-	margin-right: 5px;
+.anc-calender-add .form-group{
+	margin-bottom: 10px;
 }
 .anc-calender-add input[type="text"]{
 	width:40px;
 	display: inline-block;
-	  margin: 0 10px;
+	margin: 0 10px;
+}
+.anc-calender-add .date-picker input[type="text"]{
+	width:100%;
+	margin:0;
+}
+.fp-methods-wrapper{
+	margin-top: -15px;
+}
+.fp-methods-wrapper > div:first-child{
+	width: 12%;
+}
+.fp-methods-wrapper > div:last-child{
+	background: #fdd7dd;
+	width: 88%;
+}
+
+.fp-methods{
+	padding:0;
+	border: 1px #000 solid;
+	border-top: 0;
+}
+.fp-methods ul{
+	padding:10px;
+	list-style: none;
+}
+.fp-methods ul li{
+	padding-right:10px;
+	width: 13.88%;
+	display: inline-block;
+	text-align: center;
+}
+.fp-methods ul li:last-child{
+	padding-right: 0;
+}
+.fp-methods ul li > div:first-child{
+	height: 46px;
+	border: 1px #fff solid;
+}
+.fp-methods ul li > div:last-child{
+	font-size: 14px;
+	margin-top:6px;
+}
+.fp-methods ul li span{
+	display: inline-block;
+	background: #fff;
+	height: 44px;
+	border-radius: 50%;
+	width: 76px;
+	line-height: 43px;
+	overflow: hidden;
+}
+.fp-methods ul li:nth-child(1) > div:first-child{
+	background:#7f7f7f;
+}
+.fp-methods ul li:nth-child(2) > div:first-child{
+	background:#5b9bd5;
+}
+.fp-methods ul li:nth-child(3) > div:first-child{
+	background:#00b050;
+}
+.fp-methods ul li:nth-child(4) > div:first-child{
+	background:#ed7d31;
+}
+.fp-methods ul li:nth-child(5) > div:first-child{
+	background:#7030a0;
+}
+.fp-methods ul li:nth-child(6) > div:first-child{
+	background:#ff0066;
+}
+.fp-methods ul li:nth-child(7) > div:first-child{
+	background:#2f5496;
+}
+.fp-methods ul li:nth-child(6) span, .fp-methods ul li:nth-child(7) span{
+	border-radius: 0;
+	width: 56px;
 }
