@@ -162,7 +162,8 @@
   </div>
 </div>
 <div class="col-sm-2">
-  <input type="text" class="form-control" ng-model="child.age" ng-blur="setDob(false, $index);">
+  <input type="text" class="form-control" ng-model="child.ageMonths" ng-blur="setDob(false, $index);" placeholder="mm">
+  <input type="text" class="form-control" ng-model="child.ageDays" ng-blur="setDob(false, $index);" placeholder="dd">
 </div>   
 <div class="col-sm-2 select-child">
   <div class="girl-child"><input type="radio" ng-model="child.sex" value="F"><i class="icon-select-girl" ng-class="selectedGenderForChild(child,true);">&nbsp;</i></div>
@@ -187,10 +188,10 @@
     <div class="women-links col-sm-12">
      <div class="col-sm-12"><h4>Go to Woman</h4></div>
      <div class="col-sm-12 text-center">
-     <a href="#/fp" ng-show="!isWomanPregnant();">
+     <a href="javascript:void(0);" ng-click = "navigateToWoman();" ng-show="!isWomanPregnant();">
          <i class="icon-women">&nbsp;</i>
      </a>
-     <a href="#/anc" ng-show="isWomanPregnant();">
+     <a href="javascript:void(0)" ng-click = "navigateToWoman();" ng-show="isWomanPregnant();">
          <i class="icon-pregnant-women">&nbsp;</i>
      </a>
     </div>
@@ -205,11 +206,11 @@
 
 
 <div ng-repeat ="child in savedChildren">
- <a href="#/child/{{child.visibleID}}">
+ <a href="javascript:void(0);" ng-click="navigateToChild($index);">
   <i ng-class="getChildIcon(child);">&nbsp;</i>
 </a>
 <span><b>Name:</b> {{child.name}}</span>
-<span><b>Age:</b> {{child.age}}</span>
+<span><b>Age:</b> {{child.ageMonths}} months,</br> {{child.ageDays}} days</span>
 </div>
 </div>
 </div>

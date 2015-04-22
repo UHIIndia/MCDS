@@ -1,11 +1,24 @@
 angular.module('uhiApp.services')
 .factory('UtilityService',['$cordovaFile', '$cordovaCamera', function($cordovaFile, $cordovaCamera){
   var cityCode="500", slumCode="200", workerCode="100";
- var dataDir, folder="images";  
+  var dataDir, folder="images"; 
+  var womanVisibleID, childVisibleID;
   return {
     alertMessages: {
       liveBirth: 'Live births can not be greater than total pregnencies',
       livingChildren: 'Living Children can not be greater than number of children birth alive'
+    },
+    setWomanVisibleID: function (id) {
+      womanVisibleID = id;
+    },
+    getWomanVisibleID : function() {
+      return womanVisibleID;
+    },
+    setChildVisibleID: function (id) {
+      childVisibleID = id;
+    },
+    getChildVisibleID : function() {
+      return childVisibleID;
     },
     getSlumCode: function(){
       return slumCode;
@@ -25,32 +38,34 @@ angular.module('uhiApp.services')
       }
         var currDate =new Date(),
         diffYear = currDate.getFullYear() - dob.getFullYear(),
-        diffMonth = currDate.getMonth() - dob.getMonth();
+        diffMonth = currDate.getMonth() - dob.getMonth(),
+        diffDays = currDate.getDate() - dob.getDate();
         if(inYear){
-          // age is calculated in years 
+          // age is calculated in years return years
           return diffYear;
         } else{
-          //age is Calculated in months
-          return 12 * diffYear + diffMonth;       
+          //age is Calculated in months and days, return days  
+          return 30*(12 * diffYear + diffMonth)+diffDays;   
 
         }       
     
     },
-    calcDob : function(age,inYear){
+    /*function for calc dob based on age,
+    * params: inYear - true age in year, false age in months and Days
+    * returns a Date
+    */
+    calcDob : function(inYear, age, days){
       var currDate= new Date(),
       currYear=currDate.getFullYear(),
-      currMonth =currDate.getMonth() ;      
+      currMonth =currDate.getMonth() ;
+      age = parseInt(age);
       if(inYear){
         //return new Date("Jan,15,"+currYear - age);
         return new Date(currYear-age +"-01-15");//
-      } else {
-        //age value is in months
-        var year = parseInt(age/12), month=age%12, monthDiff = currMonth - month;
-        if(monthDiff>0){
-          return new Date(currYear - year+"-"+monthDiff+"-15");
-        } else{
-          return new Date(currYear - year - 1+"-"+(12+monthDiff)+"-15");
-        }
+      } else {       
+        days= parseInt(days);
+        days = age * 30 + days;
+        return this.subtractDaysFromDate(currDate, days);
       }
             
     },

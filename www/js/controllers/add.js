@@ -47,7 +47,11 @@ $scope.setAge = function(inYear, index){
   } else {
     var child = $scope.children[index];
     dob = child.dob;
-    if(dob) child.age = UtilityService.calcAge(dob, inYear);
+    if(dob) {
+      var totalDays = UtilityService.calcAge(dob, inYear);
+      child.ageMonths = parseInt(totalDays /30);
+      child.ageDays = totalDays%30;
+    }
   }
   
 };
@@ -59,7 +63,7 @@ $scope.setDob = function(inYear, index){
       //this is for woman
       age= $scope.woman.age;
       if(age){  
-        date = UtilityService.calcDob(age, inYear);
+        date = UtilityService.calcDob(inYear, age);
          mm = date.getMonth()+1;
          if(mm < 10)  mm = "0"+mm;
          dateStr =date.getDate()+"/"+mm+"/"+date.getFullYear();
@@ -68,14 +72,19 @@ $scope.setDob = function(inYear, index){
     } else{
       //this is for child
      var child = $scope.children[index];
-     age = child.age;
-     if(age) {
-       date = UtilityService.calcDob(age, inYear);
+     //ageMonths = child.ageMonths, ageDays = child.ageDays;
+      if(child.ageMonths && !child.ageDays){        
+          child.ageDays = 0;       
+      } else if(child.ageDays && !child.ageMonths){
+        child.ageMonths = 0;
+      } 
+      var months = child.ageMonths, days= child.ageDays;
+       date = UtilityService.calcDob(inYear, months, days);
        mm = date.getMonth()+1;
        if(mm < 10)  mm = "0"+mm;
        dateStr =date.getDate()+"/"+mm+"/"+date.getFullYear();
        child.dob = dateStr;
-     }
+     
     }  
 }
 //function for setting Expected delivery date based on LMP
@@ -170,11 +179,7 @@ $scope.saveDetails = function($event){
   // change image if image has been changed
  if(imgData){  
   UtilityService.saveImage(imgData, $scope.woman.womanID);
- }
-  // sort saved children on age youngest to oldest
-  $scope.children.sort(function(childA, childB){
-    return childA.age - childB.age;
-  });
+ }  
   //display saved children
   //$scope.savedChildren=angular.copy($scope.children);
  $scope.savedChildren = [];
@@ -205,6 +210,12 @@ $scope.saveDetails = function($event){
     } 
     
   });
+  // sort saved children on age youngest to oldest
+  $scope.savedChildren.sort(function(childA, childB){
+    var daysA = childA.ageMonths * 30 +childA.ageDays;
+    var daysB = childB.ageMonths * 30 +childB.ageDays;
+    return daysA - daysB;
+  });
  // update child related data (livingChildren and dob of youngest child)
   if($scope.savedChildren.length){
     $scope.woman.livingChildren = $scope.savedChildren.length;
@@ -222,20 +233,7 @@ $scope.addMoreChildren = function($event){
   $scope.children.push(childObj);
   $scope.isOpenPosition[$scope.children.length-1] = false;
 };
-// navigate to family planning page
-$scope.goToFP = function(){
-  if(!$scope.woman.womanID){
-    return false;
-  }
-  $location.path("/FP/"+ $scope.woman.visibleID);
-};
-// navigate to ANC page
-$scope.goToANC = function(){
-  if(!$scope.woman.womanID){
-    return false;
-  }
-  $location.path("/ANC/"+ $scope.woman.visibleID);
-};
+  /* calender related methods*/
 $scope.dateFormat = "dd/MM/yyyy";
 $scope.getMaxDate = function(isWoman) {
  var currDate =new Date(),
@@ -251,8 +249,7 @@ $scope.getMaxDate = function(isWoman) {
  }
 };
 $scope.isWomanDobCalenderOpen = false;
-$scope.isOpenPosition = {"0": false};
-  
+$scope.isOpenPosition = {"0": false};  
 $scope.openCalender = function($event, isWoman, $index) {
  $event.preventDefault();
  $event.stopPropagation();
@@ -263,6 +260,7 @@ $scope.openCalender = function($event, isWoman, $index) {
     $scope.isOpenPosition[$index] = true;
   }
  }
+/* calender methods ends here--  */
 $scope.getChildIcon = function(child){
   if(child.sex === 'M'){
     return 'icon-boy';
@@ -277,6 +275,36 @@ $scope.selectedGenderForChild = function(child, isGirl) {
     return "";
   } 
   return "inactive";
+}
+$scope.navigateToChild = function($index) {
+  var child = $scope.savedChildren[$index];
+  var childVisibleID = child.visibleID;
+  if(child.ageMonths > 24){
+    alert('This child id more than 2 years old, please select a child less than 2 years old');
+    return;
+  } else {
+    UtilityService.setChildVisibleID(childVisibleID);
+    var days = child.ageMonths * 30 + child.ageDays;
+    if(days<=42){
+      $location.path('/newborn');
+    } else {
+      $location.path('/immunization');
+    }    
+  }  
+}
+$scope.navigateToWoman = function() {
+  //set woman VisibleID 
+  var woman = $scope.woman;
+  if(!woman.visibleID){
+    // no woman has been added yet
+    return;
+  }
+  UtilityService.setWomanVisibleID(woman.visibleID);
+  if(woman.isPregnant === 'true'){
+    $location.path('/anc');
+  } else {
+    $location.path('/fp');
+  }
 }
 $scope.validations = {
  validateSave: function(){
