@@ -1,4 +1,4 @@
-angular.module('uhiApp.controllers').controller('FpController', function($scope, WomanService, familyPlanning) {
+angular.module('uhiApp.controllers').controller('FpController', function($scope, $timeout, WomanService, familyPlanning, videos) {
   var id = 'A-102.1';
   $scope.woman = WomanService.getWomanDetails(id);
 
@@ -16,6 +16,26 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
     });
     $scope.FPMethod = filteredMethodList[0];
     console.log($scope.FPMethod);
+  };
+
+  $scope.video = {};
+
+  $scope.video.list = videos.getFamilyPlanningVideos();
+
+  $scope.video.play = function(id) {
+    var selectedVideo = $scope.video.list.filter(function(e) {
+      return e.id === id;
+    });
+    $scope.video.path = selectedVideo[0].path;
+    $scope.video.show = true;
+    $timeout(function() {
+      document.getElementById('selected-video').play();
+    }, 1000);
+  };
+
+  $scope.video.stop = function() {
+    document.getElementById('selected-video').pause();
+    $scope.video.show = false;
   };
 
 });

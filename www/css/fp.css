@@ -286,3 +286,15 @@
 	right: 0;
 	margin:0 auto;
 }
+
+.family-planning-videos-container{
+  width: 2000px;
+}
+
+.video-thumbnail{
+  width: 150px;
+}
+
+.scroll-x{
+  overflow-x: auto;
+}
