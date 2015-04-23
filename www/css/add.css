@@ -125,6 +125,15 @@
 	.child-entries .form-group > div:last-child{
 		padding-right: 0;
 	}
+	.child-entries .age-group > div{
+		padding: 0;
+	}
+	.child-entries .age-group > div:first-child{
+		padding-right: 2px;
+	}
+		.child-entries .age-group > div:last-child{
+		padding-left: 2px;
+	}
 	.child-details .child-entries .select-child div{
 		position: relative;
 		display: inline-block;
