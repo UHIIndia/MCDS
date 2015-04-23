@@ -1,6 +1,6 @@
 angular.module('uhiApp.controllers')
-.controller('AddController', ['$scope','$location','$stateParams','WomanService','ChildService','UtilityService','$cordovaCamera',function ($scope, $location, $stateParams, WomanService, ChildService, UtilityService, $cordovaCamera){
- var imgData;
+.controller('AddController',function ($scope, $state, $stateParams, WomanService, ChildService, UtilityService, $cordovaCamera){
+ var imgData;  
 if($stateParams.id){
   $scope.woman = WomanService.getWomanDetails($stateParams.id);
   //get children for this woman
@@ -22,7 +22,7 @@ if($stateParams.id){
    $scope.savedChildren =angular.copy($scope.children);
  } else {
   alert("Woman Not in list, Navigating back to home page");
-  $location.path("/home");
+  $state.go("home");
  }
 } else{
   $scope.woman ={};
@@ -285,10 +285,10 @@ $scope.navigateToChild = function($index) {
   } else {
     UtilityService.setChildVisibleID(childVisibleID);
     var days = child.ageMonths * 30 + child.ageDays;
-    if(days<=42){
-      $location.path('/newborn');
+    if(days<=42){     
+      $state.go('newborn');
     } else {
-      $location.path('/immunization');
+      $state.go('immunization');
     }    
   }  
 }
@@ -301,9 +301,9 @@ $scope.navigateToWoman = function() {
   }
   UtilityService.setWomanVisibleID(woman.visibleID);
   if(woman.isPregnant === 'true'){
-    $location.path('/anc');
+    $state.go('anc');
   } else {
-    $location.path('/fp');
+    $state.go('fp');
   }
 }
 $scope.validations = {
@@ -337,4 +337,4 @@ $scope.validations = {
 }
   
 
-}]);
+});

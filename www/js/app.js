@@ -97,7 +97,8 @@ angular.module('uhiApp', ['ionic', 'ngCordova', 'uhiApp.controllers', 'uhiApp.se
   })
   .state('newborn', {
     url: "/newborn",
-    templateUrl: "templates/new-born.html"
+    templateUrl: "templates/new-born.html",
+    controller: "newBornController"
   });
 
   // if none of the above states are matched, use this as the fallback
