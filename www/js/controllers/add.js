@@ -212,13 +212,13 @@ $scope.saveDetails = function($event){
   });
   // sort saved children on age youngest to oldest
   $scope.savedChildren.sort(function(childA, childB){
-    var daysA = childA.ageMonths * 30 +childA.ageDays;
-    var daysB = childB.ageMonths * 30 +childB.ageDays;
+    var daysA = childA.ageMonths * 30 + childA.ageDays;
+    var daysB = childB.ageMonths * 30 + childB.ageDays;
     return daysA - daysB;
   });
  // update child related data (livingChildren and dob of youngest child)
   if($scope.savedChildren.length){
-    $scope.woman.livingChildren = $scope.savedChildren.length;
+    $scope.woman.livingChildrenCount = $scope.savedChildren.length;
     $scope.woman.youngestChildDob = $scope.savedChildren[0].dob; // array is already sorted from youngest to oldest
     WomanService.updateWomanDetails($scope.woman);
   }
