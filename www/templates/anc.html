@@ -396,6 +396,45 @@
     </div>
   </div>
 
+         <!-- <TT row -->
+    <div class="anc-row clearfix">
+      <div class="col-sm-9">
+        <div class="col-sm-2 anc-video">
+          <div>
+            <img src="img/video-screen1.gif" class="img-responsive">
+           <div>TT</div>
+          </div>
+        </div>
+        <div class="col-sm-10 anc-outcome">
+          <div class="col-sm-1 healthy">&nbsp;</div>
+           <div ng-class="{'col-sm-1':true,'weak': month.monthNo === nextTTMonth && alertTT ==  true}" ng-repeat="month in monthsArray"> <span ng-show="lastTTMonth == month.monthNo">{{lastTTCount}}</span></div>
+          <div class="col-sm-1">{{totalTTCount}}</div>
+          <div class="col-sm-1">&nbsp;</div>
+        </div>
+      </div>
+      <div class="col-sm-3 anc-calender-add">
+      <form class="form-horizontal">
+        <div class="form-group">
+        <div class="col-sm-12">
+          <div class="col-sm-3">
+            <p class="input-group">
+                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="TTCalendarDate" is-open="openedTT" ng-required="true" close-text="Close" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="open($event,'TT')"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </p>
+          </div>
+          <div class="col-sm-9 text-right">
+            <label class="control-label">TT in last pregnancy</label> <input type="text" class="form-control" ng-model="enteredTT"  ng-blur="updateTT();"/>
+            <label for="radio5TT" class="control-label"><input type="radio" ng-model="TTOutcome"  ng-value="'no'"  name="TTCheck" id="radio5TT">No</label>
+             <label for="radio4TT" class="control-label"><input type="radio" ng-model="TTOutcome" name="TTCheck" ng-value="'yes'" id="radio4TT">Yes</label> 
+          </div>
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+
   <!--anaemia row-->
   <div class="anc-row clearfix">
     <div class="col-sm-9">
@@ -405,6 +444,13 @@
           <div>Anaemia</div>
         </div>
       </div>
+      <div class="col-sm-10 anc-outcome">
+        <div class="col-sm-1 healthy">&nbsp;</div>
+        <div ng-class="{'col-sm-1':true,'dead': month.monthNo == symptomData[2].month && alertHB == true}" ng-repeat="month in monthsArray"> <span ng-show="symptomData[2].month == month.monthNo">{{symptomData[2].value}}</span></div>
+        <div class="col-sm-1">{{symptomData[2].value}}</div>
+        <div class="col-sm-1">&nbsp;</div>
+      </div>
+    </div>
       <div class="col-sm-10 anc-outcome">
         <div class="col-sm-1 healthy">&nbsp;</div>
         <div ng-class="{'col-sm-1':true,'dead': month.monthNo == symptomData[2].month && alertHB == true}" ng-repeat="month in monthsArray"> <span ng-show="symptomData[2].month == month.monthNo">{{symptomData[2].value}}</span></div>
@@ -701,6 +747,48 @@
   </div>
 </div>
 
+    <!--BP row-->
+    <div class="anc-row clearfix">
+      <div class="col-sm-9">
+        <div class="col-sm-2 anc-video">
+          <div>
+            <img src="img/video-screen1.gif" class="img-responsive">
+           <div>BP</div>
+          </div>
+        </div>
+        <div class="col-sm-10 anc-outcome">
+          <div class="col-sm-1 healthy">&nbsp;</div>
+         <!--  <div ng-class="{'col-sm-1':true,'dead': month.monthNo == lastHBMonth && alertHB == true}" ng-repeat="month in monthsArray"> <span ng-show="lastHBMonth == month.monthNo">{{lastHBValue}}</span></div>-->
+           <div ng-class="{'col-sm-1':true,'dead': month.monthNo == symptomData[13].month && symptomData[13].value == 'High'}" ng-repeat="month in monthsArray"> <span ng-show="symptomData[13].month == month.monthNo">{{symptomData[13].value == 'High'?'High':'Normal'}}</span></div>
+          <div class="col-sm-1">{{symptomData[13].value}}</span></div>
+          <div class="col-sm-1">&nbsp;</div>
+        </div>
+      </div>
+      <div class="col-sm-3 anc-calender-add">
+      <form class="form-horizontal">
+        <div class="form-group">
+        <div class="col-sm-12">
+          <div class="col-sm-3">
+            <p class="input-group">
+                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="BPCalendarDate" is-open="openedBP" ng-required="true" close-text="Close" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-click="open($event,'BP')"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </p>
+          </div>
+          <div class="col-sm-9 text-right">
+            <label class="control-label">140</label> <input type="text" class="form-control" ng-model="enteredBPHigh" ng-blur="updateBPNo();"> <label class="control-label">90</label> <input type="text" class="form-control" ng-model="enteredBPLow" ng-blur="updateBPNo();">
+            <label for="radio35BP" class="control-label"><input type="radio" ng-model="BPOutcome"  ng-value="'High'" name="BPCheck" 
+                id="radio35BP" ng-change="updateBP()">High</label>
+             <label for="radio34BP" class="control-label"><input type="radio" ng-model="BPOutcome" name="BPCheck" ng-value="'Normal'" 
+              id="radio34BP" ng-change="updateBP()">Nomal</label> 
+          </div>
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+
 <!--Urine Protein row-->
 <div class="anc-row clearfix">
   <div class="col-sm-9">
@@ -708,6 +796,17 @@
       <div>
         <img src="img/video-screen1.gif" class="img-responsive">
         <div>Urine Protein</div>
+      </div>
+    </div>
+    <div class="col-sm-10 anc-outcome">
+      <div class="col-sm-1 healthy">&nbsp;</div>
+      <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[6].month && symptomData[6].value == 'yes'}" ng-repeat="month in monthsArray">
+            <span ng-show="symptomData[6].month == month.monthNo">{{symptomData[6].value}}</span>
+           
+          </div>
+          <div class="col-sm-1">{{symptomData[6].value}}</div>
+          <div class="col-sm-1">&nbsp;</div>
+        </div>
       </div>
     </div>
     <div class="col-sm-10 anc-outcome">
