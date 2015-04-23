@@ -1,5 +1,6 @@
 .newborn-wrapper .light-blue-block{
 	padding-top: 15px;
+	margin-bottom: 15px;
 }
 .newborn-wrapper .light-blue-block label{
 	text-align: left;
@@ -15,6 +16,10 @@
 }
 .newborn-wrapper .light-blue-block > div:last-child{
 	padding-right: 0;
+}
+.newborn-wrapper .light-blue-block .age-group label + div > div{
+	padding-left: 0;
+
 }
 
 .newborn-thead-wrapper > div > div:first-child,
@@ -64,6 +69,7 @@
 .newborn-tbody-wrapper .newborn-tbody > div{
 	border-right:1px #000 solid;
 	height: 103px;
+	background: #fff;
 }
 .newborn-tbody-wrapper .newborn-tbody > div:last-child{
 	border-right:none;
@@ -76,8 +82,42 @@
 .radio-group > div:first-child{
 	margin-right: 0;
 }
+.newborn-tbody-wrapper{
+	height: 250px;
+	overflow: auto;
+	margin-bottom: 15px;
+}
 .newborn-tbody input[type="text"] {
   width: 40px;
   display: inline-block;
   margin: 0 10px;
+}
+.newborn-thead-wrapper > div, .newborn-tbody-wrapper > div > div{
+	padding: 0;
+}
+
+.transform-y100{
+	transform:translateY(100%);
+}
+.newborn-footer > div{
+	padding: 0;
+}
+.newborn-footer .videos-block{
+	padding-left: 0;
+}
+.newborn-footer .videos-block + div{
+	padding-right: 0;
+	padding-top: 40px;
+}
+.newborn-footer .videos-block a{
+	margin-right: 20px;
+}
+.newborn-footer .videos-block a:last-child{
+	margin-right: 0;
+}
+.newborn-footer .videos-block + div button{
+	margin-right: 15px;
+}
+.newborn-footer .videos-block + div button:last-child{
+	margin-right: 0;
 }
