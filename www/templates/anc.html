@@ -1167,7 +1167,15 @@
       <div class="col-sm-1 healthy">&nbsp;</div>
       <div class="col-sm-1 " ng-repeat="month in monthsArray" ng-class="{'weak':month.monthNo == FPmonth1 || month.monthNo == FPmonth2 ||month.monthNo == FPmonth3}" ></div>
       <div class="col-sm-1">&nbsp;</div>
-      <div class="col-sm-1">&nbsp;</div>
+      <div class="col-sm-1"><span>
+          <img src="" ng-show="FPMethod.id == 0 && dateOfDelivery == false">
+          <img src="img/condom-pic.png" ng-show="FPMethod.id == 1 && dateOfDelivery == false">
+          <img src="img/ocp-pic.png" ng-show="FPMethod.id == 2 && dateOfDelivery == false">
+          <img src="img/dmpa-pic.png" ng-show="FPMethod.id == 3 && dateOfDelivery == false">
+          <img src="img/iucd-pic.png" ng-show="FPMethod.id == 4 && dateOfDelivery == false">
+          <img src="img/fst-pic.png" ng-show="FPMethod.id == 5 && dateOfDelivery == false">
+          <img src="img/mst-pic.png" ng-show="FPMethod.id == 6 && dateOfDelivery == false">
+      </span></div>
     </div>
   </div>
   <div class="col-sm-3 anc-calender-add">
@@ -1188,34 +1196,34 @@
  <div class="col-sm-2">
   &nbsp;
 </div>
-<div class="col-sm-10 fp-methods">
+<div class="col-sm-10 fp-methods"  ng-disabled="dateOfDelivery" ng-class="disableCls:dateOfDelivery == false">
   <ul>
     <li>
-      <div><span>&nbsp;</span></div>
+      <div ng-click="selectFPMethod(0)" ng-class="{'active': FPMethod.id===0 && dateOfDelivery == false}"><span>&nbsp;</span></div>
       <div>None</div>
     </li>
     <li>
-      <div><span><img src="img/condom-pic.png"></span></div>
+      <div ng-click="selectFPMethod(1)" ng-class="{'active': FPMethod.id===1 && dateOfDelivery == false}"><span><img src="img/condom-pic.png"></span></div>
       <div>Condom</div>
     </li>
     <li>
-      <div><span><img src="img/ocp-pic.png"></span></div>
+      <div ng-click="selectFPMethod(2)" ng-class="{'active': FPMethod.id===2 && dateOfDelivery == false}"><span><img src="img/ocp-pic.png"></span></div>
       <div>OCP</div>
     </li>
     <li>
-      <div><span><img src="img/dmpa-pic.png"></span></div>
+      <div ng-click="selectFPMethod(3)" ng-class="{'active': FPMethod.id===3 && dateOfDelivery == false}"><span><img src="img/dmpa-pic.png"></span></div>
       <div>DMPA</div>
     </li>
     <li>
-      <div><span><img src="img/iucd-pic.png"></span></div>
+      <div ng-click="selectFPMethod(4)" ng-class="{'active': FPMethod.id===4 && dateOfDelivery == false}"><span><img src="img/iucd-pic.png"></span></div>
       <div>IUCD</div>
     </li>
     <li>
-      <div><span><img src="img/fst-pic.png"></span></div>
+      <div ng-click="selectFPMethod(5)" ng-class="{'active': FPMethod.id===5 && dateOfDelivery == false}"><span><img src="img/fst-pic.png"></span></div>
       <div>F-St</div>
     </li>
     <li>
-      <div><span><img src="img/mst-pic.png"></span></div>
+      <div ng-click="selectFPMethod(6)" ng-class="{'active': FPMethod.id===6 && dateOfDelivery == false}"><span><img src="img/mst-pic.png"></span></div>
       <div>M-St</div>
     </li>
   </ul>

@@ -1,5 +1,5 @@
 angular.module('uhiApp.controllers')
-.controller('AncController', function($scope,$timeout,UtilityService,$location) {
+.controller('AncController', function($scope,$timeout,UtilityService,familyPlanning,$location) {
 
     var womanData={ "womanID": "0121230250012001", // city+slum+worker+house+woman
         "name": null,
@@ -1342,10 +1342,23 @@ angular.module('uhiApp.controllers')
     $scope.$watch(function(scope) {return $scope.DODCalendarDate},
         function() {
             if($scope.DODCalendarDate){
+            $scope.FPMethod =-1;    
             $scope.dateOfDelivery = false;
             }
         }
     );
+
+    $scope.FPMethod =-1;
+    //LOGIC FOR sELECTING fp METHOD
+    var familyPlanningMethods = familyPlanning.getFamilyPlanningMethods();
+
+      $scope.selectFPMethod = function(methodID) {
+         var filteredMethodList = familyPlanningMethods.filter(function(e) {
+          return e.id === methodID;
+        });
+        $scope.FPMethod = filteredMethodList[0];
+        console.log( $scope.FPMethod);
+      };
 
     $scope.getDate=function(){
         var today=new Date();
