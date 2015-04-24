@@ -188,8 +188,13 @@
 .current-fp-method .fp-methods .align-left > div:first-child,
 .current-fp-method .fp-methods .align-right > div:first-child{
 	height:42px;
-	border: 1px #fff solid;
+	border: 2px #fff solid;
 	overflow: hidden;
+}
+
+.current-fp-method .fp-methods .align-left.active > div:first-child,
+.current-fp-method .fp-methods .align-right.active > div:first-child{
+  border: 2px #000000 solid;
 }
 
 .current-fp-method .fp-methods > div:nth-child(2) .align-left div:first-child{

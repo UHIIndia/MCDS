@@ -113,9 +113,16 @@
     <div class="col-md-12">
         <div class="row message">
             <div class="col-md-12">
-                <br>
-                <span>Make sure you use it every time and keep always extra packet at home with you.</span>
-                <span class="glyphicon glyphicon-asterisk"></span>
+                <span>&nbsp;</span>
+                <span ng-show="messages[FPMethod.id]">
+                  <span>{{ messages[FPMethod.id] }}</span>
+                  <img src="img/condom-pic.png" ng-show="FPMethod.id === 1" />
+                  <img src="img/ocp-pic.png" ng-show="FPMethod.id === 2" />
+                  <img src="img/dmpa-pic.png" ng-show="FPMethod.id === 3" />
+                  <img src="img/iucd-pic.png" ng-show="FPMethod.id === 4" />
+                  <img src="img/fst-pic.png" ng-show="FPMethod.id === 5" />
+                  <img src="img/mst-pic.png" ng-show="FPMethod.id === 6" />
+                </span>
             </div>
         </div>
 
@@ -253,11 +260,29 @@
     </div>
   </div>
   <!--Did you use-->
-  <div class="condom-yesno" ng-show="false">
-    <p>Did you use a condom last time when you had sex? </p>
+  <div class="condom-yesno" ng-show="FPMethod">
+    <p>{{ question.list[FPMethod.id] }}</p>
     <ul>
-      <li><div><label for="noCondom"><input type="radio" name="condomSex" id="noCondom"><span class="circle">&nbsp;</span></label><span>Yes</span></div></li>
-      <li><div><label for="yesCondom"><input type="radio" name="condomSex" id="YesCondom"><span class="circle"><img src="img/condom-pic.png" class="img-responsive"></span></label><span>No</span></div></li>
+      <li>
+        <div>
+          <label for="noCondom">
+            <input type="radio" name="condomSex" id="noCondom">
+            <span class="circle">&nbsp;</span>
+          </label>
+          <span>Yes</span>
+        </div>
+      </li>
+      <li>
+        <div>
+          <label for="yesCondom">
+            <input type="radio" name="condomSex" id="YesCondom">
+            <span class="circle">
+              <img src="img/condom-pic.png" class="img-responsive">
+            </span>
+          </label>
+          <span>No</span>
+        </div>
+      </li>
     </ul>
   </div>
 </div>

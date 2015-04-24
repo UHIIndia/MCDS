@@ -15,6 +15,10 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
       return e.id === methodID;
     });
     $scope.FPMethod = filteredMethodList[0];
+
+    $scope.question = {};
+    $scope.question.list = familyPlanning.getQuestions();
+    $scope.messages = familyPlanning.getMessages();
     console.log($scope.FPMethod);
   };
 
