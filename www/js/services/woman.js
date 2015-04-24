@@ -36,14 +36,14 @@ angular.module('uhiApp.services')
     getWomanDetails: function(womanID){
       // get the details of woman from all women list
       for(var i=0; i<womenList.length; i++){
-        if(womanID === womenList[i].visibleID){
+        if(womanID === womenList[i].displayID){
           return womenList[i];
         }
       }
     },
     updateWomanDetails: function(womanObj){
       // save woman related details to 
-      var womanDetails = this.getWomanDetails(womanObj.visibleID);
+      var womanDetails = this.getWomanDetails(womanObj.displayID);
       angular.forEach(womanObj, function(value, key){        
           womanDetails[key] = value;      
       });
@@ -51,10 +51,10 @@ angular.module('uhiApp.services')
     },
     addNewWoman: function (womanObj) {
       var womanID = generateActualWomanID(womanObj.name, womanObj.dob);
-      var visibleID = generateVisibleWomanID(womanObj.house);
+      var displayID = generateVisibleWomanID(womanObj.house);
       // add this woman to women List
       womanObj.womanID = womanID;
-      womanObj.visibleID = visibleID;
+      womanObj.displayID = displayID;
       womanObj.city =UtilityService.getCityCode();
       womanObj.slum =UtilityService.getSlumCode();
       womanObj.worker = UtilityService.getWorkerCode();

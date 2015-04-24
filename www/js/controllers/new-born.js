@@ -1,9 +1,9 @@
 angular.module('uhiApp.controllers')
-.controller('newBornController',  function($scope, UtilityService, ChildService){ 
+.controller('newBornController',  function($scope, $state, UtilityService, ChildService){ 
   
   //get child Details  
   function init(){
-    var displayID = UtilityService.getChildVisibleID();
+    var displayID = UtilityService.getChildDisplayID();
     console.log(displayID);
     // hard code display id for dev 
     displayID = "H-1.1.1";
@@ -77,4 +77,17 @@ angular.module('uhiApp.controllers')
     $scope.isOpenPosition[rowNo] = true;    
    }
 /* calender methods ends here--  */
+  $scope.navigateToChildImmunization = function() {
+    $state.go('immunization');
+  }
+  
+  $scope.navigateToMotherFP = function() {
+    // set mother's visible/display ID
+    UtilityService.setWomanDisplayID($scope.child.motherDisplayID);
+    $state.go('fp');
+  }
+  
+  $scope.saveDetails = function() {
+    ChildService.updateChildDetails($scope.child);
+  }
 });

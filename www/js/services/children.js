@@ -1,15 +1,15 @@
 angular.module('uhiApp.services')
 .factory('ChildService', ['FileService','UtilityService',function(FileService, UtilityService){
   var childrenList = FileService.readFromLocalStorage(false);
-  var generateVisibleChildID = function(mothersVisibleID) {
+  var generateVisibleChildID = function(motherDisplayID) {
     var childNo = 0;
     // check if mother has other children
     angular.forEach(childrenList, function(childObj, index){
-      if(childObj.mothersVisibleID === mothersVisibleID){
+      if(childObj.motherDisplayID === motherDisplayID){
         childNo++;
       }
     });
-    return mothersVisibleID +"."+(childNo+1);
+    return motherDisplayID +"."+(childNo+1);
   }
   var generateActualChildID = function(motherID, name, dob) { 
    var nameCode,dobCode; 
@@ -32,7 +32,7 @@ angular.module('uhiApp.services')
     },
     getChildDetails : function(childID){
       for (var i = 0; i < childrenList.length; i++) {
-        if(childID === childrenList[i].visibleID) return childrenList[i];
+        if(childID === childrenList[i].displayID) return childrenList[i];
         
       };
     },
@@ -45,9 +45,9 @@ angular.module('uhiApp.services')
     },
     addNewChild : function(childObj){
      var childID = generateActualChildID(childObj.motherID, childObj.name, childObj.dob); // motherID + AR1502015
-     var visibleID = generateVisibleChildID(childObj.mothersVisibleID); //house#.womanNo.childno
+     var displayID = generateVisibleChildID(childObj.motherDisplayID); //house#.womanNo.childno
       childObj.childID = childID;
-      childObj.visibleID = visibleID;
+      childObj.displayID = displayID;
       childObj.city =UtilityService.getCityCode();
       childObj.slum =UtilityService.getSlumCode();
       childObj.worker = UtilityService.getWorkerCode();
@@ -59,7 +59,7 @@ angular.module('uhiApp.services')
     },
     updateChildDetails: function(childObj){
       // update child details
-      var childDetails = this.getChildDetails(childObj.visibleID);
+      var childDetails = this.getChildDetails(childObj.displayID);
       angular.forEach(childObj, function(value, key){
         childDetails[key] = value;
       });

@@ -2,23 +2,23 @@ angular.module('uhiApp.services')
 .factory('UtilityService',['$cordovaFile', '$cordovaCamera', function($cordovaFile, $cordovaCamera){
   var cityCode="500", slumCode="200", workerCode="100";
   var dataDir, folder="images"; 
-  var womanVisibleID, childVisibleID;
+  var womanDisplayID, childDisplayID;
   return {
     alertMessages: {
       liveBirth: 'Live births can not be greater than total pregnencies',
       livingChildren: 'Living Children can not be greater than number of children birth alive'
     },
-    setWomanVisibleID: function (id) {
-      womanVisibleID = id;
+    setWomanDisplayID: function (id) {
+      womanDisplayID = id;
     },
-    getWomanVisibleID : function() {
-      return womanVisibleID;
+    getWomanDisplayID : function() {
+      return womanDisplayID;
     },
-    setChildVisibleID: function (id) {
-      childVisibleID = id;
+    setChildDisplayID: function (id) {
+      childDisplayID = id;
     },
-    getChildVisibleID : function() {
-      return childVisibleID;
+    getChildDisplayID : function() {
+      return childDisplayID;
     },
     getSlumCode: function(){
       return slumCode;

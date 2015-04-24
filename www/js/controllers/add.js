@@ -187,7 +187,7 @@ $scope.saveDetails = function($event){
     if(childObj.name){
       var mother= $scope.woman;      
         childObj.motherID = mother.womanID;
-        childObj.mothersVisibleID= mother.visibleID;
+        childObj.motherDisplayID= mother.displayID;
         childObj.motherName = mother.name;
         childObj.fatherName = mother.husbandName;
         childObj.phone = mother.phone;
@@ -278,12 +278,12 @@ $scope.selectedGenderForChild = function(child, isGirl) {
 }
 $scope.navigateToChild = function($index) {
   var child = $scope.savedChildren[$index];
-  var childVisibleID = child.visibleID;
+  var childDisplayID = child.displayID;
   if(child.ageMonths > 24){
     alert('This child id more than 2 years old, please select a child less than 2 years old');
     return;
   } else {
-    UtilityService.setChildVisibleID(childVisibleID);
+    UtilityService.setChildDisplayID(childDisplayID);
     var days = child.ageMonths * 30 + child.ageDays;
     if(days<=42){     
       $state.go('newborn');
@@ -293,13 +293,13 @@ $scope.navigateToChild = function($index) {
   }  
 }
 $scope.navigateToWoman = function() {
-  //set woman VisibleID 
+  //set woman DisplayID 
   var woman = $scope.woman;
-  if(!woman.visibleID){
+  if(!woman.displayID){
     // no woman has been added yet
     return;
   }
-  UtilityService.setWomanVisibleID(woman.visibleID);
+  UtilityService.setWomanDisplayID(woman.displayID);
   if(woman.isPregnant === 'true'){
     $state.go('anc');
   } else {
