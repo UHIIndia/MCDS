@@ -1,0 +1,26 @@
+.film-women-wrapper .tab-content{
+background: #f467a7;
+border: 1px #fff solid;
+padding: 10px;
+border-top:none;
+}
+.nav-tabs{
+	border-bottom: 1px #fff solid;
+}
+.film-women-wrapper .nav-tabs li{
+	margin-right: 10px;
+	font-family: OpenSans-Semibold;
+	font-size: 16px;
+}
+.film-women-wrapper .nav-tabs li.active a{
+	background: #f467a7;
+	color:#fff;
+	border:1px #fff solid;
+
+}
+
+.nav-tabs > li > a{
+	background: #faafba;
+	color:#000;
+	border: 1px #fff solid;
+}
