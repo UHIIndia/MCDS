@@ -1,6 +1,7 @@
-angular.module('uhiApp.controllers').controller('FpController', function($scope, $timeout, WomanService, familyPlanning, videos) {
-  var id = 'A-102.1';
-  $scope.woman = WomanService.getWomanDetails(id);
+angular.module('uhiApp.controllers').controller('FpController', function($scope, $timeout, WomanService, familyPlanning, videos, UtilityService) {
+
+  var womanDisplayID = UtilityService.getWomanDisplayID();
+  $scope.woman = WomanService.getWomanDetails(womanDisplayID);
 
   // add mock scope variables to be received from service
   $scope.woman.ageYoungestChild = 1;
