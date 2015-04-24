@@ -1,0 +1,198 @@
+/*body{ background:#b2dfee;}
+.immun-form-box{ background:#d9eff7; border:#FFF 1px solid; padding:10px;}
+.immun-form-box form > div{padding:0px;}
+.form-horizontal .control-label{ text-align:left;}
+.form-horizontal label { padding-left:0px;}
+.immun-child{ background:url(../img/sprite.png) -220px -125px no-repeat; height:27px; margin-top:3px;}
+.left-panel .col-sm-6{ padding:0px;}
+.no-pad-right.col-sm-12, .col-sm-9{ padding-right:0px !important;}
+.immun-content { height: 290px; margin: 15px 0; overflow-x: hidden; overflow-y: auto;}
+.immun-tbody-wrapper .immun-tbody { border: 1px solid #000; padding-left: 0; padding-right: 0;}
+.immun-tbody-wrapper .immun-tbody > div { border-right: 1px solid #000; height: 103px;}
+.immun-thead-wrapper .immun-thead { background: none repeat scroll 0 0 #fff; border: 1px solid #000; height: 57px; margin-bottom: 5px; padding-left: 0; padding-right: 0;}
+.immun-thead-wrapper .immun-thead > div { border-right: 1px solid #000; height: 55px; padding: 3px;}*/
+
+.newborn-wrapper .light-blue-block{
+	padding-top: 15px;
+	margin-bottom: 15px;
+}
+.newborn-wrapper .light-blue-block label{
+	text-align: left;
+	padding-top: 7px;
+}
+.newborn-wrapper .light-blue-block label, .newborn-wrapper .light-blue-block label + div{
+	padding-left:0;
+	padding-right: 0;
+
+}
+.newborn-wrapper .light-blue-block > div > div{
+	padding-left: 0;
+}
+.newborn-wrapper .light-blue-block > div:last-child{
+	padding-right: 0;
+}
+.newborn-wrapper .light-blue-block .age-group label + div > div{
+	padding-left: 0;
+
+}
+
+.immu-months-wrapper{
+	padding: 0;
+}
+/*	background: #fff;
+.immu-months-wrapper .immu-months-head{
+	background: #fff;
+	border:1px #000 solid;
+}
+.immu-months-wrapper .immu-months-head > div{
+	padding: 0;
+}
+.immu-months-wrapper .immu-months-head > div > div{
+	font-family: OpenSans-Semibold;
+	height: 57px;
+	border-right: 1px #000 solid;
+	display: inline-block;
+	padding:5px 8px;
+	width: 11.11%;
+	text-align: center;
+}
+.immu-months-wrapper .immu-months-head > div > div .month{
+	font-size: 12px;
+}
+.immu-months-wrapper .immu-months-head > div > div .month-name{
+	font-size: 16px;
+}
+.immu-months-wrapper .immu-months-head > div > div:last-child{
+	border-right: none;
+}*/
+
+.immu-month-body > div > div{
+	padding: 0;
+	border: 1px #000 solid;
+}
+.immu-month-body > div > div > div{
+background: #fff;
+border-right: 1px #000 solid;
+padding: 0;
+height: 103px;
+}
+.immu-month-body > div > div > div:last-child{
+	border-right: none;
+}
+
+.month-col{
+	padding: 0;
+	width: 11.11%;
+}
+.month-head-cell{
+	font-family: OpenSans-Semibold;
+	background: #fff;
+	text-align: center;
+	height: 57px;
+	border: 1px #000 solid;
+	padding-top: 5px;
+	margin-bottom: 5px;
+}
+.month-head-cell .month{
+	font-size: 12px;
+}
+.month-head .month-name{
+	font-size: 16px;
+}
+.month-col .month-cell{
+	height: 105px;
+	background: #fff;
+	border:1px #000 solid;
+	font-size: 11px;
+	text-align:center;
+	margin-bottom: 10px;
+}
+.month-col .month-cell > div{
+	padding-top: 42px;
+}
+.immu-months-wrapper{
+	overflow: auto;
+	white-space: nowrap;
+}
+.immu-months-wrapper .month-col{
+	float: none;
+	display: inline-block;
+}
+
+
+/*---*/
+.immu-months-wrapper > div, .immu-fixed-head{
+	margin-bottom:5px;
+}
+.immu-months-wrapper .immu-months-head, .immu-months-wrapper .immu-months-head > div{
+	padding: 0;
+}
+.immu-months-wrapper .immu-months-head > div{
+	font-family: OpenSans-Semibold;
+	height: 57px;
+	min-width: 64px;
+	text-align: center;
+	padding-top:7px;
+	background: #fff;
+		border:1px #000 solid;
+	display: inline-block;
+	float: none;
+}
+.immu-months-wrapper .immu-months-head .month{
+	font-size: 12px;
+}
+.immu-months-wrapper .immu-months-head .month-name{
+	font-size: 16px;
+}
+.immu-months-body, .immu-fixed-body{
+	padding: 0;
+}
+.immu-months-body .month-row > div{
+	padding:0;
+}
+.immu-months-body .month-row > div > div{
+	height: 104px;
+	min-width: 64px;
+	text-align: center;
+	background: #fff;
+	border:1px #000 solid;
+	display: inline-block;
+	float: none;
+	padding: 0;
+}
+.immu-months-body .date{
+	font-size: 11px;
+	float: left;
+	width: 100%;
+	padding-top: 40px;
+}
+.immu-fixed-wrapper{
+	padding:0;
+}
+.immu-fixed-head{
+	background: #f1f1f1;
+	padding: 0;
+	height: 57px;
+}
+.immu-fixed-body .fixed-row{
+	margin-bottom: 10px;
+	height: 104px;
+}
+.fixed-row .calender-box{
+	background: #fff;
+	height: 104px;
+	border: 1px #000 solid;
+	border-right:none;
+}
+.fixed-row .image{
+	width: 40%;
+	float: left;
+	margin-right: 2%;
+}
+.fixed-row .video{
+	width: 58%;
+	float: left;
+}
+.fixed-row div{
+	
+}
