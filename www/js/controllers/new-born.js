@@ -1,5 +1,5 @@
 angular.module('uhiApp.controllers')
-.controller('newBornController',  function($scope, $state, UtilityService, ChildService){ 
+.controller('newBornController',  function($scope, $state, $timeout, UtilityService, ChildService){ 
   
   //get child Details  
   function init(){
@@ -75,19 +75,35 @@ angular.module('uhiApp.controllers')
    $event.preventDefault();
    $event.stopPropagation();
     $scope.isOpenPosition[rowNo] = true;    
-   }
+   };
 /* calender methods ends here--  */
   $scope.navigateToChildImmunization = function() {
-    $state.go('immunization');
-  }
+    $state.go('immu');
+  };
   
   $scope.navigateToMotherFP = function() {
     // set mother's visible/display ID
     UtilityService.setWomanDisplayID($scope.child.motherDisplayID);
     $state.go('fp');
-  }
+  };
   
   $scope.saveDetails = function() {
     ChildService.updateChildDetails($scope.child);
+  };
+  $scope.video ={};
+  $scope.video.show = false;
+  $scope.video.stop = function() {
+    var videoElem = document.getElementById('video_nb');
+    videoElem.pause();
+    $scope.video.show = false;
+  };
+  $scope.video.play = function(id) {    
+    $scope.video.path = "videos/small.mp4";    
+    $scope.video.show = true;
+    $timeout(function() {
+      var videoElem = document.getElementById('video_nb');
+      videoElem.play();
+    }, 1000);
   }
+  
 });

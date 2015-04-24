@@ -80,7 +80,7 @@
 			<div class="col-sm-4 birth-situation">
 				<div><input type="checkbox" id="preterm" name="" ng-model="child.isPreterm"><label for="preterm">Preterm</label></div>
 				<div><input type="checkbox" id="lbw" name="birthDay" ng-model="child.isLBW"><label for="lbw">LBW</label></div>
-				<div><input type="checkbox" id="weak" name="birthDay"><label for="weak" ng-model="child.isWeak">Weak/Sick</label></div>
+				<div><input type="checkbox" id="weak" name="birthDay" ng-model="child.isWeak"><label for="weak">Weak/Sick</label></div>
 			</div>
 
 		</div>
@@ -92,7 +92,7 @@
 	<div class="clearfix">
 	<div class="col-sm-12">
 		<div class="col-sm-2 newborn-video">
-			<img src="img/newborn-video1.jpg">
+			<img src="img/newborn-video1.jpg" ng-click="video.play(0)">
 		</div>
 		<div class="col-sm-10 newborn-tbody">
 			<div class="col-sm-1"></div>
@@ -129,7 +129,7 @@
 	<div class="clearfix">
 	<div class="col-sm-12">
 		<div class="col-sm-2 newborn-video">
-			<img src="img/newborn-video2.jpg">
+			<img src="img/newborn-video2.jpg" ng-click="video.play(1)">
 		</div>
 		<div class="col-sm-10 newborn-tbody">
 			<div class="col-sm-1"></div>
@@ -171,7 +171,7 @@
 	<div class="clearfix">
 	<div class="col-sm-12">
 		<div class="col-sm-2 newborn-video">
-			<img src="img/newborn-video3.jpg">
+			<img src="img/newborn-video3.jpg" ng-click="video.play(2)">
 		</div>
 		<div class="col-sm-10 newborn-tbody">
 			<div class="col-sm-1"></div>
@@ -226,5 +226,14 @@
 	</div>
 </div>
 	</div>
+</div>
+
+<div ng-if="video.show" ng-click="video.stop()">
+  <div class="video-overlay"></div>
+  <div class="video-full-screen" ng-click="$event.stopPropagation()">
+    <video id="video_nb" class="video-full-screen" controls>
+      <source ng-src="{{video.path}}" type="video/mp4">
+    </video>
+  </div>
 </div>
 

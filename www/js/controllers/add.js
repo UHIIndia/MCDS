@@ -288,7 +288,7 @@ $scope.navigateToChild = function($index) {
     if(days<=42){     
       $state.go('newborn');
     } else {
-      $state.go('immunization');
+      $state.go('immu');
     }    
   }  
 }
