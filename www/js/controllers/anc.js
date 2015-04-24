@@ -1,6 +1,6 @@
 angular.module('uhiApp.controllers')
-.controller('AncController', function($scope,$timeout,UtilityService,familyPlanning,$location) {
-
+.controller('AncController', function($scope,$timeout,UtilityService,familyPlanning,videos,WomanService,$location) {
+  var womanDisplayID = UtilityService.getWomanDisplayID();
     var womanData={ "womanID": "0121230250012001", // city+slum+worker+house+woman
         "name": null,
         "dob":  '20/12/1989',//'20/12/1989',
@@ -186,6 +186,29 @@ angular.module('uhiApp.controllers')
         monthNo++;
 
     }
+
+    //set path for anc videos
+
+      $scope.video = {};
+
+      $scope.video.list = videos.getANCVideos();
+
+      $scope.video.play = function(id) {
+        var selectedVideo = $scope.video.list.filter(function(e) {
+          return e.id === id;
+        });
+        $scope.video.path = selectedVideo[0].path;
+        $scope.video.show = true;
+        $timeout(function() {
+          document.getElementById('selected-video').play();
+        }, 1000);
+      };
+
+      $scope.video.stop = function() {
+        document.getElementById('selected-video').pause();
+        $scope.video.show = false;
+      };
+
     //SET VARIABLE FOR CLASS IN FP METHOD
     if(currentMonth == $scope.monthsArray[7].monthNo){ //if the current month is the 8th month
         $scope.FPmonth1=0;
