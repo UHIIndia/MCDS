@@ -19,22 +19,22 @@
 		<div class="col-sm-12">
 			<div class="col-sm-4">
 				<label class="col-sm-6">Mother Name</label>
-				<div class="col-sm-6"><input type="text" class="form-control" placeholder="lata"></div>
+				<div class="col-sm-6"><input type="text" class="form-control" placeholder="lata" ng-model="child.motherName" ng-disabled="true"></div>
 			</div>
 			<div class="col-sm-3">
 				<label class="col-sm-5">Baby Name</label>
-				<div class="col-sm-7"><input type="text" class="form-control" placeholder="Pinky"></div>
+				<div class="col-sm-7"><input type="text" class="form-control" placeholder="Pinky" ng-model="child.name" ng-disabled="true"></div>
 			</div>
 			<div class="col-sm-2">
 				<label class="col-sm-4">DOB</label>
-				<div class="col-sm-8"><input type="text" class="form-control" placeholder="16/10/2014"></div>
+				<div class="col-sm-8"><input type="text" class="form-control" placeholder="16/10/2014" ng-model="child.dob" ng-disabled="true"></div>
 			</div>
 			<div class="col-sm-3 age-group">
 				<label class="col-sm-2">Age</label>
 				<div class="col-sm-10">
-					<div class="col-sm-4"><input type="text" class="form-control" placeholder="MM"></div>
-					<div class="col-sm-4"><input type="text" class="form-control" placeholder="MM"></div>
-					<div class="col-sm-4"><i class="icon-girl">&nbsp;</i></div>
+					<div class="col-sm-4"><input type="text" class="form-control" placeholder="MM" ng-model="child.ageMonths" ng-disabled = "true"></div>
+					<div class="col-sm-4"><input type="text" class="form-control" placeholder="DD" ng-model="child.ageDays" ng-disabled="true"></div>
+					<div class="col-sm-4"><i ng-class="getChildIcon()">&nbsp;</i></div>
 				</div>
 			</div>
 		</div>
@@ -46,14 +46,14 @@
 	<div class="col-sm-12">
 		<div class="col-sm-2">&nbsp;</div>
 		<div class="col-sm-10 newborn-thead">
-			<div class="col-sm-1">
+			<!--<div class="col-sm-1">
 				<div class="day">Birth Day</div>
+			</div>-->
+			<div class="col-sm-1" ng-repeat = "item in child.newBornDetails">
+				<div class="date">{{item.date}}</div>
+				<div class="day">Day {{item.day}}</div>
 			</div>
-			<div class="col-sm-1">
-				<div class="date">04-10-2014</div>
-				<div class="day">Day 2</div>
-			</div>
-			<div class="col-sm-1">
+			<!--<div class="col-sm-1">
 				<div class="date">04-10-2014</div>
 				<div class="day">Day 3</div>
 			</div>
@@ -76,11 +76,11 @@
 			<div class="col-sm-1">
 				<div class="date">04-10-2014</div>
 				<div class="day">Day 42</div>
-			</div>
+			</div>-->
 			<div class="col-sm-4 birth-situation">
-				<div><input type="checkbox" id="preterm" name="birthDay"><label for="preterm">Preterm</label></div>
-				<div><input type="checkbox" id="lbw" name="birthDay"><label for="lbw">LBW</label></div>
-				<div><input type="checkbox" id="weak" name="birthDay"><label for="weak">Weak/Sick</label></div>
+				<div><input type="checkbox" id="preterm" name="" ng-model="child.isPreterm"><label for="preterm">Preterm</label></div>
+				<div><input type="checkbox" id="lbw" name="birthDay" ng-model="child.isLBW"><label for="lbw">LBW</label></div>
+				<div><input type="checkbox" id="weak" name="birthDay"><label for="weak" ng-model="child.isWeak">Weak/Sick</label></div>
 			</div>
 
 		</div>
@@ -108,7 +108,12 @@
 			      <div class="form-group">
 			        <div class="col-sm-12 transform-y100">
 			          <div class="col-sm-3">
-			            <i class="icon-date">&nbsp;</i>
+			            <div class="input-group">
+                          <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="calenders['0']" is-open="isOpenPosition['0']"  max-date="getMaxDate()" min-date="getMinDate();" datepicker-options="dateOptions" close-text="Close" datepicker-append-to-body="true" ng-hide="true" />
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="openCalender($event, '0')"><i class="icon-date"></i></button>
+                          </span>
+                        </div>
 			          </div>
 			          <div class="col-sm-9 text-right">
 			             <input type="text" class="form-control"><label class="control-label">Weight</label>
@@ -140,7 +145,12 @@
 		        <div class="form-group">
 		          <div class="col-sm-12">
 		            <div class="col-sm-3">
-		              <i class="icon-date">&nbsp;</i>
+		              <div class="input-group">
+                          <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="calenders['1']" is-open="isOpenPosition['1']"  max-date="getMaxDate()" min-date="getMinDate();" datepicker-options="dateOptions" close-text="Close" datepicker-append-to-body="true" ng-hide="true" />
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="openCalender($event, '1')"><i class="icon-date"></i></button>
+                          </span>
+                        </div>
 		            </div>
 		            <div class="col-sm-9 radio-group">
 		              <div>
@@ -177,7 +187,12 @@
 		        <div class="form-group">
 		          <div class="col-sm-12">
 		            <div class="col-sm-3">
-		              <i class="icon-date">&nbsp;</i>
+		              <div class="input-group">
+                          <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="calenders['2']" is-open="isOpenPosition['2']"  max-date="getMaxDate()" min-date="getMinDate();" datepicker-options="dateOptions" close-text="Close" datepicker-append-to-body="true" ng-hide="true" />
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="openCalender($event, '2')"><i class="icon-date"></i></button>
+                          </span>
+                        </div>
 		            </div>
 		            <div class="col-sm-9 radio-group">
 		              <div>
