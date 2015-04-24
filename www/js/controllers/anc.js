@@ -1347,7 +1347,16 @@ angular.module('uhiApp.controllers')
             }
         }
     );
-
+   
+   //watching birthoutcome 
+   var BirthOutcomeMethods =[{'name': 'girl'},{'name':'boy'},{'name':'misscarriage'}];
+   var birthgenderList;
+   $scope.selectBirthGender=function(gender){
+        birthgenderList = BirthOutcomeMethods.filter(function(e) {
+          return e.name == gender;
+        });
+       $scope.birthGender = birthgenderList[0];
+    }
     $scope.FPMethod =-1;
     //LOGIC FOR sELECTING fp METHOD
     var familyPlanningMethods = familyPlanning.getFamilyPlanningMethods();
