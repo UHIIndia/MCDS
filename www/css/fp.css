@@ -237,7 +237,7 @@
 	margin:0 auto;
 	display: inline-block;
 }
-.condom-yesno{
+.question{
 	font-family: OpenSans-Semibold;
 	border:1px #000 solid;
 	padding: 10px;
@@ -245,23 +245,23 @@
 	background: #d9d9d9;
 	margin-top: 15px;
 }
-.condom-yesno ul{
+.question ul{
 	padding: 0;
 	list-style: none;
 	text-align: center;
 }
-.condom-yesno ul li{
+.question ul li{
 	display: inline;
 }
-.condom-yesno ul li div{
+.question ul li div{
 	display: inline-block;
 	  margin: 0 5px;
 }
-.condom-yesno ul li div span{
+.question ul li div span{
 	display: block;
 	font-size: 14px;
 }
-.condom-yesno ul li div span.circle{
+.question ul li div span.circle{
 	display: inline-block;
 		width: 36px;
 	height: 36px;
@@ -269,7 +269,7 @@
 	  border-radius: 50%;
 	  overflow: hidden;
 }
-.condom-yesno ul li label{
+.question ul li label{
 	display: inline-block;
 	background: #ccc;
 	border: 1px #fff solid;
@@ -277,13 +277,16 @@
 	height: 38px;
 	position: relative;
 }
-.condom-yesno ul li:first-child label{
+.question ul li .active label{
+  border: solid 1px #000000;
+}
+.question ul li:first-child label{
 	background: #7f7f7f;
 }
-.condom-yesno ul li:last-child label{
+.question ul li:last-child label{
 	background: #5b9bd5;
 }
-.condom-yesno ul li div input[type="radio"]{
+.question ul li div input[type="radio"]{
 	position: absolute;
 	z-index: 1;
 	height: 40px;

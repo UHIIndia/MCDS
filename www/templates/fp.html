@@ -114,7 +114,7 @@
         <div class="row message">
             <div class="col-md-12">
                 <span>&nbsp;</span>
-                <span ng-show="messages[FPMethod.id]">
+                <span ng-show="showMessage">
                   <span>{{ messages[FPMethod.id] }}</span>
                   <img src="img/condom-pic.png" ng-show="FPMethod.id === 1" />
                   <img src="img/ocp-pic.png" ng-show="FPMethod.id === 2" />
@@ -260,22 +260,22 @@
     </div>
   </div>
   <!--Did you use-->
-  <div class="condom-yesno" ng-show="FPMethod">
+  <div class="question" ng-show="FPMethod">
     <p>{{ question.list[FPMethod.id] }}</p>
-    <ul>
+    <ul ng-show="responseType === 'bool'">
       <li>
-        <div>
-          <label for="noCondom">
-            <input type="radio" name="condomSex" id="noCondom">
+        <div ng-click="respond('yes')" ng-class="{active: response==='yes'}">
+          <label for="yes">
+            <input type="radio" name="bool-response" id="yes">
             <span class="circle">&nbsp;</span>
           </label>
           <span>Yes</span>
         </div>
       </li>
       <li>
-        <div>
-          <label for="yesCondom">
-            <input type="radio" name="condomSex" id="YesCondom">
+        <div ng-click="respond('no')" ng-class="{active: response==='no'}">
+          <label for="no">
+            <input type="radio" name="bool-response" id="no">
             <span class="circle">
               <img src="img/condom-pic.png" class="img-responsive">
             </span>
@@ -284,6 +284,9 @@
         </div>
       </li>
     </ul>
+    <div ng-show="responseType === 'datetime'">
+      <div ng-click="respond()">Datepicker</div>
+    </div>
   </div>
 </div>
 </div>

@@ -20,7 +20,69 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
     $scope.question = {};
     $scope.question.list = familyPlanning.getQuestions();
     $scope.messages = familyPlanning.getMessages();
-    console.log($scope.FPMethod);
+
+    $scope.response = 'unanswered';
+    $scope.showMessage = false;
+
+    if(methodID === 0 || methodID === 1 || methodID === 2) {
+      $scope.responseType = 'bool';
+    } else {
+      $scope.responseType = 'datetime';
+    }
+  };
+
+  $scope.response = 'unanswered';
+  $scope.showMessage = false;
+
+  $scope.respond = function(response) {
+    $scope.response = response;
+    $scope.showMessage = false;
+
+    if($scope.FPMethod.id === 0) {
+      if($scope.response === 'yes') {
+        $scope.showMessage = false;
+      } else if($scope.response === 'no') {
+        $scope.showMessage = true;
+      }
+    }
+
+    if($scope.FPMethod.id === 1) {
+      if($scope.response === 'yes' || $scope.response === 'no') {
+        $scope.showMessage = true;
+      }
+    }
+
+    if($scope.FPMethod.id === 2) {
+      if($scope.response === 'yes' || $scope.response === 'no') {
+        $scope.showMessage = true;
+      }
+    }
+
+    if($scope.FPMethod.id === 3) {
+      $scope.response = true;
+      if($scope.response) {
+        $scope.showMessage = true;
+      }
+    }
+
+    if($scope.FPMethod.id === 4) {
+      $scope.response = true;
+      if($scope.response) {
+        $scope.showMessage = true;
+      }
+    }
+
+    if($scope.FPMethod.id === 5) {
+      $scope.showMessage = false;
+    }
+
+    if($scope.FPMethod.id === 6) {
+      $scope.response = true;
+      if($scope.response) {
+        $scope.showMessage = true;
+      }
+    }
+
   };
 
   $scope.video = {};
