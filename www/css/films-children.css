@@ -1,5 +1,5 @@
-.film-women-wrapper .tab-content{
-background: #f467a7;
+.film-children-wrapper .tab-content{
+background: #61caec;
 border: 1px #fff solid;
 padding: 10px;
 border-top:none;
@@ -7,13 +7,13 @@ border-top:none;
 .nav-tabs{
 	border-bottom: 1px #fff solid;
 }
-.film-women-wrapper .nav-tabs li{
+.film-children-wrapper .nav-tabs li{
 	margin-right: 10px;
 	font-family: OpenSans-Semibold;
 	font-size: 16px;
 }
-.film-women-wrapper .nav-tabs li.active a{
-	background: #f467a7;
+.film-children-wrapper .nav-tabs li.active a{
+	background: #61caec;
 	color:#fff;
 	border:1px #fff solid;
 	border-bottom-color: transparent;
@@ -21,12 +21,12 @@ border-top:none;
 }
 
 .nav-tabs > li > a{
-	background: #faafba;
+	background: #b2dfee;
 	color:#000;
 	border: 1px #fff solid;
 }
 
-.film-women-wrapper .video{
+.film-children-wrapper .video{
 	float: left;
 	width: 218px;
 	height: 210px;
@@ -38,6 +38,6 @@ border-top:none;
 	max-height: 400px;
 }
 
-.film-women-wrapper .video img{
+.film-children-wrapper .video img{
 	max-width: 218px;
 }
