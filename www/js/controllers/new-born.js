@@ -97,8 +97,8 @@ angular.module('uhiApp.controllers')
     videoElem.pause();
     $scope.video.show = false;
   };
-  $scope.video.play = function(id) {    
-    $scope.video.path = "videos/small.mp4";    
+  $scope.video.play = function(id) {
+    $scope.video.path = "videos/sample.mp4";
     $scope.video.show = true;
     $timeout(function() {
       var videoElem = document.getElementById('video_nb');
