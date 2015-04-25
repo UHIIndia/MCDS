@@ -29,6 +29,8 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
     } else {
       $scope.responseType = 'datetime';
     }
+
+    $scope.methodUseDate = null;
   };
 
   $scope.response = 'unanswered';
@@ -57,33 +59,30 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
         $scope.showMessage = true;
       }
     }
-
-    if($scope.FPMethod.id === 3) {
-      $scope.response = true;
-      if($scope.response) {
-        $scope.showMessage = true;
-      }
-    }
-
-    if($scope.FPMethod.id === 4) {
-      $scope.response = true;
-      if($scope.response) {
-        $scope.showMessage = true;
-      }
-    }
-
-    if($scope.FPMethod.id === 5) {
-      $scope.showMessage = false;
-    }
-
-    if($scope.FPMethod.id === 6) {
-      $scope.response = true;
-      if($scope.response) {
-        $scope.showMessage = true;
-      }
-    }
-
   };
+
+  $scope.responseDate = new Date();
+  $scope.methodUseDate = new Date();
+  $scope.futureImportantDate = null;
+
+  $scope.open = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+    $scope.opened = !$scope.opened;
+  };
+
+  $scope.$watch('methodUseDate', function enableMessage(n) {
+    if(n) {
+      $scope.showMessage = true;
+      if($scope.FPMethod && $scope.FPMethod.id === 3) {
+        $scope.futureImportantDate = calculateNextDate(3);
+      } else if($scope.FPMethod && $scope.FPMethod.id === 4) {
+        $scope.futureImportantDate = calculateNextDate(4);
+      } else if($scope.FPMethod && $scope.FPMethod.id === 6) {
+        $scope.futureImportantDate = calculateNextDate(6);
+      }
+    }
+  });
 
   $scope.video = {};
 
@@ -104,5 +103,18 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
     document.getElementById('selected-video').pause();
     $scope.video.show = false;
   };
+
+  function calculateNextDate(requesterMethodID) {
+    var now, nextImpTimestamp;
+    now = $scope.methodUseDate;
+    if(requesterMethodID === 3) {
+      nextImpTimestamp = (now.getTime() + (1000*60*60*24*90));
+    } else if(requesterMethodID === 4) {
+      nextImpTimestamp = (now.getTime() + (1000*60*60*24*365*3));
+    } else if(requesterMethodID === 6) {
+      nextImpTimestamp = (now.getTime() + (1000*60*60*24*90));
+    }
+    return new Date(nextImpTimestamp);
+  }
 
 });

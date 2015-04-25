@@ -116,11 +116,13 @@
                 <span>&nbsp;</span>
                 <span ng-show="showMessage">
                   <span>{{ messages[FPMethod.id] }}</span>
+                  <span ng-show="FPMethod.id === 3">{{ futureImportantDate | date:'dd/MM/yyyy' }}</span>
+                  <span ng-show="FPMethod.id === 4">{{ futureImportantDate | date:'MM/yyyy' }}</span>
+                  <span ng-show="FPMethod.id === 6">{{ futureImportantDate | date:'dd/MM/yyyy' }}</span>
                   <img src="img/condom-pic.png" ng-show="FPMethod.id === 1" />
                   <img src="img/ocp-pic.png" ng-show="FPMethod.id === 2" />
                   <img src="img/dmpa-pic.png" ng-show="FPMethod.id === 3" />
                   <img src="img/iucd-pic.png" ng-show="FPMethod.id === 4" />
-                  <img src="img/fst-pic.png" ng-show="FPMethod.id === 5" />
                   <img src="img/mst-pic.png" ng-show="FPMethod.id === 6" />
                 </span>
             </div>
@@ -133,7 +135,7 @@
                   <ul class="list-inline family-planning-videos-container">
                     <li ng-repeat="videoItem in video.list" ng-click="video.play(videoItem.id)">
                       <video id="video{{ videoItem.id }}" class="video-thumbnail">
-                        <source src="{{ videoItem.path }}" type="video/mp4">
+                        <source ng-src="{{ videoItem.path }}" type="video/mp4">
                       </video>
                     </li>
                   </ul>
@@ -285,7 +287,17 @@
       </li>
     </ul>
     <div ng-show="responseType === 'datetime'">
-      <div ng-click="respond()">Datepicker</div>
+      <div ng-click="respond()">
+        <div class="row">
+          <div class="col-md-12" ng-click="open($event);">
+            <div datepicker-popup="" ng-model="methodUseDate" is-open="opened" ng-required="true" close-text="Close"></div>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+            <span>{{ methodUseDate | date:'dd/MM/y' }}</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

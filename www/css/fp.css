@@ -295,6 +295,17 @@
 	margin:0 auto;
 }
 
+.question .dropdown-menu {
+  position: absolute;
+  top: -220px !important;
+  left: -120px !important;
+}
+
+.question .dropdown-menu th.colspan-6{
+  position: relative;
+  top: -10px;
+}
+
 .family-planning-videos-container{
   width: 2000px;
 }

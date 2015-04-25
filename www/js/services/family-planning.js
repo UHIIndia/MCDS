@@ -52,10 +52,10 @@ angular.module('uhiApp.services').factory('familyPlanning',function(){
       'There are many family planning options to chose from.',
       'Make sure you use it every time and always keep an extra packet at home with you.',
       'Remember to take one pill each day and always keep an extra packet at home with you.',
-      'Remember to go for another DMPA injection on 01/01/2016',
-      'Remember to see a doctor to check or change your IUCD before 01/2015',
+      'Remember to go for another DMPA injection on ',
+      'Remember to see a doctor to check or change your IUCD before ',
       '',
-      'Use condoms or pills or abstain from sex until 01/07/2015 to make sure you do not get pregnant'
+      'To make sure you do not get pregnant, use condoms or pills or abstain from sex until '
     ];
   };
 
