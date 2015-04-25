@@ -1,13 +1,35 @@
-angular.module('uhiApp.controllers').controller('FpController', function($scope, $timeout, WomanService, familyPlanning, videos, UtilityService) {
+angular.module('uhiApp.controllers').controller('FpController', function($scope, $timeout, WomanService, ChildService, familyPlanning, videos, UtilityService) {
 
   var womanDisplayID = UtilityService.getWomanDisplayID();
   $scope.woman = WomanService.getWomanDetails(womanDisplayID);
 
   // add mock scope variables to be received from service
-  $scope.woman.ageYoungestChild = 1;
-  $scope.woman.genderYoungestChild = 'm';
-  $scope.woman.isPregnant = false;
-  $scope.woman.isBreastFeeding = false;
+  $scope.woman.isPregnant = null;
+  $scope.woman.isBreastFeeding = null;
+
+  var children = ChildService.getChildren($scope.woman.womanID);
+  var youngestChild;
+
+  if(children.length === 1) {
+    youngestChild = children[0];
+  } else if(children.length > 0) {
+    var sortedChildren = _.sortBy(children, function(child) {
+      var dobString = child.dob;
+      var dobElementsArray = dobString.split('/');
+      var d, m, y;
+      d = dobElementsArray[0];
+      m = dobElementsArray[1];
+      y = dobElementsArray[2];
+      return new Date(m + '/' + d + '/' + y);
+    });
+    youngestChild = _.last(sortedChildren);
+  }
+  $scope.child = youngestChild;
+
+  if($scope.child) {
+    $scope.child.age = 1;
+    $scope.child.gender = 'm';
+  }
 
   var familyPlanningMethods = familyPlanning.getFamilyPlanningMethods();
 
