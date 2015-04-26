@@ -1,0 +1,31 @@
+<!--app tab start-->
+<ul class="app-tabs" ng-controller="navController">
+  <li class="light-green-bg col-lg-2"><a href="#/home">Main Page</a></li>
+  <li class="active dark-green-bg col-lg-1"><a href="#/add/"><i class="icon-add-new">&nbsp;</i>Woman</a></li>
+  <li class="pink-bg col-lg-1"><a href="#/map-women"><i class="icon-map-women-sm">&nbsp;</i><span>Map</span></a></li>
+  <li class="blue-bg col-lg-1"><a href="#/map-children"><i class="icon-map-babies-sm">&nbsp;</i><span>Map</span></a></li>
+  <li class="pink-bg col-lg-1"><a href="#/list-women"><i class="icon-list-women-sm">&nbsp;</i><span>List</span></a></li>
+  <li class="blue-bg col-lg-1"><a href="#/list-children"><i class="icon-list-babies-sm">&nbsp;</i><span>List</span></a></li>
+  <li class="pink-bg col-lg-1"><a href="#/report-women"><i class="icon-report-women-sm">&nbsp;</i><span>Report</span></a></li>
+  <li class="blue-bg col-lg-1"><a href="#/report-children"><i class="icon-report-babies-sm">&nbsp;</i><span>Report</span></a></li>
+  <li class="pink-bg col-lg-1"><a href="#/film-women"><i class="icon-films-fp-sm">&nbsp;</i><span>Films</span></a></li>
+  <li class="blue-bg col-lg-1"><a href="#/film-children"><i class="icon-films-babies-sm">&nbsp;</i><span>Films</span></a></li>
+  <li class="dark-green-bg col-lg-1"><a href="" class="settings-icon" ng-click="settingsOpen=!settingsOpen">Settings</a>
+    <ul class="settings-popup" ng-show="settingsOpen">
+      <li class="clearfix"><a href="#"><span>Export</span> <i class="icon-export pull-right">&nbsp;</i></a></li>
+      <li class="clearfix"><a href="#"><span>Import</span> <i class="icon-import pull-right">&nbsp;</i></a></li>
+      <li class="clearfix change-lang">
+        <span>Langauge</span>
+        <img src="img/icon-a.png">
+        <div class="switch">
+          <input type="radio" checked="" id="english" name="view" class="switch-input">
+          <label class="switch-label switch-label-off" for="english"></label>
+          <input type="radio" id="hindi" name="view" class="switch-input">
+          <label class="switch-label switch-label-on" for="hindi"></label>
+          <span class="switch-selection"></span>
+        </div>
+        <img src="img/icon-aa.png">
+      </li>
+    </ul>
+  </li>
+</ul>

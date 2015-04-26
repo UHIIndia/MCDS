@@ -1,8 +1,24 @@
 <div class="home-page-wrapper">
-   <div class="home-header"><h1>What do you want to Do</h1> <a href="" class="settings-icon">Settings</a></div>
-   
-  
-   
+   <div class="home-header" ng-controller="navController">
+     <h1>What do you want to Do</h1>
+     <a href="" class="settings-icon" ng-click="settingsOpen=!settingsOpen">Settings</a>
+     <ul class="settings-popup" ng-show="settingsOpen">
+       <li class="clearfix"><a href="#"><span>Export</span> <i class="icon-export pull-right">&nbsp;</i></a></li>
+       <li class="clearfix"><a href="#"><span>Import</span> <i class="icon-import pull-right">&nbsp;</i></a></li>
+       <li class="clearfix change-lang">
+         <span>Langauge</span>
+         <img src="img/icon-a.png">
+         <div class="switch">
+           <input type="radio" checked="" id="english" name="view" class="switch-input">
+           <label class="switch-label switch-label-off" for="english"></label>
+           <input type="radio" id="hindi" name="view" class="switch-input">
+           <label class="switch-label switch-label-on" for="hindi"></label>
+           <span class="switch-selection"></span>
+         </div>
+         <img src="img/icon-aa.png">
+       </li>
+     </ul>
+   </div>
 
     <div class="clearfix home-icons-wrapper">
     <!--left block icons-->
