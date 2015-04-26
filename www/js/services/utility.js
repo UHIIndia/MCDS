@@ -90,6 +90,14 @@ angular.module('uhiApp.services')
         var dateArray = date.split("/");
         return dateArray[1];
     },
+     convertToDate:function(date){console.log("showMonFromDate")
+        var dateArray = date.split("/");
+        var year=dateArray[2];
+        var month=dateArray[1] ;
+        var day=dateArray[0]
+        var date =new date(year,month,day)
+        return date;
+    },
     convertDateFormat:function(date){
         var day=date.getDate();
         var month=date.getMonth()+1;
