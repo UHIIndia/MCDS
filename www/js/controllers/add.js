@@ -1,8 +1,8 @@
 angular.module('uhiApp.controllers')
 .controller('AddController',function ($scope, $state, $stateParams, WomanService, ChildService, UtilityService, $cordovaCamera){
- var imgData;  
-if($stateParams.id){
-  $scope.woman = WomanService.getWomanDetails($stateParams.id);
+ var imgData;  var displayID = UtilityService.getWomanDisplayID();
+if(displayID){
+  $scope.woman = WomanService.getWomanDetails(displayID);
   //get children for this woman
  if($scope.woman){
   // update age for woman
@@ -17,7 +17,9 @@ if($stateParams.id){
   
   $scope.children = ChildService.getChildren($scope.woman.womanID);
   angular.forEach($scope.children, function(childObj, index){   
-   childObj.age = UtilityService.calcAge(childObj.dob, false);
+   var totalDays = UtilityService.calcAge(childObj.dob, false);
+      childObj.ageMonths = parseInt(totalDays /30);
+      childObj.ageDays = totalDays%30;
   });
    $scope.savedChildren =angular.copy($scope.children);
  } else {
@@ -26,16 +28,19 @@ if($stateParams.id){
  }
 } else{
   $scope.woman ={};
-  $scope.woman.isPregnant = 'false' // default not pregnant
+  $scope.woman.isPregnant = null // default not pregnant
   $scope.children=[{}];
   $scope.savedChildren =[];  
 }
  
 $scope.isWomanPregnant = function(){
-  if($scope.woman && $scope.woman.isPregnant === 'true'){
+  if($scope.woman.womanID && $scope.woman.isPregnant === 'true'){
     return true;
   }
-  return false;
+  if($scope.woman.womanID && $scope.woman.isPregnant === 'false'){
+    return false;
+  }
+  
 }
 
 // setting age based on dob
@@ -73,6 +78,10 @@ $scope.setDob = function(inYear, index){
       //this is for child
      var child = $scope.children[index];
      //ageMonths = child.ageMonths, ageDays = child.ageDays;
+      if(!child.ageDays && !child.ageMonths){
+        // no value 
+        return;
+      }
       if(child.ageMonths && !child.ageDays){        
           child.ageDays = 0;       
       } else if(child.ageDays && !child.ageMonths){
@@ -86,41 +95,6 @@ $scope.setDob = function(inYear, index){
        child.dob = dateStr;
      
     }  
-}
-//function for setting Expected delivery date based on LMP
-$scope.setEDD = function(){
-  if($scope.woman.currentPreg){
-    var LMPDate = $scope.woman.currentPreg.LMP,
-    isEligibleForEDD,
-    currDate = new Date(),
-    ineligibleDate;  //an edd is set only if lmp is 45 days before the current date
-
-   if(LMPDate){
-    ineligibleDate = UtilityService.addDaysToDate(LMPDate, 44);
-    // if current date is equal to or greater than in eligible date then set edd after 40 weeks of LMP date
-    isEligibleForEDD = new Date(currDate.getFullYear(), currDate.getMonth(), currDate.getDate()).getTime() - ineligibleDate.getTime() >= 0;
-    if(isEligibleForEDD){
-      $scope.woman.currentPreg.EDD = UtilityService.addDaysToDate(LMPDate, 279);
-    } else{
-      $scope.woman.currentPreg.EDD ="";
-    }
-
-   }
-  }
- 
-};
-
-$scope.setLMP = function(){
-  if($scope.woman.currentPreg){
-    var EDDDate = $scope.woman.currentPreg.EDD,
-    //isEligibleForEDD,
-    currDate = new Date();  //an edd is set only if lmp is 45 days before the current date
-
-   if(EDDDate){
-    $scope.woman.currentPreg.LMP = UtilityService.subtractDaysFromDate(EDDDate, 279);
-
-   }
-  }
 }
 // function for capturing image from cam
 $scope.captureImage = function($event){

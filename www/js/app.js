@@ -41,7 +41,7 @@ angular.module('uhiApp', ['ionic', 'ngCordova', 'uhiApp.controllers', 'uhiApp.se
     controller: 'HomeController'
   })
   .state('add', {
-    url: "/add/{id}",
+    url: "/add",
     templateUrl: "templates/add.html",
     controller: 'AddController'
   })

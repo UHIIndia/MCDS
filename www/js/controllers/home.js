@@ -1,5 +1,5 @@
 angular.module('uhiApp.controllers')
-.controller('HomeController', ['$scope','UtilityService','$location',function($scope, UtilityService,$location) {
+.controller('HomeController', function($scope, $state, UtilityService, WomanService, ChildService) {
 
     //code for tap on enter button
     $scope.mapWomen = function(){
@@ -44,13 +44,27 @@ angular.module('uhiApp.controllers')
         } else{
             if($scope.womanNo) {
                 if($scope.childNo){ // go to child page
-                    $location.path('/child/'+$scope.houseNo+"."+$scope.womanNo+"."+$scope.childNo);
+                var childDisplayID = $scope.houseNo+"."+$scope.womanNo+"."+$scope.childNo;
+                  if(!ChildService.isChildRegistered(childDisplayID)) {
+                    alert('There is no child with this ID, Please check this ID');
+                    return;
+                  }
+                  UtilityService.setChildDisplayID(childDisplayID);
+                  //check if this child is new born 
+                  ChildService.isNewBorn(childDisplayID) ? $state.go('newborn') : $state.go('immu');                  
+                    
                 } else { //go to woman page
-                    $location.path('/add/'+$scope.houseNo+"."+$scope.womanNo);
+                  var womanDisplayID = $scope.houseNo+"."+$scope.womanNo;
+                  if(!WomanService.isWomanRegistered(womanDisplayID)){
+                    alert('This woman is not registerd, please check this ID');
+                    return;
+                  }
+                  UtilityService.setWomanDisplayID(womanDisplayID)
+                    $state.go('add');
                 }
             } else {
                 alert('Please put a woman no. to go to woman or child page');
             }
         }
     }
-}]);
+});

@@ -2,6 +2,7 @@ angular.module('uhiApp.controllers')
 .controller('newBornController',  function($scope, $state, $timeout, UtilityService, ChildService){ 
   
   //get child Details  
+  var activeRow = null; // this keeps a track of active row
   function init(){
     var displayID = UtilityService.getChildDisplayID();
     console.log(displayID);
@@ -48,7 +49,8 @@ angular.module('uhiApp.controllers')
     "1" : null,
     "2" : null,
     "3" : null,
-    "4" : null
+    "4" : null,
+    "5" : null
   }
   $scope.dateFormat = "dd/MM/yyyy";
   $scope.getMaxDate = function() {
@@ -69,17 +71,70 @@ angular.module('uhiApp.controllers')
     "1": false,
     "2": false,
     "3": false,
-    "4": false
+    "4": false,
+    "5": false
   };  
   $scope.openCalender = function($event, rowNo) {
    $event.preventDefault();
    $event.stopPropagation();
+    activeRow = rowNo;
     $scope.isOpenPosition[rowNo] = true;    
    };
 /* calender methods ends here--  */
   $scope.navigateToChildImmunization = function() {
     $state.go('immu');
   };
+  
+  // grid methods
+  // rows maintains keys
+  var rows ={
+    "0" : "weight",
+    "1" : "ASHAVisit",
+    "2" : "ANMVisit",
+    "3" : "breastFeed",
+    "4" : "wrapCap",
+    "5" : "sick"
+  };
+  
+  var selectGrid = function(row) {
+    if(!$scope.calenderDate){
+      console.log('Please select a date from calender');
+      return;
+    }
+    var dateStr = UtilityService.convertDateFormat($scope.calenderDate);
+    var col;
+    angular.forEach($scope.child.newBornDetails, function(detail, index){
+      if(detail.date === dateStr) {
+        col = index;
+        return;
+      }
+    }); 
+    
+    // set value for selected grid
+    col>=0 ? setValue(dateStr, col): alert('Please select a valid date from calender');
+  
+  };
+  
+  $scope.$watch('calenderDate', function() {
+    console.log('check watch');
+    selectGrid();
+  })
+  
+  function setValue(date, col) {
+    var dayOfDetail = $scope.child.newBornDetails[col];
+    var key = rows[activeRow];
+    if(activeRow === '0'){
+      // check if a there is a value for weight
+      if($scope.weight){
+        dayOfDetail[key] = $scope.weight;
+        $scope.calenderDate = null; 
+      } else alert('Please select weight for child');
+    } else {
+      // can apply separate logic for each row  
+      dayOfDetail[key] = date;
+      $scope.calenderDate = null;
+    }
+  }
   
   $scope.navigateToMotherFP = function() {
     // set mother's visible/display ID
@@ -90,6 +145,8 @@ angular.module('uhiApp.controllers')
   $scope.saveDetails = function() {
     ChildService.updateChildDetails($scope.child);
   };
+  
+  // video section starts here 
   $scope.video ={};
   $scope.video.show = false;
   $scope.video.stop = function() {
@@ -105,5 +162,6 @@ angular.module('uhiApp.controllers')
       videoElem.play();
     }, 1000);
   }
+  // video section ends here 
   
 });

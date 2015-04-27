@@ -29,12 +29,22 @@ angular.module('uhiApp.services')
   return {
     isChildRegistered: function(childID){
       //check if child is already registered
+      for (var i = 0; i < childrenList.length; i++) {
+        if(childID === childrenList[i].displayID) break;        
+      }
+      return i < childrenList.length;
+    },
+    isNewBorn : function(id) {
+      var child = this.getChildDetails(id);
+      var dob = child.dob;
+      var days = UtilityService.calcAge(dob, false);
+      return days <= 42 ;
     },
     getChildDetails : function(childID){
       for (var i = 0; i < childrenList.length; i++) {
         if(childID === childrenList[i].displayID) return childrenList[i];
         
-      };
+      }
     },
     getChildren : function(motherID){
       var children = [];

@@ -32,6 +32,12 @@ angular.module('uhiApp.services')
   return {
     isWomanRegistered: function(womanID){
       // check if this woman is already in women list or not
+      for(var i=0; i<womenList.length; i++){
+        if(womanID === womenList[i].displayID){
+          break;
+        }
+      }
+      return i<womenList.length ;
     },
     getWomanDetails: function(womanID){
       // get the details of woman from all women list
