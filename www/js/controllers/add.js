@@ -1,6 +1,8 @@
-angular.module('uhiApp.controllers')
-.controller('AddController',function ($scope, $state, $stateParams, WomanService, ChildService, UtilityService, $cordovaCamera){
- var imgData;  var displayID = UtilityService.getWomanDisplayID();
+angular.module('uhiApp.controllers').controller('AddController',function ($scope, $state, $stateParams, $rootScope, WomanService, ChildService, UtilityService, $cordovaCamera){
+
+  $rootScope.activePage = 1;
+
+    var imgData;  var displayID = UtilityService.getWomanDisplayID();
 if(displayID){
   $scope.woman = WomanService.getWomanDetails(displayID);
   //get children for this woman
