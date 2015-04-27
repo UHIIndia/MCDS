@@ -66,7 +66,7 @@ angular.module('uhiApp.services')
       womanObj.worker = UtilityService.getWorkerCode();
       womanObj.registrationDate = new Date();
       womanObj.isCurrentlyBreastFeeding = null;
-      womanObj.familyPlanningVisits = null;
+      womanObj.familyPlanningVisits = [];
       womanObj.LMP = null;
       womanObj.EDD = null;
       womanObj.deliveryDate = null;
@@ -77,8 +77,6 @@ angular.module('uhiApp.services')
       womanObj.slum = null;
       womanObj.worker = null;
       womanObj.registrationDate = null;
-      womanObj.isCurrentlyBreastFeeding = null;
-      womanObj.familyPlanningVisits = null;
       womanObj.LMP = null;
       womanObj.EDD = null;
       womanObj.deliveryDate = null;

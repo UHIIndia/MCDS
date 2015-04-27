@@ -3,10 +3,6 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
   var womanDisplayID = UtilityService.getWomanDisplayID();
   $scope.woman = WomanService.getWomanDetails(womanDisplayID);
 
-  // add mock scope variables to be received from service
-  $scope.woman.isPregnant = null;
-  $scope.woman.isBreastFeeding = null;
-
   var children = ChildService.getChildren($scope.woman.womanID);
   var youngestChild;
 
@@ -126,6 +122,24 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
     $scope.video.show = false;
   };
 
+  $scope.save = function() {
+    var visit = {};
+    var date = new Date();
+    if($scope.FPMethod) {
+      visit.displayID = $scope.woman.displayID + '-' + (date.getMonth() + 1) + '-' + (date.getFullYear());
+      visit.methodID = $scope.FPMethod.id;
+      visit.methodName = $scope.FPMethod.name;
+      visit.didUseMethodRecently = null;
+      if($scope.FPMethod.id < 3) {
+        visit.didUseMethodRecently = $scope.response;
+      }
+      visit.methodUseDate = $scope.methodUseDate;
+      visit.visitDateString = new Date().toString();
+      updateOrCreateVisit(visit);
+    }
+    WomanService.updateWomanDetails($scope.woman)
+  };
+
   function calculateNextDate(requesterMethodID) {
     var now, nextImpTimestamp;
     now = $scope.methodUseDate;
@@ -137,6 +151,19 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
       nextImpTimestamp = (now.getTime() + (1000*60*60*24*90));
     }
     return new Date(nextImpTimestamp);
+  }
+
+  function updateOrCreateVisit(thisVisit) {
+    var sortedVisits = _.sortBy($scope.woman.familyPlanningVisits, function(e) {
+      return new Date(e.visitDateString);
+    });
+    var lastVisit = _.last(sortedVisits);
+    var lastVisitMonthIndex = new Date(lastVisit.visitDateString).getMonth();
+    var thisMonthIndex = new Date().getMonth();
+    if(lastVisitMonthIndex === thisMonthIndex) {
+      $scope.woman.familyPlanningVisits.splice($scope.woman.familyPlanningVisits.length-1, 1);
+    }
+    $scope.woman.familyPlanningVisits.push(thisVisit);
   }
 
 });

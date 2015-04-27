@@ -306,6 +306,10 @@
   top: -10px;
 }
 
+.question .glyphicon-calendar{
+  top: 2px;
+}
+
 .family-planning-videos-container{
   width: 2000px;
 }
@@ -316,4 +320,8 @@
 
 .scroll-x{
   overflow-x: auto;
+}
+
+.fp-wrapper .row.save > div{
+  width: 100%;
 }

@@ -31,7 +31,7 @@
                     <div class="form-group col-sm-4">
                         <label class="control-label col-sm-7">No. Children</label>
                         <div class="col-sm-5">
-                          <input type="text" class="form-control" value="{{ woman.livingChildren }}" disabled="">
+                          <input type="text" class="form-control" value="{{ woman.livingChildrenCount }}" disabled="">
                         </div>
                     </div>
                 </div>
@@ -70,11 +70,11 @@
             <div class="col-sm-6 radio-group">
               <label class="control-label">Currently breastfeeding?</label>
               <div>
-                <input type="radio" id="breast-feeding-yes" ng-model="woman.isBreastFeeding" ng-value="true">
+                <input type="radio" id="breast-feeding-yes" ng-model="woman.isCurrentlyBreastFeeding" ng-value="true">
                 <label for="breast-feeding-yes">Yes</label>
               </div>
               <div>
-                <input type="radio" id="breast-feeding-no" ng-model="woman.isBreastFeeding" ng-value="false">
+                <input type="radio" id="breast-feeding-no" ng-model="woman.isCurrentlyBreastFeeding" ng-value="false">
                 <label for="breast-feeding-no">No</label>
               </div>
           </div>
@@ -280,9 +280,12 @@
           <div class="col-md-12" ng-click="open($event);">
             <div datepicker-popup="" ng-model="methodUseDate" is-open="opened" ng-required="true" close-text="Close"></div>
             <span class="input-group-btn">
-              <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
+              <button type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-calendar"></span>
+                <span>&nbsp;&nbsp;</span>
+                <span>{{ methodUseDate | date:'dd-MM-yyyy' }}</span>
+              </button>
             </span>
-            <span>{{ methodUseDate | date:'dd/MM/y' }}</span>
           </div>
         </div>
       </div>
@@ -292,7 +295,7 @@
 </div>
 <div class="row save">
     <div class="col-md-12">
-        <button class="btn pull-right">Save</button>
+        <button class="btn pull-right" ng-click="save()">Save</button>
         <br><br>
     </div>
 </div>
