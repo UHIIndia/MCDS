@@ -84,7 +84,11 @@
 		max-width:87px;
 		height:100px;
 		margin:0 auto 4px auto;
+    overflow: hidden;
 	}
+.women-profile-pic img{
+  width: 100%;
+}
 	.women-profile-pic ~ div{
 		text-align: center;
 		word-wrap:break-word;

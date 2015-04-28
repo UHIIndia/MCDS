@@ -13,8 +13,8 @@ if(displayID){
   }());
   //load Image from Imgaes Folder
   var imgURI = UtilityService.loadImage($scope.woman.womanID);
-  imgURI ? $scope.imgURI =imgURI : $scope.imgURI ="img/ionic.png";
-  
+  imgURI ? $scope.imgURI =imgURI : $scope.imgURI ="img/woman-sample-profile-picture.png";
+
   $scope.children = ChildService.getChildren($scope.woman.womanID);
   angular.forEach($scope.children, function(childObj, index){   
    var totalDays = UtilityService.calcAge(childObj.dob, false);

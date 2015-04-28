@@ -27,6 +27,15 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
     $scope.child.gender = 'm';
   }
 
+  $scope.womanDisplay = {};
+  var imageURI = UtilityService.loadImage($scope.woman.womanID);
+  if(imageURI) {
+    $scope.womanDisplay.image = imageURI;
+  } else {
+    $scope.womanDisplay.image = 'img/woman-sample-profile-picture.png';
+  }
+
+
   var familyPlanningMethods = familyPlanning.getFamilyPlanningMethods();
 
   $scope.selectFPMethod = function(methodID) {
