@@ -59,7 +59,7 @@ $scope.setAge = function(inYear, index){
     }
   }
   
-};
+}; 
 
 //setting dob based on age 
 $scope.setDob = function(inYear, index){
@@ -209,6 +209,15 @@ $scope.addMoreChildren = function($event){
 };
   /* calender related methods*/
 $scope.dateFormat = "dd/MM/yyyy";
+$scope.getInitialDate = function () {
+  var currDate =new Date(),
+     day= currDate.getDate(),
+     month = currDate.getMonth()+1,
+     year= currDate.getFullYear(); 
+  // woman should not be less than 11 years old
+  return year-11+"-"+month+"-"+day;
+ 
+};
 $scope.getMaxDate = function(isWoman) {
  var currDate =new Date(),
      day= currDate.getDate(),
@@ -218,7 +227,7 @@ $scope.getMaxDate = function(isWoman) {
   // woman should not be less than 11 years old
   return year-11+"-"+month+"-"+day;
  } else {
-  // should not select a future date than currebt date
+  // should not select a future date than current date
   return year +"-"+month+"-"+day;
  }
 };

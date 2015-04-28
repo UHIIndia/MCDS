@@ -45,7 +45,7 @@ angular.module('uhiApp.services')
           return diffYear;
         } else{
           //age is Calculated in months and days, return days  
-          return 30*(12 * diffYear + diffMonth)+diffDays;   
+          return 30*(12 * diffYear + diffMonth)+diffDays+1;   
 
         }       
     
@@ -64,7 +64,7 @@ angular.module('uhiApp.services')
         return new Date(currYear-age +"-01-15");//
       } else {       
         days= parseInt(days);
-        days = age * 30 + days;
+        days = age * 30 + days -1;
         return this.subtractDaysFromDate(currDate, days);
       }
             
@@ -243,7 +243,7 @@ angular.module('uhiApp.services')
       
      });
     } catch(e){
-     
+     console.log('exception :' + e);
     }
   
     
