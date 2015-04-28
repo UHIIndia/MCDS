@@ -3,39 +3,39 @@ angular.module('uhiApp.controllers')
 
     //code for tap on enter button
     $scope.mapWomen = function(){
-        $location.path("/map-women");
+        $state.go("mapWomen");
     };
 
     $scope.listWomen = function(){
-        $location.path("/list-women");
+        $state.go("listWomen");
     };
 
     $scope.reportWomen = function(){
-        $location.path("/report-women");
+        $state.go("reportWomen");
     };
 
     $scope.showFilmsPregnant = function(){
-        $location.path("/film-women");
+        $state.go("filmWomen");
     };
 
     $scope.showFilmsFP = function(){
-        $location.path("/film-women");
+        $state.go("filmWomen");
     };
 
     $scope.mapBabies = function(){
-        $location.path("/map-children");
+        $state.go("mapChildren");
     };
 
     $scope.listBabies = function(){
-        $location.path("/list-children");
+        $state.go("listChildren");
     };
 
     $scope.reportBabies = function(){
-        $location.path("/report-children");
+        $state.go("reportChildren");
     };
 
     $scope.showFilmsBabies = function(){
-        $location.path("/film-children");
+        $state.go("filmChildren");
     };
 
     $scope.goTo= function(){

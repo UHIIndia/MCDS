@@ -8,8 +8,7 @@ angular.module('uhiApp.controllers')
             $scope.required = false;
             $scope.incorrect = false;
             $scope.workerCode ="";
-            //$window.location.href = '/home';
-            $location.path("/home");
+            $location.path("home");
         }else if( $scope.workerCode == "" ||  $scope.workerCode == undefined){
             $scope.required = true;
             $scope.incorrect = false;
