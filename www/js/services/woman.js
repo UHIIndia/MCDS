@@ -71,16 +71,12 @@ angular.module('uhiApp.services')
       womanObj.EDD = null;
       womanObj.deliveryDate = null;
       womanObj.maternalOutcome = null;
-      womanObj.birthOutcome = womanID;
-      womanObj.FPMethod = displayID;
+      womanObj.birthOutcome = null;
+      womanObj.FPMethod = null;
       womanObj.ANC = null;
       womanObj.slum = null;
       womanObj.worker = null;
       womanObj.registrationDate = null;
-      womanObj.LMP = null;
-      womanObj.EDD = null;
-      womanObj.deliveryDate = null;
-      womanObj.maternalOutcome = null;
       womenList.push(womanObj);      
       FileService.writeToLocalStorage(womenList, true);
         console.log(womenList);

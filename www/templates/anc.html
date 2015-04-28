@@ -10,7 +10,7 @@
             <div class="clearfix">
               <div class="col-sm-2">
                 <div class="mother-profile">
-                  <div class="photo"><img src="img/dummy-women.gif" class="img-responsive"></div>
+                  <div class="photo"><img src="pregWomanPath" class="img-responsive"></div>
                   <div>{{pregWomanName}}</div>
                 </div>
               </div>
@@ -69,7 +69,7 @@
  </div>
  <div class="col-sm-10 anc-calender-head">
   <div class="col-sm-12 months-name">
-    <div class="col-sm-1">&nbsp;</div>
+   <!-- <div class="col-sm-1">&nbsp;</div>-->
     <div class="col-sm-1" ng-repeat="month in monthsArray"><div class="vertical-txt">{{month.monthName}}</div></div>
     <div class="col-sm-1">&nbsp;</div>
     <div class="col-sm-1">&nbsp;</div>
@@ -193,47 +193,6 @@
  </form>
 </div>
 
-
-
-
-
-
-
-   <!-- <div class="mother-delivery-details" ng-show="pregWomanExist">
-    <form class="form-horizontal clearfix">
-    <div class="form-group  delivery-date">
-      <div class="col-sm-12">
-        <label class="control-label col-sm-2">DOD</label>
-        <div class="col-sm-6">
-           <div class="input-group date-picker">
-          <span class="input-group-btn">
-            <p class="input-group">
-                <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="DODCalendarDate" is-open="openedDOD"  ng-required="true"close-text="Close" />
-                <span class="input-group-btn">
-                  <button type="button" class="btn btn-default" ng-click="open($event,'DOD')"><i class="glyphicon glyphicon-calendar"></i></button>
-                </span>
-              </p>
-        </div>
-      </div>
-    
-      <div class="col-sm-4 delivery-child">
-
-      </div>
-      </div>
-      </div>
-      <div class="form-group birth-outcome" ng-show="pregWomanExist">
-        <div class="col-sm-12">
-               <h5>Birth Outcome</h5>
-        <label class="control-label" for="radio1childOutcome"><input type="radio"  id="radio1childOutcome"  name="radioBO" ng-disabled="dateOfDelivery" ng-value="'LiveBirth'" ng-model="BirthOutcome">Live Birth</label> 
-        <label class="control-label" for="radio2childOutcome"><input type="radio" id="radio2childOutcome" name="radioBO" ng-disabled="dateOfDelivery"ng-value="'Dead'" ng-model="BirthOutcome" ng-value="'LiveBirth'" ng-model="BirthOutcome">Dead</label> 
-        <label class="control-label" for="radio3childOutcome"><input type="radio" id="radio3childOutcome" name="radioBO" ng-disabled="dateOfDelivery" ng-value="'Miscarriage'" ng-model="BirthOutcome"> Misscarriage<br />/Still Birth</label> 
-        </div>
-      </div>
-
-
-      </form>
-    </div>-->
-
     <!--maternal outcome-->
     <div class="maternal-outcome"  ng-show="pregWomanExist">
       <h4>Maternal Outcome:</h4>
@@ -252,19 +211,6 @@
        </div>
      </div>
    </div>
-
-                <!-- <div class="col-sm-10 maternal-outcome"  ng-show="pregWomanExist">
-       <label class="col-sm-4">Maternal Outcome:</label>
-        <label for="radiomaternal1" class="col-sm-3"><input type="radio" name="MO" id="radiomaternal1" ng-disabled="dateOfDelivery"
-          ng-value="'Healthy'" ng-model="MaternalOutcome"> Healthy</label>
-
-        <label for="radiomaternal2" class="col-sm-3"><input type="radio" name="MO" id="radiomaternal2" ng-disabled="dateOfDelivery" 
-         ng-value="'Sick'" ng-model="MaternalOutcome"> Weak/Sick</label>
-
-        <label for="radiomaternal3" class="col-sm-2"><input type="radio" name="MO" id="radiomaternal3" ng-disabled="dateOfDelivery" 
-         ng-value="'Dead'" ng-model="MaternalOutcome" > Dead</label>
-       </div>-->
-
      </div>
    </div>
    <!--anc calender body-->
@@ -280,9 +226,8 @@
         </div>
         
         <div class="col-sm-10 anc-outcome">
-          <div class="col-sm-1 healthy"><span ng-show="lastAshaVistMonth == -1">{{lastAshaVistDate}}</span></div>
-          <div ng-class="{'col-sm-1':true,'weak': month.monthNo === nextAshaVisitMonth}" ng-repeat="month in monthsArray">
-            <span ng-show="lastAshaVistMonth == month.monthNo">{{lastAshaVistDate}}</span></div>
+        <!--  <div class="col-sm-1 healthy"><span ng-show="lastAshaVistMonth == 0">{{lastAshaVistDate}}</span></div>-->
+          <div ng-class="{'col-sm-1':true,'weak': month.monthNo === nextAshaVisitMonth,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray"><span ng-show="lastAshaVistMonth == month.monthNo">{{lastAshaVistDate}}</span></div>
             <div class="col-sm-1">{{ashaCountTotal}}</div>
             <div class="col-sm-1">&nbsp;</div>
           </div> 
@@ -316,8 +261,8 @@
           </div>
         </div>
         <div class="col-sm-10 anc-outcome">
-          <div class="col-sm-1 healthy"><span ng-show="lastANMVistMonth == -1">{{lastANMVisitDate}}</span></div>
-          <div ng-class="{'col-sm-1':true,'weak': month.monthNo === nextANMVisitMonth}" ng-repeat="month in monthsArray"> <span ng-show="lastANMVistMonth == month.monthNo">{{lastANMVisitDate}}</span></div>
+          <!--<div class="col-sm-1 healthy"><span ng-show="lastANMVistMonth == -1">{{lastANMVisitDate}}</span></div>-->
+          <div ng-class="{'col-sm-1':true,'weak': month.monthNo === nextANMVisitMonth,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray"> <span ng-show="lastANMVistMonth == month.monthNo">{{lastANMVisitDate}}</span></div>
           <div class="col-sm-1">{{ANMCountTotal}}</div>
           <div class="col-sm-1">&nbsp;</div>
         </div>
@@ -356,8 +301,8 @@
         </div>
       </div>
       <div class="col-sm-10 anc-outcome">
-      <div class="col-sm-1 healthy"> <span ng-show="symptomData[4].month ==-1">{{symptomData[4].value}}</span></div>
-        <div ng-class="{'col-sm-1':true,'dead':symptomData[4].month == month.monthNo && weightAlert == true}" ng-repeat="month in monthsArray"> 
+     <!-- <div class="col-sm-1 healthy"> <span ng-show="symptomData[4].month ==-1">{{symptomData[4].value}}</span></div>-->
+        <div ng-class="{'col-sm-1':true,'dead':symptomData[4].month == month.monthNo && weightAlert == true,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray"> 
           <span ng-show="symptomData[4].month == month.monthNo">{{symptomData[4].value}}
           </div>
         <div class="col-sm-1">{{symptomData[4].value}}</div>
@@ -395,8 +340,8 @@
           </div>
         </div>
         <div class="col-sm-10 anc-outcome">
-           <div class="col-sm-1 healthy"><span ng-show="lastTTMonth == -1">{{lastTTCount}}</span></div>
-           <div ng-class="{'col-sm-1':true,'weak': month.monthNo === nextTTMonth && alertTT ==  true}" ng-repeat="month in monthsArray"> <span ng-show="lastTTMonth == month.monthNo">{{lastTTCount}}</span></div>
+           <!--<div class="col-sm-1 healthy"><span ng-show="lastTTMonth == -1">{{lastTTCount}}</span></div>-->
+           <div ng-class="{'col-sm-1':true,'weak': month.monthNo === nextTTMonth && alertTT ==  true,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray"> <span ng-show="lastTTMonth == month.monthNo">{{lastTTCount}}</span></div>
           <div class="col-sm-1">{{totalTTCount}}</div>
           <div class="col-sm-1">&nbsp;</div>
         </div>
@@ -434,8 +379,8 @@
         </div>
       </div>
       <div class="col-sm-10 anc-outcome">
-        <div class="col-sm-1 healthy"> <span ng-show="symptomData[2].month ==-1">{{symptomData[2].value}}</span></div>
-        <div ng-class="{'col-sm-1':true,'dead': month.monthNo == symptomData[2].month && alertHB == true}" ng-repeat="month in monthsArray"> <span ng-show="symptomData[2].month == month.monthNo">{{symptomData[2].value}}</span></div>
+        <!--<div class="col-sm-1 healthy"> <span ng-show="symptomData[2].month ==-1">{{symptomData[2].value}}</span></div>-->
+        <div ng-class="{'col-sm-1':true,'dead': month.monthNo == symptomData[2].month && alertHB == true,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray"> <span ng-show="symptomData[2].month == month.monthNo">{{symptomData[2].value}}</span></div>
         <div class="col-sm-1">{{symptomData[2].value}}</div>
         <div class="col-sm-1">&nbsp;</div>
       </div>
@@ -480,9 +425,7 @@
       </div>
     </div>
     <div class="col-sm-10 anc-outcome">
-     <div class="col-sm-1 healthy"> <span ng-show="symptomData[0].month ==-1">{{symptomData[0].value}}</span></div>
-      <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[0].month && symptomData[0].value == 'yes'}" ng-repeat="month in monthsArray"> 
-        <span></span>
+      <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[0].month && symptomData[0].value == 'yes','healthy': month.monthNo == 0}" ng-repeat="month in monthsArray"> 
         <span ng-show="month.monthNo == symptomData[0].month">{{symptomData[0].value}}</span>
       </div>
       <div class="col-sm-1">{{symptomData[0].value}}</div>
@@ -535,8 +478,8 @@
           </div>
         </div>
         <div class="col-sm-10 anc-outcome">
-         <div class="col-sm-1 healthy"> <span ng-show="symptomData[1].month ==-1">{{symptomData[1].value}}</span></div>
-          <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[1].month && symptomData[1].value == 'yes'}" ng-repeat="month in monthsArray">
+      <!--   <div class="col-sm-1 healthy"> <span ng-show="symptomData[1].month ==-1">{{symptomData[1].value}}</span></div> -->
+          <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[1].month && symptomData[1].value == 'yes','healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">
             <span ng-show="symptomData[1].month == month.monthNo">{{symptomData[1].value}}</span>
             
           </div>
@@ -590,8 +533,8 @@
       </div>
     </div>
     <div class="col-sm-10 anc-outcome">
-      <div class="col-sm-1 healthy"> <span ng-show="symptomData[3].month ==-1">{{symptomData[3].value}}</span></div>
-      <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[3].month && symptomData[3].value == 'yes'}" ng-repeat="month in monthsArray">
+      <!--<div class="col-sm-1 healthy"> <span ng-show="symptomData[3].month ==-1">{{symptomData[3].value}}</span></div>-->
+      <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[3].month && symptomData[3].value == 'yes','healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">
         <span ng-show="symptomData[3].month == month.monthNo">{{symptomData[3].value}}</span>
         
       </div>
@@ -646,8 +589,8 @@
       </div>
     </div>
     <div class="col-sm-10 anc-outcome">
-       <div class="col-sm-1 healthy"> <span ng-show="symptomData[5].month ==-1">{{symptomData[5].value}}</span></div>
-      <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[5].month && symptomData[5].value == 'yes'}" ng-repeat="month in monthsArray">
+      <!-- <div class="col-sm-1 healthy"> <span ng-show="symptomData[5].month ==-1">{{symptomData[5].value}}</span></div>-->
+      <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[5].month && symptomData[5].value == 'yes','healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">
         <span ng-show="symptomData[5].month == month.monthNo">{{symptomData[5].value}}</span>
         
       </div>
@@ -701,9 +644,7 @@
       </div>
     </div>
     <div class="col-sm-10 anc-outcome">
-      <div class="col-sm-1 healthy"> <span ng-show="lastPregnancyIFAMonth == -1">{{lastIFACount}}</span></div>
-      <!--  <div ng-class="{'col-sm-1':true,'dead': month.monthNo == lastHBMonth && alertHB == true}" ng-repeat="month in monthsArray"> <span ng-show="lastHBMonth == month.monthNo">{{lastHBValue}}</span></div>-->
-      <div ng-class="{'col-sm-1':true,'weak':month.monthNo == nextIFAVisit  && alertIFA == true}" ng-repeat="month in monthsArray"> <span ng-show="lastPregnancyIFAMonth == month.monthNo">{{lastIFACount}}</span></div>
+      <div ng-class="{'col-sm-1':true,'weak':month.monthNo == nextIFAVisit  && alertIFA == true,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray"> <span ng-show="lastIFAMonth == month.monthNo">{{lastIFACount}}</span></div>
       <div class="col-sm-1">{{totalIFACount}}</div>
       <div class="col-sm-1">&nbsp;</div>
     </div>
@@ -739,9 +680,9 @@
           </div>
         </div>
         <div class="col-sm-10 anc-outcome">
-        <div class="col-sm-1 healthy"> <span ng-show="symptomData[13].month ==-1">{{symptomData[13].value}}</span></div>
+       <!-- <div class="col-sm-1 healthy"> <span ng-show="symptomData[13].month ==-1">{{symptomData[13].value}}</span></div>-->
          <!--  <div ng-class="{'col-sm-1':true,'dead': month.monthNo == lastHBMonth && alertHB == true}" ng-repeat="month in monthsArray"> <span ng-show="lastHBMonth == month.monthNo">{{lastHBValue}}</span></div>-->
-           <div ng-class="{'col-sm-1':true,'dead': month.monthNo == symptomData[13].month && symptomData[13].value == 'High'}" ng-repeat="month in monthsArray"> <span ng-show="symptomData[13].month == month.monthNo">{{symptomData[13].value == 'High'?'High':'Normal'}}</span></div>
+           <div ng-class="{'col-sm-1':true,'dead': month.monthNo == symptomData[13].month && symptomData[13].value == 'High','healthy': month.monthNo == 0}" ng-repeat="month in monthsArray"> <span ng-show="symptomData[13].month == month.monthNo">{{symptomData[13].value == 'High'?'High':'Normal'}}</span></div>
           <div class="col-sm-1">{{symptomData[13].value}}</span></div>
           <div class="col-sm-1">&nbsp;</div>
         </div>
@@ -781,8 +722,8 @@
       </div>
     </div>
     <div class="col-sm-10 anc-outcome">
-      <div class="col-sm-1 healthy"> <span ng-show="symptomData[6].month ==-1">{{symptomData[6].value}}</span></div>
-      <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[6].month && symptomData[6].value == 'yes'}" ng-repeat="month in monthsArray">
+   <!--   <div class="col-sm-1 healthy"> <span ng-show="symptomData[6].month ==-1">{{symptomData[6].value}}</span></div>-->
+      <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[6].month && symptomData[6].value == 'yes','healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">
         <span ng-show="symptomData[6].month == month.monthNo">{{symptomData[6].value == 'yes'?'+':'-'}}</span>
         
       </div>
@@ -834,8 +775,8 @@
       </div>
     </div>
     <div class="col-sm-10 anc-outcome">
-     <div class="col-sm-1 healthy"> <span ng-show="symptomData[7].month ==-1">{{symptomData[7].value}}</span></div>
-      <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[7].month && symptomData[7].value == 'yes'}" ng-repeat="month in monthsArray">
+    <!-- <div class="col-sm-1 healthy"> <span ng-show="symptomData[7].month ==-1">{{symptomData[7].value}}</span></div>-->
+      <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[7].month && symptomData[7].value == 'yes','healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">
         <span ng-show="symptomData[7].month == month.monthNo">{{symptomData[7].value}}</span>
         
       </div>
@@ -889,8 +830,8 @@
       </div>
     </div>
     <div class="col-sm-10 anc-outcome">
-      <div class="col-sm-1 healthy"> <span ng-show="symptomData[8].month ==-1">{{symptomData[8].value}}</span></div>
-      <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[8].month && symptomData[8].value == 'yes'}" ng-repeat="month in monthsArray">
+     <!-- <div class="col-sm-1 healthy"> <span ng-show="symptomData[8].month ==-1">{{symptomData[8].value}}</span></div>-->
+      <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[8].month && symptomData[8].value == 'yes','healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">
         <span ng-show="symptomData[8].month == month.monthNo">{{symptomData[8].value == 'yes'?'+':'-'}}</span>
         
       </div>
@@ -942,8 +883,8 @@
       </div>
     </div>
     <div class="col-sm-10 anc-outcome">
-     <div class="col-sm-1 healthy"> <span ng-show="symptomData[9].month ==-1">{{symptomData[9].value}}</span></div>
-      <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[9].month && symptomData[9].value == 'yes'}" ng-repeat="month in monthsArray">
+     <!--<div class="col-sm-1 healthy"> <span ng-show="symptomData[9].month ==-1">{{symptomData[9].value}}</span></div>-->
+      <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[9].month && symptomData[9].value == 'yes','healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">
         <span ng-show="symptomData[9].month == month.monthNo">{{symptomData[9].value == 'yes'?'+':'-'}}</span>
         
       </div>
@@ -995,8 +936,8 @@
       </div>
     </div>
     <div class="col-sm-10 anc-outcome">
-     <div class="col-sm-1 healthy"> <span ng-show="symptomData[10].month ==-1">{{symptomData[10].value}}</span></div>
-      <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[10].month && symptomData[10].value == 'yes'}" ng-repeat="month in monthsArray">
+     <!--<div class="col-sm-1 healthy"> <span ng-show="symptomData[10].month ==-1">{{symptomData[10].value}}</span></div>-->
+      <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[10].month && symptomData[10].value == 'yes','healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">
         <span ng-show="symptomData[10].month == month.monthNo">{{symptomData[10].value == 'yes'?'+':'-'}}</span>
         
       </div>
@@ -1049,8 +990,8 @@
       </div>
     </div>
     <div class="col-sm-10 anc-outcome">
-      <div class="col-sm-1 healthy"> <span ng-show="symptomData[11].month ==-1">{{symptomData[11].value}}</span></div>
-      <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[11].month && symptomData[11].value == 'yes'}" ng-repeat="month in monthsArray">
+      <!--<div class="col-sm-1 healthy"> <span ng-show="symptomData[11].month ==-1">{{symptomData[11].value}}</span></div>-->
+      <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[11].month && symptomData[11].value == 'yes','healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">
         <span ng-show="symptomData[11].month == month.monthNo">{{symptomData[11].value == 'yes'?'+':'-'}}</span>
         
       </div>
@@ -1102,10 +1043,9 @@
       </div>
     </div>
     <div class="col-sm-10 anc-outcome">
-      <div class="col-sm-1 healthy"> <span ng-show="symptomData[12].month ==-1">{{symptomData[12].value}}</span></div>
-      <div class="col-sm-1" ng-repeat="month in monthsArray">
+      <!--<div class="col-sm-1 healthy"> <span ng-show="symptomData[12].month ==-1">{{symptomData[12].value}}</span></div>-->
+      <div class="col-sm-1" ng-repeat="month in monthsArray" ng-class="{'dead': month.monthNo == symptomData[12].month && symptomData[12].value == 'yes','healthy': month.monthNo == 0}">
         <span ng-show="symptomData[12].month == month.monthNo">{{symptomData[12].value == 'yes'?'+':'-'}}</span>
-        
       </div>
       <div class="col-sm-1">{{symptomData[12].value == 'yes'?'+':'-'}}</div>
       <div class="col-sm-1">&nbsp;</div>
@@ -1153,8 +1093,8 @@
       </div>
     </div>
     <div class="col-sm-10 anc-outcome">
-      <div class="col-sm-1 healthy">&nbsp;</div>
-      <div class="col-sm-1 " ng-repeat="month in monthsArray" ng-class="{'weak':month.monthNo == FPmonth1 || month.monthNo == FPmonth2 ||month.monthNo == FPmonth3}" ></div>
+      <!--<div class="col-sm-1 healthy">&nbsp;</div>-->
+      <div class="col-sm-1 " ng-repeat="month in monthsArray" ng-class="{'weak':month.monthNo == FPmonth1 || month.monthNo == FPmonth2 ||month.monthNo == FPmonth3,'healthy': month.monthNo == 0}" ></div>
       <div class="col-sm-1">&nbsp;</div>
       <div class="col-sm-1"><span>
           <img src="" ng-show="FPMethod.id == 0 && dateOfDelivery == false">
