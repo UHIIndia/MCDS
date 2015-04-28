@@ -155,35 +155,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>2015</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><span class="glyphicon glyphicon-asterisk"></span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>2014</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><span class="glyphicon glyphicon-asterisk"></span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                <tr ng-repeat="yearData in visitCalendar.data">
+                  <td>{{ yearData.year }}</td>
+                  <td ng-repeat="month in months">
+                    <img src="img/condom-pic.png" ng-show="yearData.visits[month].methodID === 1" />
+                    <img src="img/ocp-pic.png" ng-show="yearData.visits[month].methodID === 2" />
+                    <img src="img/dmpa-pic.png" ng-show="yearData.visits[month].methodID === 3" />
+                    <img src="img/iucd-pic.png" ng-show="yearData.visits[month].methodID === 4" />
+                    <img src="img/fst-pic.png" ng-show="yearData.visits[month].methodID === 5" />
+                    <img src="img/mst-pic.png" ng-show="yearData.visits[month].methodID === 6" />
+                  </td>
                 </tr>
             </tbody>
         </table>

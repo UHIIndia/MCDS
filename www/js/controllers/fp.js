@@ -140,6 +140,43 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
     WomanService.updateWomanDetails($scope.woman)
   };
 
+  $scope.visitCalendar = {};
+  $scope.visitCalendar.thisYear = new Date().getFullYear();
+  var oldestYearTimestamp = _.chain($scope.woman.familyPlanningVisits)
+    .pluck('visitDateString')
+    .sortBy(function(e) {
+      return new Date(e);
+    })
+    .first()
+    .value();
+  $scope.visitCalendar.oldestYear = new Date(oldestYearTimestamp).getFullYear();
+  $scope.visitCalendar.countYearsData = 1 + $scope.visitCalendar.thisYear - $scope.visitCalendar.oldestYear;
+  $scope.visitCalendar.data = [];
+  var visitsArray = [];
+  for(var year = $scope.visitCalendar.oldestYear; year <= $scope.visitCalendar.thisYear; year++) {
+    var thisYearVisits = _.chain($scope.woman.familyPlanningVisits)
+      .filter(function(e) {
+        return year === new Date(e.visitDateString).getFullYear();
+      })
+      .map(function(e) {
+        var monthID = new Date(e.visitDateString).getMonth() + 1;
+        e.monthID = monthID;
+        return e;
+      })
+      .indexBy('monthID')
+      .value();
+    var thisYearObj = {
+      'year': year,
+      'visits': thisYearVisits
+    };
+    visitsArray.push(thisYearObj);
+  }
+  $scope.visitCalendar.data = _.sortBy(visitsArray, function (e) {
+    return -e.year
+  });
+
+  $scope.months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
   function calculateNextDate(requesterMethodID) {
     var now, nextImpTimestamp;
     now = $scope.methodUseDate;
