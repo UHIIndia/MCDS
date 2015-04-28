@@ -49,16 +49,16 @@
                 <div class="col-sm-6">
                   <label class="control-label col-sm-8">Age of youngest child</label>
                   <div class="col-sm-4">
-                    <input type="text" class="form-control" value="{{ child.age }}" disabled="">
+                    <input type="text" class="form-control" value="{{ child.age.years + ' yr ' + child.age.months + ' mo'}}" disabled="">
                   </div>
               </div>
               <div class="col-sm-6">
                   <label class="control-label col-sm-2">Sex</label>
                   <div class="col-sm-9 select-sex">
-                    <div class="girl-child" ng-class="{'active': child.gender === 'f'}">
+                    <div class="girl-child" ng-class="{'active': child.sex === 'F'}">
                       <i class="icon-girl">&nbsp;</i>
                     </div>
-                    <div class="boy-child" ng-class="{'active': child.gender === 'm'}">
+                    <div class="boy-child" ng-class="{'active': child.sex === 'M'}">
                       <i class="icon-boy">&nbsp;</i>
                     </div>
                   </div>

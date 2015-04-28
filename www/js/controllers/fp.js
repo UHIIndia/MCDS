@@ -23,8 +23,7 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
   $scope.child = youngestChild;
 
   if($scope.child) {
-    $scope.child.age = 1;
-    $scope.child.gender = 'm';
+    $scope.child.age = calculateAge($scope.child.dob);
   }
 
   $scope.womanDisplay = {};
@@ -210,6 +209,15 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
       $scope.woman.familyPlanningVisits.splice($scope.woman.familyPlanningVisits.length-1, 1);
     }
     $scope.woman.familyPlanningVisits.push(thisVisit);
+  }
+
+  function calculateAge(pastDate) {
+    var age = {};
+    var rawAge = new Date().getTime() - new Date(pastDate).getTime();
+    var ageInMonths = Math.floor(rawAge / (1000*60*60*24*31));
+    age.years = Math.floor(ageInMonths/12);
+    age.months = ageInMonths % 12;
+    return age;
   }
 
 });
