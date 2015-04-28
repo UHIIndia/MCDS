@@ -34,10 +34,10 @@ if(displayID){
 }
  
 $scope.isWomanPregnant = function(){
-  if($scope.woman.womanID && $scope.woman.isPregnant === 'true'){
+  if($scope.woman.womanID && $scope.woman.isPregnant === true){
     return true;
   }
-  if($scope.woman.womanID && $scope.woman.isPregnant === 'false'){
+  if($scope.woman.womanID && $scope.woman.isPregnant === false){
     return false;
   }
   
@@ -283,7 +283,7 @@ $scope.navigateToWoman = function() {
     return;
   }
   UtilityService.setWomanDisplayID(woman.displayID);
-  if(woman.isPregnant === 'true'){
+  if(woman.isPregnant === true){
     $state.go('anc');
   } else {
     $state.go('fp');
