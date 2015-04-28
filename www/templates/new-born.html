@@ -59,14 +59,14 @@
             </br><span>Weight</span>
 		</div>
 		<div class="col-sm-10 newborn-tbody">
-			<div class="col-sm-1" ng-repeat = "item in child.newBornDetails"><span ng-if="isSelectedColumn()">{{item.weight}}</span></div>
+			<div class="col-sm-1" ng-repeat = "item in child.newBornDetails"><span>{{item.weight}}</span></div>
 			<div class="col-sm-4">
 				<form class="form-horizontal">
 			      <div class="form-group">
 			        <div class="col-sm-12 transform-y100">
 			          <div class="col-sm-3">
 			            <div class="input-group">
-                          <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="calenders['0']" is-open="isOpenPosition['0']"  max-date="getMaxDate()" min-date="getMinDate();" datepicker-options="dateOptions" close-text="Close" datepicker-append-to-body="true" ng-hide="true"/>
+                          <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="weightDate" is-open="isOpenPosition['0']"  max-date="getMaxDate()" min-date="getMinDate();" datepicker-options="dateOptions" close-text="Close" datepicker-append-to-body="true" ng-hide="true"/>
                           <span class="input-group-btn">
                             <button type="button" class="btn btn-default" ng-click="openCalender($event, '0')"><i class="icon-date"></i></button>
                           </span>
@@ -97,7 +97,7 @@
 		          <div class="col-sm-12">
 		            <div class="col-sm-3">
 		              <div class="input-group">
-                          <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="calenders['1']" is-open="isOpenPosition['1']"  max-date="getMaxDate()" min-date="getMinDate();" datepicker-options="dateOptions" close-text="Close" datepicker-append-to-body="true" ng-hide="true" />
+                          <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="ASHAVisitDate" is-open="isOpenPosition['1']"  max-date="getMaxDate()" min-date="getMinDate();" datepicker-options="dateOptions" close-text="Close" datepicker-append-to-body="true" ng-hide="true" />
                           <span class="input-group-btn">
                             <button type="button" class="btn btn-default" ng-click="openCalender($event, '1')"><i class="icon-date"></i></button>
                           </span>
@@ -133,7 +133,7 @@
 		          <div class="col-sm-12">
 		            <div class="col-sm-3">
 		              <div class="input-group">
-                          <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="calenders['2']" is-open="isOpenPosition['2']"  max-date="getMaxDate()" min-date="getMinDate();" datepicker-options="dateOptions" close-text="Close" datepicker-append-to-body="true" ng-hide="true" />
+                          <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="ANMVisitDate" is-open="isOpenPosition['2']"  max-date="getMaxDate()" min-date="getMinDate();" datepicker-options="dateOptions" close-text="Close" datepicker-append-to-body="true" ng-hide="true" />
                           <span class="input-group-btn">
                             <button type="button" class="btn btn-default" ng-click="openCalender($event, '2')"><i class="icon-date"></i></button>
                           </span>
@@ -169,7 +169,7 @@
 		          <div class="col-sm-12">
 		            <div class="col-sm-3">
 		              <div class="input-group">
-                          <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="calenders['3']" is-open="isOpenPosition['3']"  max-date="getMaxDate()" min-date="getMinDate();" datepicker-options="dateOptions" close-text="Close" datepicker-append-to-body="true" ng-hide="true" />
+                          <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="breastFeedDate" is-open="isOpenPosition['3']"  max-date="getMaxDate()" min-date="getMinDate();" datepicker-options="dateOptions" close-text="Close" datepicker-append-to-body="true" ng-hide="true" />
                           <span class="input-group-btn">
                             <button type="button" class="btn btn-default" ng-click="openCalender($event, '3')"><i class="icon-date"></i></button>
                           </span>
@@ -205,7 +205,7 @@
 		          <div class="col-sm-12">
 		            <div class="col-sm-3">
 		              <div class="input-group">
-                          <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="calenders['4']" is-open="isOpenPosition['4']"  max-date="getMaxDate()" min-date="getMinDate();" datepicker-options="dateOptions" close-text="Close" datepicker-append-to-body="true" ng-hide="true" />
+                          <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="wrapCapDate" is-open="isOpenPosition['4']"  max-date="getMaxDate()" min-date="getMinDate();" datepicker-options="dateOptions" close-text="Close" datepicker-append-to-body="true" ng-hide="true" />
                           <span class="input-group-btn">
                             <button type="button" class="btn btn-default" ng-click="openCalender($event, '4')"><i class="icon-date"></i></button>
                           </span>
@@ -226,7 +226,7 @@
 		</div>
 		</div>
 	</div>
-  <!--newborn row-->
+  <!--newborn sick row-->
 	<div class="clearfix">
 	<div class="col-sm-12" id="5">
 		<div class="col-sm-2 newborn-video">
@@ -241,7 +241,7 @@
 		          <div class="col-sm-12">
 		            <div class="col-sm-3">
 		              <div class="input-group">
-                          <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="calenders['5']" is-open="isOpenPosition['5']"  max-date="getMaxDate()" min-date="getMinDate();" datepicker-options="dateOptions" close-text="Close" datepicker-append-to-body="true" ng-hide="true" />
+                          <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="sickDate" is-open="isOpenPosition['5']"  max-date="getMaxDate()" min-date="getMinDate();" datepicker-options="dateOptions" close-text="Close" datepicker-append-to-body="true" ng-hide="true" />
                           <span class="input-group-btn">
                             <button type="button" class="btn btn-default" ng-click="openCalender($event, '5')"><i class="icon-date"></i></button>
                           </span>

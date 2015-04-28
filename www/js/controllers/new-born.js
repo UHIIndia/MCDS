@@ -13,10 +13,12 @@ angular.module('uhiApp.controllers')
     } else {
       // fetch child details 
       $scope.child = ChildService.getChildDetails(displayID);
-      $scope.child.newBornDetails = [];
+      //$scope.child.newBornDetails = [];
       //set age for child  
       setAge();
-      setDatesInHeader();
+      if(!$scope.child.newBornDetails.length){
+        setDatesInHeader();
+      }      
     }
   }
   function setAge() {
@@ -44,14 +46,7 @@ angular.module('uhiApp.controllers')
     }
   }
   /* calender Related Methods*/
-  $scope.calenders = {
-    "0" : null,
-    "1" : null,
-    "2" : null,
-    "3" : null,
-    "4" : null,
-    "5" : null
-  }
+ 
   $scope.dateFormat = "dd/MM/yyyy";
   $scope.getMaxDate = function() {
    // max date is last date in new born details array last entry
@@ -85,23 +80,8 @@ angular.module('uhiApp.controllers')
     $state.go('immu');
   };
   
-  // grid methods
-  // rows maintains keys
-  var rows ={
-    "0" : "weight",
-    "1" : "ASHAVisit",
-    "2" : "ANMVisit",
-    "3" : "breastFeed",
-    "4" : "wrapCap",
-    "5" : "sick"
-  };
-  
-  var selectGrid = function(row) {
-    if(!$scope.calenderDate){
-      console.log('Please select a date from calender');
-      return;
-    }
-    var dateStr = UtilityService.convertDateFormat($scope.calenderDate);
+  // grid methods 
+  function getColumn(dateStr) {
     var col;
     angular.forEach($scope.child.newBornDetails, function(detail, index){
       if(detail.date === dateStr) {
@@ -109,32 +89,117 @@ angular.module('uhiApp.controllers')
         return;
       }
     }); 
-    
+    return col;
+  }
+  $scope.$watch('weightDate', function(){
+    if($scope.weightDate){
+      console.log('weightDate: '+ $scope.weightDate +" active row :"+activeRow);
+    var dateStr = UtilityService.convertDateFormat($scope.weightDate);
+    var col = getColumn(dateStr);    
     // set value for selected grid
-    col>=0 ? setValue(dateStr, col): alert('Please select a valid date from calender');
+    col>=0 ? setWeightValue(dateStr, col): alert('Please select a valid date from calender');      
+    }    
+  });
   
-  };
-  
-  $scope.$watch('calenderDate', function() {
-    console.log('check watch');
-    selectGrid();
-  })
-  
-  function setValue(date, col) {
-    var dayOfDetail = $scope.child.newBornDetails[col];
-    var key = rows[activeRow];
-    if(activeRow === '0'){
+   function setWeightValue(date, col) {
+    var dayOfDetail = $scope.child.newBornDetails[col];       
       // check if a there is a value for weight
       if($scope.weight){
-        dayOfDetail[key] = $scope.weight;
-        $scope.calenderDate = null; 
+        dayOfDetail.weight = $scope.weight;
+        // 
       } else alert('Please select weight for child');
-    } else {
-      // can apply separate logic for each row  
-      dayOfDetail[key] = date;
-      $scope.calenderDate = null;
-    }
+     
   }
+  
+  $scope.$watch('ASHAVisitDate', function(){
+    if($scope.ASHAVisitDate){
+      console.log('ASHAVisitDate: '+ $scope.ASHAVisitDate +" active row :"+activeRow);
+    var dateStr = UtilityService.convertDateFormat($scope.ASHAVisitDate);
+    var col = getColumn(dateStr);    
+    // set value for selected grid
+    col>=0 ? setASHAVisitValue(dateStr, col): alert('Please select a valid date from calender');      
+    }    
+  });
+  
+   function setASHAVisitValue(date, col) {
+    var dayOfDetail = $scope.child.newBornDetails[col];    
+      // can apply separate logic for each row  
+      dayOfDetail.ASHAVisit = date;
+      //
+    
+  }
+  
+  $scope.$watch('ANMVisitDate', function(){
+    if($scope.ANMVisitDate){
+      console.log('ANMVisitDate: '+ $scope.ANMVisitDate +" active row :"+activeRow);
+    var dateStr = UtilityService.convertDateFormat($scope.ANMVisitDate);
+    var col = getColumn(dateStr);    
+    // set value for selected grid
+    col>=0 ? setANMVisitValue(dateStr, col): alert('Please select a valid date from calender');      
+    }    
+  });
+  
+   function setANMVisitValue(date, col) {
+    var dayOfDetail = $scope.child.newBornDetails[col];
+   
+      dayOfDetail.ANMVisit = date;
+      //
+    
+  }
+  
+  $scope.$watch('breastFeedDate', function(){
+    if($scope.breastFeedDate){
+      console.log('breastFeedDate: '+ $scope.breastFeedDate +" active row :"+activeRow);
+    var dateStr = UtilityService.convertDateFormat($scope.breastFeedDate);
+    var col = getColumn(dateStr);    
+    // set value for selected grid
+    col>=0 ? setBreastFeedDateValue(dateStr, col): alert('Please select a valid date from calender');      
+    }    
+  });
+  
+   function setBreastFeedDateValue(date, col) {
+    var dayOfDetail = $scope.child.newBornDetails[col];
+      
+      dayOfDetail.breastFeed = date;
+      //
+    
+  }
+  
+  $scope.$watch('wrapCapDate', function(){
+    if($scope.wrapCapDate){
+      console.log('wrapCapDate: '+ $scope.wrapCapDate +" active row :"+activeRow);
+    var dateStr = UtilityService.convertDateFormat($scope.wrapCapDate);
+    var col = getColumn(dateStr);    
+    // set value for selected grid
+    col>=0 ? setWrapCapDateValue(dateStr, col): alert('Please select a valid date from calender');      
+    }    
+  });
+  
+   function setWrapCapDateValue(date, col) {
+    var dayOfDetail = $scope.child.newBornDetails[col];
+     
+      dayOfDetail.wrapCap = date;
+      //
+    
+  }
+  
+  $scope.$watch('sickDate', function(){
+    if($scope.sickDate){
+      console.log('sickDate: '+ $scope.sickDate +" active row :"+activeRow);
+    var dateStr = UtilityService.convertDateFormat($scope.sickDate);
+    var col = getColumn(dateStr);    
+    // set value for selected grid
+    col>=0 ? setSickDateValue(dateStr, col): alert('Please select a valid date from calender');      
+    }    
+  });
+  
+   function setSickDateValue(date, col) {
+    var dayOfDetail = $scope.child.newBornDetails[col];
+    
+      dayOfDetail.sick = date;
+      //
+    
+  } 
   
   $scope.navigateToMotherFP = function() {
     // set mother's visible/display ID
@@ -144,6 +209,7 @@ angular.module('uhiApp.controllers')
   
   $scope.saveDetails = function() {
     ChildService.updateChildDetails($scope.child);
+    alert('saved successfully');
   };
   
   // video section starts here 

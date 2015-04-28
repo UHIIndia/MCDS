@@ -62,6 +62,7 @@ angular.module('uhiApp.services')
       childObj.slum =UtilityService.getSlumCode();
       childObj.worker = UtilityService.getWorkerCode();
       childObj.registrationDate = new Date();
+      childObj.newBornDetails =[];
       childrenList.push(childObj);
       FileService.writeToLocalStorage(childrenList, false);
       console.log(childrenList);
