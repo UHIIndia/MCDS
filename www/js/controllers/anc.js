@@ -1402,7 +1402,7 @@ angular.module('uhiApp.controllers')
 
     if($scope.newWoman ==false){
         var itemArray=[lastPaleEyeObject,lastNightBlindObject,lastHBObject,lastBleedingObject,lastWtObject,lastMalariaObject,lastUPObject,lastSwellingObject,lastFitsObject,lastUSObject,lastFeverObject,lastFoulSmellObject,weaknessObject,lastBPObject];
-
+//htis is the check when all the pale values are null or undefined
         angular.forEach(itemArray, function(item, index) {
             var obj;
             if(item != undefined){
@@ -1732,7 +1732,24 @@ $scope.opened=false;
             }
         }
     }
-   
+
+    $scope.VisitsList=[];
+    var VisitsList=[]
+    for(var i=0;i< $scope.visitDetails.PaleEyeVisits.length;i++){
+        for (var j=0;j< $scope.monthsArray.length;j++){
+            if($scope.monthsArray[j].pregnancyMonthNo == $scope.visitDetails.PaleEyeVisits[i].monthID){
+                //return  $scope.visitDetails.PaleEyeVisits[i].value+" "+$scope.monthsArray[j].monthNo;
+                var visitObj={'monthNo':$scope.monthsArray[j].monthNo,'value':$scope.visitDetails.PaleEyeVisits[i].value}
+                VisitsList.push(visitObj);
+            }
+        }
+    }
+    $scope.VisitsList = _.indexBy(VisitsList, 'monthNo')
+    console.log("high");
+
+
+    
+
         //save button functionality
      $scope.saveANCDetails =function(){
          var ANC =[];
