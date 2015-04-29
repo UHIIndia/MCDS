@@ -1375,30 +1375,45 @@ angular.module('uhiApp.controllers')
             currentYear= $scope.BPCalendarDate.getFullYear(); 
         }
         var currentMonth = UtilityService.showMonthFromDate(currentDate);
-        checkUp(index,currentMonth,currentValue,currentYear);
+        if(index == 0){
+             checkUpforPale(index,currentMonth,currentValue,currentYear);
+        }else{
+            checkUp(index,currentMonth,currentValue,currentYear);
+        }
+        
      }
 
-   
-    function checkUp(symptomIndex, month, value,selectedyear){
-         //var month={'monthNo':monthNo,'monthName':monthName,'pregnancyMonthNo':i+1};
-        //$scope.monthsArray.push(month);
-        //case when past mon is not the same as current month
 
-            var selectedMonth = $scope.monthsArray.filter(function(e) {
-              return e.monthNo == month;
-            });
-            if( selectedMonth.length == 0 || selectedMonth.length == 1 && selectedyear !=  selectedMonth[0].monthYear){
-                  $scope.symptomData[symptomIndex].month = 0;
-                  $scope.symptomData[symptomIndex].pregnancyMonthNo = 0;
-            }else{
-                $scope.symptomData[symptomIndex].month = month;
-                $scope.symptomData[symptomIndex].pregnancyMonthNo = selectedMonth[0].pregnancyMonthNo;
-            }
-        $scope.symptomData[symptomIndex].value = value;
-    }
    
-    
-  
+     function checkUp(symptomIndex, month, value,selectedyear){
+
+             var selectedMonth = $scope.monthsArray.filter(function(e) {
+                  return e.monthNo == month;
+                });
+                if( selectedMonth.length == 0 || selectedMonth.length == 1 && selectedyear !=  selectedMonth[0].monthYear){
+                      $scope.symptomData[symptomIndex].month = 0;
+                      $scope.symptomData[symptomIndex].pregnancyMonthNo = 0;
+                }else{
+                    $scope.symptomData[symptomIndex].month = month;
+                    $scope.symptomData[symptomIndex].pregnancyMonthNo = selectedMonth[0].pregnancyMonthNo;
+                }
+            $scope.symptomData[symptomIndex].value = value;
+    }
+    function checkUpforPale(symptomIndex, month, value,selectedyear){
+
+                $scope.lastObj={'monthNo':month,'value':value};
+                $scope.match=0;
+                for (var key in $scope.visitsList) {
+                   var obj = $scope.visitsList[key];
+                   if(obj.monthNo == month){
+                       // $scope.visitsList[key].value=value;
+
+                        $scope.match = 1;
+                        break;
+                    }
+                }
+    }        
+
 
     if($scope.newWoman ==false){
         var itemArray=[lastPaleEyeObject,lastNightBlindObject,lastHBObject,lastBleedingObject,lastWtObject,lastMalariaObject,lastUPObject,lastSwellingObject,lastFitsObject,lastUSObject,lastFeverObject,lastFoulSmellObject,weaknessObject,lastBPObject];
