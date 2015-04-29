@@ -1733,22 +1733,24 @@ $scope.opened=false;
         }
     }
 
-    $scope.VisitsList=[];
-    var VisitsList=[]
+    $scope.visitDetails = {};
+    var visitsList=[];
+     $scope.visitDetails.PaleEyeVisits=_.chain(womanData.ANC)
+        .filter(function(e){ 
+            return e.paleEye;
+        }).map(function(e) { 
+        return {monthID: e.monthID, value: e.paleEye};
+        }).value();
     for(var i=0;i< $scope.visitDetails.PaleEyeVisits.length;i++){
         for (var j=0;j< $scope.monthsArray.length;j++){
             if($scope.monthsArray[j].pregnancyMonthNo == $scope.visitDetails.PaleEyeVisits[i].monthID){
                 //return  $scope.visitDetails.PaleEyeVisits[i].value+" "+$scope.monthsArray[j].monthNo;
-                var visitObj={'monthNo':$scope.monthsArray[j].monthNo,'value':$scope.visitDetails.PaleEyeVisits[i].value}
-                VisitsList.push(visitObj);
+                var visitObj={'monthNo':$scope.monthsArray[j].monthNo,'value':$scope.visitDetails.PaleEyeVisits[i].value,'pregnancyMonthNo':$scope.monthsArray[j].pregnancyMonthNo}
+                visitsList.push(visitObj);
             }
         }
     }
-    $scope.VisitsList = _.indexBy(VisitsList, 'monthNo')
-    console.log("high");
-
-
-    
+    $scope.visitsList = _.indexBy(visitsList, 'monthNo')
 
         //save button functionality
      $scope.saveANCDetails =function(){
