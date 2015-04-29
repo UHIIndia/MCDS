@@ -153,12 +153,13 @@
                 <tr ng-repeat="yearData in visitCalendar.data">
                   <td>{{ yearData.year }}</td>
                   <td ng-repeat="month in months">
-                    <img src="img/condom-pic.png" ng-show="yearData.visits[month].methodID === 1" />
-                    <img src="img/ocp-pic.png" ng-show="yearData.visits[month].methodID === 2" />
-                    <img src="img/dmpa-pic.png" ng-show="yearData.visits[month].methodID === 3" />
-                    <img src="img/iucd-pic.png" ng-show="yearData.visits[month].methodID === 4" />
-                    <img src="img/fst-pic.png" ng-show="yearData.visits[month].methodID === 5" />
-                    <img src="img/mst-pic.png" ng-show="yearData.visits[month].methodID === 6" />
+                    <span class="glyphicon glyphicon-remove" ng-show="yearData.visits[month].methodID === 0 || (FPMethod.id === 0 && visitCalendar.currentMonth === month && response !== 'unanswered')"></span>
+                    <img src="img/condom-pic.png" ng-show="yearData.visits[month].methodID === 1 || (FPMethod.id === 1 && visitCalendar.currentMonth === month && response !== 'unanswered')" />
+                    <img src="img/ocp-pic.png" ng-show="yearData.visits[month].methodID === 2 || (FPMethod.id === 2 && visitCalendar.currentMonth === month && response !== 'unanswered')" />
+                    <img src="img/dmpa-pic.png" ng-show="yearData.visits[month].methodID === 3 || (FPMethod.id === 3 && visitCalendar.currentMonth === month && methodUseDate)" />
+                    <img src="img/iucd-pic.png" ng-show="yearData.visits[month].methodID === 4 || (FPMethod.id === 4 && visitCalendar.currentMonth === month && methodUseDate)" />
+                    <img src="img/fst-pic.png" ng-show="yearData.visits[month].methodID === 5 || (FPMethod.id === 5 && visitCalendar.currentMonth === month && methodUseDate)" />
+                    <img src="img/mst-pic.png" ng-show="yearData.visits[month].methodID === 6 || (FPMethod.id === 6 && visitCalendar.currentMonth === month &&methodUseDate)" />
                   </td>
                 </tr>
             </tbody>

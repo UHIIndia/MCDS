@@ -183,6 +183,8 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
     return -e.year
   });
 
+  $scope.visitCalendar.currentMonth = new Date().getMonth() + 1;
+
   $scope.months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
   function calculateNextDate(requesterMethodID) {
