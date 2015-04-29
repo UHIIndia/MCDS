@@ -14,8 +14,8 @@ if(displayID){
   //load Image from Imgaes Folder
   var imgURI = UtilityService.loadImage($scope.woman.womanID);
   imgURI ? $scope.imgURI =imgURI : $scope.imgURI ="img/woman-sample-profile-picture.png";
-
-  $scope.children = ChildService.getChildren($scope.woman.womanID);
+   ChildService.getChildren($scope.woman.womanID).length ?
+  $scope.children = ChildService.getChildren($scope.woman.womanID) : $scope.children = [{}];
   angular.forEach($scope.children, function(childObj, index){   
    var totalDays = UtilityService.calcAge(childObj.dob, false);
       childObj.ageMonths = parseInt(totalDays /30);
@@ -91,7 +91,8 @@ $scope.setDob = function(inYear, index){
      var child = $scope.children[index];
      //ageMonths = child.ageMonths, ageDays = child.ageDays;
       if(!child.ageDays && !child.ageMonths){
-        // no value 
+        // no value or both has 0 
+        child.dob =null;
         return;
       }
       if(child.ageMonths && !child.ageDays){        
@@ -99,6 +100,10 @@ $scope.setDob = function(inYear, index){
       } else if(child.ageDays && !child.ageMonths){
         child.ageMonths = 0;
       } 
+      if(child.ageDays >=30){
+        child.ageMonths += parseInt(child.ageDays/30);
+        child.ageDays = child.ageDays%30;
+      }
       var months = child.ageMonths, days= child.ageDays;
        date = UtilityService.calcDob(inYear, months, days);
        mm = date.getMonth()+1;

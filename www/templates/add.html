@@ -2,207 +2,200 @@
 
   <!--add new form start-->
     <!--form left-->
-    <div class="tabs-content clearfix dark-green-bg">
-      <div class="clearfix addnew-form-wrapper">
-        
-        <div class="col-sm-6 mother-info">
-          <div class="clearfix">
-            <form class="form-horizontal clearfix">
+<div class="tabs-content clearfix dark-green-bg">
+  <div class="clearfix addnew-form-wrapper">
+    <form name="addForm">
+      <div class="col-sm-6 mother-info">
+        <div class="clearfix">
+          <div class="form-horizontal clearfix">
 
 
-              <div class="col-sm-3 clearfix text-center">
-               <div class="women-profile-pic"><img  ng-src="{{imgURI}}"></div>
-               <div>{{woman.name}}</div>
-               <div>{{woman.displayID}}</div>
-               <button class="default-btn" ng-click="captureImage();">Change</button>
-               
-             </div>
+                  <div class="col-sm-3 clearfix text-center">
+                   <div class="women-profile-pic"><img  ng-src="{{imgURI}}"></div>
+                   <div>{{woman.name}}</div>
+                   <div>{{woman.displayID}}</div>
+                   <button class="default-btn" ng-click="captureImage();">Change</button>
 
-             <div class="col-sm-9">            
+                 </div>
 
-              <div class="form-group">
-               <label class="control-label col-sm-5">Name</label>
-               <div class="col-sm-7">
-                 <input  type="text" class="form-control" ng-model="woman.name" required>
-               </div>
-             </div>
+                 <div class="col-sm-9">            
+
+                  <div class="form-group">
+                   <label class="control-label col-sm-5">Name</label>
+                   <div class="col-sm-7">
+                     <input  type="text" class="form-control" ng-model="woman.name" required>
+                   </div>
+                 </div>
 
 
-             <div class="form-group">
-               <label class="control-label col-sm-5">Date of Birth</label>
-               <div class="col-sm-7">
-                <div class="input-group date-picker">                 
-                 <p class="input-group">
-                <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="woman.dob" init-date="getInitialDate()" is-open="isWomanDobCalenderOpen"  max-date="getMaxDate(true)" datepicker-options="dateOptions" close-text="Close" ng-disabled="true" />
-                <span class="input-group-btn">
-                 <button type="button" class="btn btn-default" ng-click="openCalender($event, true)"><i class="icon-date"></i></button>
-                </span>
-                </p>
+                 <div class="form-group">
+                   <label class="control-label col-sm-5">Date of Birth</label>
+                   <div class="col-sm-7">
+                    <div class="input-group date-picker">                 
+                     <p class="input-group">
+                    <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="woman.dob" init-date="getInitialDate()" is-open="isWomanDobCalenderOpen"  max-date="getMaxDate(true)" datepicker-options="dateOptions" close-text="Close" ng-disabled="true" />
+                    <span class="input-group-btn">
+                     <button type="button" class="btn btn-default" ng-click="openCalender($event, true)"><i class="icon-date"></i></button>
+                    </span>
+                    </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                 <label class="control-label col-sm-5">Age <small>(years)</small></label>
+                 <div class="col-sm-7">
+                  <input type="number" class="form-control" ng-model="woman.age" ng-blur="setDob(true)" min="11" max="100" required>
                 </div>
               </div>
-            </div>
 
+              <div class="form-group">
+               <label class="control-label col-sm-5 align-top">No. of Prev. Pregnancies</label>
+               <div class="col-sm-7">
+                <input type="number" class="form-control" ng-model="woman.pregnencyCount" min="0">
+              </div>
+            </div>
             <div class="form-group">
-             <label class="control-label col-sm-5">Age</label>
+             <label class="control-label col-sm-5  align-top">No. of Live Birth(s)</label>
              <div class="col-sm-7">
-              <input type="number" class="form-control" ng-model="woman.age" ng-blur="setDob(true)" min="11" max="100" required>
+              <input type="number"  class="form-control" ng-model="woman.liveBirthsCount" min="0">
             </div>
           </div>
 
           <div class="form-group">
-           <label class="control-label col-sm-5 align-top">No. of Prev. Pregnancies</label>
-           <div class="col-sm-7">
-            <input type="number" class="form-control" ng-model="woman.pregnencyCount" min="0">
-          </div>
-        </div>
-        <div class="form-group">
-         <label class="control-label col-sm-5  align-top">No. of Live Birth(s)</label>
-         <div class="col-sm-7">
-          <input type="number"  class="form-control" ng-model="woman.liveBirthsCount" min="0">
+           <label class="control-label col-sm-5  align-top">Currently Pregnant</label>
+           <div class="col-sm-7 pregnant-status">        
+             <div>
+               <input type="radio" name="yesNoRadio" id="yesRadio" ng-model="woman.isPregnant" ng-value="true"><label for="yesRadio" >Yes <i class="icon-pregnant-yes">&nbsp;</i></label>
+             </div>
+             <div>
+               <input type="radio" name="yesNoRadio" id="noRadio"  ng-model="woman.isPregnant" ng-value="false"><label for="noRadio">No <i class="icon-pregnant-no">&nbsp;</i></label>                   
+             </div>
+           </div>
+         </div>
+
+
+       </div>
+     </div> 
         </div>
       </div>
+      <!--basic info form-->
+      <div class="col-sm-6">
+        <div class="clearfix basic-info">
+          <div class="form-horizontal">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="control-label col-sm-4">House No.</label>
+                <div class="col-sm-8"><input type="text" class="form-control" ng-model="woman.house" required>
+                 <!-- <span class="error">Please provide a house no.</span>-->
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-4">Husband Name</label>
+                <div class="col-sm-8"><input type="text" class="form-control"  ng-model="woman.husbandName"></div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-4">Phone # <i class="icon-phone">&nbsp;</i> +91</label>
+                <div class="col-sm-8"><input type="number" ng-model="woman.phone" class="form-control"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix">
+         <div class="form-horizontal clearfix child-details" id="childDetails">
+           <div class="col-sm-12 child-details-header" id="childDetailsHeader">
+             <div class="form-group">
+              <div class="col-sm-3">
+               <span>Name</span>
+             </div>
+             <div class="col-sm-4">
+              <span>Date of Birth</span>
+            </div>
+            <div class="col-sm-3">
+             <span>Age <small>(months/days)</small></span>
+           </div>
+           <div class="col-sm-2">
 
-      <div class="form-group">
-       <label class="control-label col-sm-5  align-top">Currently Pregnant</label>
-       <div class="col-sm-7 pregnant-status">        
-         <div>
-           <input type="radio" name="yesNoRadio" id="yesRadio" ng-model="woman.isPregnant" ng-value="true"><label for="yesRadio" >Yes <i class="icon-pregnant-yes">&nbsp;</i></label>
-         </div>
-         <div>
-           <input type="radio" name="yesNoRadio" id="noRadio"  ng-model="woman.isPregnant" ng-value="false"><label for="noRadio">No <i class="icon-pregnant-no">&nbsp;</i></label>                   
+             <span>Sex</span>        
+           </div>
          </div>
        </div>
-     </div>
-
-     
-   </div>
- </form>
-
- <!--child details form-->
+       <div class="col-sm-12 child-entries">
 
 
-
-
- 
- 
-</div>
-</div>
-<!--basic info form-->
-<div class="col-sm-6">
-  <div class="clearfix basic-info">
-    <form class="form-horizontal">
-      <div class="col-sm-12">
-        <div class="form-group">
-          <label class="control-label col-sm-4">House No.</label>
-          <div class="col-sm-8"><input type="text" class="form-control" ng-model="woman.house" required>
-           <!-- <span class="error">Please provide a house no.</span>-->
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="control-label col-sm-4">Husband Name</label>
-          <div class="col-sm-8"><input type="text" class="form-control"  ng-model="woman.husbandName"></div>
-        </div>
-        <div class="form-group">
-          <label class="control-label col-sm-4">Phone # <i class="icon-phone">&nbsp;</i> +91</label>
-          <div class="col-sm-8"><input type="number" ng-model="woman.phone" class="form-control"></div>
-        </div>
-      </div>
-    </form>
-  </div>
-  <div class="clearfix">
-   <form class="form-horizontal clearfix child-details" id="childDetails">
-     <div class="col-sm-12 child-details-header" id="childDetailsHeader">
-       <div class="form-group">
+      <div class="form-group"  ng-repeat="child in children">
         <div class="col-sm-3">
-         <span>Name</span>
+         <input type="text" class="form-control" ng-model="child.name">
        </div>
        <div class="col-sm-4">
-        <span>Date of Birth</span>
+         <div class="input-group date-picker">    
+           <p class="input-group">
+                      <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="child.dob" is-open="isOpenPosition[$index]"  max-date="getMaxDate(false)" datepicker-options="dateOptions"  datepicker-append-to-body="true"  close-text="Close" ng-disabled="true"/>
+                      <span class="input-group-btn">
+                       <button type="button" class="btn btn-default" ng-click="openCalender($event, false, $index)"><i class="icon-date"></i></button>
+                      </span>
+            </p>
+        </div>
       </div>
-      <div class="col-sm-3">
-       <span>Age(mm/dd)</span>
-     </div>
-     <div class="col-sm-2">
+      <div class="col-sm-3 age-group">
+          <div class="col-sm-6">
+              <input type="number" class="form-control" ng-model="child.ageMonths" ng-blur="setDob(false, $index);" placeholder ="0" min="0">
+          </div>
+          <div class="col-sm-6">
+              <input type="number" class="form-control" ng-model="child.ageDays" ng-blur="setDob(false, $index);" placeholder="0" min="0" max="42">
+          </div>
+      </div>   
+      <div class="col-sm-2 select-child">
+        <div class="girl-child"><input type="radio" ng-model="child.sex" value="F"><i class="icon-select-girl" ng-class="selectedGenderForChild(child,true);">&nbsp;</i></div>
+        <div class="boy-child"><input type="radio" ng-model="child.sex" value="M"><i class="icon-select-boy" ng-class="selectedGenderForChild(child, false);">&nbsp;</i></div>
+      </div>        
+      </div>
+      </div>  
+      <div class="child-details-footer col-sm-12">
+        <button class="default-btn" ng-click="addMoreChildren();">Add Row</button>
+      </div>    
       
-       <span>Sex</span>        
-     </div>
-   </div>
- </div>
- <div class="col-sm-12 child-entries">
-
-
-<div class="form-group"  ng-repeat="child in children">
-  <div class="col-sm-3">
-   <input type="text" class="form-control" ng-model="child.name">
- </div>
- <div class="col-sm-4">
-   <div class="input-group date-picker">    
-     <p class="input-group">
-                <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="child.dob" is-open="isOpenPosition[$index]"  max-date="getMaxDate(false)" datepicker-options="dateOptions"  datepicker-append-to-body="true"  close-text="Close" ng-disabled="true"/>
-                <span class="input-group-btn">
-                 <button type="button" class="btn btn-default" ng-click="openCalender($event, false, $index)"><i class="icon-date"></i></button>
-                </span>
-      </p>
-  </div>
-</div>
-<div class="col-sm-3 age-group">
-    <div class="col-sm-6">
-        <input type="number" class="form-control" ng-model="child.ageMonths" ng-blur="setDob(false, $index);" placeholder="mm" min="0">
+          </div>
+      </div>
+      </div>
+      <!--child info form-->
+      <div class="save-form col-sm-12 text-right">
+        <input type="button" class="default-btn"  value="save" ng-click="saveDetails();"/>
+      </div>
+    </form>
+    <!--women links-->
+    <div class="addnew-form-links col-sm-12">
+      <div class="col-sm-6">
+        <div class="women-links col-sm-12">
+         <div class="col-sm-12"><h4>Go to Woman</h4></div>
+         <div class="col-sm-12 text-center">
+         <a href="javascript:void(0);" ng-click = "navigateToWoman();" ng-show="isWomanPregnant() === false;">
+             <i class="icon-women">&nbsp;</i>
+         </a>
+         <a href="javascript:void(0)" ng-click = "navigateToWoman();" ng-show="isWomanPregnant();">
+             <i class="icon-pregnant-women">&nbsp;</i>
+         </a>
+        </div>
+      </div>
     </div>
+
     <div class="col-sm-6">
-        <input type="number" class="form-control" ng-model="child.ageDays" ng-blur="setDob(false, $index);" placeholder="dd" min="0" max="42">
+     <div class="col-sm-12"> <label class="control-label col-sm-9">Number of Living Children</label> <div class="col-sm-3"><input type="text" class="form-control" ng-model="woman.livingChildrenCount" ng-disabled="true"></div></div>
+     <div class="col-sm-12"><h4>Go to Specific Child</h4></div>
+     <div class="child-links col-sm-12">
+
+
+
+    <div ng-repeat ="child in savedChildren">
+     <a href="javascript:void(0);" ng-click="navigateToChild($index);">
+      <i ng-class="getChildIcon(child);">&nbsp;</i>
+    </a>
+    <span><b>Name:</b> {{child.name}}</span>
+    <span><b>Age:</b> {{child.ageMonths}} months,</br> {{child.ageDays}} days</span>
     </div>
-</div>   
-<div class="col-sm-2 select-child">
-  <div class="girl-child"><input type="radio" ng-model="child.sex" value="F"><i class="icon-select-girl" ng-class="selectedGenderForChild(child,true);">&nbsp;</i></div>
-  <div class="boy-child"><input type="radio" ng-model="child.sex" value="M"><i class="icon-select-boy" ng-class="selectedGenderForChild(child, false);">&nbsp;</i></div>
-</div>        
-</div>
-</div>  
-<div class="child-details-footer col-sm-12">
-  <button class="default-btn" ng-click="addMoreChildren();">Add Row</button>
-</div>    
-</form>
-</div>
-</div>
-<!--child info form-->
-
-
-<div class="save-form col-sm-12 text-right"><button class="default-btn" ng-click="saveDetails();">Save</button></div>
-
-<!--women links-->
-<div class="addnew-form-links col-sm-12">
-  <div class="col-sm-6">
-    <div class="women-links col-sm-12">
-     <div class="col-sm-12"><h4>Go to Woman</h4></div>
-     <div class="col-sm-12 text-center">
-     <a href="javascript:void(0);" ng-click = "navigateToWoman();" ng-show="isWomanPregnant() === false;">
-         <i class="icon-women">&nbsp;</i>
-     </a>
-     <a href="javascript:void(0)" ng-click = "navigateToWoman();" ng-show="isWomanPregnant();">
-         <i class="icon-pregnant-women">&nbsp;</i>
-     </a>
+    </div>
+    </div>
     </div>
   </div>
-</div>
-
-<div class="col-sm-6">
- <div class="col-sm-12"> <label class="control-label col-sm-9">Number of Living Children</label> <div class="col-sm-3"><input type="text" class="form-control" ng-model="woman.livingChildrenCount" ng-disabled="true"></div></div>
- <div class="col-sm-12"><h4>Go to Specific Child</h4></div>
- <div class="child-links col-sm-12">
-
-
-
-<div ng-repeat ="child in savedChildren">
- <a href="javascript:void(0);" ng-click="navigateToChild($index);">
-  <i ng-class="getChildIcon(child);">&nbsp;</i>
-</a>
-<span><b>Name:</b> {{child.name}}</span>
-<span><b>Age:</b> {{child.ageMonths}} months,</br> {{child.ageDays}} days</span>
-</div>
-</div>
-</div>
-</div>
-</div>
 </div>
 <!--addnew-form-wrapper ends here-->
