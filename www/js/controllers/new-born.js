@@ -3,6 +3,11 @@ angular.module('uhiApp.controllers')
   
   //get child Details  
   var activeRow = null; // this keeps a track of active row
+  $scope.isEditing=false;
+  var lastUpdated ={
+    weight:null
+    
+  }
   function init(){
     var displayID = UtilityService.getChildDisplayID();
     console.log(displayID);
@@ -70,6 +75,7 @@ angular.module('uhiApp.controllers')
     "5": false
   };  
   $scope.openCalender = function($event, rowNo) {
+    $scope.isEditing = true;
    $event.preventDefault();
    $event.stopPropagation();
     activeRow = rowNo;
@@ -106,6 +112,7 @@ angular.module('uhiApp.controllers')
       // check if a there is a value for weight
       if($scope.weight){
         dayOfDetail.weight = $scope.weight;
+        //$scope.isEditing=false;
         // 
       } else alert('Please select weight for child');
      

@@ -66,5 +66,10 @@ angular.module('uhiApp.controllers')
                 alert('Please put a woman no. to go to woman or child page');
             }
         }
+    };
+    
+    $scope.addWoman = function () {
+      UtilityService.setWomanDisplayID(null);
+      $state.go('add');
     }
 });
