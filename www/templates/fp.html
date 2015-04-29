@@ -99,7 +99,7 @@
 </div>
 </div>
 <!--first row ends-->
-<div class="row well">
+<!--<div class="row well">
     <div class="col-md-12">
         <div class="row message">
             <div class="col-md-12">
@@ -133,7 +133,41 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
+
+
+
+
+     <div class="row">
+            <div class="col-sm-12">
+              <div class="fp-movies-wrapper">
+                <div class="movies-msg clearfix" ng-show="showMessage" ng-hide="true">
+                  <span>{{ messages[FPMethod.id] }}</span>
+                  <span ng-show="FPMethod.id === 3">{{ futureImportantDate | date:'dd/MM/yyyy' }}</span>
+                  <span ng-show="FPMethod.id === 4">{{ futureImportantDate | date:'MM/yyyy' }}</span>
+                  <span ng-show="FPMethod.id === 6">{{ futureImportantDate | date:'dd/MM/yyyy' }}</span>
+                  <img src="img/condom-pic.png" ng-show="FPMethod.id === 1" />
+                  <img src="img/ocp-pic.png" ng-show="FPMethod.id === 2" />
+                  <img src="img/dmpa-pic.png" ng-show="FPMethod.id === 3" />
+                  <img src="img/iucd-pic.png" ng-show="FPMethod.id === 4" />
+                  <img src="img/mst-pic.png" ng-show="FPMethod.id === 6" />
+                </div>
+                <div class="fp-movies">
+                  <h4>View a Movie !</h4>
+                  <ul>
+                    <li ng-repeat="videoItem in video.list" ng-click="video.play(videoItem.id)">
+                       <video id="video{{ videoItem.id }}" class="video-thumbnail">
+                        <source ng-src="{{ videoItem.path }}" type="video/mp4">
+                      </video>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+      </div>
+
+
+
 
 <div class="row calendar well">
     <div class="col-md-12">
@@ -264,7 +298,7 @@
             <div datepicker-popup="" ng-model="methodUseDate" is-open="opened" ng-required="true" close-text="Close"></div>
             <span class="input-group-btn">
               <button type="button" class="btn btn-default">
-                <span class="glyphicon glyphicon-calendar"></span>
+                <i class="icon-date"></i>
                 <span>&nbsp;&nbsp;</span>
                 <span>{{ methodUseDate | date:'dd-MM-yyyy' }}</span>
               </button>
@@ -278,7 +312,7 @@
 </div>
 <div class="row save">
     <div class="col-md-12">
-        <button class="btn pull-right" ng-click="save()">Save</button>
+        <button class="btn pull-right default-btn" ng-click="save()">Save</button>
         <br><br>
     </div>
 </div>
