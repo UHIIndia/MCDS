@@ -42,7 +42,19 @@ $scope.isWomanPregnant = function(){
   }
   
 }
-
+// add watch for woman dob to set age
+$scope.$watch('woman.dob', function(){
+  $scope.setAge(true);
+});
+//add watch for child dob to set child age
+angular.forEach($scope.children, function(child, index){
+  $scope.$watch(function(scope){
+    $scope.child = child;
+    return $scope.child.dob;
+  }, function(){
+    $scope.setAge(false, index);
+  })
+});
 // setting age based on dob
 $scope.setAge = function(inYear, index){
   var dob;
