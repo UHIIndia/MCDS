@@ -209,8 +209,6 @@
 	}
 	.addnew-form-links .women-links > div{
 		padding-left: 0;
-		margin-top: 15px;
-		margin-bottom: 15px;
 	}
 	.addnew-form-links .women-links > div:last-child{
 		padding-right: 0;
@@ -230,7 +228,7 @@
 		background: #faafba;
 		border: 1px #a6a6a6 solid;
 		padding:5px;
-		margin: 14px 0 44px;
+		margin:15px 0;
 		position: relative;
 		box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.8);
 		-moz-box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.8);
@@ -240,9 +238,9 @@
 		text-decoration: none;
 	}
 	.icon-women {
-		background-position: -5px -523px !important;
-		height:68px;
-		width:67px;
+	  background-position: -68px -245px !important;
+	  height: 44px;
+	  width: 44px;
 	}
 	.icon-pregnant-women {
 		background-position: -218px -65px !important;

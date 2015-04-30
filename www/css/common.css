@@ -74,3 +74,9 @@ input[type="radio"][disabled] + label{
 	background: transparent !important;
 	border: none;
 }
+.date-picker .dropdown-menu{
+	padding: 5px;
+}
+.date-picker th{
+	vertical-align: top;
+}
