@@ -38,8 +38,11 @@ input.form-control{
 	border:1px #fff solid;
 	background: #d9eff7;
 }
+input[type="radio"], input[type="checkbox"] {
+  margin-right: 15px !important;
+}
 input[type="radio"]:not(old){
-	width   : 28px;
+	/*width   : 28px;*/
 	margin  : 0;
 	padding : 0;
 	opacity : 0;
@@ -55,7 +58,9 @@ input[type=radio]:not(old) + label{
 input[type=radio]:not(old):checked + label{
 	background-position :-218px -30px !important;
 }
-
+input[type="radio"][disabled] + label{
+	background-position :-218px -407px !important;
+}
 .row{
 	width: auto;
 	padding: 0;
