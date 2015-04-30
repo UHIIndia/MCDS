@@ -3,11 +3,7 @@ angular.module('uhiApp.controllers')
   
   //get child Details  
   var activeRow = null; // this keeps a track of active row
-  $scope.isEditing=false;
-  var lastUpdated ={
-    weight:null
-    
-  }
+ 
   function init(){
     var displayID = UtilityService.getChildDisplayID();
     console.log(displayID);
@@ -74,8 +70,7 @@ angular.module('uhiApp.controllers')
     "4": false,
     "5": false
   };  
-  $scope.openCalender = function($event, rowNo) {
-    $scope.isEditing = true;
+  $scope.openCalender = function($event, rowNo) {   
    $event.preventDefault();
    $event.stopPropagation();
     activeRow = rowNo;
@@ -97,6 +92,16 @@ angular.module('uhiApp.controllers')
     }); 
     return col;
   }
+ 
+  var lastUpdated ={};
+  function setLastUpdated(row, col){
+    var prevCol = lastUpdated[row];
+    if(prevCol>=0){
+          //remove the previously set value       
+          $scope.child.newBornDetails[prevCol][row]=null; 
+    }
+    lastUpdated[row] = col;
+  }
   $scope.$watch('weightDate', function(){
     if($scope.weightDate){
       console.log('weightDate: '+ $scope.weightDate +" active row :"+activeRow);
@@ -111,8 +116,9 @@ angular.module('uhiApp.controllers')
     var dayOfDetail = $scope.child.newBornDetails[col];       
       // check if a there is a value for weight
       if($scope.weight){
-        dayOfDetail.weight = $scope.weight;
-        //$scope.isEditing=false;
+        //set last updated col for this row
+        setLastUpdated('weight',col);
+        dayOfDetail.weight = $scope.weight;       
         // 
       } else alert('Please select weight for child');
      
@@ -129,7 +135,8 @@ angular.module('uhiApp.controllers')
   });
   
    function setASHAVisitValue(date, col) {
-    var dayOfDetail = $scope.child.newBornDetails[col];    
+    var dayOfDetail = $scope.child.newBornDetails[col]; 
+     setLastUpdated('ASHAVisit',col);
       // can apply separate logic for each row  
       dayOfDetail.ASHAVisit = date;
       //
@@ -148,7 +155,7 @@ angular.module('uhiApp.controllers')
   
    function setANMVisitValue(date, col) {
     var dayOfDetail = $scope.child.newBornDetails[col];
-   
+      setLastUpdated('ANMVisit',col);
       dayOfDetail.ANMVisit = date;
       //
     
@@ -166,7 +173,7 @@ angular.module('uhiApp.controllers')
   
    function setBreastFeedDateValue(date, col) {
     var dayOfDetail = $scope.child.newBornDetails[col];
-      
+       setLastUpdated('breastFeed',col);
       dayOfDetail.breastFeed = date;
       //
     
@@ -184,7 +191,7 @@ angular.module('uhiApp.controllers')
   
    function setWrapCapDateValue(date, col) {
     var dayOfDetail = $scope.child.newBornDetails[col];
-     
+     setLastUpdated('wrapCap',col);
       dayOfDetail.wrapCap = date;
       //
     
@@ -202,7 +209,7 @@ angular.module('uhiApp.controllers')
   
    function setSickDateValue(date, col) {
     var dayOfDetail = $scope.child.newBornDetails[col];
-    
+    setLastUpdated('sick',col);
       dayOfDetail.sick = date;
       //
     
@@ -216,6 +223,8 @@ angular.module('uhiApp.controllers')
   
   $scope.saveDetails = function() {
     ChildService.updateChildDetails($scope.child);
+    //initialize last updated
+    lastUpdated ={};
     alert('saved successfully');
   };
   

@@ -4,7 +4,7 @@
     <!--form left-->
 <div class="tabs-content clearfix dark-green-bg">
   <div class="clearfix addnew-form-wrapper">
-    <form name="addForm">
+    <form name="addForm" ng-submit="saveDetails();">
       <div class="col-sm-6 mother-info">
         <div class="clearfix">
           <div class="form-horizontal clearfix">
@@ -14,8 +14,7 @@
                    <div class="women-profile-pic"><img  ng-src="{{imgURI}}"></div>
                    <div>{{woman.name}}</div>
                    <div>{{woman.displayID}}</div>
-                   <button class="default-btn" ng-click="captureImage();">Change</button>
-
+                    <button type="button" class="default-btn" ng-click="captureImage();">Change</button>
                  </div>
 
                  <div class="col-sm-9">            
@@ -45,7 +44,7 @@
                 <div class="form-group">
                  <label class="control-label col-sm-5">Age <small>(years)</small></label>
                  <div class="col-sm-7">
-                  <input type="number" class="form-control" ng-model="woman.age" ng-blur="setDob(true)" min="11" max="100" required>
+                  <input type="number" class="form-control" ng-model="woman.age" ng-blur="setDob(true)" min="11" max="99">
                 </div>
               </div>
 
@@ -96,7 +95,7 @@
               </div>
               <div class="form-group">
                 <label class="control-label col-sm-4">Phone # <i class="icon-phone">&nbsp;</i> +91</label>
-                <div class="col-sm-8"><input type="number" ng-model="woman.phone" class="form-control"></div>
+                <div class="col-sm-8"><input type="tel" ng-model="woman.phone" class="form-control"></div>
               </div>
             </div>
           </div>
@@ -152,7 +151,7 @@
       </div>
       </div>  
       <div class="child-details-footer col-sm-12">
-        <button class="default-btn" ng-click="addMoreChildren();">Add Row</button>
+        <button type="button" class="default-btn" ng-click="addMoreChildren();">Add Row</button>
       </div>    
       
           </div>
@@ -160,7 +159,7 @@
       </div>
       <!--child info form-->
       <div class="save-form col-sm-12 text-right">
-        <input type="button" class="default-btn"  value="save" ng-click="saveDetails();"/>
+        <input type="submit" id="submit" class="default-btn"  value="Save"/>
       </div>
     </form>
     <!--women links-->

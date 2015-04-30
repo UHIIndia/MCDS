@@ -1,5 +1,5 @@
 angular.module('uhiApp.services')
-.factory('UtilityService',['$cordovaFile', '$cordovaCamera', function($cordovaFile, $cordovaCamera){
+.factory('UtilityService', function($cordovaFile, $cordovaCamera, $q){
   var cityCode="500", slumCode="200", workerCode="100";
   var dataDir, folder="images"; 
   var womanDisplayID, childDisplayID;
@@ -200,6 +200,8 @@ angular.module('uhiApp.services')
     },
     saveImage : function(imageData, fileName){ 
     // alert("inside utility service");
+    var deferred = $q.defer();
+      // call async    
     try {
          dataDir = cordova.file.externalDataDirectory;
        //alert("ext dir: "+dataDir);
@@ -209,15 +211,15 @@ angular.module('uhiApp.services')
       console.log('image will be saved only on device');
       return;
      }
-     function fail(err){
-      alert("file error: "+err.message);
+     function fail(err){      
+      //alert("Error Code: "+err.code);
+       deferred.reject("Error Code: "+err.code)
      }
      function onCopySuccess(){
-      alert('image file saved');
+       deferred.resolve('image file saved');
      }
      function copyFile(fileEntry){
-      var newName = fileName+".jpg";
-      window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory+folder, function(fileSystem2) {
+      var newName = fileName+".jpg";        window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory+folder, function(fileSystem2) {
       // alert('ext dir for copying :'+ fileSystem2);
        //kkj: use moveTo and then point to new saved image in extyernal directory
 				fileEntry.moveTo(
@@ -230,21 +232,23 @@ angular.module('uhiApp.services')
 			fail);
      }
      var onSuccessDir = function(success){
-      // copy file 
-     // alert("Directory is present ");
-      window.resolveLocalFileSystemURL(imageData, copyFile, fail);       
+       window.resolveLocalFileSystemURL(imageData, copyFile, fail);       
       };
      
      $cordovaFile.checkDir(dataDir, folder).then(onSuccessDir, function(err){
       //alert("No directory found, create new directory:"+ err.message);
        $cordovaFile.createDir(dataDir, folder).then(onSuccessDir, function(err){
-        alert('Error in creating directory: '+err.message);
+        //alert('Error in creating directory: '+err.code);
+         deferred.reject('Error in creating directory: '+err.code);
        });
       
      });
     } catch(e){
      console.log('exception :' + e);
+      deferred.reject('exception :' + e);
     }
+      
+    return deferred.promise;
   
     
     },
@@ -258,4 +262,4 @@ angular.module('uhiApp.services')
       return date;
     }
   }
-}]);
+});

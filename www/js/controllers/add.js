@@ -144,7 +144,7 @@ $scope.captureImage = function($event){
       $scope.imgURI = imgData;
     }, function(err) {
       // error
-     alert("ERROR IN CAMERA CAPTURE: "+err);
+     alert(err);
      return;
     });
 
@@ -169,7 +169,12 @@ $scope.saveDetails = function($event){
   }
   // change image if image has been changed
  if(imgData){  
-  UtilityService.saveImage(imgData, $scope.woman.womanID);
+  UtilityService.saveImage(imgData, $scope.woman.womanID).then(function(success){
+    imgData = null;
+    alert(success);    
+  }, function(err){
+    alert("Image not saved "+ err);
+  });
  }  
   //display saved children
   //$scope.savedChildren=angular.copy($scope.children);
