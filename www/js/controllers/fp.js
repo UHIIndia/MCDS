@@ -131,21 +131,23 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
   };
 
   $scope.save = function() {
-    var visit = {};
-    var date = new Date();
     if($scope.FPMethod) {
-      visit.displayID = $scope.woman.displayID + '-' + (date.getMonth() + 1) + '-' + (date.getFullYear());
-      visit.methodID = $scope.FPMethod.id;
-      visit.methodName = $scope.FPMethod.name;
-      visit.didUseMethodRecently = null;
+      var methodRecord = {};
+      var date = new Date();
+      methodRecord.displayID = $scope.woman.displayID + '-' + (date.getMonth() + 1) + '-' + (date.getFullYear());
+      methodRecord.methodID = $scope.FPMethod.id;
+      methodRecord.methodName = $scope.FPMethod.name;
+      methodRecord.didUseMethodRecently = null;
       if($scope.FPMethod.id < 3) {
-        visit.didUseMethodRecently = $scope.response;
+        methodRecord.didUseMethodRecently = $scope.response;
+        methodRecord.methodUseDate = new Date().toISOString();
+      } else {
+        methodRecord.methodUseDate = $scope.methodUseDate.toISOString();
       }
-      visit.methodUseDate = $scope.methodUseDate;
-      visit.visitDateString = new Date().toString();
-      updateOrCreateVisit(visit);
+      methodRecord.visitDate = new Date().toISOString();
+      updateOrCreateMethodRecord(methodRecord);
+      WomanService.updateWomanDetails($scope.woman);
     }
-    WomanService.updateWomanDetails($scope.woman)
   };
 
   $scope.visitCalendar = {};
@@ -200,17 +202,23 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
     return new Date(nextImpTimestamp);
   }
 
-  function updateOrCreateVisit(thisVisit) {
-    var sortedVisits = _.sortBy($scope.woman.familyPlanningVisits, function(e) {
-      return new Date(e.visitDateString);
-    });
-    var lastVisit = _.last(sortedVisits);
-    var lastVisitMonthIndex = new Date(lastVisit.visitDateString).getMonth();
-    var thisMonthIndex = new Date().getMonth();
-    if(lastVisitMonthIndex === thisMonthIndex) {
-      $scope.woman.familyPlanningVisits.splice($scope.woman.familyPlanningVisits.length-1, 1);
+  function updateOrCreateMethodRecord(thisMethodRecord) {
+    if(thisMethodRecord.methodID < 3) {
+      $scope.woman.familyPlanningVisits = _.reject($scope.woman.familyPlanningVisits, function(e) {
+        return new Date(e.methodUseDate).getMonth() === new Date().getMonth();
+      });
+      $scope.woman.familyPlanningVisits.push(thisMethodRecord);
+    } else if(thisMethodRecord.methodID === 3) {
+      var methodMonthIndex = new Date(thisMethodRecord.methodUseDate).getMonth();
+      var thisMonthIndex = new Date().getMonth();
+      var monthsCount = thisMonthIndex - methodMonthIndex;
+      for(var count=0; count<=monthsCount; count++) {
+        thisMethodRecord.methodUseDate = new Date('2015-' + (methodMonthIndex+1+count) + '-15').toISOString();
+        $scope.woman.familyPlanningVisits.push(thisMethodRecord);
+      }
+    } else {
+      $scope.woman.familyPlanningVisits.push(thisMethodRecord);
     }
-    $scope.woman.familyPlanningVisits.push(thisVisit);
   }
 
   function calculateAge(pastDate) {
