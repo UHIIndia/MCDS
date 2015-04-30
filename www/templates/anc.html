@@ -220,7 +220,7 @@
       <div class="col-sm-9">
         <div class="col-sm-2 anc-video">
           <div>
-            <img ng-click="video.play(1)" src="img/video-screen1.gif" class="img-responsive">
+            <img ng-click="video.play(1)" src="img/asha-visit.gif" class="img-responsive">
             <div> ASHA AWW VISIT</div>
           </div>
         </div>
@@ -256,7 +256,7 @@
       <div class="col-sm-9">
         <div class="col-sm-2 anc-video">
           <div>
-            <img ng-click="video.play(2)" src="img/video-screen1.gif" class="img-responsive">
+            <img ng-click="video.play(2)" src="img/anm-checkup.gif" class="img-responsive">
             <div>ANM. DOC. CHECKUP</div>
           </div>
         </div>
@@ -296,7 +296,7 @@
     <div class="col-sm-9">
       <div class="col-sm-2 anc-video">
         <div>
-          <img ng-click="video.play(3)" src="img/video-screen1.gif" class="img-responsive">
+          <img ng-click="video.play(3)" src="img/weight.gif" class="img-responsive">
           <div>Weight</div>
         </div>
       </div>
@@ -335,7 +335,7 @@
       <div class="col-sm-9">
         <div class="col-sm-2 anc-video">
           <div>
-            <img ng-click="video.play(4)" src="img/video-screen1.gif" class="img-responsive">
+            <img ng-click="video.play(4)" src="img/tt.gif" class="img-responsive">
            <div>TT</div>
           </div>
         </div>
@@ -349,22 +349,34 @@
       <div class="col-sm-3 anc-calender-add">
       <form class="form-horizontal">
         <div class="form-group">
+         <div class="col-sm-12 text-right"><label class="control-label">TT in last pregnancy</label> <input type="text" class="form-control" ng-model="enteredTT"  ng-blur="updateTT();"/></div>
+        </div>
+       <div class="form-group"> 
         <div class="col-sm-12">
           <div class="col-sm-3">
-            <p class="input-group">
-                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="TTCalendarDate" is-open="openedTT" ng-required="true" close-text="Close" />
+            <div class="input-group">
+                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="TTCalendarDate" is-open="openedTT" ng-required="true" close-text="Close" ng-hide="true"/>
                 <span class="input-group-btn">
-                  <button type="button" class="btn btn-default" ng-click="open($event,'TT')"><i class="glyphicon glyphicon-calendar"></i></button>
+                  <button type="button" class="btn btn-default" ng-click="open($event,'TT')"><i class="icon-date"></i></button>
                 </span>
-            </p>
+            </div>
           </div>
-          <div class="col-sm-9 text-right">
-            <label class="control-label">TT in last pregnancy</label> <input type="text" class="form-control" ng-model="enteredTT"  ng-blur="updateTT();"/>
-            <label for="radio5TT" class="control-label"><input type="radio" ng-model="TTOutcome"  ng-value="'no'"  name="TTCheck" id="radio5TT">No</label>
-             <label for="radio4TT" class="control-label"><input type="radio" ng-model="TTOutcome" name="TTCheck" ng-value="'yes'" id="radio4TT">Yes</label> 
+          <div class="col-sm-9 radio-group">   
+          <div>
+            <input type="radio" ng-model="TTOutcome"  ng-value="'no'"  name="TTCheck" id="radio5TT">
+            <label for="radio5TT">No</label>
+          </div>    
+            <div>
+            <input type="radio" ng-model="TTOutcome" name="TTCheck" ng-value="'yes'" id="radio4TT">
+             <label for="radio4TT">Yes</label> 
+          </div>      
+            
+            
           </div>
           </div>
+
         </div>
+
         </form>
       </div>
     </div>
@@ -374,7 +386,7 @@
     <div class="col-sm-9">
       <div class="col-sm-2 anc-video">
         <div>
-          <img ng-click="video.play(5)" src="img/video-screen1.gif" class="img-responsive">
+          <img ng-click="video.play(5)" src="img/anemia.gif" class="img-responsive">
           <div>Anaemia</div>
         </div>
       </div>
@@ -420,7 +432,7 @@
   <div class="col-sm-9">
     <div class="col-sm-2 anc-video">
       <div>
-        <img src="img/video-screen1.gif" ng-click="video.play(6)" class="img-responsive">
+        <img src="img/pale-eye.gif" ng-click="video.play(6)" class="img-responsive">
         <div>Pale Eye</div>
       </div>
     </div>
@@ -474,7 +486,7 @@
       <div class="col-sm-9">
         <div class="col-sm-2 anc-video">
           <div>
-            <img src="img/video-screen1.gif" ng-click="video.play(7)" class="img-responsive">
+            <img src="img/night-blind.gif" ng-click="video.play(7)" class="img-responsive">
             <div>Night Blind</div>
           </div>
         </div>
@@ -529,7 +541,7 @@
   <div class="col-sm-9">
     <div class="col-sm-2 anc-video">
       <div>
-        <img src="img/video-screen1.gif" ng-click="video.play(8)" class="img-responsive">
+        <img src="img/bleeding.gif" ng-click="video.play(8)" class="img-responsive">
         <div>Bleeding</div>
       </div>
     </div>
@@ -585,7 +597,7 @@
   <div class="col-sm-9">
     <div class="col-sm-2 anc-video">
       <div>
-        <img src="img/video-screen1.gif" ng-click="video.play(9)" class="img-responsive">
+        <img src="img/malaria.gif" ng-click="video.play(9)" class="img-responsive">
         <div>Malaria</div>
       </div>
     </div>
@@ -640,7 +652,7 @@
   <div class="col-sm-9">
     <div class="col-sm-2 anc-video">
       <div>
-        <img src="img/video-screen1.gif" ng-click="video.play(10)" class="img-responsive">
+        <img src="img/ifa-tablet.gif" ng-click="video.play(10)" class="img-responsive">
         <div>IFA Tablets</div>
       </div>
     </div>
@@ -676,7 +688,7 @@
       <div class="col-sm-9">
         <div class="col-sm-2 anc-video">
           <div>
-            <img src="img/video-screen1.gif" ng-click="video.play(11)" class="img-responsive">
+            <img src="img/bp.gif" ng-click="video.play(11)" class="img-responsive">
            <div>BP</div>
           </div>
         </div>
@@ -694,18 +706,33 @@
         <div class="col-sm-12">
           <div class="col-sm-3">
             <p class="input-group">
-                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="BPCalendarDate" is-open="openedBP" ng-required="true" close-text="Close" />
+                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="BPCalendarDate" is-open="openedBP" ng-required="true" close-text="Close" ng-hide="true" />
                 <span class="input-group-btn">
-                  <button type="button" class="btn btn-default" ng-click="open($event,'BP')"><i class="glyphicon glyphicon-calendar"></i></button>
+                  <button type="button" class="btn btn-default" ng-click="open($event,'BP')"><i class="icon-date"></i></button>
                 </span>
             </p>
           </div>
-          <div class="col-sm-9 text-right">
+          <div class="col-sm-9 bp-select">
+          <!--
             <label class="control-label">140</label> <input type="text" class="form-control" ng-model="enteredBPHigh" ng-blur="updateBPNo();"> <label class="control-label">90</label> <input type="text" class="form-control" ng-model="enteredBPLow" ng-blur="updateBPNo();">
             <label for="radio35BP" class="control-label"><input type="radio" ng-model="BPOutcome"  ng-value="'High'" name="BPCheck" 
                 id="radio35BP" ng-change="updateBP()">High</label>
              <label for="radio34BP" class="control-label"><input type="radio" ng-model="BPOutcome" name="BPCheck" ng-value="'Normal'" 
               id="radio34BP" ng-change="updateBP()">Nomal</label> 
+          -->
+          <div> > 140 / > 90 High Normal</div>
+          <input type="text" class="form-control" ng-model="enteredBPHigh" ng-blur="updateBPNo();"> /
+          <input type="text" class="form-control" ng-model="enteredBPLow" ng-blur="updateBPNo();">
+            <div class="radio-group">
+            <div>
+            <input type="radio" ng-model="BPOutcome"  ng-value="'High'" name="BPCheck" id="radio35BP" ng-change="updateBP()">
+            <label for="radio35BP" class="control-label"></label>
+          </div>
+           <div>
+            <input type="radio" ng-model="BPOutcome" name="BPCheck" ng-value="'Normal'"  id="radio34BP" ng-change="updateBP()">
+            <label for="radio34BP" class="control-label"></label> 
+          </div>
+            </div>
           </div>
           </div>
         </div>
@@ -718,7 +745,7 @@
   <div class="col-sm-9">
     <div class="col-sm-2 anc-video">
       <div>
-        <img src="img/video-screen1.gif" ng-click="video.play(12)" class="img-responsive">
+        <img src="img/urine.gif" ng-click="video.play(12)" class="img-responsive">
         <div>Urine Protein</div>
       </div>
     </div>
@@ -771,7 +798,7 @@
   <div class="col-sm-9">
     <div class="col-sm-2 anc-video">
       <div>
-        <img src="img/video-screen1.gif" ng-click="video.play(13)" class="img-responsive">
+        <img src="img/swelling.gif" ng-click="video.play(13)" class="img-responsive">
         <div>Swelling</div>
       </div>
     </div>
@@ -826,7 +853,7 @@
   <div class="col-sm-9">
     <div class="col-sm-2 anc-video">
       <div>
-        <img src="img/video-screen1.gif" ng-click="video.play(14)" class="img-responsive">
+        <img src="img/headache.gif" ng-click="video.play(14)" class="img-responsive">
         <div>Fits/blurred vision/headache</div>
       </div>
     </div>
@@ -879,7 +906,7 @@
   <div class="col-sm-9">
     <div class="col-sm-2 anc-video">
       <div>
-        <img src="img/video-screen1.gif" ng-click="video.play(15)" class="img-responsive">
+        <img src="img/urine.gif" ng-click="video.play(15)" class="img-responsive">
         <div>Urine Sugar</div>
       </div>
     </div>
@@ -932,7 +959,7 @@
   <div class="col-sm-9">
     <div class="col-sm-2 anc-video">
       <div>
-        <img src="img/video-screen1.gif" ng-click="video.play(16)" class="img-responsive">
+        <img src="img/fever.gif" ng-click="video.play(16)" class="img-responsive">
         <div>Fever</div>
       </div>
     </div>
@@ -986,7 +1013,7 @@
   <div class="col-sm-9">
     <div class="col-sm-2 anc-video">
       <div>
-        <img src="img/video-screen1.gif" ng-click="video.play(17)" class="img-responsive">
+        <img src="img/foul-discharge.gif" ng-click="video.play(17)" class="img-responsive">
         <div>Foul swelling Discharge</div>
       </div>
     </div>
@@ -1039,7 +1066,7 @@
   <div class="col-sm-9">
     <div class="col-sm-2 anc-video">
       <div>
-        <img src="img/video-screen1.gif" ng-click="video.play(18)" class="img-responsive">
+        <img src="img/weakness.gif" ng-click="video.play(18)" class="img-responsive">
         <div>Weakness/other illness</div>
       </div>
     </div>
@@ -1089,7 +1116,7 @@
   <div class="col-sm-9">
     <div class="col-sm-2 anc-video">
       <div>
-        <img src="img/fpmethod-img.jpg" class="img-responsive">
+        <img src="img/postpartum.jpg" class="img-responsive">
         <div>Postpartum FP</div>
       </div>
     </div>

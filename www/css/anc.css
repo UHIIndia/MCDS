@@ -99,7 +99,7 @@
 		padding-left: 5px;
 	}
 	
-	.birth-outcome .birth-date .birth-child a{
+	.birth-outcome .birth-date .birth-child span{
 		width: 27px;
 		height: 27px;
 		display: inline-block;
@@ -108,23 +108,26 @@
 		padding:5px;
 		border: 1px #a6a6a6 solid;
 	}
-	.birth-outcome .birth-date .birth-child a.girl-child{
+	.birth-outcome .birth-date .birth-child span.girl-child{
 		background: #faafba;
 		box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.8);
 		-moz-box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.8);
 		-webkit-box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.8), inset 0 5px 5px rgba(255,255,255,0.8);
 	}
-	.birth-outcome .birth-date .birth-child a.boy-child{
+	.birth-outcome .birth-date .birth-child span.boy-child{
 		background: #61caec;
 		box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.8);
 		-moz-box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.8);
 		-webkit-box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.8), inset 0 5px 5px rgba(255,255,255,0.8);
 	}
-	.birth-outcome .birth-date .birth-child a.misscarriage{
+	.birth-outcome .birth-date .birth-child span.misscarriage{
 		background: #e2e2e2;
 		box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.8);
 		-moz-box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.8);
 		-webkit-box-shadow: 0 1px 2px #fff, 0 -1px 1px #666, inset 0 -1px 1px rgba(0,0,0,0.8), inset 0 5px 5px rgba(255,255,255,0.8);
+	}
+	.birth-outcome .birth-date .birth-child span.active{
+		box-shadow: none;
 	}
 	.birth-outcome .birth-date input[type="text"]{
 		height: 20px;
@@ -272,10 +275,12 @@
 	border-right:none;
 	background: #fff;
 	text-align: center;
+	padding: 0;
+	padding-top: 40px;
+	font-size: 12px;
 }
 .anc-outcome > div span{
 	display: block;
-	padding-top: 40px;
 }
 .anc-outcome > div:last-child{
 	border-right: 1px #000 solid;
@@ -313,6 +318,9 @@
 }
 .fp-methods-wrapper{
 	margin-top: -15px;
+}
+.fp-methods-wrapper .fp-methods.disableCls{
+	opacity: 0.5;
 }
 .fp-methods-wrapper > div:first-child{
 	width: 12%;
@@ -382,3 +390,26 @@
 	border-radius: 0;
 	width: 56px;
 }
+
+.bp-select{
+	font-family: OpenSans-Semibold;
+	padding: 0;
+}
+.bp-select .radio-group{
+	display: inline-block;
+	margin-top: 10px;
+}
+.bp-select .radio-group > div{
+	margin-right: 0;
+	margin-left: 8px;
+}
+
+.bp-select input[type="text"]{
+	margin: 0;
+}
+.bp-select label{
+	height: 21px;
+	margin-top: 5px;
+	vertical-align: text-top;
+}
+
