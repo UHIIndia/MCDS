@@ -1400,14 +1400,20 @@ angular.module('uhiApp.controllers')
             $scope.symptomData[symptomIndex].value = value;
     }
     function checkUpforPale(symptomIndex, month, value,selectedyear){
-
-                $scope.lastObj={'monthNo':month,'value':value};
+                var selectedMonth = $scope.monthsArray.filter(function(e) {
+                  return e.monthNo == month;
+                });
+                if( selectedMonth.length == 0 || selectedMonth.length == 1 && selectedyear !=  selectedMonth[0].monthYear){
+                    month=0;
+                   $scope.lastObj={'monthNo':0,'value':value,'pregnancyMonthNo': 0};
+                }else{
+                   $scope.lastObj={'monthNo':month,'value':value,'pregnancyMonthNo': selectedMonth[0].pregnancyMonthNo};
+                }
+                
                 $scope.match=0;
                 for (var key in $scope.visitsList) {
                    var obj = $scope.visitsList[key];
                    if(obj.monthNo == month){
-                       // $scope.visitsList[key].value=value;
-
                         $scope.match = 1;
                         break;
                     }
@@ -1769,8 +1775,15 @@ $scope.opened=false;
 
         //save button functionality
      $scope.saveANCDetails =function(){
+        if($scope.match == 1){
+            $scope.visitsList[$scope.lastObj.monthNo].value=$scope.lastObj.value;
+        }else{
+            $scope.visitsList[$scope.lastObj.monthNo]=$scope.lastObj;
+        }
+  
          var ANC =[];
         var monthID, ASHAVisit,ANMVisit,weight,TT,HB,paleEye,bleeding,malaria,IFATablets,BP,swelling,headache,urineProtein,urineSugar,nightBlindness,foulSmellingDischarge,fever,otherInfection,lastUpdateDateTime;
+        $scope.visitsList = _.indexBy($scope.visitsList , 'pregnancyMonthNo')
         for(var i=0;i<=9;i++){ 
             monthID = i;
             if($scope.pregnancylastAshaVistMonth == i){
@@ -1793,8 +1806,8 @@ $scope.opened=false;
             }else{
                 IFATablets = null;
             }
-            if($scope.symptomData[0].pregnancyMonthNo == i){     //for pale eye
-                 paleEye = $scope.symptomData[0].value
+            if( $scope.visitsList[i] !=  undefined){     //for pale eye
+                    paleEye = $scope.visitsList[i].value;
             }else{
                 paleEye = null;
             }
