@@ -216,8 +216,18 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
         thisMethodRecord.methodUseDate = new Date('2015-' + (methodMonthIndex+1+count) + '-15').toISOString();
         $scope.woman.familyPlanningVisits.push(thisMethodRecord);
       }
-    } else {
-      $scope.woman.familyPlanningVisits.push(thisMethodRecord);
+    } else if(thisMethodRecord.methodID === 4) {
+      var methodMonthIndex = new Date(thisMethodRecord.methodUseDate).getMonth();
+      var thisMonthIndex = new Date().getMonth();
+      var monthsCount = thisMonthIndex - methodMonthIndex;
+      for(var count=0; count<=monthsCount; count++) {
+        thisMethodRecord.methodUseDate = new Date('2015-' + (methodMonthIndex+1+count) + '-15').toISOString();
+        $scope.woman.familyPlanningVisits.push(thisMethodRecord);
+      }
+    } else if(thisMethodRecord.methodID === 5) {
+        $scope.woman.familyPlanningVisits.push(thisMethodRecord);
+    } else if(thisMethodRecord.methodID === 6) {
+        $scope.woman.familyPlanningVisits.push(thisMethodRecord);
     }
   }
 
