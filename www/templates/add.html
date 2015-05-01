@@ -31,12 +31,12 @@
                    <label class="control-label col-sm-5">Date of Birth</label>
                    <div class="col-sm-7">
                     <div class="input-group date-picker">                 
-                     <p class="input-group">
+                     <div class="input-group">
                     <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="woman.dob" init-date="getInitialDate()" is-open="isWomanDobCalenderOpen"  max-date="getMaxDate(true)" datepicker-options="dateOptions" close-text="Close" ng-disabled="true" />
                     <span class="input-group-btn">
                      <button type="button" class="btn btn-default" ng-click="openCalender($event, true)"><i class="icon-date"></i></button>
                     </span>
-                    </p>
+                    </div>
                     </div>
                   </div>
                 </div>
@@ -55,14 +55,14 @@
               </div>
             </div>
             <div class="form-group">
-             <label class="control-label col-sm-5  align-top">No. of Live Birth(s)</label>
+             <label class="control-label col-sm-5">No. of Live Birth(s)</label>
              <div class="col-sm-7">
               <input type="number"  class="form-control" ng-model="woman.liveBirthsCount" min="0">
             </div>
           </div>
 
           <div class="form-group">
-           <label class="control-label col-sm-5  align-top">Currently Pregnant</label>
+           <label class="control-label col-sm-5">Currently Pregnant</label>
            <div class="col-sm-7 pregnant-status">        
              <div>
                <input type="radio" name="yesNoRadio" id="yesRadio" ng-model="woman.isPregnant" ng-value="true"><label for="yesRadio" >Yes <i class="icon-pregnant-yes">&nbsp;</i></label>
@@ -128,12 +128,12 @@
        </div>
        <div class="col-sm-4">
          <div class="input-group date-picker">    
-           <p class="input-group">
+           <div class="input-group">
                       <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="child.dob" is-open="isOpenPosition[$index]"  max-date="getMaxDate(false)" datepicker-options="dateOptions"  datepicker-append-to-body="true"  close-text="Close" ng-disabled="true"/>
                       <span class="input-group-btn">
                        <button type="button" class="btn btn-default" ng-click="openCalender($event, false, $index)"><i class="icon-date"></i></button>
                       </span>
-            </p>
+            </div>
         </div>
       </div>
       <div class="col-sm-3 age-group">
