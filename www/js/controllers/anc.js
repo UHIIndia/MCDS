@@ -827,15 +827,7 @@ angular.module('uhiApp.controllers')
             }).map(function(e) { 
             return {monthID: e.monthID, value: e.paleEye};
             }).value();
-        for(var i=0;i< storedPaleEyeVisits.length;i++){
-            for (var j=0;j< $scope.monthsArray.length;j++){
-                if($scope.monthsArray[j].pregnancyMonthNo == storedPaleEyeVisits[i].monthID){
-                    //return  $scope.visitDetails.PaleEyeVisits[i].value+" "+$scope.monthsArray[j].monthNo;
-                    var visitObj={'monthNo':$scope.monthsArray[j].monthNo,'value':storedPaleEyeVisits[i].value,'pregnancyMonthNo':$scope.monthsArray[j].pregnancyMonthNo}
-                    paleEyeVisits.push(visitObj);
-                }
-            }
-        }
+         paleEyeVisits = getVisits(storedPaleEyeVisits);    
         $scope.visitDetails.paleEyeVisits = _.indexBy(paleEyeVisits, 'monthNo')
      }else{
 
@@ -863,15 +855,7 @@ angular.module('uhiApp.controllers')
             }).map(function(e) { 
             return {monthID: e.monthID, value: e.nightBlindness};
             }).value();
-        for(var i=0;i< storedNightBlindVisits.length;i++){
-            for (var j=0;j< $scope.monthsArray.length;j++){
-                if($scope.monthsArray[j].pregnancyMonthNo == storedNightBlindVisits[i].monthID){
-                    //return  $scope.visitDetails.PaleEyeVisits[i].value+" "+$scope.monthsArray[j].monthNo;
-                    var visitObj={'monthNo':$scope.monthsArray[j].monthNo,'value':storedNightBlindVisits[i].value,'pregnancyMonthNo':$scope.monthsArray[j].pregnancyMonthNo}
-                    nightBlindVisits.push(visitObj);
-                }
-            }
-        }
+        nightBlindVisits = getVisits(storedNightBlindVisits);    
         $scope.visitDetails.nightBlindVisits = _.indexBy(nightBlindVisits, 'monthNo')
 
      }else{
@@ -889,7 +873,20 @@ angular.module('uhiApp.controllers')
                    updateRow(1);
                 }
     }
-
+ 
+    function getVisits(storedVisits){
+        var updatedVisits = [];
+        for(var i=0;i< storedVisits.length;i++){
+            for (var j=0;j < $scope.monthsArray.length;j++){
+                if($scope.monthsArray[j].pregnancyMonthNo == storedVisits[i].monthID){
+                    //return  $scope.visitDetails.PaleEyeVisits[i].value+" "+$scope.monthsArray[j].monthNo;
+                    var visitObj={'monthNo':$scope.monthsArray[j].monthNo,'value':storedVisits[i].value,'pregnancyMonthNo':$scope.monthsArray[j].pregnancyMonthNo}
+                    updatedVisits.push(visitObj);
+                }
+            }
+        }
+        return updatedVisits;
+    }
     //LOGIC FOR Bleeding
     $scope.BleedingCalendarDate = todayDate;
     var lastBleedingObject={};
