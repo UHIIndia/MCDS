@@ -150,26 +150,26 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
     }
   };
 
-  $scope.visitCalendar = {};
-  $scope.visitCalendar.thisYear = new Date().getFullYear();
+  $scope.methodCalendar = {};
+  $scope.methodCalendar.thisYear = new Date().getFullYear();
   var oldestYearTimestamp = _.chain($scope.woman.familyPlanningVisits)
-    .pluck('visitDateString')
+    .pluck('visitDate')
     .sortBy(function(e) {
       return new Date(e);
     })
     .first()
     .value();
-  $scope.visitCalendar.oldestYear = new Date(oldestYearTimestamp).getFullYear();
-  $scope.visitCalendar.countYearsData = 1 + $scope.visitCalendar.thisYear - $scope.visitCalendar.oldestYear;
-  $scope.visitCalendar.data = [];
-  var visitsArray = [];
-  for(var year = $scope.visitCalendar.oldestYear; year <= $scope.visitCalendar.thisYear; year++) {
-    var thisYearVisits = _.chain($scope.woman.familyPlanningVisits)
+  $scope.methodCalendar.oldestYear = new Date(oldestYearTimestamp).getFullYear();
+  $scope.methodCalendar.countYearsData = 1 + $scope.methodCalendar.thisYear - $scope.methodCalendar.oldestYear;
+  $scope.methodCalendar.data = [];
+  var methodArray = [];
+  for(var year = $scope.methodCalendar.oldestYear; year <= $scope.methodCalendar.thisYear; year++) {
+    var thisYearMethods = _.chain($scope.woman.familyPlanningVisits)
       .filter(function(e) {
-        return year === new Date(e.visitDateString).getFullYear();
+        return year === new Date(e.methodUseDate).getFullYear();
       })
       .map(function(e) {
-        var monthID = new Date(e.visitDateString).getMonth() + 1;
+        var monthID = new Date(e.methodUseDate).getMonth() + 1;
         e.monthID = monthID;
         return e;
       })
@@ -177,15 +177,15 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
       .value();
     var thisYearObj = {
       'year': year,
-      'visits': thisYearVisits
+      'methods': thisYearMethods
     };
-    visitsArray.push(thisYearObj);
+    methodArray.push(thisYearObj);
   }
-  $scope.visitCalendar.data = _.sortBy(visitsArray, function (e) {
+  $scope.methodCalendar.data = _.sortBy(methodArray, function (e) {
     return -e.year
   });
 
-  $scope.visitCalendar.currentMonth = new Date().getMonth() + 1;
+  $scope.methodCalendar.currentMonth = new Date().getMonth() + 1;
 
   $scope.months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
