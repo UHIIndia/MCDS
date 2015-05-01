@@ -134,7 +134,7 @@ angular.module('uhiApp.controllers')
     $scope.chooseMonth = 5;
     var todayDate=new Date();
      $scope.symptomData=[];
-   
+    var VisitItem=["paleEyeVisits","nightBlindVisits"];
    
     $scope.totalAshaCount = 0;
      currentMonth = todayDate.getMonth()+1;         //get the current month
@@ -816,18 +816,27 @@ angular.module('uhiApp.controllers')
 
     }  
 //LOGIC FOR Pale Eye
+    $scope.visitDetails = {};
+    var paleEyeVisits=[];
     $scope.PaleCalendarDate = todayDate;
-    var lastPaleEyeObject={};
+    var storedPaleEyeVisits=[];
      if($scope.newWoman == false){
-     lastPaleEyeObject=_.chain(womanData.ANC).map(function(e) { 
-        return {month: e.monthID, value: e.paleEye};
-        })
-        .filter(function(e){ 
-            return e.value;
-        })
-        .sortBy('month')
-        .last()
-        .value();
+        var storedPaleEyeVisits =_.chain(womanData.ANC)
+            .filter(function(e){ 
+                return e.paleEye;
+            }).map(function(e) { 
+            return {monthID: e.monthID, value: e.paleEye};
+            }).value();
+        for(var i=0;i< storedPaleEyeVisits.length;i++){
+            for (var j=0;j< $scope.monthsArray.length;j++){
+                if($scope.monthsArray[j].pregnancyMonthNo == storedPaleEyeVisits[i].monthID){
+                    //return  $scope.visitDetails.PaleEyeVisits[i].value+" "+$scope.monthsArray[j].monthNo;
+                    var visitObj={'monthNo':$scope.monthsArray[j].monthNo,'value':storedPaleEyeVisits[i].value,'pregnancyMonthNo':$scope.monthsArray[j].pregnancyMonthNo}
+                    paleEyeVisits.push(visitObj);
+                }
+            }
+        }
+        $scope.visitDetails.paleEyeVisits = _.indexBy(paleEyeVisits, 'monthNo')
      }else{
 
      }   
@@ -845,18 +854,26 @@ angular.module('uhiApp.controllers')
     }
 
     //LOGIC FOR Night Blindness
+    var nightBlindVisits=[];
     $scope.NightBlindCalendarDate = todayDate;
-    var lastNightBlindObject={};
      if($scope.newWoman == false){
-        lastNightBlindObject=_.chain(womanData.ANC).map(function(e) { 
-        return {month: e.monthID, value: e.nightBlindness};
-        })
-        .filter(function(e){ 
-            return e.value;
-        })
-        .sortBy('month')
-        .last()
-        .value();
+        var storedNightBlindVisits =_.chain(womanData.ANC)
+            .filter(function(e){ 
+                return e.nightBlindness;
+            }).map(function(e) { 
+            return {monthID: e.monthID, value: e.nightBlindness};
+            }).value();
+        for(var i=0;i< storedNightBlindVisits.length;i++){
+            for (var j=0;j< $scope.monthsArray.length;j++){
+                if($scope.monthsArray[j].pregnancyMonthNo == storedNightBlindVisits[i].monthID){
+                    //return  $scope.visitDetails.PaleEyeVisits[i].value+" "+$scope.monthsArray[j].monthNo;
+                    var visitObj={'monthNo':$scope.monthsArray[j].monthNo,'value':storedNightBlindVisits[i].value,'pregnancyMonthNo':$scope.monthsArray[j].pregnancyMonthNo}
+                    nightBlindVisits.push(visitObj);
+                }
+            }
+        }
+        $scope.visitDetails.nightBlindVisits = _.indexBy(nightBlindVisits, 'monthNo')
+
      }else{
 
      }
@@ -1376,14 +1393,16 @@ angular.module('uhiApp.controllers')
         }
         var currentMonth = UtilityService.showMonthFromDate(currentDate);
         if(index == 0){
-             checkUpforPale(index,currentMonth,currentValue,currentYear);
+             checkUpforPale("paleEyeVisits",currentMonth,currentValue,currentYear);
+        }else if(index == 1){
+             checkUpforPale("nightBlindVisits",currentMonth,currentValue,currentYear);
         }else{
             checkUp(index,currentMonth,currentValue,currentYear);
         }
         
      }
 
-
+         //var VisitItem=["paleEyeVisits","nightBlindVisits"];
    
      function checkUp(symptomIndex, month, value,selectedyear){
 
@@ -1399,30 +1418,40 @@ angular.module('uhiApp.controllers')
                 }
             $scope.symptomData[symptomIndex].value = value;
     }
+    $scope.matchArray={};
+    $scope.lastObj={};
     function checkUpforPale(symptomIndex, month, value,selectedyear){
+
                 var selectedMonth = $scope.monthsArray.filter(function(e) {
                   return e.monthNo == month;
                 });
                 if( selectedMonth.length == 0 || selectedMonth.length == 1 && selectedyear !=  selectedMonth[0].monthYear){
                     month=0;
-                   $scope.lastObj={'monthNo':0,'value':value,'pregnancyMonthNo': 0};
+                   $scope.lastObj[symptomIndex] = {'monthNo':0,'value':value,'pregnancyMonthNo': 0};
                 }else{
-                   $scope.lastObj={'monthNo':month,'value':value,'pregnancyMonthNo': selectedMonth[0].pregnancyMonthNo};
+                   $scope.lastObj[symptomIndex] = {'monthNo':month,'value':value,'pregnancyMonthNo': selectedMonth[0].pregnancyMonthNo};
                 }
-                
-                $scope.match=0;
-                for (var key in $scope.visitsList) {
-                   var obj = $scope.visitsList[key];
+                $scope.matchArray[symptomIndex] = 0;
+
+                for (var key in $scope.visitDetails[symptomIndex]) {
+                   var obj = $scope.visitDetails[symptomIndex][key];
+                   if(obj.monthNo == month){
+                        $scope.matchArray[symptomIndex] = 1;
+                        break;
+                    }
+                }
+
+                /*for (var key in $scope.visitDetails.paleEyeVisits) {
+                   var obj = $scope.visitDetails.paleEyeVisits[key];
                    if(obj.monthNo == month){
                         $scope.match = 1;
                         break;
                     }
-                }
+                }*/
     }        
-
-
     if($scope.newWoman ==false){
-        var itemArray=[lastPaleEyeObject,lastNightBlindObject,lastHBObject,lastBleedingObject,lastWtObject,lastMalariaObject,lastUPObject,lastSwellingObject,lastFitsObject,lastUSObject,lastFeverObject,lastFoulSmellObject,weaknessObject,lastBPObject];
+        var lastPaleEyeObject,lastBlindObject;
+        var itemArray=[lastPaleEyeObject,lastBlindObject,lastHBObject,lastBleedingObject,lastWtObject,lastMalariaObject,lastUPObject,lastSwellingObject,lastFitsObject,lastUSObject,lastFeverObject,lastFoulSmellObject,weaknessObject,lastBPObject];
 //htis is the check when all the pale values are null or undefined
         angular.forEach(itemArray, function(item, index) {
             var obj;
@@ -1438,74 +1467,25 @@ angular.module('uhiApp.controllers')
         for(var i=0;i<14;i++){          //in case the woman is a new woman
             $scope.symptomData.push({month:-1,value:'',pregnancyMonthNo:-1});
         }
-     }   
+     } 
 
-   /* if($scope.newWoman ==false){
+    if($scope.newWoman ==false){
+        //htis is the check when all the pale values are null or undefined
+        angular.forEach(itemArray, function(item, index) {
+            var obj;
+            if(item != undefined){
+                obj ={month: $scope.monthsArray[item.month].monthNo, value: item.value, pregnancyMonthNo:item.month};
+            }else{
+                obj ={month: -1, value:'', pregnancyMonthNo:-1};
+            }
+            $scope.symptomData.push(obj);
+        });
+     }else{
         
-         $scope.symptomData =[
-        {////pale 0   
-             month: $scope.monthsArray[lastPaleEyeObject.month].monthNo,
-             value: lastPaleEyeObject.value,
-             pregnancyMonthNo:lastPaleEyeObject.month
-        },{  ////NB 1
-            month: $scope.monthsArray[lastNightBlindObject.month].monthNo,
-            value:lastNightBlindObject.value,
-            pregnancyMonthNo:lastNightBlindObject.month
-        },{//2 HB
-            month: $scope.monthsArray[lastHBObject.month].monthNo,
-            value:lastHBObject.value,
-            pregnancyMonthNo:lastHBObject.month
-        },{//3 BLEEDIN
-            month: $scope.monthsArray[lastBleedingObject.month].monthNo,
-            value:lastBleedingObject.value,
-            pregnancyMonthNo:lastBleedingObject.month
-        },{//4  for weight
-            month: $scope.monthsArray[lastWtObject.month].monthNo,
-            value:lastWtObject.value,
-            pregnancyMonthNo:lastWtObject.month
-        },{//5 MALARIA
-            month: $scope.monthsArray[lastMalariaObject.month].monthNo,
-            value:lastMalariaObject.value,
-            pregnancyMonthNo:lastMalariaObject.month
-        },{//6
-            month: $scope.monthsArray[lastUPObject.month].monthNo,
-            value:lastUPObject.value,
-            pregnancyMonthNo:lastUPObject.month
-        },{//7   SWELLING
-            month: $scope.monthsArray[lastSwellingObject.month].monthNo,
-            value:lastSwellingObject.value,
-            pregnancyMonthNo:lastSwellingObject.month
-        },{//8
-            month: $scope.monthsArray[lastFitsObject.month].monthNo,
-            value:lastFitsObject.value,
-            pregnancyMonthNo:lastFitsObject.month
-        },{//9
-            month: $scope.monthsArray[lastUSObject.month].monthNo,
-            value:lastUSObject.value,
-            pregnancyMonthNo:lastUSObject.month
-        },{//10
-            month: $scope.monthsArray[lastFeverObject.month].monthNo,
-            value:lastFeverObject.value,
-            pregnancyMonthNo:lastFeverObject.month
-        },{//11
-            month: $scope.monthsArray[lastFoulSmellObject.month].monthNo,
-            value:lastFoulSmellObject.value,
-            pregnancyMonthNo:lastFoulSmellObject.month
-        },{//12
-            month: $scope.monthsArray[weaknessObject.month].monthNo,
-            value:weaknessObject.value,
-            pregnancyMonthNo:weaknessObject.month
-        },{//13
-            month: $scope.monthsArray[lastBPObject.month].monthNo,
-            value:lastBPObject.value,
-            pregnancyMonthNo:lastBPObject.month
-        }];
-    }else{
         for(var i=0;i<14;i++){          //in case the woman is a new woman
             $scope.symptomData.push({month:-1,value:'',pregnancyMonthNo:-1});
         }
-    }*/
-    
+     }   
 
     //watch Dod    
     $scope.$watch(function(scope) {return $scope.DODCalendarDate},
@@ -1754,36 +1734,23 @@ $scope.opened=false;
         }
     }
 
-    $scope.visitDetails = {};
-    var visitsList=[];
-     $scope.visitDetails.PaleEyeVisits=_.chain(womanData.ANC)
-        .filter(function(e){ 
-            return e.paleEye;
-        }).map(function(e) { 
-        return {monthID: e.monthID, value: e.paleEye};
-        }).value();
-    for(var i=0;i< $scope.visitDetails.PaleEyeVisits.length;i++){
-        for (var j=0;j< $scope.monthsArray.length;j++){
-            if($scope.monthsArray[j].pregnancyMonthNo == $scope.visitDetails.PaleEyeVisits[i].monthID){
-                //return  $scope.visitDetails.PaleEyeVisits[i].value+" "+$scope.monthsArray[j].monthNo;
-                var visitObj={'monthNo':$scope.monthsArray[j].monthNo,'value':$scope.visitDetails.PaleEyeVisits[i].value,'pregnancyMonthNo':$scope.monthsArray[j].pregnancyMonthNo}
-                visitsList.push(visitObj);
-            }
-        }
-    }
-    $scope.visitsList = _.indexBy(visitsList, 'monthNo')
 
         //save button functionality
      $scope.saveANCDetails =function(){
-        if($scope.match == 1){
-            $scope.visitsList[$scope.lastObj.monthNo].value=$scope.lastObj.value;
-        }else{
-            $scope.visitsList[$scope.lastObj.monthNo]=$scope.lastObj;
+        for(var i=0;i<2;i++){  //if there is an entry
+            if( $scope.lastObj[VisitItem[i]] != undefined){
+                if($scope.matchArray[VisitItem[i]] == 1){
+                //if there is a value mismatch..then update it
+                    $scope.visitDetails[VisitItem[i]][$scope.lastObj[VisitItem[i]].monthNo].value=$scope.lastObj[VisitItem[i]].value;
+                }else{  //if there is a new entry
+                    $scope.visitDetails[VisitItem[i]][$scope.lastObj[VisitItem[i]].monthNo]=$scope.lastObj[VisitItem[i]];
+                }
+            }
         }
-  
          var ANC =[];
         var monthID, ASHAVisit,ANMVisit,weight,TT,HB,paleEye,bleeding,malaria,IFATablets,BP,swelling,headache,urineProtein,urineSugar,nightBlindness,foulSmellingDischarge,fever,otherInfection,lastUpdateDateTime;
-        $scope.visitsList = _.indexBy($scope.visitsList , 'pregnancyMonthNo')
+        $scope.visitDetails.paleEyeVisits = _.indexBy($scope.visitDetails.paleEyeVisits, 'pregnancyMonthNo')
+        $scope.visitDetails.nightBlindVisits = _.indexBy($scope.visitDetails.nightBlindVisits, 'pregnancyMonthNo')
         for(var i=0;i<=9;i++){ 
             monthID = i;
             if($scope.pregnancylastAshaVistMonth == i){
@@ -1806,13 +1773,13 @@ $scope.opened=false;
             }else{
                 IFATablets = null;
             }
-            if( $scope.visitsList[i] !=  undefined){     //for pale eye
-                    paleEye = $scope.visitsList[i].value;
+            if( $scope.visitDetails.paleEyeVisits[i] !=  undefined){     //for pale eye
+                    paleEye = $scope.visitDetails.paleEyeVisits[i].value;
             }else{
                 paleEye = null;
             }
-            if($scope.symptomData[1].pregnancyMonthNo == i){     //for night blind
-                 nightBlindness = $scope.symptomData[1].value
+            if($scope.visitDetails.nightBlindVisits[i] != undefined){     //for night blind
+                 nightBlindness = $scope.visitDetails.nightBlindVisits[i].value;
             }else{
                  nightBlindness = null;
             }

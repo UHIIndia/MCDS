@@ -437,9 +437,9 @@
       </div>
     </div>
     <div class="col-sm-10 anc-outcome">
-      <div class="col-sm-1" ng-class="{'dead': visitsList[month.monthNo].value == 'yes','healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">  
-         <span ng-hide="match ==1 && lastObj.monthNo == visitsList[month.monthNo].monthNo">{{visitsList[month.monthNo].value}}</span>  
-         <span ng-show="lastObj.monthNo == month.monthNo">{{lastObj.value}}</span>  
+      <div class="col-sm-1" ng-class="{'dead': visitDetails.paleEyeVisits[month.monthNo].value == 'yes','healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">  
+         <span ng-hide="matchArray.paleEyeVisits == 1 && lastObj.paleEyeVisits.monthNo == visitDetails.paleEyeVisits[month.monthNo].monthNo">{{visitDetails.paleEyeVisits[month.monthNo].value}}</span>  
+         <span ng-show="lastObj.paleEyeVisits.monthNo == month.monthNo">{{lastObj.paleEyeVisits.value}}</span>  
       </div>
       <div class="col-sm-1">{{symptomData[0].value}}</div>
       <div class="col-sm-1">&nbsp;</div>
@@ -491,10 +491,10 @@
           </div>
         </div>
         <div class="col-sm-10 anc-outcome">
-      <!--   <div class="col-sm-1 healthy"> <span ng-show="symptomData[1].month ==-1">{{symptomData[1].value}}</span></div> -->
-          <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[1].month && symptomData[1].value == 'yes','healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">
-            <span ng-show="symptomData[1].month == month.monthNo">{{symptomData[1].value}}</span>
-            
+
+          <div class="col-sm-1" ng-class="{'dead': visitDetails.nightBlindVisits[month.monthNo].value == 'yes','healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">  
+         <span ng-hide="matchArray.nightBlindVisits == 1 && lastObj.nightBlindVisits.monthNo == visitDetails.nightBlindVisits[month.monthNo].monthNo">{{visitDetails.nightBlindVisits[month.monthNo].value}}</span>  
+         <span ng-show="lastObj.nightBlindVisits.monthNo == month.monthNo">{{lastObj.nightBlindVisits.value}}</span> 
           </div>
           <div class="col-sm-1">{{symptomData[1].value}}</div>
           <div class="col-sm-1">&nbsp;</div>
