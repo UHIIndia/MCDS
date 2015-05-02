@@ -317,3 +317,8 @@
 		right:3px;
 		top: 5px;
 	}
+
+    #addForm input.ng-invalid.ng-touched {
+      border: solid red 1px; 
+      box-shadow: 0 0 3px red;
+    }

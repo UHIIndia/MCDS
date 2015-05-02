@@ -4,7 +4,7 @@
     <!--form left-->
 <div class="tabs-content clearfix dark-green-bg">
   <div class="clearfix addnew-form-wrapper">
-    <form name="addForm" ng-submit="saveDetails();">
+    <form name="addForm" id="addForm" ng-submit="saveDetails();">
       <div class="col-sm-6 mother-info">
         <div class="clearfix">
           <div class="form-horizontal clearfix">
@@ -22,7 +22,7 @@
                   <div class="form-group">
                    <label class="control-label col-sm-5">Name</label>
                    <div class="col-sm-7">
-                     <input  type="text" class="form-control" ng-model="woman.name" required>
+                     <input  type="text" class="form-control" ng-model="woman.name">
                    </div>
                  </div>
 
@@ -44,7 +44,8 @@
                 <div class="form-group">
                  <label class="control-label col-sm-5">Age <sub>(years)</sub></label>
                  <div class="col-sm-7">
-                  <input type="number" class="form-control" ng-model="woman.age" ng-blur="setDob(true)" min="11" max="99">
+                  <input type="number" class="form-control" ng-model="womanAge" name="age" ng-blur="setDob(true)" min="11" max="99" ng-class="{invalid: addForm}">
+                   <alert ng-show="addForm.age.$invalid" type='{{alerts.age.type}}'>{{alerts.age.msg}}</alert>
                 </div>
               </div>
 
@@ -85,8 +86,9 @@
             <div class="col-sm-12">
               <div class="form-group">
                 <label class="control-label col-sm-4">House No.</label>
-                <div class="col-sm-8"><input type="text" class="form-control" ng-model="woman.house" required>
+                <div class="col-sm-8"><input type="text" class="form-control" ng-model="woman.house" name="house" required>
                  <!-- <span class="error">Please provide a house no.</span>-->
+                  <alert ng-show="addForm.house.$invalid" type='{{alerts.house.type}}'>{{alerts.house.msg}}</alert>
                 </div>
               </div>
               <div class="form-group">

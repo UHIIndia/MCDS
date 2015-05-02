@@ -6,7 +6,7 @@ if(displayID){
   //get children for this woman
  if($scope.woman){
   // update age for woman
-  $scope.woman.age = (function(){
+  $scope.womanAge= (function(){
    if($scope.woman.dob){    
     return UtilityService.calcAge($scope.woman.dob, true);
    } 
@@ -30,9 +30,13 @@ if(displayID){
   $scope.woman ={};
   $scope.woman.isPregnant = null // default not pregnant
   $scope.children=[{}];
-  $scope.savedChildren =[];  
+  $scope.savedChildren =[];
+  //$scope.woman.dob = getInitialDate();
 }
- 
+$scope.alerts={
+  age: {type: 'danger', msg: "Age should be between 11 and 99"},
+  house:{type: 'danger', msg: "House no can not be blank"}
+}
 $scope.isWomanPregnant = function(){
   if($scope.woman.womanID && $scope.woman.isPregnant === true){
     return true;
@@ -60,7 +64,7 @@ $scope.setAge = function(inYear, index){
   var dob;
   if(inYear){
     dob = $scope.woman.dob;
-    if(dob) $scope.woman.age = UtilityService.calcAge(dob, inYear);
+    if(dob) $scope.womanAge = UtilityService.calcAge(dob, inYear);
   } else {
     var child = $scope.children[index];
     dob = child.dob;
@@ -78,7 +82,7 @@ $scope.setDob = function(inYear, index){
   var age, date, mm, dateStr;      
     if(inYear){
       //this is for woman
-      age= $scope.woman.age;
+      age= $scope.womanAge;
       if(age){  
         date = UtilityService.calcDob(inYear, age);
          mm = date.getMonth()+1;
@@ -231,7 +235,7 @@ $scope.addMoreChildren = function($event){
 };
   /* calender related methods*/
 $scope.dateFormat = "dd/MM/yyyy";
-$scope.getInitialDate = function () {
+ function getInitialDate() {
   var currDate =new Date(),
      day= currDate.getDate(),
      month = currDate.getMonth()+1,
@@ -246,8 +250,9 @@ $scope.getMaxDate = function(isWoman) {
      month = currDate.getMonth()+1,
      year= currDate.getFullYear();
  if(isWoman){
-  // woman should not be less than 11 years old
+  // woman should not be less than 11 years old  
   return year-11+"-"+month+"-"+day;
+   
  } else {
   // should not select a future date than current date
   return year +"-"+month+"-"+day;
