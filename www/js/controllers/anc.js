@@ -1710,13 +1710,10 @@ $scope.opened=false;
                     $scope.visitDetails[VisitItem[i]][$scope.lastObj[VisitItem[i]].monthNo]=$scope.lastObj[VisitItem[i]];
                 }
             }
+             $scope.visitDetails[VisitItem[i]] =  _.indexBy($scope.visitDetails[VisitItem[i]], 'pregnancyMonthNo')
         }
          var ANC =[];
         var monthID, ASHAVisit,ANMVisit,weight,TT,HB,paleEye,bleeding,malaria,IFATablets,BP,swelling,headache,urineProtein,urineSugar,nightBlindness,foulSmellingDischarge,fever,otherInfection,lastUpdateDateTime;
-        $scope.visitDetails.paleEyeVisits = _.indexBy($scope.visitDetails.paleEyeVisits, 'pregnancyMonthNo')
-        $scope.visitDetails.nightBlindVisits = _.indexBy($scope.visitDetails.nightBlindVisits, 'pregnancyMonthNo')
-        $scope.visitDetails.ashaVisits = _.indexBy($scope.visitDetails.ashaVisits, 'pregnancyMonthNo')
-        $scope.visitDetails.anmVisits = _.indexBy($scope.visitDetails.anmVisits, 'pregnancyMonthNo')
         for(var i=0;i<=9;i++){ 
             monthID = i;
             if($scope.visitDetails.ashaVisits[i] !=  undefined){
