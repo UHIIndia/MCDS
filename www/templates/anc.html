@@ -226,8 +226,15 @@
         </div>
         
         <div class="col-sm-10 anc-outcome">
-        <!--  <div class="col-sm-1 healthy"><span ng-show="lastAshaVistMonth == 0">{{lastAshaVistDate}}</span></div>-->
-          <div ng-class="{'col-sm-1':true,'weak': month.monthNo === nextAshaVisitMonth,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray"><span ng-show="lastAshaVistMonth == month.monthNo">{{lastAshaVistDate}}</span></div>
+        <div class="col-sm-1" ng-class="{'weak': month.monthNo === nextAshaVisitMonth,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">  
+         <span ng-hide="matchArray.ashaVisits == 1 && lastObj.ashaVisits.monthNo == visitDetails.ashaVisits[month.monthNo].monthNo">{{visitDetails.ashaVisits[month.monthNo].value}}</span>  
+         <span ng-show="lastObj.ashaVisits.monthNo == month.monthNo">{{lastObj.ashaVisits.value}}</span>  
+        </div>
+
+       <!-- <div class="col-sm-1" ng-class="{'weak': month.monthNo === nextAshaVisitMonth,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">  
+           <span>{{visitDetails.ashaVisits[month.monthNo].value}}</span>  
+           <!--<span ng-show="lastObj.ashaVisits.monthNo == month.monthNo">{{lastObj.paleEyeVisits.value}}</span>  
+        </div>-->
             <div class="col-sm-1">{{ashaCountTotal}}</div>
             <div class="col-sm-1">&nbsp;</div>
           </div> 

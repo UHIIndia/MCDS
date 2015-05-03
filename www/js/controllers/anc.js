@@ -205,24 +205,25 @@ angular.module('uhiApp.controllers')
         $scope.FPmonth3 = $scope.monthsArray[9].monthNo;       
     }
     //logic for asha visit and ANMVisit
+    $scope.visitDetails = {};
+    var ashaVisits=[];
     $scope.ashaCalendarDate = todayDate; //set the calendar date to today
+    $scope.ashaCountTotal=0;
     if($scope.newWoman == false){
-        angular.forEach(womanData.ANC, function(ANCObj, index){
-        if(ANCObj.ASHAVisit != null){console.log("in");
-            ashaCountTotal++;
-            console.log(ANCObj.ASHAVisit);
-            AshaVisitArray.push(ANCObj.ASHAVisit);
-            lastAshaVistDate = AshaVisitArray[AshaVisitArray.length-1];
-            lastAshaVistMonth = UtilityService.showMonthFromDate(lastAshaVistDate);
-            console.log(lastAshaVistMonth);
-        }
-        })
-        $scope.lastAshaVistDate = (lastAshaVistDate == undefined ?'': lastAshaVistDate);
-        $scope.lastAshaVistMonth = (lastAshaVistMonth == undefined?'':lastAshaVistMonth);
-        var selectedMonth = $scope.monthsArray.filter(function(e) {
-                  return e.monthNo == lastAshaVistMonth;
-                });
-        $scope.pregnancylastAshaVistMonth = (selectedMonth[0] == undefined ?'':selectedMonth[0].pregnancyMonthNo);
+         var storedAshaVisits =_.chain(womanData.ANC)
+            .filter(function(e){ 
+                return e.ASHAVisit;
+            }).map(function(e) { 
+            return {monthID: e.monthID,value: e.ASHAVisit};
+            }).value();
+        for(var i=0;i<storedAshaVisits.length;i++){
+            $scope.ashaCountTotal++;
+            var visitMonth =UtilityService.showMonthFromDate(storedAshaVisits[i].value);
+            ashaVisits.push({"monthNo":visitMonth ,"value":storedAshaVisits[i].value,'pregnancyMonthNo':storedAshaVisits[i].monthID});
+         }
+        $scope.lastAshaVistMonth = (ashaVisits == undefined?'': ashaVisits[ashaVisits.length -1].monthNo);
+        $scope.lastAshaVistDate = (ashaVisits == undefined?'': ashaVisits[ashaVisits.length-1].value);
+        $scope.visitDetails.ashaVisits = _.indexBy(ashaVisits, 'monthNo')
         if($scope.lastAshaVistMonth == currentMonth){
             if(currentMonth == 12){
                  $scope.nextAshaVisitMonth =1;   
@@ -237,37 +238,28 @@ angular.module('uhiApp.controllers')
             $scope.nextAshaVisitMonth = currentMonth;
             $scope.lastAshaVistDate='';
     }
- 
-    console.log( $scope.ashaCalendarDate);
-    $scope.ashaCountTotal = ashaCountTotal;
+
     var ashaInitializing = true;
     $scope.$watch(function(scope) {return $scope.ashaCalendarDate},
         function() {
             if (ashaInitializing) {
                 $timeout(function() { ashaInitializing = false; });
             } else {
+
                 // do whatever you were going to do
-                console.log("asha calendar"+$scope.ashaCalendarDate);
-                if(localStorage.getItem("count") == undefined){
-                    $scope.ashaCountTotal ++;
-                    localStorage.setItem("count",1);
-                }
+                $scope.ashaCountTotal = ashaVisits.length +1;
+                //to ensure last mon doesnt retain the last changed value
+                $scope.lastAshaVistMonth = (ashaVisits == undefined?'': ashaVisits[ashaVisits.length -1].monthNo);
                // var diff = UtilityService.calcDiffDates(pastYrTime,$scope.ashaCalendarDate);
                 var ashaCalendarDate = UtilityService.convertDateFormat($scope.ashaCalendarDate);
                 var ashaCalendarMonth = UtilityService.showMonthFromDate(ashaCalendarDate);
                 var ashaCalendarYear = $scope.ashaCalendarDate.getFullYear();
-                //case when past mon is not the same as current month
-                var selectedMonth = $scope.monthsArray.filter(function(e) {
-                  return e.monthNo == ashaCalendarMonth;
-                });
-                if( selectedMonth.length == 0 || selectedMonth.length == 1 && ashaCalendarYear !=  selectedMonth[0].monthYear){
-                     $scope.lastAshaVistMonth = 0;
-                     $scope.pregnancylastAshaVistMonth= 0;
-                }else{
-                    $scope.lastAshaVistMonth = ashaCalendarMonth;
-                    $scope.pregnancylastAshaVistMonth= selectedMonth[0].pregnancyMonthNo;;
+                checkUpforPale("ashaVisits",ashaCalendarMonth,ashaCalendarDate,ashaCalendarYear);
+                var lastStoredMonth = (ashaVisits == undefined ?'' :ashaVisits[ashaVisits.length-1].pregnancyMonthNo);
+                var selectedmonth = $scope.lastObj.ashaVisits.pregnancyMonthNo;
+                if(lastStoredMonth < selectedmonth){
+                    $scope.lastAshaVistMonth = $scope.lastObj.ashaVisits.monthNo;
                 }
-                $scope.lastAshaVistDate =ashaCalendarDate;
                 if($scope.lastAshaVistMonth == currentMonth){
                     if(currentMonth == 12){
                          $scope.nextAshaVisitMonth =1;   
@@ -816,7 +808,6 @@ angular.module('uhiApp.controllers')
 
     }  
 //LOGIC FOR Pale Eye
-    $scope.visitDetails = {};
     var paleEyeVisits=[];
     $scope.PaleCalendarDate = todayDate;
     var storedPaleEyeVisits=[];
@@ -1475,24 +1466,6 @@ angular.module('uhiApp.controllers')
             $scope.symptomData.push({month:-1,value:'',pregnancyMonthNo:-1});
         }
      } 
-
-    if($scope.newWoman ==false){
-        //htis is the check when all the pale values are null or undefined
-        angular.forEach(itemArray, function(item, index) {
-            var obj;
-            if(item != undefined){
-                obj ={month: $scope.monthsArray[item.month].monthNo, value: item.value, pregnancyMonthNo:item.month};
-            }else{
-                obj ={month: -1, value:'', pregnancyMonthNo:-1};
-            }
-            $scope.symptomData.push(obj);
-        });
-     }else{
-        
-        for(var i=0;i<14;i++){          //in case the woman is a new woman
-            $scope.symptomData.push({month:-1,value:'',pregnancyMonthNo:-1});
-        }
-     }   
 
     //watch Dod    
     $scope.$watch(function(scope) {return $scope.DODCalendarDate},
