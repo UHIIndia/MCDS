@@ -108,7 +108,7 @@
 	padding: 10px;
 }
 .fp-movies-wrapper .fp-movies h4{
-	margin: 0;	
+	margin: 0;
 }
 .fp-movies-wrapper .fp-movies ul{
 	list-style: none;
@@ -354,4 +354,13 @@
 
 .fp-wrapper .row.save > div{
   width: 100%;
+}
+
+td.highlight{
+  background-color: yellow;
+}
+
+.method-calendar td{
+  text-align: center;
+  vertical-align: middle;
 }

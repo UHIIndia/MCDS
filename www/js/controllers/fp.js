@@ -220,7 +220,10 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
         var year = new Date(thisMethodRecord.methodUseDate).getFullYear();
         var date = new Date(thisMethodRecord.methodUseDate).getDate();
         var methodMonthIndex = new Date(thisMethodRecordCopy.methodUseDate).getMonth();
-        thisMethodRecordCopy.methodUseDate = new Date(year + '-' + (methodMonthIndex+1+count) + '-' + date).toISOString();
+        thisMethodRecordCopy.methodUseDate = new Date(year + '-' + getYearMonthID(methodMonthIndex+1+count) + '-' + date).toISOString();
+        if(count === 3) {
+          thisMethodRecordCopy.highlight = true;
+        }
         $scope.woman.familyPlanningVisits = _.reject($scope.woman.familyPlanningVisits, function(e) {
           return new Date(e.methodUseDate).getMonth() === new Date(thisMethodRecordCopy.methodUseDate).getMonth() && new Date(e.methodUseDate).getFullYear() === new Date(thisMethodRecordCopy.methodUseDate).getFullYear();
         });
@@ -231,8 +234,18 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
       var thisMonthIndex = new Date().getMonth();
       var monthsCount = thisMonthIndex - methodMonthIndex;
       for(var count=0; count<=monthsCount; count++) {
-        thisMethodRecord.methodUseDate = new Date('2015-' + (methodMonthIndex+1+count) + '-15').toISOString();
-        $scope.woman.familyPlanningVisits.push(thisMethodRecord);
+        var thisMethodRecordCopy = angular.copy(thisMethodRecord);
+        var year = new Date(thisMethodRecord.methodUseDate).getFullYear();
+        var date = new Date(thisMethodRecord.methodUseDate).getDate();
+        var methodRecordMonthIndex = new Date(thisMethodRecordCopy.methodUseDate).getMonth();
+        thisMethodRecordCopy.methodUseDate = new Date(year + '-' + getYearMonthID(methodRecordMonthIndex+1+count) + '-' + date).toISOString();
+        if(count === monthsCount) {
+          thisMethodRecordCopy.highlight = true;
+        }
+        $scope.woman.familyPlanningVisits = _.reject($scope.woman.familyPlanningVisits, function(e) {
+          return new Date(e.methodUseDate).getMonth() === new Date(thisMethodRecordCopy.methodUseDate).getMonth() && new Date(e.methodUseDate).getFullYear() === new Date(thisMethodRecordCopy.methodUseDate).getFullYear();
+        });
+        $scope.woman.familyPlanningVisits.push(thisMethodRecordCopy);
       }
     } else if(thisMethodRecord.methodID === 5) {
         $scope.woman.familyPlanningVisits.push(thisMethodRecord);
@@ -248,6 +261,15 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
     age.years = Math.floor(ageInMonths/12);
     age.months = ageInMonths % 12;
     return age;
+  }
+
+  function getYearMonthID(rawMonthID) {
+    var processedMonthID = rawMonthID % 12;
+    if(processedMonthID === 0) {
+      return 12;
+    } else {
+      return processedMonthID;
+    }
   }
 
 });
