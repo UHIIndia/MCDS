@@ -226,18 +226,13 @@
         </div>
         
         <div class="col-sm-10 anc-outcome">
-        <div class="col-sm-1" ng-class="{'weak': month.monthNo === nextAshaVisitMonth,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">  
-         <span ng-hide="matchArray.ashaVisits == 1 && lastObj.ashaVisits.monthNo == visitDetails.ashaVisits[month.monthNo].monthNo">{{visitDetails.ashaVisits[month.monthNo].value}}</span>  
-         <span ng-show="lastObj.ashaVisits.monthNo == month.monthNo">{{lastObj.ashaVisits.value}}</span>  
-        </div>
-
-       <!-- <div class="col-sm-1" ng-class="{'weak': month.monthNo === nextAshaVisitMonth,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">  
-           <span>{{visitDetails.ashaVisits[month.monthNo].value}}</span>  
-           <!--<span ng-show="lastObj.ashaVisits.monthNo == month.monthNo">{{lastObj.paleEyeVisits.value}}</span>  
-        </div>-->
-            <div class="col-sm-1">{{ashaCountTotal}}</div>
-            <div class="col-sm-1">&nbsp;</div>
-          </div> 
+          <div class="col-sm-1" ng-class="{'weak': month.monthNo === nextAshaVisitMonth,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">  
+           <span ng-hide="matchArray.ashaVisits == 1 && lastObj.ashaVisits.monthNo == visitDetails.ashaVisits[month.monthNo].monthNo">{{visitDetails.ashaVisits[month.monthNo].value}}</span>  
+           <span ng-show="lastObj.ashaVisits.monthNo == month.monthNo">{{lastObj.ashaVisits.value}}</span>  
+          </div>
+          <div class="col-sm-1">{{ashaCountTotal}}</div>
+          <div class="col-sm-1">&nbsp;</div>
+        </div> 
         </div>
         <div class="col-sm-3 anc-calender-add">
           <form class="form-horizontal">
@@ -268,8 +263,11 @@
           </div>
         </div>
         <div class="col-sm-10 anc-outcome">
-          <!--<div class="col-sm-1 healthy"><span ng-show="lastANMVistMonth == -1">{{lastANMVisitDate}}</span></div>-->
-          <div ng-class="{'col-sm-1':true,'weak': month.monthNo === nextANMVisitMonth,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray"> <span ng-show="lastANMVistMonth == month.monthNo">{{lastANMVisitDate}}</span></div>
+         <div class="col-sm-1" ng-class="{'weak': month.monthNo === nextANMVisitMonth,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">  
+         <span ng-hide="matchArray.anmVisits == 1 && lastObj.anmVisits.monthNo == visitDetails.anmVisits[month.monthNo].monthNo">{{visitDetails.anmVisits[month.monthNo].value}}</span>  
+         <span ng-show="lastObj.anmVisits.monthNo == month.monthNo">{{lastObj.anmVisits.value}}</span>  
+         </div> 
+          <!--<div ng-class="{'col-sm-1':true,'weak': month.monthNo === nextANMVisitMonth,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray"> <span ng-show="lastANMVistMonth == month.monthNo">{{lastANMVisitDate}}</span></div>-->
           <div class="col-sm-1">{{ANMCountTotal}}</div>
           <div class="col-sm-1">&nbsp;</div>
         </div>

@@ -216,13 +216,10 @@ angular.module('uhiApp.controllers')
             }).map(function(e) { 
             return {monthID: e.monthID,value: e.ASHAVisit};
             }).value();
-        for(var i=0;i<storedAshaVisits.length;i++){
-            $scope.ashaCountTotal++;
-            var visitMonth =UtilityService.showMonthFromDate(storedAshaVisits[i].value);
-            ashaVisits.push({"monthNo":visitMonth ,"value":storedAshaVisits[i].value,'pregnancyMonthNo':storedAshaVisits[i].monthID});
-         }
-        $scope.lastAshaVistMonth = (ashaVisits == undefined?'': ashaVisits[ashaVisits.length -1].monthNo);
-        $scope.lastAshaVistDate = (ashaVisits == undefined?'': ashaVisits[ashaVisits.length-1].value);
+        ashaVisits = getVisits(storedAshaVisits);
+        $scope.ashaCountTotal = ashaVisits.length;  
+        $scope.lastAshaVistMonth = (ashaVisits.length == 0?'': ashaVisits[ashaVisits.length -1].monthNo);
+        $scope.lastAshaVistDate = (ashaVisits.length == 0?'': ashaVisits[ashaVisits.length-1].value);
         $scope.visitDetails.ashaVisits = _.indexBy(ashaVisits, 'monthNo')
         if($scope.lastAshaVistMonth == currentMonth){
             if(currentMonth == 12){
@@ -249,13 +246,13 @@ angular.module('uhiApp.controllers')
                 // do whatever you were going to do
                 $scope.ashaCountTotal = ashaVisits.length +1;
                 //to ensure last mon doesnt retain the last changed value
-                $scope.lastAshaVistMonth = (ashaVisits == undefined?'': ashaVisits[ashaVisits.length -1].monthNo);
+                $scope.lastAshaVistMonth = (ashaVisits.length == 0?'': ashaVisits[ashaVisits.length -1].monthNo);
                // var diff = UtilityService.calcDiffDates(pastYrTime,$scope.ashaCalendarDate);
                 var ashaCalendarDate = UtilityService.convertDateFormat($scope.ashaCalendarDate);
                 var ashaCalendarMonth = UtilityService.showMonthFromDate(ashaCalendarDate);
                 var ashaCalendarYear = $scope.ashaCalendarDate.getFullYear();
                 checkUpforPale("ashaVisits",ashaCalendarMonth,ashaCalendarDate,ashaCalendarYear);
-                var lastStoredMonth = (ashaVisits == undefined ?'' :ashaVisits[ashaVisits.length-1].pregnancyMonthNo);
+                var lastStoredMonth = (ashaVisits.length == 0 ?'' :ashaVisits[ashaVisits.length-1].pregnancyMonthNo);
                 var selectedmonth = $scope.lastObj.ashaVisits.pregnancyMonthNo;
                 if(lastStoredMonth < selectedmonth){
                     $scope.lastAshaVistMonth = $scope.lastObj.ashaVisits.monthNo;
@@ -273,32 +270,29 @@ angular.module('uhiApp.controllers')
         }
     );
     //logic for ANC CheckUp
-    // if(currentMonth != )
-    var lastANMVistMonth,lastANMVisitDate,ANMCountTotal=0;
     $scope.ANMCalendarDate=todayDate;
+    var anmVisits=[];
+    $scope.ANMCountTotal=0;
     if($scope.newWoman == false){
-        angular.forEach(womanData.ANC, function(ANCObj, index){
-            if(ANCObj.ANMVisit != null){console.log("in");
-                ANMCountTotal++;
-                lastANMVisitDate= ANCObj.ANMVisit;
-                lastANMVistMonth = UtilityService.showMonthFromDate(lastANMVisitDate);
-                console.log(lastANMVistMonth);
-            }
-        })
-        $scope.lastANMVisitDate = (lastANMVisitDate == undefined ?'': lastANMVisitDate);
-        $scope.lastANMVistMonth = (lastANMVistMonth == undefined?'':lastANMVistMonth);
-        selectedMonth = $scope.monthsArray.filter(function(e) {
-          return e.monthNo == lastAshaVistMonth;
-        });
-        $scope.pregnancylastANMVistMonth= (selectedMonth[0] == undefined ?'':selectedMonth[0].pregnancyMonthNo);
+        var storedANMVisits =_.chain(womanData.ANC)
+            .filter(function(e){ 
+                return e.ANMVisit;
+            }).map(function(e) { 
+            return {monthID: e.monthID,value: e.ANMVisit};
+            }).value();
+        anmVisits = getVisits(storedANMVisits);
+        $scope.ANMCountTotal = anmVisits.length;  
+        $scope.lastANMVistMonth = (anmVisits.length == 0?'': anmVisits[anmVisits.length -1].monthNo);
+        $scope.lastANMVistDate = (anmVisits.length == 0?'': anmVisits[anmVisits.length-1].value);
+        $scope.visitDetails.anmVisits = _.indexBy(anmVisits, 'monthNo')
         if($scope.lastANMVistMonth == currentMonth){
-            if(currentMonth == $scope.monthsArray[7].monthNo){        // if current mon is 8    next visit is 9
+            if(currentMonth == $scope.monthsArray[8].monthNo){        // if current mon is 8    next visit is 9
                 if(currentMonth == 12){
                     $scope.nextANMVisitMonth = 1; 
                 }else{
                     $scope.nextANMVisitMonth = currentMonth + 1;  
                 }                  //   checked
-            }else if(currentMonth == $scope.monthsArray[8].monthNo){   //if current month is 9  nect visit is 10 and it goes out
+            }else if(currentMonth == $scope.monthsArray[9].monthNo){   //if current month is 9  nect visit is 10 and it goes out
                 if(currentMonth == 12){
                     $scope.nextANMVisitMonth = 1; 
                 }else{
@@ -312,7 +306,7 @@ angular.module('uhiApp.controllers')
                 }                                                      //if current mon is 7or less..it will add 2.. //checked
             }
         }else{
-            if(currentMonth == $scope.monthsArray[7].monthNo ){             //if current month is 8
+            if(currentMonth == $scope.monthsArray[8].monthNo ){             //if current month is 8
                 if($scope.lastANMVistMonth == currentMonth - 1){                         //if calendar mon is 7 an d current is 8
                     $scope.nextANMVisitMonth = currentMonth + 1;                       //checked
                 }else if($scope.lastANMVistMonth == 12 &&  currentMonth == 1){
@@ -320,7 +314,7 @@ angular.module('uhiApp.controllers')
                 }else{
                     $scope.nextANMVisitMonth = currentMonth;                       //if cal month is 6 or less and current is 8 ..
                 }
-            }else if(currentMonth == $scope.monthsArray[8].monthNo ){       //if the current mon is 9
+            }else if(currentMonth == $scope.monthsArray[9].monthNo ){       //if the current mon is 9
                 $scope.nextANMVisitMonth = currentMonth;                               //
             }else{                                                  //if the current month is 7  or less
                 if($scope.lastANMVistMonth == currentMonth - 1){                    //if the calendar mon is 1 less
@@ -336,46 +330,35 @@ angular.module('uhiApp.controllers')
                 $scope.nextANMVisitMonth=currentMonth; 
                 $scope.lastANMVisitDate='';
     } 
-    // var month={'monthNo':
     var ANMInitializing = true;
-    
-    $scope.ANMCountTotal = ANMCountTotal;
     $scope.$watch(function(scope) {return $scope.ANMCalendarDate},
         function() {
             if (ANMInitializing) {
                 $timeout(function() { ANMInitializing = false; });
             } else {
                 // do whatever you were going to do
-                //console.log($scope.ashaCalendarDate);
-                if(localStorage.getItem("ANMCount") == undefined){
-                    $scope.ANMCountTotal ++;
-                    localStorage.setItem("ANMCount",1);
+                $scope.ANMCountTotal = anmVisits.length +1;
+                //to ensure last mon doesnt retain the last changed value
+                $scope.lastANMVistMonth = (anmVisits.length == 0?'': anmVisits[anmVisits.length -1].monthNo);
+               // var diff = UtilityService.calcDanmVisitsiffDates(pastYrTime,$scope.ashaCalendarDate);
+                var anmCalendarDate = UtilityService.convertDateFormat($scope.ANMCalendarDate);
+                var anmCalendarMonth = UtilityService.showMonthFromDate(anmCalendarDate);
+                var anmCalendarYear = $scope.ANMCalendarDate.getFullYear();
+                checkUpforPale("anmVisits",anmCalendarMonth,anmCalendarDate,anmCalendarYear);
+                var lastStoredMonth = (anmVisits.length == 0?'' :anmVisits[anmVisits.length-1].pregnancyMonthNo);
+                var selectedmonth = $scope.lastObj.anmVisits.pregnancyMonthNo;
+                if(lastStoredMonth < selectedmonth){
+                    $scope.lastANMVistMonth = $scope.lastObj.anmVisits.monthNo;
                 }
-                var ANMCalendarDate = UtilityService.convertDateFormat($scope.ANMCalendarDate);
-                var ANMCalendarMonth = UtilityService.showMonthFromDate(ANMCalendarDate);
-                var ANMCalendarYear = $scope.ANMCalendarDate.getFullYear();
-                //case when past mon is not the same as current month
-                 var selectedMonth = $scope.monthsArray.filter(function(e) {
-                  return e.monthNo == ANMCalendarMonth;
-                });
-                if( selectedMonth.length == 0 || selectedMonth.length == 1 && ANMCalendarYear !=  selectedMonth[0].monthYear){
-                     $scope.lastANMVistMonth = 0;
-                     $scope.pregnancylastANMVistMonth = 0;
-                }else{
-                    $scope.lastANMVistMonth = ANMCalendarMonth;
-                    $scope.pregnancylastANMVistMonth = selectedMonth[0].pregnancyMonthNo;
-                }
-                $scope.lastANMVisitDate = ANMCalendarDate;
-
                 //if calendar month is equal to current month
                 if($scope.lastANMVistMonth == currentMonth){
-                    if(currentMonth == $scope.monthsArray[7].monthNo){        // if current mon is 8    next visit is 9
+                    if(currentMonth == $scope.monthsArray[8].monthNo){        // if current mon is 8    next visit is 9
                         if(currentMonth == 12){
                             $scope.nextANMVisitMonth = 1; 
                         }else{
                             $scope.nextANMVisitMonth = currentMonth + 1;  
                         }                  //   checked
-                    }else if(currentMonth == $scope.monthsArray[8].monthNo){   //if current month is 9  nect visit is 10 and it goes out
+                    }else if(currentMonth == $scope.monthsArray[9].monthNo){   //if current month is 9  nect visit is 10 and it goes out
                         if(currentMonth == 12){
                             $scope.nextANMVisitMonth = 1; 
                         }else{
@@ -389,7 +372,7 @@ angular.module('uhiApp.controllers')
                         }                                                      //if current mon is 7or less..it will add 2.. //checked
                     }
                 }else{
-                    if(currentMonth == $scope.monthsArray[7].monthNo ){             //if current month is 8
+                    if(currentMonth == $scope.monthsArray[8].monthNo ){             //if current month is 8
                         if($scope.lastANMVistMonth == currentMonth - 1){                         //if calendar mon is 7 an d current is 8
                             $scope.nextANMVisitMonth = currentMonth + 1;                       //checked
                         }else if($scope.lastANMVistMonth == 12 &&  currentMonth == 1){
@@ -397,7 +380,7 @@ angular.module('uhiApp.controllers')
                         }else{
                             $scope.nextANMVisitMonth = currentMonth;                       //if cal month is 6 or less and current is 8 ..
                         }
-                    }else if(currentMonth == $scope.monthsArray[8].monthNo ){       //if the current mon is 9
+                    }else if(currentMonth == $scope.monthsArray[9].monthNo ){       //if the current mon is 9
                         $scope.nextANMVisitMonth = currentMonth;                               //
                     }else{                                                  //if the current month is 7  or less
                         if($scope.lastANMVistMonth == currentMonth - 1){                    //if the calendar mon is 1 less
@@ -1717,8 +1700,8 @@ $scope.opened=false;
 
         //save button functionality
      $scope.saveANCDetails =function(){
-        var VisitItem=["paleEyeVisits","nightBlindVisits"];
-        for(var i=0;i<2;i++){  //if there is an entry
+        var VisitItem=["paleEyeVisits","nightBlindVisits","ashaVisits","anmVisits"];
+        for(var i=0;i<4;i++){  //if there is an entry
             if( $scope.lastObj[VisitItem[i]] != undefined){
                 if($scope.matchArray[VisitItem[i]] == 1){
                 //if there is a value mismatch..then update it
@@ -1732,15 +1715,17 @@ $scope.opened=false;
         var monthID, ASHAVisit,ANMVisit,weight,TT,HB,paleEye,bleeding,malaria,IFATablets,BP,swelling,headache,urineProtein,urineSugar,nightBlindness,foulSmellingDischarge,fever,otherInfection,lastUpdateDateTime;
         $scope.visitDetails.paleEyeVisits = _.indexBy($scope.visitDetails.paleEyeVisits, 'pregnancyMonthNo')
         $scope.visitDetails.nightBlindVisits = _.indexBy($scope.visitDetails.nightBlindVisits, 'pregnancyMonthNo')
+        $scope.visitDetails.ashaVisits = _.indexBy($scope.visitDetails.ashaVisits, 'pregnancyMonthNo')
+        $scope.visitDetails.anmVisits = _.indexBy($scope.visitDetails.anmVisits, 'pregnancyMonthNo')
         for(var i=0;i<=9;i++){ 
             monthID = i;
-            if($scope.pregnancylastAshaVistMonth == i){
-                ASHAVisit = $scope.lastAshaVistDate
+            if($scope.visitDetails.ashaVisits[i] !=  undefined){
+                ASHAVisit = $scope.visitDetails.ashaVisits[i].value;
             }else{
                 ASHAVisit = null;
             }
-            if($scope.pregnancylastANMVistMonth == i){
-                ANMVisit = $scope.lastANMVisitDate
+            if($scope.visitDetails.anmVisits[i] !=  undefined){
+                ANMVisit = $scope.visitDetails.anmVisits[i].value;
             }else{
                 ANMVisit = null;
             }
