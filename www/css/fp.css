@@ -360,7 +360,7 @@ td.highlight{
   background-color: yellow;
 }
 
-.method-calendar td{
+.method-calendar .table > tbody > tr > td{
   text-align: center;
   vertical-align: middle;
 }

@@ -155,7 +155,7 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
     $scope.methodCalendar = {};
     $scope.methodCalendar.thisYear = new Date().getFullYear();
     var oldestYearTimestamp = _.chain($scope.woman.familyPlanningVisits)
-      .pluck('visitDate')
+      .pluck('methodUseDate')
       .sortBy(function(e) {
         return new Date(e);
       })
@@ -172,7 +172,9 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
         })
         .map(function(e) {
           var monthID = new Date(e.methodUseDate).getMonth() + 1;
+          var year = new Date(e.methodUseDate).getFullYear();
           e.monthID = monthID;
+          e.year = year;
           return e;
         })
         .indexBy('monthID')
@@ -217,10 +219,8 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
     } else if(thisMethodRecord.methodID === 3) {
       for(var count=0; count<=3; count++) {
         var thisMethodRecordCopy = angular.copy(thisMethodRecord);
-        var year = new Date(thisMethodRecord.methodUseDate).getFullYear();
-        var date = new Date(thisMethodRecord.methodUseDate).getDate();
-        var methodMonthIndex = new Date(thisMethodRecordCopy.methodUseDate).getMonth();
-        thisMethodRecordCopy.methodUseDate = new Date(year + '-' + getYearMonthID(methodMonthIndex+1+count) + '-' + date).toISOString();
+        thisMethodRecordCopy.methodUseDate = getNextMonthTimestamp(thisMethodRecordCopy.methodUseDate, count);
+        thisMethodRecordCopy.highlight = null;
         if(count === 3) {
           thisMethodRecordCopy.highlight = true;
         }
@@ -235,10 +235,8 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
       var monthsCount = thisMonthIndex - methodMonthIndex;
       for(var count=0; count<=monthsCount; count++) {
         var thisMethodRecordCopy = angular.copy(thisMethodRecord);
-        var year = new Date(thisMethodRecord.methodUseDate).getFullYear();
-        var date = new Date(thisMethodRecord.methodUseDate).getDate();
-        var methodRecordMonthIndex = new Date(thisMethodRecordCopy.methodUseDate).getMonth();
-        thisMethodRecordCopy.methodUseDate = new Date(year + '-' + getYearMonthID(methodRecordMonthIndex+1+count) + '-' + date).toISOString();
+        thisMethodRecordCopy.methodUseDate = getNextMonthTimestamp(thisMethodRecordCopy.methodUseDate, count);
+        thisMethodRecordCopy.highlight = null;
         if(count === monthsCount) {
           thisMethodRecordCopy.highlight = true;
         }
@@ -263,13 +261,21 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
     return age;
   }
 
-  function getYearMonthID(rawMonthID) {
-    var processedMonthID = rawMonthID % 12;
-    if(processedMonthID === 0) {
-      return 12;
-    } else {
-      return processedMonthID;
-    }
+  function getNextMonthTimestamp(timestamp, offsetMonthCount) {
+    var date = new Date(timestamp);
+    var monthIndex = date.getMonth();
+    var year = date.getFullYear();
+    var dateNum = date.getDate();
+    var rawNextMonth = monthIndex + offsetMonthCount;
+    var yearsToAdd = Math.floor(rawNextMonth/12);
+    var monthsIndex = Math.floor(rawNextMonth%12);
+    var nextYearMonth = {};
+    nextYearMonth.month = monthsIndex + 1;
+    nextYearMonth.year = year + yearsToAdd;
+    nextYearMonth.date = dateNum;
+    var nextMonthTimestamp = new Date(nextYearMonth.year + '-' + nextYearMonth.month + '-' + nextYearMonth.date);
+    var nextMonthTimestampString = nextMonthTimestamp.toISOString();
+    return nextMonthTimestampString;
   }
 
 });
