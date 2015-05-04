@@ -95,52 +95,6 @@
 <!--ANC top right column-->
 <div class="col-sm-3">
   <!--Mother age details Form-->
-<!--    <div class="mother-age-details">
-    <form class="form-horizontal clearfix">
-      <div class="col-xs-8">
-        <div class="form-group">
-          <label class="col-xs-3 control-label">DOB</label>
-          <div class="col-xs-9"><input type="text" class="form-control" ng-model="ancDOB" ></div>
-        </div>
-         <div class="form-group">
-          <label class="col-xs-3 control-label">Age</label>
-          <div class="col-xs-9"><input type="text" class="form-control" ng-model="ancAge"></div>
-        </div>
-         <div class="form-group">
-          <label class="col-xs-3 control-label">LMP</label>
-           <p class="input-group">                       <!--max date year-month-date
-                <input type="text" class="form-control" datepicker-popup=dd/MM/yy ng-model="LMPCalendarDate"  max-date="minEDD"
-             is-open="openedLMP"  datepicker-options="dateOptions"  ng-required="true" ng-disabled="disableButton" close-text="Close"  ng-blur="setEDD();">
-                <span class="input-group-btn">
-                 <button type="button" class="btn btn-default" ng-click="open($event,'LMP')" ng-disabled="disableButton"><i class="glyphicon glyphicon-calendar"></i></button>
-                </span>
-            </p>
-     
-        </div>
-         <div class="form-group">
-          <label class="col-xs-3 control-label">EDD</label>
-          <p class="input-group">
-                <input type="text" class="form-control" datepicker-popup="dd/MM/yy" ng-model="EDDCalendarDate" max-date="maxEDD" 
-                min-date ="minEDD"  is-open="openedEDD"  datepicker-options="dateOptions"  ng-required="true" ng-disabled="disableButton"  close-text="Close"  ng-blur="setLMP();"/>
-                <span class="input-group-btn">
-                 <button type="button" class="btn btn-default" ng-click="open($event,'EDD')" ng-disabled="disableButton"><i class="glyphicon glyphicon-calendar"></i></button>
-                </span>
-            </p>
-         
-        </div>
-      </div>
-      <div class="col-xs-4">
-        <div class="mother-profile-pic">
-            Mother photo
-        </div>
-        <div>Leela</div>
-      </div>
-       <div class="row"><div class="col-sm-12 text-right"><button class="default-btn" ng-show = "enterButton" ng-click="enterPregnantWomanDetails()">Enter</button></div></div>
-    </form>
-  </div>-->
-
-
-
   <!--birthoutcome Form-->  
   <div class="birth-outcome" ng-show="pregWomanExist">
     <form class="form-horizontal clearfix">
@@ -306,10 +260,11 @@
         </div>
       </div>
       <div class="col-sm-10 anc-outcome">
-         <div class="col-sm-1" ng-class="{'dead': visitDetails.wtVisits[month.monthNo].weightAlert == true || lastObj.wtVisits.weightAlert == true && lastObj.wtVisits.monthNo == month.monthNo,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">  
+         <div class="col-sm-1" ng-class="{'dead': visitDetails.wtVisits[month.monthNo].weightAlert == true && 
+          visitDetails.wtVisits[month.monthNo].monthNo != lastObj.wtVisits.monthNo|| lastObj.wtVisits.weightAlert == true && lastObj.wtVisits.monthNo == month.monthNo,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">  
          <span ng-hide="matchArray.wtVisits == 1 && lastObj.wtVisits.monthNo == visitDetails.wtVisits[month.monthNo].monthNo">{{visitDetails.wtVisits[month.monthNo].value}}</span>  
          <span ng-show="lastObj.wtVisits.monthNo == month.monthNo">{{lastObj.wtVisits.value}}</span>  
-      </div>
+         </div>
 
        <!-- <div ng-class="{'col-sm-1':true,'dead':symptomData[4].month == month.monthNo && weightAlert == true,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray"> 
           <span ng-show="symptomData[4].month == month.monthNo">{{symptomData[4].value}}
@@ -400,9 +355,13 @@
         </div>
       </div>
       <div class="col-sm-10 anc-outcome">
-        <!--<div class="col-sm-1 healthy"> <span ng-show="symptomData[2].month ==-1">{{symptomData[2].value}}</span></div>-->
-        <div ng-class="{'col-sm-1':true,'dead': month.monthNo == symptomData[2].month && alertHB == true,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray"> <span ng-show="symptomData[2].month == month.monthNo">{{symptomData[2].value}}</span></div>
-        <div class="col-sm-1">{{symptomData[2].value}}</div>
+          <div class="col-sm-1" ng-class="{'dead': visitDetails.hbVisits[month.monthNo].hbAlert == true && 
+          visitDetails.hbVisits[month.monthNo].monthNo != lastObj.hbVisits.monthNo|| lastObj.hbVisits.hbAlert == true && lastObj.hbVisits.monthNo == month.monthNo,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">  
+         <span ng-hide="matchArray.hbVisits == 1 && lastObj.hbVisits.monthNo == visitDetails.hbVisits[month.monthNo].monthNo">{{visitDetails.hbVisits[month.monthNo].value}}</span>  
+         <span ng-show="lastObj.hbVisits.monthNo == month.monthNo">{{lastObj.hbVisits.value}}</span>  
+         </div>
+       <!-- <div ng-class="{'col-sm-1':true,'dead': month.monthNo == symptomData[2].month && alertHB == true,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray"> <span ng-show="symptomData[2].month == month.monthNo">{{symptomData[2].value}}</span></div>-->
+        <div class="col-sm-1">{{lastObj.hbVisits.value}}</div>
         <div class="col-sm-1">&nbsp;</div>
       </div>
     </div>

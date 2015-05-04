@@ -750,23 +750,25 @@ angular.module('uhiApp.controllers')
 
 //LOGIC FOR ANAEMIA
     $scope.HBCalendarDate=todayDate;
+    var HBVisits=[];
+    var storedHBVisits=[];
      var lastHBObject={};
      if($scope.newWoman == false){
-        lastHBObject=_.chain(womanData.ANC).map(function(e) { 
-            return {month: e.monthID, value: e.HB};
-            })
+        storedHBVisits =_.chain(womanData.ANC)
             .filter(function(e){ 
-                return e.value;
-            })
-            .sortBy('month')
-            .last()
-            .value();
-        if( lastHBObject != undefined){
-            if(lastHBObject.value < 10){
-            $scope.alertHB = true;
+                return e.HB;
+            }).map(function(e) { 
+            return {monthID: e.monthID, value: e.HB};
+            }).value();
+        hbVisits = getVisits(storedHBVisits);
+        if(hbVisits.length >0){
+            for(var i=0;i< hbVisits.length;i++){
+                if(hbVisits[i].value < 10 ){
+                    hbVisits[i].hbAlert =true;
+                }
             }
         }    
-        
+        $scope.visitDetails.hbVisits = _.indexBy(hbVisits, 'monthNo')
      }else{
 
      }   
@@ -774,28 +776,26 @@ angular.module('uhiApp.controllers')
         function() {
                 if(isNaN($scope.enteredHB)== false){
                     var currentHB = $scope.enteredHB;
+                    updateRowforVisits("hbVisits",currentHB,$scope.HBCalendarDate);
                     if(currentHB < 10){
-                        $scope.alertHB = true;
+                        $scope.lastObj.hbVisits.hbAlert = true;
                     }else{
-                        $scope.alertHB = false;
+                        $scope.lastObj.hbVisits.hbAlert = false;
                     }
-                    updateRow(2);
                 }
         }
     );
     $scope.updateHB=function(){
         var enteredHB = $scope.enteredHB;
-            if(isNaN(enteredHB) == false){
-                var currentHB = enteredHB;
-                if(currentHB < 10){
-                    $scope.alertHB = true;
-                }else{
-                    $scope.alertHB = false;
+            if(isNaN($scope.enteredHB)== false){
+                    var currentHB = $scope.enteredHB;
+                    updateRowforVisits("hbVisits",currentHB,$scope.HBCalendarDate);
+                    if(currentHB < 10){
+                        $scope.lastObj.hbVisits.hbAlert = true;
+                    }else{
+                        $scope.lastObj.hbVisits.hbAlert = false;
+                    }
                 }
-                updateRow(2);
-            }
-
-
     }  
 //LOGIC FOR Pale Eye
     var paleEyeVisits=[];
@@ -1439,7 +1439,7 @@ angular.module('uhiApp.controllers')
     }        
     if($scope.newWoman ==false){
         var lastPaleEyeObject,lastBlindObject;
-        var itemArray=[lastPaleEyeObject,lastBlindObject,lastHBObject,lastBleedingObject,lastMalariaObject,lastUPObject,lastSwellingObject,lastFitsObject,lastUSObject,lastFeverObject,lastFoulSmellObject,weaknessObject,lastBPObject];
+        var itemArray=[lastPaleEyeObject,lastBlindObject,lastBleedingObject,lastMalariaObject,lastUPObject,lastSwellingObject,lastFitsObject,lastUSObject,lastFeverObject,lastFoulSmellObject,weaknessObject,lastBPObject];
 //htis is the check when all the pale values are null or undefined
         angular.forEach(itemArray, function(item, index) {
             var obj;
@@ -1707,8 +1707,8 @@ $scope.opened=false;
 
         //save button functionality
      $scope.saveANCDetails =function(){
-        var VisitItem=["paleEyeVisits","nightBlindVisits","ashaVisits","anmVisits","wtVisits"];
-        for(var i=0;i<5;i++){  //if there is an entry
+        var VisitItem=["paleEyeVisits","nightBlindVisits","ashaVisits","anmVisits","wtVisits","hbVisits"];
+        for(var i=0;i<6;i++){  //if there is an entry
             if( $scope.lastObj[VisitItem[i]] != undefined){
                 if($scope.matchArray[VisitItem[i]] == 1){
                 //if there is a value mismatch..then update it
@@ -1758,8 +1758,8 @@ $scope.opened=false;
             }else{
                  nightBlindness = null;
             }
-            if($scope.symptomData[2].pregnancyMonthNo == i){     //for pale eye
-                 HB = $scope.symptomData[2].value
+            if($scope.visitDetails.hbVisits[i] != undefined){     //for night blind
+                 HB = $scope.visitDetails.hbVisits[i].value;
             }else{
                  HB = null;
             }
@@ -1803,16 +1803,8 @@ $scope.opened=false;
             }else{
                  foulSmellingDischarge = null;
             }
-            if($scope.symptomData[12].pregnancyMonthNo == i){     //for weight
-                 otherInfection= $scope.symptomData[12].value
-            }else{
-                 otherInfection = null;
-            }
-            if($scope.symptomData[13].pregnancyMonthNo == i){     //for night blind
-                 BP = $scope.symptomData[13].value
-            }else{
-                 BP = null;
-            }
+             otherInfection = null;
+             BP = null;
             ANC.push({'monthID':monthID,'ASHAVisit':ASHAVisit,'ANMVisit':ANMVisit,'weight':weight,'TT':TT,'HB':HB,'paleEye':paleEye,'bleeding':bleeding,'malaria':malaria,'IFATablets':IFATablets,'BP':BP,'swelling':swelling,'headache':headache,'urineProtein':urineProtein,'urineSugar':urineSugar,'nightBlindness':nightBlindness,'foulSmellingDischarge':foulSmellingDischarge,'fever':fever,'otherInfection':otherInfection,'lastUpdateDateTime':otherInfection});
         }
         womanData.ANC=ANC;
