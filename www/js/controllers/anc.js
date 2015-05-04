@@ -397,73 +397,80 @@ angular.module('uhiApp.controllers')
     );
 
     // LOGIC FOR WT
-    var WeightArray=[];
+    /*var WeightArray=[];
     var WeightDateArray=[];
     var lastWeightDate,lastWeightMonth,lastWeight;
-    var lastWtObject ={};
+    var lastWtObject ={};*/
+    var wtVisits=[];
+    var storedWtVisits=[];
     $scope.WeightCalendarDate=todayDate;
     if($scope.newWoman == false){
-        lastWtObject=_.chain(womanData.ANC).map(function(e) { 
-            return {month: e.monthID, value: e.weight};
-            })
+         storedWtVisits =_.chain(womanData.ANC)
             .filter(function(e){ 
-                return e.value;
-            })
-            .sortBy('month')
-            .last()
-            .value();
-        if(lastWtObject != undefined){
-          if(lastWtObject.value < 40){
-            $scope.weightAlert = true;
-          }  
-        } 
+                return e.weight;
+            }).map(function(e) { 
+            return {monthID: e.monthID, value: e.weight};
+            }).value();
+        wtVisits = getVisits(storedWtVisits);
+        if(wtVisits.length >0){
+            for(var i=0;i< wtVisits.length;i++){
+                //if the wt alert is less than 40 then red
+                if(wtVisits[i].value <40 ){
+                    wtVisits[i].weightAlert =true;
+                }else if(wtVisits[i].pregnancyMonthNo > 3){         //else check for wt less than 
+                    for(var j=1;j<i;j++){
+                        if(wtVisits[j] !=undefined && wtVisits[j].value > wtVisits[i].value){
+                             wtVisits[i].weightAlert =true;
+                        }
+                    }
+                }
+
+            }
+        }    
+        $scope.visitDetails.wtVisits = _.indexBy(wtVisits, 'monthNo')
         
      } else{
-        lastWtObject.value =0;
+        //lastWtObject.value =0;
      } 
     $scope.$watch(function(scope) {return $scope.WeightCalendarDate},
         function() {
                 if($scope.enteredWeight){
                     var currentWt = $scope.enteredWeight;
-                    var currentWtDate = UtilityService.convertDateFormat($scope.WeightCalendarDate);
-                    var currentWtMonth = UtilityService.showMonthFromDate(currentWtDate);
-                    $scope.lastWeightDate =currentWtDate;
+                    updateRowforVisits("wtVisits",currentWt,$scope.WeightCalendarDate);
+                    var currentWtMonth = $scope.lastObj.wtVisits.monthNo;
+                    var currentPregMonth = $scope.lastObj.wtVisits.pregnancyMonthNo;
                     if(currentWt < 40){
-                        $scope.weightAlert = true;
-                    }else{
-                        //if the current month is 1st 2nd or 3rd and wt is not less than 40  ..then no need to check
-                        if(currentWtMonth ==  $scope.monthsArray[0].monthNo || currentWtMonth ==  $scope.monthsArray[1].monthNo || currentWtMonth ==  $scope.monthsArray[2].monthNo){
-                        }else{
-                            //if the current month is  other than 1st 2nd or 3rd and wt is not less than 40  ..then check if its less than last wt..
-                            if(currentWt < lastWtObject.value ){
-                                $scope.weightAlert = true;
+                        $scope.lastObj.wtVisits.weightAlert = true;
+                    }else if(currentPregMonth > 3){         //else check for wt lFchess than 
+                            for(var j=1;j<currentPregMonth;j++){
+                                 if(wtVisits[j] !=undefined){    //if the last velue is greater than current and its no is les than curent month
+                                     if(wtVisits[j].value > currentWt && wtVisits[j].pregnancyMonthNo < currentPregMonth){
+                                         $scope.lastObj.wtVisits.weightAlert =true;
+                                    }
+                                 }
                             }
-                        }
                     }
-                    updateRow(4);
                 }
         }
     );
     $scope.updateWeight=function(){
-        if(isNaN($scope.enteredWeight) == false){
-                    var currentWt = $scope.enteredWeight;
-                    var currentWtDate = UtilityService.convertDateFormat($scope.WeightCalendarDate);
-                    var currentWtMonth = UtilityService.showMonthFromDate(currentWtDate);
-                    $scope.lastWeightDate =currentWtDate;
+       if(isNaN($scope.enteredWeight) == false){
+                     var currentWt = $scope.enteredWeight;
+                    updateRowforVisits("wtVisits",currentWt,$scope.WeightCalendarDate);
+                    var currentWtMonth = $scope.lastObj.wtVisits.monthNo;
+                    var currentPregMonth = $scope.lastObj.wtVisits.pregnancyMonthNo;
                     if(currentWt < 40){
-                        $scope.weightAlert = true;
-                    }else{
-                        //if the current month is 1st 2nd or 3rd and wt is not less than 40  ..then no need to check
-                        if(currentWtMonth ==  $scope.monthsArray[0].monthNo || currentWtMonth ==  $scope.monthsArray[1].monthNo || currentWtMonth ==  $scope.monthsArray[2].monthNo){
-                        }else{
-                            //if the current month is  other than 1st 2nd or 3rd and wt is not less than 40  ..then check if its less than last wt..
-                            if(currentWt < lastWtObject.value ){
-                                $scope.weightAlert = true;
+                        $scope.lastObj.wtVisits.weightAlert = true;
+                    }else if(currentPregMonth > 3){         //else check for wt lFchess than 
+                            for(var j=1;j<currentPregMonth;j++){
+                                 if(wtVisits[j] !=undefined){    //if the last velue is greater than current and its no is les than curent month
+                                     if(wtVisits[j].value > currentWt && wtVisits[j].pregnancyMonthNo < currentPregMonth){
+                                         $scope.lastObj.wtVisits.weightAlert =true;
+                                    }
+                                 }
                             }
-                        }
                     }
-                    updateRow(4);
-                }
+        }
 
     }
 
@@ -1432,7 +1439,7 @@ angular.module('uhiApp.controllers')
     }        
     if($scope.newWoman ==false){
         var lastPaleEyeObject,lastBlindObject;
-        var itemArray=[lastPaleEyeObject,lastBlindObject,lastHBObject,lastBleedingObject,lastWtObject,lastMalariaObject,lastUPObject,lastSwellingObject,lastFitsObject,lastUSObject,lastFeverObject,lastFoulSmellObject,weaknessObject,lastBPObject];
+        var itemArray=[lastPaleEyeObject,lastBlindObject,lastHBObject,lastBleedingObject,lastMalariaObject,lastUPObject,lastSwellingObject,lastFitsObject,lastUSObject,lastFeverObject,lastFoulSmellObject,weaknessObject,lastBPObject];
 //htis is the check when all the pale values are null or undefined
         angular.forEach(itemArray, function(item, index) {
             var obj;
@@ -1700,8 +1707,8 @@ $scope.opened=false;
 
         //save button functionality
      $scope.saveANCDetails =function(){
-        var VisitItem=["paleEyeVisits","nightBlindVisits","ashaVisits","anmVisits"];
-        for(var i=0;i<4;i++){  //if there is an entry
+        var VisitItem=["paleEyeVisits","nightBlindVisits","ashaVisits","anmVisits","wtVisits"];
+        for(var i=0;i<5;i++){  //if there is an entry
             if( $scope.lastObj[VisitItem[i]] != undefined){
                 if($scope.matchArray[VisitItem[i]] == 1){
                 //if there is a value mismatch..then update it
@@ -1725,6 +1732,11 @@ $scope.opened=false;
                 ANMVisit = $scope.visitDetails.anmVisits[i].value;
             }else{
                 ANMVisit = null;
+            }
+            if($scope.visitDetails.wtVisits[i] !=  undefined){     //for weight
+                 weight = $scope.visitDetails.wtVisits[i].value
+            }else{
+                weight = null;
             }
              if($scope.pregnancylastTTMonth == i){
                 TT = $scope.lastTTCount
@@ -1755,11 +1767,6 @@ $scope.opened=false;
                  bleeding = $scope.symptomData[3].value
             }else{
                  bleeding = null;
-            }
-            if($scope.symptomData[4].pregnancyMonthNo == i){     //for weight
-                 weight = $scope.symptomData[4].value
-            }else{
-                weight = null;
             }
             if($scope.symptomData[5].pregnancyMonthNo == i){     //for night blind
                  malaria = $scope.symptomData[5].value
