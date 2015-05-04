@@ -33,7 +33,7 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
   } else {
     $scope.womanDisplay.image = 'img/woman-sample-profile-picture.png';
   }
-
+  $scope.womanDisplay.age = calculateWomanAge($scope.woman.dob);
 
   var familyPlanningMethods = familyPlanning.getFamilyPlanningMethods();
 
@@ -276,6 +276,13 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
     age.years = Math.floor(ageInMonths/12);
     age.months = ageInMonths % 12;
     return age;
+  }
+
+  function calculateWomanAge(pastDate) {
+    var dobArray = pastDate.split('/');
+    var date = new Date(dobArray[2] + '-' + dobArray[1] + '-' + dobArray[0]);
+    var age = (new Date().getTime() - date.getTime()) / (1000*60*60*24*365);
+    return Math.floor(age);
   }
 
   function getNextMonthTimestamp(timestamp, offsetMonthCount) {
