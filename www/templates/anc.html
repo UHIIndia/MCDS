@@ -265,10 +265,6 @@
          <span ng-hide="matchArray.wtVisits == 1 && lastObj.wtVisits.monthNo == visitDetails.wtVisits[month.monthNo].monthNo">{{visitDetails.wtVisits[month.monthNo].value}}</span>  
          <span ng-show="lastObj.wtVisits.monthNo == month.monthNo">{{lastObj.wtVisits.value}}</span>  
          </div>
-
-       <!-- <div ng-class="{'col-sm-1':true,'dead':symptomData[4].month == month.monthNo && weightAlert == true,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray"> 
-          <span ng-show="symptomData[4].month == month.monthNo">{{symptomData[4].value}}
-          </div>-->
         <div class="col-sm-1">{{lastObj.wtVisits.value}}</div>
         <div class="col-sm-1">&nbsp;</div>
       </div>
@@ -360,7 +356,6 @@
          <span ng-hide="matchArray.hbVisits == 1 && lastObj.hbVisits.monthNo == visitDetails.hbVisits[month.monthNo].monthNo">{{visitDetails.hbVisits[month.monthNo].value}}</span>  
          <span ng-show="lastObj.hbVisits.monthNo == month.monthNo">{{lastObj.hbVisits.value}}</span>  
          </div>
-       <!-- <div ng-class="{'col-sm-1':true,'dead': month.monthNo == symptomData[2].month && alertHB == true,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray"> <span ng-show="symptomData[2].month == month.monthNo">{{symptomData[2].value}}</span></div>-->
         <div class="col-sm-1">{{lastObj.hbVisits.value}}</div>
         <div class="col-sm-1">&nbsp;</div>
       </div>
@@ -405,11 +400,12 @@
       </div>
     </div>
     <div class="col-sm-10 anc-outcome">
-      <div class="col-sm-1" ng-class="{'dead': visitDetails.paleEyeVisits[month.monthNo].value == 'yes','healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">  
+      <div class="col-sm-1" ng-class="{'dead': visitDetails.paleEyeVisits[month.monthNo].value == 'yes' && 
+          visitDetails.paleEyeVisits[month.monthNo].monthNo != lastObj.paleEyeVisits.monthNo|| lastObj.paleEyeVisits.value == 'yes' && lastObj.paleEyeVisits.monthNo == month.monthNo,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">  
          <span ng-hide="matchArray.paleEyeVisits == 1 && lastObj.paleEyeVisits.monthNo == visitDetails.paleEyeVisits[month.monthNo].monthNo">{{visitDetails.paleEyeVisits[month.monthNo].value}}</span>  
          <span ng-show="lastObj.paleEyeVisits.monthNo == month.monthNo">{{lastObj.paleEyeVisits.value}}</span>  
       </div>
-      <div class="col-sm-1">{{symptomData[0].value}}</div>
+      <div class="col-sm-1">{{lastObj.paleEyeVisits.value}}</div>
       <div class="col-sm-1">&nbsp;</div>
     </div>
   </div>
@@ -459,12 +455,12 @@
           </div>
         </div>
         <div class="col-sm-10 anc-outcome">
-
-          <div class="col-sm-1" ng-class="{'dead': visitDetails.nightBlindVisits[month.monthNo].value == 'yes','healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">  
+          <div class="col-sm-1" ng-class="{'dead': visitDetails.nightBlindVisits[month.monthNo].value == 'yes' && 
+          visitDetails.nightBlindVisits[month.monthNo].monthNo != lastObj.nightBlindVisits.monthNo|| lastObj.nightBlindVisits.value == 'yes' && lastObj.nightBlindVisits.monthNo == month.monthNo,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">  
          <span ng-hide="matchArray.nightBlindVisits == 1 && lastObj.nightBlindVisits.monthNo == visitDetails.nightBlindVisits[month.monthNo].monthNo">{{visitDetails.nightBlindVisits[month.monthNo].value}}</span>  
          <span ng-show="lastObj.nightBlindVisits.monthNo == month.monthNo">{{lastObj.nightBlindVisits.value}}</span> 
           </div>
-          <div class="col-sm-1">{{symptomData[1].value}}</div>
+          <div class="col-sm-1">{{visitDetails.nightBlindVisits[month.monthNo].value}}</div>
           <div class="col-sm-1">&nbsp;</div>
         </div>
       </div>
@@ -513,13 +509,14 @@
         <div>Bleeding</div>
       </div>
     </div>
-    <div class="col-sm-10 anc-outcome">
-      <!--<div class="col-sm-1 healthy"> <span ng-show="symptomData[3].month ==-1">{{symptomData[3].value}}</span></div>-->
-      <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[3].month && symptomData[3].value == 'yes','healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">
-        <span ng-show="symptomData[3].month == month.monthNo">{{symptomData[3].value}}</span>
-        
-      </div>
-      <div class="col-sm-1">{{symptomData[3].value}}</div>
+      <div class="col-sm-10 anc-outcome">
+        <div class="col-sm-1" ng-class="{'dead': visitDetails.bleedingVisits[month.monthNo].value == 'yes'&& 
+          visitDetails.bleedingVisits[month.monthNo].monthNo != lastObj.bleedingVisits.monthNo|| lastObj.bleedingVisits.value == 'yes' && lastObj.bleedingVisits.monthNo == month.monthNo,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">  
+         <span ng-hide="matchArray.bleedingVisits == 1 && lastObj.bleedingVisits.monthNo == visitDetails.bleedingVisits[month.monthNo].monthNo">{{visitDetails.bleedingVisits[month.monthNo].value}}</span>  
+         <span ng-show="lastObj.bleedingVisits.monthNo == month.monthNo">{{lastObj.bleedingVisits.value}}</span> 
+        </div>
+      
+      <div class="col-sm-1">{{lastObj.bleedingVisits.value}}</div>
       <div class="col-sm-1">&nbsp;</div>
     </div>
   </div>
@@ -570,13 +567,13 @@
       </div>
     </div>
     <div class="col-sm-10 anc-outcome">
-      <!-- <div class="col-sm-1 healthy"> <span ng-show="symptomData[5].month ==-1">{{symptomData[5].value}}</span></div>-->
-      <div class="col-sm-1" ng-class="{'dead': month.monthNo == symptomData[5].month && symptomData[5].value == 'yes','healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">
-        <span ng-show="symptomData[5].month == month.monthNo">{{symptomData[5].value}}</span>
-        
-      </div>
-      <div class="col-sm-1">{{symptomData[5].value}}</div>
-      <div class="col-sm-1">&nbsp;</div>
+        <div class="col-sm-1" ng-class="{'dead': visitDetails.malariaVisits[month.monthNo].value == 'yes' && 
+          visitDetails.malariaVisits[month.monthNo].monthNo != lastObj.malariaVisits.monthNo|| lastObj.malariaVisits.value == 'yes' && lastObj.malariaVisits.monthNo == month.monthNo,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">  
+         <span ng-hide="matchArray.malariaVisits == 1 && lastObj.malariaVisits.monthNo == visitDetails.malariaVisits[month.monthNo].monthNo">{{visitDetails.malariaVisits[month.monthNo].value}}</span>  
+         <span ng-show="lastObj.malariaVisits.monthNo == month.monthNo">{{lastObj.malariaVisits.value}}</span> 
+        </div>
+    <div class="col-sm-1">{{lastObj.malariaVisits.value}}</div>
+    <div class="col-sm-1">&nbsp;</div>
     </div>
   </div>
   <div class="col-sm-3 anc-calender-add">

@@ -476,31 +476,31 @@ angular.module('uhiApp.controllers')
 
 
     //LOGIC FOR Malaria
+    var malariaVisits=[];
+    var storedMalariaVisits=[];
     $scope.MalariaCalendarDate = todayDate;
-    var lastMalariaObject={};
     if($scope.newWoman == false){
-     lastMalariaObject=_.chain(womanData.ANC).map(function(e) { 
-        return {month: e.monthID, value: e.Malaria};
-        })
-        .filter(function(e){ 
-            return e.value;
-        })
-        .sortBy('month')
-        .last()
-        .value();
+        var storedMalariaVisits =_.chain(womanData.ANC)
+            .filter(function(e){ 
+                return e.Malaria;
+            }).map(function(e) { 
+            return {monthID: e.monthID, value: e.Malaria};
+            }).value();
+         malariaVisits = getVisits(storedMalariaVisits);    
+        $scope.visitDetails.malariaVisits = _.indexBy(malariaVisits, 'monthNo')
      }else{
 
      }   
     $scope.$watch(function(scope) {return $scope.MalariaCalendarDate},
         function() {
                 if($scope.malariaOutcome){
-                    updateRow(5);
+                    updateRowforVisits("malariaVisits",$scope.malariaOutcome,$scope.MalariaCalendarDate);
                 }
         }
     );
     $scope.updateMalaria=function(){
         if($scope.malariaOutcome) {
-                   updateRow(5);
+                   updateRowforVisits("malariaVisits",$scope.malariaOutcome,$scope.MalariaCalendarDate);
                 }
     }
 
@@ -857,37 +857,46 @@ angular.module('uhiApp.controllers')
  
     //LOGIC FOR Bleeding
     $scope.BleedingCalendarDate = todayDate;
-    var lastBleedingObject={};
+    var bleedingVisits=[];
+    var storedBleedingVisits=[];
      if($scope.newWoman == false){
-      lastBleedingObject=_.chain(womanData.ANC).map(function(e) { 
-        return {month: e.monthID, value: e.bleeding};
-        })
-        .filter(function(e){ 
-            return e.value;
-        })
-        .sortBy('month')
-        .last()
-        .value();
+        var storedBleedingVisits =_.chain(womanData.ANC)
+            .filter(function(e){ 
+                return e.bleeding;
+            }).map(function(e) { 
+            return {monthID: e.monthID, value: e.bleeding};
+            }).value();
+         bleedingVisits = getVisits(storedBleedingVisits);    
+        $scope.visitDetails.bleedingVisits = _.indexBy(bleedingVisits, 'monthNo')
      }else{
        
      }   
     $scope.$watch(function(scope) {return $scope.BleedingCalendarDate},
         function() {
                 if($scope.bleedingOutcome){
-                    updateRow(3);
+                    updateRowforVisits("bleedingVisits",$scope.bleedingOutcome,$scope.BleedingCalendarDate);
                 }
         }
     );
     $scope.updateBleed=function(){
         if($scope.bleedingOutcome) {
-                   updateRow(3);
+                   updateRowforVisits("bleedingVisits",$scope.bleedingOutcome,$scope.BleedingCalendarDate);
                 }
     }
 
     //LOGIC FOR Malaria
     $scope.MalariaCalendarDate = todayDate;
-    var lastMalariaObject={};
+     var malariaVisits=[];
+    var storedmalariaVisits=[];
     if($scope.newWoman == false){
+         storedmalariaVisits =_.chain(womanData.ANC)
+            .filter(function(e){ 
+                return e.malaria;
+            }).map(function(e) { 
+            return {monthID: e.monthID, value: e.malaria};
+            }).value();
+         malariaVisits = getVisits(storedmalariaVisits);    
+        $scope.visitDetails.malariaVisits = _.indexBy(malariaVisits, 'monthNo')
      lastMalariaObject=_.chain(womanData.ANC).map(function(e) { 
         return {month: e.monthID, value: e.malaria};
         })
@@ -903,13 +912,13 @@ angular.module('uhiApp.controllers')
     $scope.$watch(function(scope) {return $scope.MalariaCalendarDate},
         function() {
                 if($scope.malariaOutcome){
-                    updateRow(5);
+                   updateRowforVisits("malariaVisits",$scope.malariaOutcome,$scope.MalariaCalendarDate);
                 }
         }
     );
     $scope.updateMalaria=function(){
         if($scope.malariaOutcome) {
-                   updateRow(5);
+                   updateRowforVisits("malariaVisits",$scope.malariaOutcome,$scope.MalariaCalendarDate);
                 }
     }
 
@@ -1439,7 +1448,7 @@ angular.module('uhiApp.controllers')
     }        
     if($scope.newWoman ==false){
         var lastPaleEyeObject,lastBlindObject;
-        var itemArray=[lastPaleEyeObject,lastBlindObject,lastBleedingObject,lastMalariaObject,lastUPObject,lastSwellingObject,lastFitsObject,lastUSObject,lastFeverObject,lastFoulSmellObject,weaknessObject,lastBPObject];
+        var itemArray=[lastPaleEyeObject,lastBlindObject,lastUPObject,lastSwellingObject,lastFitsObject,lastUSObject,lastFeverObject,lastFoulSmellObject,weaknessObject,lastBPObject];
 //htis is the check when all the pale values are null or undefined
         angular.forEach(itemArray, function(item, index) {
             var obj;
@@ -1707,8 +1716,8 @@ $scope.opened=false;
 
         //save button functionality
      $scope.saveANCDetails =function(){
-        var VisitItem=["paleEyeVisits","nightBlindVisits","ashaVisits","anmVisits","wtVisits","hbVisits"];
-        for(var i=0;i<6;i++){  //if there is an entry
+        var VisitItem=["paleEyeVisits","nightBlindVisits","ashaVisits","anmVisits","wtVisits","hbVisits","malariaVisits","bleedingVisits"];
+        for(var i=0;i<8;i++){  //if there is an entry
             if( $scope.lastObj[VisitItem[i]] != undefined){
                 if($scope.matchArray[VisitItem[i]] == 1){
                 //if there is a value mismatch..then update it
@@ -1763,13 +1772,13 @@ $scope.opened=false;
             }else{
                  HB = null;
             }
-            if($scope.symptomData[3].pregnancyMonthNo == i){     //for night blind
-                 bleeding = $scope.symptomData[3].value
+            if($scope.visitDetails.bleedingVisits[i] != undefined){     //for night blind
+                 bleeding = $scope.visitDetails.bleedingVisits[i].value;
             }else{
                  bleeding = null;
             }
-            if($scope.symptomData[5].pregnancyMonthNo == i){     //for night blind
-                 malaria = $scope.symptomData[5].value
+            if($scope.visitDetails.malariaVisits[i] != undefined){     //for night blind
+                 malaria = $scope.visitDetails.malariaVisits[i].value;
             }else{
                  malaria = null;
             }
@@ -1788,21 +1797,9 @@ $scope.opened=false;
             }else{
                  headache = null;
             }
-            if($scope.symptomData[9].pregnancyMonthNo == i){     //for night blind
-                 urineSugar = $scope.symptomData[9].value
-            }else{
-                 urineSugar = null;
-            }
-            if($scope.symptomData[10].pregnancyMonthNo == i){     //for pale eye
-                fever = $scope.symptomData[10].value
-            }else{
-                 fever = null;
-            }
-            if($scope.symptomData[11].pregnancyMonthNo == i){     //for night blind
-                 foulSmellingDischarge = $scope.symptomData[11].value
-            }else{
-                 foulSmellingDischarge = null;
-            }
+             urineSugar = null;
+              foulSmellingDischarge = null;
+              fever = null;
              otherInfection = null;
              BP = null;
             ANC.push({'monthID':monthID,'ASHAVisit':ASHAVisit,'ANMVisit':ANMVisit,'weight':weight,'TT':TT,'HB':HB,'paleEye':paleEye,'bleeding':bleeding,'malaria':malaria,'IFATablets':IFATablets,'BP':BP,'swelling':swelling,'headache':headache,'urineProtein':urineProtein,'urineSugar':urineSugar,'nightBlindness':nightBlindness,'foulSmellingDischarge':foulSmellingDischarge,'fever':fever,'otherInfection':otherInfection,'lastUpdateDateTime':otherInfection});
