@@ -151,6 +151,8 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
     }
   };
 
+  $scope.months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
   function updateMethodCalendar() {
     $scope.methodCalendar = {};
     $scope.methodCalendar.thisYear = new Date().getFullYear();
@@ -185,6 +187,23 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
       };
       methodArray.push(thisYearObj);
     }
+    if(methodArray.length === 0) {
+      for(var year = $scope.methodCalendar.thisYear-1; year <= $scope.methodCalendar.thisYear; year++) {
+        var thisYearMethods = _.chain($scope.months)
+          .map(function(e) {
+            var monthID = e + 1;
+            e.monthID = monthID;
+            e.year = year;
+            return e;
+          })
+          .indexBy('monthID')
+          .value();
+        var thisYearObj = {
+          'year': year
+        };
+        methodArray.push(thisYearObj);
+      }
+    }
     $scope.methodCalendar.data = _.sortBy(methodArray, function (e) {
       return -e.year
     });
@@ -193,8 +212,6 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
   updateMethodCalendar();
 
   $scope.methodCalendar.currentMonth = new Date().getMonth() + 1;
-
-  $scope.months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
   function calculateNextDate(requesterMethodID) {
     var now, nextImpTimestamp;

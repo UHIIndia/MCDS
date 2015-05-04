@@ -153,13 +153,13 @@
                 <tr ng-repeat="yearData in methodCalendar.data">
                   <td>{{ yearData.year }}</td>
                   <td ng-repeat="month in months" ng-class="{highlight: yearData.methods[month].highlight}">
-                    <span class="glyphicon glyphicon-remove" ng-show="yearData.methods[month].methodID === 0 || (FPMethod.id === 0 && methodCalendar.currentMonth === month && response !== 'unanswered')"></span>
-                    <img src="img/condom-pic.png" ng-show="yearData.methods[month].methodID === 1 || (FPMethod.id === 1 && methodCalendar.currentMonth === month && response !== 'unanswered')" />
-                    <img src="img/ocp-pic.png" ng-show="yearData.methods[month].methodID === 2 || (FPMethod.id === 2 && methodCalendar.currentMonth === month && response !== 'unanswered')" />
-                    <img src="img/dmpa-pic.png" ng-show="yearData.methods[month].methodID === 3 || (FPMethod.id === 3 && methodUseDate && methodUseDate.getMonth()+1 === month )" />
-                    <img src="img/iucd-pic.png" ng-show="yearData.methods[month].methodID === 4 || (FPMethod.id === 4 && methodUseDate && methodUseDate.getMonth()+1 === month)" />
-                    <img src="img/fst-pic.png" ng-show="yearData.methods[month].methodID === 5 || (FPMethod.id === 5 && methodUseDate && methodUseDate.getMonth()+1 === month)" />
-                    <img src="img/mst-pic.png" ng-show="yearData.methods[month].methodID === 6 || (FPMethod.id === 6  && methodUseDate && methodUseDate.getMonth()+1 === month)" />
+                    <span class="glyphicon glyphicon-remove" ng-show="yearData.methods[month].methodID === 0 || (FPMethod.id === 0 && methodCalendar.currentMonth === month && methodCalendar.thisYear === yearData.year && response !== 'unanswered')"></span>
+                    <img src="img/condom-pic.png" ng-show="yearData.methods[month].methodID === 1 || (FPMethod.id === 1 && methodCalendar.currentMonth === month && methodCalendar.thisYear === yearData.year && response !== 'unanswered')" />
+                    <img src="img/ocp-pic.png" ng-show="yearData.methods[month].methodID === 2 || (FPMethod.id === 2 && methodCalendar.currentMonth === month && methodCalendar.thisYear === yearData.year && response !== 'unanswered')" />
+                    <img src="img/dmpa-pic.png" ng-show="yearData.methods[month].methodID === 3 || (FPMethod.id === 3 && methodUseDate && methodUseDate.getMonth()+1 === month && methodUseDate.getFullYear() === yearData.year)" />
+                    <img src="img/iucd-pic.png" ng-show="yearData.methods[month].methodID === 4 || (FPMethod.id === 4 && methodUseDate && methodUseDate.getMonth()+1 === month && methodUseDate.getFullYear() === yearData.year)" />
+                    <img src="img/fst-pic.png" ng-show="yearData.methods[month].methodID === 5 || (FPMethod.id === 5 && methodUseDate && methodUseDate.getMonth()+1 === month && methodUseDate.getFullYear() === yearData.year)" />
+                    <img src="img/mst-pic.png" ng-show="yearData.methods[month].methodID === 6 || (FPMethod.id === 6  && methodUseDate && methodUseDate.getMonth()+1 === month && methodUseDate.getFullYear() === yearData.year)" />
                   </td>
                 </tr>
             </tbody>

@@ -364,3 +364,7 @@ td.highlight{
   text-align: center;
   vertical-align: middle;
 }
+
+.method-calendar .table > tbody > tr > td:first-child{
+  text-align: left;
+}
