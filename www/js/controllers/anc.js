@@ -397,10 +397,6 @@ angular.module('uhiApp.controllers')
     );
 
     // LOGIC FOR WT
-    /*var WeightArray=[];
-    var WeightDateArray=[];
-    var lastWeightDate,lastWeightMonth,lastWeight;
-    var lastWtObject ={};*/
     var wtVisits=[];
     var storedWtVisits=[];
     $scope.WeightCalendarDate=todayDate;
@@ -1056,30 +1052,31 @@ angular.module('uhiApp.controllers')
 
  //LOGIC FOR BP
     $scope.BPCalendarDate = todayDate;
-    var lastBPObject={};
-    if($scope.newWoman == false){
-     lastBPObject=_.chain(womanData.ANC).map(function(e) { 
-        return {month: e.monthID, value: e.BP};
-        })
-        .filter(function(e){ 
-            return e.value;
-        })
-        .sortBy('month')
-        .last()
-        .value();
+    var BPVisits=[];
+    var storedBPVisits=[];
+     if($scope.newWoman == false){
+        var storedBPVisits =_.chain(womanData.ANC)
+            .filter(function(e){ 
+                return e.BP;
+            }).map(function(e) { 
+            return {monthID: e.monthID, value: e.BP};
+            }).value();
+         BPVisits = getVisits(storedBPVisits);    
+        $scope.visitDetails.BPVisits = _.indexBy(BPVisits, 'monthNo')
      }else{
 
-     }   
+     }  
     $scope.$watch(function(scope) {return $scope.BPCalendarDate},
         function() {
                 if($scope.BPOutcome){
-                    updateRow(13);
+                    updateRowforVisits("BPVisits",$scope.BPOutcome,$scope.BPCalendarDate);
                 }
         }
     );
+    //WHEN THE USER SELECTS YES OR NO
     $scope.updateBP=function(){
         if($scope.BPOutcome) {
-                   updateRow(13);
+                    updateRowforVisits("BPVisits",$scope.BPOutcome,$scope.BPCalendarDate);
         }
     }
     $scope.updateBPNo=function(){
@@ -1091,7 +1088,7 @@ angular.module('uhiApp.controllers')
             }else{
                 $scope.BPOutcome = "Normal";   
             }
-            updateRow(13);
+             updateRowforVisits("BPVisits",$scope.BPOutcome,$scope.BPCalendarDate);
         }
             
     }
@@ -1682,8 +1679,8 @@ $scope.opened=false;
 
         //save button functionality
      $scope.saveANCDetails =function(){
-        var VisitItem=["paleEyeVisits","nightBlindVisits","ashaVisits","anmVisits","wtVisits","hbVisits","malariaVisits","bleedingVisits","upVisits","swellingVisits","fitsVisits","usVisits","feverVisits","foulsmellVisits","weaknessVisits"];
-        for(var i=0;i<15;i++){  //if there is an entry
+        var VisitItem=["paleEyeVisits","nightBlindVisits","ashaVisits","anmVisits","wtVisits","hbVisits","malariaVisits","bleedingVisits","upVisits","swellingVisits","fitsVisits","usVisits","feverVisits","foulsmellVisits","weaknessVisits","BPVisits"];
+        for(var i=0;i<16;i++){  //if there is an entry
             if( $scope.lastObj[VisitItem[i]] != undefined){
                 if($scope.matchArray[VisitItem[i]] == 1){
                 //if there is a value mismatch..then update it
@@ -1783,7 +1780,11 @@ $scope.opened=false;
             }else{
                  otherInfection = null;
             }
-            BP = null;
+            if($scope.visitDetails.BPVisits[i] != undefined){     //for fits
+                 BP = $scope.visitDetails.BPVisits[i].value;
+            }else{
+                 BP = null;
+            }
             ANC.push({'monthID':monthID,'ASHAVisit':ASHAVisit,'ANMVisit':ANMVisit,'weight':weight,'TT':TT,'HB':HB,'paleEye':paleEye,'bleeding':bleeding,'malaria':malaria,'IFATablets':IFATablets,'BP':BP,'swelling':swelling,'headache':headache,'urineProtein':urineProtein,'urineSugar':urineSugar,'nightBlindness':nightBlindness,'foulSmellingDischarge':foulSmellingDischarge,'fever':fever,'otherInfection':otherInfection,'lastUpdateDateTime':otherInfection});
         }
         womanData.ANC=ANC;

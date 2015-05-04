@@ -658,10 +658,12 @@
           </div>
         </div>
         <div class="col-sm-10 anc-outcome">
-       <!-- <div class="col-sm-1 healthy"> <span ng-show="symptomData[13].month ==-1">{{symptomData[13].value}}</span></div>-->
-         <!--  <div ng-class="{'col-sm-1':true,'dead': month.monthNo == lastHBMonth && alertHB == true}" ng-repeat="month in monthsArray"> <span ng-show="lastHBMonth == month.monthNo">{{lastHBValue}}</span></div>-->
-           <div ng-class="{'col-sm-1':true,'dead': month.monthNo == symptomData[13].month && symptomData[13].value == 'High','healthy': month.monthNo == 0}" ng-repeat="month in monthsArray"> <span ng-show="symptomData[13].month == month.monthNo">{{symptomData[13].value == 'High'?'High':'Normal'}}</span></div>
-          <div class="col-sm-1">{{symptomData[13].value}}</span></div>
+          <div class="col-sm-1" ng-class="{'dead': visitDetails.BPVisits[month.monthNo].value == 'High' && 
+            visitDetails.BPVisits[month.monthNo].monthNo != lastObj.BPVisits.monthNo|| lastObj.BPVisits.value == 'High' && lastObj.BPVisits.monthNo == month.monthNo,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">  
+           <span ng-hide="matchArray.BPVisits == 1 && lastObj.BPVisits.monthNo == visitDetails.BPVisits[month.monthNo].monthNo">{{visitDetails.BPVisits[month.monthNo].value}}</span>  
+           <span ng-show="lastObj.BPVisits.monthNo == month.monthNo">{{lastObj.BPVisits.value == 'High'?'High':'Normal'}}</span> 
+          </div>
+          <div class="col-sm-1">{{lastObj.BPVisits.value == 'High'?'High':'Normal'}}</span></div>
           <div class="col-sm-1">&nbsp;</div>
         </div>
       </div>
