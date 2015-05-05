@@ -1135,7 +1135,10 @@ angular.module('uhiApp.controllers')
             }).map(function(e) { 
             return {monthID: e.monthID, value: e.urineSugar};
             }).value();
-         usVisits = getVisits(storedusVisits);    
+         usVisits = getVisits(storedusVisits);  
+         for(var i=0;i< usVisits.length ;i++){
+            usVisits[i].value = (usVisits[i].value == 'yes'?'+':'-')
+         }  
         $scope.visitDetails.usVisits = _.indexBy(usVisits, 'monthNo')
      }else{
 
@@ -1164,7 +1167,10 @@ angular.module('uhiApp.controllers')
             }).map(function(e) { 
             return {monthID: e.monthID, value: e.fever};
             }).value();
-         feverVisits = getVisits(storedfeverVisits);    
+         feverVisits = getVisits(storedfeverVisits);   
+         for(var i=0;i< feverVisits.length ;i++){
+            feverVisits[i].value = (feverVisits[i].value == 'yes'?'+':'-')
+         } 
         $scope.visitDetails.feverVisits = _.indexBy(feverVisits, 'monthNo')
      }else{
 
@@ -1194,6 +1200,9 @@ angular.module('uhiApp.controllers')
             return {monthID: e.monthID, value: e.foulSmellingDischarge};
             }).value();
          foulsmellVisits = getVisits(storedfoulsmellVisits);    
+         for(var i=0;i< foulsmellVisits.length ;i++){
+            foulsmellVisits[i].value = (foulsmellVisits[i].value == 'yes'?'+':'-')
+         }
         $scope.visitDetails.foulsmellVisits = _.indexBy(foulsmellVisits, 'monthNo')
      }else{
 
@@ -1643,17 +1652,17 @@ $scope.opened=false;
                  headache = null;
             }
             if($scope.visitDetails.usVisits[i] != undefined){     //for pale eye
-                 urineSugar =  $scope.visitDetails.usVisits[i].value;
+                 urineSugar =  ($scope.visitDetails.usVisits[i].value  == "+"?'yes':'no');
             }else{
                  urineSugar = null;
             }
             if($scope.visitDetails.foulsmellVisits[i] != undefined){     //for night blind
-                 foulSmellingDischarge = $scope.visitDetails.foulsmellVisits[i].value;
+                 foulSmellingDischarge = ($scope.visitDetails.foulsmellVisits[i].value  == "+"?'yes':'no');
             }else{
                  foulSmellingDischarge = null;
             }
             if($scope.visitDetails.feverVisits[i] != undefined){     //for fits
-                 fever = $scope.visitDetails.feverVisits[i].value;
+                 fever = ($scope.visitDetails.feverVisits[i].value== "+"?'yes':'no');
             }else{
                  fever = null;
             }

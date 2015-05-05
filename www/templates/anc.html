@@ -867,12 +867,12 @@
       </div>
     </div>
     <div class="col-sm-10 anc-outcome">
-      <div class="col-sm-1" ng-class="{'dead': visitDetails.usVisits[month.monthNo].value == 'yes' && 
-          visitDetails.usVisits[month.monthNo].monthNo != lastObj.usVisits.monthNo|| lastObj.usVisits.value == 'yes' && lastObj.usVisits.monthNo == month.monthNo,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">  
+      <div class="col-sm-1" ng-class="{'dead': visitDetails.usVisits[month.monthNo].value == '+' && 
+          visitDetails.usVisits[month.monthNo].monthNo != lastObj.usVisits.monthNo|| lastObj.usVisits.value == '+' && lastObj.usVisits.monthNo == month.monthNo,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">  
          <span ng-hide="matchArray.usVisits == 1 && lastObj.usVisits.monthNo == visitDetails.usVisits[month.monthNo].monthNo">{{visitDetails.usVisits[month.monthNo].value}}</span>  
-         <span ng-show="lastObj.usVisits.monthNo == month.monthNo">{{lastObj.usVisits.value == 'yes'?'+':'-'}}</span> 
+         <span ng-show="lastObj.usVisits.monthNo == month.monthNo">{{lastObj.usVisits.value}}</span> 
       </div>
-      <div class="col-sm-1">{{lastObj.usVisits.value == 'yes'?'+':'-'}}</div>
+      <div class="col-sm-1">{{lastObj.usVisits.value}}</div>
       <div class="col-sm-1">&nbsp;</div>
     </div>
   </div>
@@ -895,11 +895,11 @@
         </div>
         <div class="col-sm-9 radio-group">
           <div>
-            <input type="radio" ng-model="USOutcome"  ng-value="'no'"  name="USCheck" id="radio75" ng-change="updateUS()">
+            <input type="radio" ng-model="USOutcome"  ng-value="'-'"  name="USCheck" id="radio75" ng-change="updateUS()">
             <label for="radio75">No</label>
           </div>
           <div>
-            <input type="radio" ng-model="USOutcome" name="USCheck" ng-value="'yes'" id="radio76" ng-change="updateUS()">
+            <input type="radio" ng-model="USOutcome" name="USCheck" ng-value="'+'" id="radio76" ng-change="updateUS()">
             <label for="radio76">Yes</label> 
           </div>
         </div>
@@ -920,12 +920,12 @@
       </div>
     </div>
     <div class="col-sm-10 anc-outcome">
-      <div class="col-sm-1" ng-class="{'dead': visitDetails.feverVisits[month.monthNo].value == 'yes' && 
-          visitDetails.feverVisits[month.monthNo].monthNo != lastObj.feverVisits.monthNo|| lastObj.feverVisits.value == 'yes' && lastObj.feverVisits.monthNo == month.monthNo,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">  
+      <div class="col-sm-1" ng-class="{'dead': visitDetails.feverVisits[month.monthNo].value == '+' && 
+          visitDetails.feverVisits[month.monthNo].monthNo != lastObj.feverVisits.monthNo|| lastObj.feverVisits.value == '+' && lastObj.feverVisits.monthNo == month.monthNo,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">  
          <span ng-hide="matchArray.feverVisits == 1 && lastObj.feverVisits.monthNo == visitDetails.feverVisits[month.monthNo].monthNo">{{visitDetails.feverVisits[month.monthNo].value}}</span>  
-         <span ng-show="lastObj.feverVisits.monthNo == month.monthNo">{{lastObj.feverVisits.value  == 'yes'?'+':'-'}}</span> 
+         <span ng-show="lastObj.feverVisits.monthNo == month.monthNo">{{lastObj.feverVisits.value}}</span> 
       </div>
-      <div class="col-sm-1">{{lastObj.feverVisits.value == 'yes'?'+':'-'}}</div>
+      <div class="col-sm-1">{{lastObj.feverVisits.value}}</div>
       <div class="col-sm-1">&nbsp;</div>
     </div>
   </div>
@@ -948,11 +948,11 @@
         </div>
         <div class="col-sm-9 radio-group">
           <div>
-            <input type="radio" ng-model="FeverOutcome"  ng-value="'no'"  name="FeverCheck" id="radioFever5" ng-change="updateFever()">
+            <input type="radio" ng-model="FeverOutcome"  ng-value="'-'"  name="FeverCheck" id="radioFever5" ng-change="updateFever()">
             <label for="radioFever5">No</label>
           </div>
           <div>
-            <input type="radio" ng-model="FeverOutcome" name="FeverCheck" ng-value="'yes'" id="radioFever4" ng-change="updateFever()">
+            <input type="radio" ng-model="FeverOutcome" name="FeverCheck" ng-value="'+'" id="radioFever4" ng-change="updateFever()">
             <label for="radioFever4">Yes</label>
           </div>
           
@@ -974,12 +974,12 @@
       </div>
     </div>
     <div class="col-sm-10 anc-outcome">
-      <div class="col-sm-1" ng-class="{'dead': visitDetails.foulsmellVisits[month.monthNo].value == 'yes' && 
-          visitDetails.foulsmellVisits[month.monthNo].monthNo != lastObj.foulsmellVisits.monthNo|| lastObj.foulsmellVisits.value == 'yes' && lastObj.foulsmellVisits.monthNo == month.monthNo,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">  
+      <div class="col-sm-1" ng-class="{'dead': visitDetails.foulsmellVisits[month.monthNo].value == '+' && 
+          visitDetails.foulsmellVisits[month.monthNo].monthNo != lastObj.foulsmellVisits.monthNo|| lastObj.foulsmellVisits.value == '+' && lastObj.foulsmellVisits.monthNo == month.monthNo,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">  
          <span ng-hide="matchArray.foulsmellVisits == 1 && lastObj.foulsmellVisits.monthNo == visitDetails.foulsmellVisits[month.monthNo].monthNo">{{visitDetails.foulsmellVisits[month.monthNo].value}}</span>  
-         <span ng-show="lastObj.foulsmellVisits.monthNo == month.monthNo">{{lastObj.foulsmellVisits.value  == 'yes'?'+':'-'}}</span> 
+         <span ng-show="lastObj.foulsmellVisits.monthNo == month.monthNo">{{lastObj.foulsmellVisits.value}}</span> 
       </div>
-      <div class="col-sm-1">{{lastObj.foulsmellVisits.value == 'yes'?'+':'-'}}</div>
+      <div class="col-sm-1">{{lastObj.foulsmellVisits.value}}</div>
       <div class="col-sm-1">&nbsp;</div>
     </div>
   </div>
@@ -1002,11 +1002,11 @@
         </div>
         <div class="col-sm-9 radio-group">
           <div>
-            <input type="radio" ng-model="FoulSmellOutcome"  ng-value="'no'"  name="FitsCheck"  id="radioFoulsmell65" ng-change="updateFoulSmell()">
+            <input type="radio" ng-model="FoulSmellOutcome"  ng-value="'-'"  name="FitsCheck"  id="radioFoulsmell65" ng-change="updateFoulSmell()">
             <label for="radioFoulsmell65">No</label>
           </div>
           <div>
-           <input type="radio" ng-model="FoulSmellOutcome" name="FitsCheck" ng-value="'yes'" id="radiFoulsmello64" ng-change="updateFoulSmell()">
+           <input type="radio" ng-model="FoulSmellOutcome" name="FitsCheck" ng-value="'+'" id="radiFoulsmello64" ng-change="updateFoulSmell()">
            <label for="radioFoulsmell64">Yes</label> 
          </div>
        </div>
