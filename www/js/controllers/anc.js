@@ -1559,16 +1559,20 @@ $scope.opened=false;
         var VisitItem=["paleEyeVisits","nightBlindVisits","ashaVisits","anmVisits","wtVisits","hbVisits","malariaVisits","bleedingVisits","upVisits","swellingVisits","fitsVisits","usVisits","feverVisits","foulsmellVisits","weaknessVisits","BPVisits","IFAVisits","TTVisits"];
         for(var i=0;i<18;i++){  //if there is an entry
             if( $scope.lastObj[VisitItem[i]] != undefined){
-                if($scope.matchArray[VisitItem[i]] == 1){
-                //if there is a value mismatch..then update it
-                    $scope.visitDetails[VisitItem[i]][$scope.lastObj[VisitItem[i]].monthNo].value=$scope.lastObj[VisitItem[i]].value;
-                }else{  //if there is a new entry
-                    $scope.visitDetails[VisitItem[i]][$scope.lastObj[VisitItem[i]].monthNo]=$scope.lastObj[VisitItem[i]];
+                if( $scope.visitDetails[VisitItem[i]] != undefined){
+                    if($scope.matchArray[VisitItem[i]] == 1){
+                    //if there is a value mismatch..then update it
+                        $scope.visitDetails[VisitItem[i]][$scope.lastObj[VisitItem[i]].monthNo].value=$scope.lastObj[VisitItem[i]].value;
+                    }else{  //if there is a new entry
+                        $scope.visitDetails[VisitItem[i]][$scope.lastObj[VisitItem[i]].monthNo]=$scope.lastObj[VisitItem[i]];
+                    }
+                }else{
+                        $scope.visitDetails[VisitItem[i]] =  $scope.lastObj[VisitItem[i]];
                 }
             }
              $scope.visitDetails[VisitItem[i]] =  _.indexBy($scope.visitDetails[VisitItem[i]], 'pregnancyMonthNo')
         }
-         var ANC =[];
+        var ANC =[];
         var monthID, ASHAVisit,ANMVisit,weight,TT,HB,paleEye,bleeding,malaria,IFATablets,BP,swelling,headache,urineProtein,urineSugar,nightBlindness,foulSmellingDischarge,fever,otherInfection,lastUpdateDateTime;
         for(var i=0;i<=9;i++){ 
             monthID = i;
