@@ -14,15 +14,6 @@
                   <div>{{pregWomanName}}</div>
                 </div>
               </div>
-     <!-- <div class="col-sm-10 maternal-outcome"  ng-show="pregWomanExist">
-       <label class="col-sm-4">Maternal Outcome:</label>
-        <label for="radiomaternal1" class="col-sm-3"><input type="radio" name="MO" id="radiomaternal1" ng-disabled="dateOfDelivery"
-          ng-value="'Healthy'" ng-model="MaternalOutcome"> Healthy</label>
-        <label for="radiomaternal2" class="col-sm-3"><input type="radio" name="MO" id="radiomaternal2" ng-disabled="dateOfDelivery" 
-         ng-value="'Sick'" ng-model="MaternalOutcome"> Weak/Sick</label>
-        <label for="radiomaternal3" class="col-sm-2"><input type="radio" name="MO" id="radiomaternal3" ng-disabled="dateOfDelivery" 
-         ng-value="'Dead'" ng-model="MaternalOutcome" > Dead</label>
-       </div>-->
        <div class="col-sm-10 delivery-details">
         <form class="form-horizontal clearfix">
           <div class="col-sm-2">
@@ -622,7 +613,12 @@
       </div>
     </div>
     <div class="col-sm-10 anc-outcome">
-      <div ng-class="{'col-sm-1':true,'weak':month.monthNo == nextIFAVisit  && alertIFA == true,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray"> <span ng-show="lastIFAMonth == month.monthNo">{{lastIFACount}}</span></div>
+      <div class="col-sm-1" ng-class="{'weak': month.monthNo === nextIFAVisit  && alertIFA == true,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">  
+       <span ng-hide="matchArray.IFAVisits == 1 && lastObj.IFAVisits.monthNo == visitDetails.IFAVisits[month.monthNo].monthNo">{{visitDetails.IFAVisits[month.monthNo].value}}</span>  
+       <span ng-show="lastObj.IFAVisits.monthNo == month.monthNo">{{lastObj.IFAVisits.value}}</span>  
+      </div>
+<!--
+      <div ng-class="{'col-sm-1':true,'weak':month.monthNo == nextIFAVisit  && alertIFA == true,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray"> <span ng-show="lastIFAMonth == month.monthNo">{{lastIFACount}}</span></div>-->
       <div class="col-sm-1">{{totalIFACount}}</div>
       <div class="col-sm-1">&nbsp;</div>
     </div>
@@ -710,7 +706,6 @@
       </div>
     </div>
     <div class="col-sm-10 anc-outcome">
-   <!--   <div class="col-sm-1 healthy"> <span ng-show="symptomData[6].month ==-1">{{symptomData[6].value}}</span></div>-->
       <div class="col-sm-1" ng-class="{'dead': visitDetails.upVisits[month.monthNo].value == 'yes' && 
           visitDetails.upVisits[month.monthNo].monthNo != lastObj.upVisits.monthNo|| lastObj.upVisits.value == 'yes' && lastObj.upVisits.monthNo == month.monthNo,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">  
          <span ng-hide="matchArray.upVisits == 1 && lastObj.upVisits.monthNo == visitDetails.upVisits[month.monthNo].monthNo">{{visitDetails.upVisits[month.monthNo].value }}</span>  

@@ -921,35 +921,23 @@ angular.module('uhiApp.controllers')
 
 //LOGIC FOR IFA Tab;lets
     $scope.IFACalendarDate = todayDate;
-    var lastIFAValue,lastIFADate;
-    var IFAArray=[];
-    var IFADateArray=[];
-    var totalIFACount =0;
-    var lastIFACount=0;
-    var lastIFAObject={};
+    var IFAVisits=[];
+    var totalIFACount=0;
+    var lastIFAMonth;
 //need to apply the loop as a the last anc object can be empty for HB
     if($scope.newWoman == false){
-        angular.forEach(womanData.ANC, function(ANCObj, index){
-            if(ANCObj.IFATablets != null){console.log("in");
-                totalIFACount=parseInt(totalIFACount) + parseInt(ANCObj.IFATablets);
-            }
-        })
-         lastIFAObject=_.chain(womanData.ANC).map(function(e) { 
-            return {month: e.monthID, value: e.IFATablets};
-            })
+        var storedIFAVisits =_.chain(womanData.ANC)
             .filter(function(e){ 
-                return e.value;
-            })
-            .sortBy('month')
-            .last()
-            .value();
-        var lastIFAMonth= (lastIFAObject == undefined?'' : $scope.monthsArray[lastIFAObject.month].monthNo);      
-        lastIFACount=  (lastIFAObject == undefined?'' :lastIFAObject.value);
-        $scope.lastIFAMonth=lastIFAMonth;
-        selectedMonth = $scope.monthsArray.filter(function(e) {
-          return e.monthNo == lastIFAMonth;
-        });
-        $scope.pregnancylastIFAMonth= (selectedMonth[0] == undefined ?'':selectedMonth[0].pregnancyMonthNo);
+                return e.IFATablets;
+            }).map(function(e) { 
+            return {monthID: e.monthID,value: e.IFATablets};
+            }).value();
+        IFAVisits = getVisits(storedIFAVisits);
+        for(var i=0;i < IFAVisits.length;i++){
+            totalIFACount = parseInt(totalIFACount) + parseInt(IFAVisits[i].value);
+        }
+        $scope.lastIFAMonth = (IFAVisits.length == 0?'': IFAVisits[IFAVisits.length -1].monthNo);
+        $scope.visitDetails.IFAVisits = _.indexBy(IFAVisits, 'monthNo')
         if(totalIFACount <= 100){
             if(lastIFAMonth == currentMonth){
                 if(currentMonth == 12){
@@ -962,34 +950,29 @@ angular.module('uhiApp.controllers')
             }
             $scope.alertIFA = true;
         }
+        
      }else{
             $scope.nextIFAVisit = currentMonth;
             lastIFACount=0;
-             $scope.alertIFA = true;
+            $scope.alertIFA = true;
      }   
-      $scope.lastIFACount=lastIFACount;
-      $scope.totalIFACount=totalIFACount;
+     $scope.totalIFACount=totalIFACount;
      $scope.$watch(function(scope) {return $scope.IFACalendarDate},
         function() {
                 if($scope.enteredIFA){
                     var currentIFA = $scope.enteredIFA;
-                    totalIFACount = parseInt(totalIFACount) + parseInt(currentIFA);
+                    $scope.totalIFACount = parseInt(totalIFACount) + parseInt(currentIFA);
                     var lastIFADate = UtilityService.convertDateFormat($scope.IFACalendarDate);
                     var lastIFAMonth = UtilityService.showMonthFromDate(lastIFADate);
                     var lastIFAYear = $scope.IFACalendarDate.getFullYear();
+                    checkUpforPale("IFAVisits",lastIFAMonth,currentIFA,lastIFAYear);
                     //case when past mon is not the same as current month
-                    var selectedMonth = $scope.monthsArray.filter(function(e) {
-                      return e.monthNo == lastIFAMonth;
-                    });
-                    if( selectedMonth.length == 0 || selectedMonth.length == 1 && lastIFAYear !=  selectedMonth[0].monthYear){
-                         $scope.lastIFAMonth = 0;
-                         $scope.pregnancylastIFAMonth = 0;
-                    }else{
-                        $scope.lastIFAMonth = lastIFAMonth;
-                        $scope.pregnancylastIFAMonth = selectedMonth[0].pregnancyMonthNo;
+                    var lastStoredMonth = (IFAVisits.length == 0 ?'' :IFAVisits[IFAVisits.length-1].pregnancyMonthNo);
+                    var selectedmonth = $scope.lastObj.IFAVisits.pregnancyMonthNo;
+                    if(lastStoredMonth < selectedmonth){
+                        $scope.lastIFAMonth = $scope.lastObj.IFAVisits.monthNo;
                     }
-                    $scope.lastIFADate =lastIFADate;
-                    if(totalIFACount <= 100){
+                    if($scope.totalIFACount <= 100){
                         if(lastIFAMonth == currentMonth){
                             if(currentMonth == 12){
                                  $scope.nextIFAVisit = 1;
@@ -1003,8 +986,6 @@ angular.module('uhiApp.controllers')
                     }else{
                         $scope.alertIFA = false;
                     }
-                    $scope.totalIFACount=totalIFACount;
-                    $scope.lastIFACount=currentIFA;
 
                 }
         }
@@ -1012,23 +993,18 @@ angular.module('uhiApp.controllers')
     $scope.updateIFA=function(){
          if(isNaN($scope.enteredIFA) == false){
                     var currentIFA = $scope.enteredIFA;
-                    totalIFACount = parseInt(totalIFACount) + parseInt(currentIFA);
+                    $scope.totalIFACount = parseInt(totalIFACount) + parseInt(currentIFA);
                     var lastIFADate = UtilityService.convertDateFormat($scope.IFACalendarDate);
                     var lastIFAMonth = UtilityService.showMonthFromDate(lastIFADate);
                     var lastIFAYear = $scope.IFACalendarDate.getFullYear();
+                    checkUpforPale("IFAVisits",lastIFAMonth,currentIFA,lastIFAYear);
                     //case when past mon is not the same as current month
-                    var selectedMonth = $scope.monthsArray.filter(function(e) {
-                      return e.monthNo == lastIFAMonth;
-                    });
-                    if( selectedMonth.length == 0 || selectedMonth.length == 1 && lastIFAYear !=  selectedMonth[0].monthYear){
-                         $scope.lastIFAMonth = 0;
-                          $scope.pregnancylastIFAMonth = 0;
-                    }else{
-                        $scope.lastIFAMonth = lastIFAMonth;
-                         $scope.pregnancylastIFAMonth = selectedMonth[0].pregnancyMonthNo;
+                    var lastStoredMonth = (IFAVisits.length == 0 ?'' :IFAVisits[IFAVisits.length-1].pregnancyMonthNo);
+                    var selectedmonth = $scope.lastObj.IFAVisits.pregnancyMonthNo;
+                    if(lastStoredMonth < selectedmonth){
+                        $scope.lastIFAMonth = $scope.lastObj.IFAVisits.monthNo;
                     }
-                    $scope.lastIFADate =lastIFADate;
-                    if(totalIFACount <= 100){
+                    if($scope.totalIFACount <= 100){
                         if(lastIFAMonth == currentMonth){
                             if(currentMonth == 12){
                                  $scope.nextIFAVisit = 1;
@@ -1042,12 +1018,7 @@ angular.module('uhiApp.controllers')
                     }else{
                         $scope.alertIFA = false;
                     }
-                    $scope.totalIFACount=totalIFACount;
-                    $scope.lastIFACount=currentIFA;
-
                 }
-
-
     }
 
  //LOGIC FOR BP
@@ -1679,8 +1650,8 @@ $scope.opened=false;
 
         //save button functionality
      $scope.saveANCDetails =function(){
-        var VisitItem=["paleEyeVisits","nightBlindVisits","ashaVisits","anmVisits","wtVisits","hbVisits","malariaVisits","bleedingVisits","upVisits","swellingVisits","fitsVisits","usVisits","feverVisits","foulsmellVisits","weaknessVisits","BPVisits"];
-        for(var i=0;i<16;i++){  //if there is an entry
+        var VisitItem=["paleEyeVisits","nightBlindVisits","ashaVisits","anmVisits","wtVisits","hbVisits","malariaVisits","bleedingVisits","upVisits","swellingVisits","fitsVisits","usVisits","feverVisits","foulsmellVisits","weaknessVisits","BPVisits","IFAVisits"];
+        for(var i=0;i<17;i++){  //if there is an entry
             if( $scope.lastObj[VisitItem[i]] != undefined){
                 if($scope.matchArray[VisitItem[i]] == 1){
                 //if there is a value mismatch..then update it
@@ -1715,8 +1686,8 @@ $scope.opened=false;
             }else{
                 TT = null;
             }
-             if($scope.pregnancylastIFAMonth == i){
-                IFATablets = $scope.lastIFACount
+             if($scope.visitDetails.IFAVisits[i] !=  undefined){
+                IFATablets = $scope.visitDetails.IFAVisits[i].value
             }else{
                 IFATablets = null;
             }
