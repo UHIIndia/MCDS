@@ -227,7 +227,7 @@
           <div class="col-sm-12">
             <div class="col-sm-3">
               <div class="input-group">
-                <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="ANMCalendarDate" is-open="openedANM"  ng-required="true"close-text="Close"  ng-hide="true" />
+                <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="ANMCalendarDate" is-open="openedANM" max-date="getDate()" ng-required="true" close-text="Close"  ng-hide="true" />
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-default" ng-click="open($event,'anm')"><i class="icon-date"></i></button>
                 </span>
@@ -265,7 +265,7 @@
           <div class="col-sm-12">
             <div class="col-sm-3">
               <div class="input-group">
-                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="WeightCalendarDate" is-open="openedWeight" ng-required="true" close-text="Close"  ng-hide="true" />
+                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="WeightCalendarDate" is-open="openedWeight" max-date="getDate()" ng-required="true" close-text="Close"  ng-hide="true" />
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-default" ng-click="open($event,'weight')"><i class="icon-date"></i></button>
                 </span>
@@ -307,7 +307,7 @@
         <div class="col-sm-12">
           <div class="col-sm-3">
             <div class="input-group">
-                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="TTCalendarDate" is-open="openedTT" ng-required="true" close-text="Close" ng-hide="true"/>
+                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="TTCalendarDate" is-open="openedTT" max-date="getDate()" ng-required="true" close-text="Close" ng-hide="true"/>
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-default" ng-click="open($event,'TT')"><i class="icon-date"></i></button>
                 </span>
@@ -363,7 +363,7 @@
         <div class="col-sm-12">
           <div class="col-sm-3">
             <div class="input-group">
-              <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="HBCalendarDate" is-open="openedHB"  ng-required="true"close-text="Close"  ng-hide="true" />
+              <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="HBCalendarDate" is-open="openedHB" max-date="getDate()"  ng-required="true"close-text="Close"  ng-hide="true" />
               <span class="input-group-btn">
                 <button type="button" class="btn btn-default" ng-click="open($event,'HB')"><i class="icon-date"></i></button>
               </span>
@@ -412,7 +412,7 @@
       <div class="col-sm-12">
         <div class="col-sm-3">
           <div class="input-group">
-            <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="PaleCalendarDate" is-open="openedPale"  ng-required="true"close-text="Close"  ng-hide="true" />
+            <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="PaleCalendarDate" is-open="openedPale" max-date="getDate()" ng-required="true"close-text="Close"  ng-hide="true" />
             <span class="input-group-btn">
               <button type="button" class="btn btn-default" ng-click="open($event,'Pale')"><i class="icon-date"></i></button>
             </span>
@@ -467,7 +467,7 @@
           <div class="col-sm-12">
             <div class="col-sm-3">
               <div class="input-group">
-                <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="NightBlindCalendarDate" is-open="openedNightBlind"  ng-required="true"close-text="Close"  ng-hide="true" />
+                <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="NightBlindCalendarDate" is-open="openedNightBlind" max-date="getDate()" ng-required="true"close-text="Close"  ng-hide="true" />
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-default" ng-click="open($event,'NB')"><i class="icon-date"></i></button>
                 </span>
@@ -523,7 +523,7 @@
       <div class="col-sm-12">
         <div class="col-sm-3">
           <div class="input-group">
-            <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="BleedingCalendarDate" is-open="openedBleeding"  ng-required="true" close-text="Close"  ng-hide="true" />
+            <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="BleedingCalendarDate" is-open="openedBleeding" max-date="getDate()" ng-required="true" close-text="Close"  ng-hide="true" />
             <span class="input-group-btn">
               <button type="button" class="btn btn-default" ng-click="open($event,'Bleeding')"><i class="icon-date"></i></button>
             </span>
@@ -579,7 +579,7 @@
       <div class="col-sm-12">
         <div class="col-sm-3">
           <div class="input-group">
-            <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="MalariaCalendarDate" is-open="openedMalaria"  ng-required="true" close-text="Close"  ng-hide="true" />
+            <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="MalariaCalendarDate" is-open="openedMalaria" max-date="getDate()" ng-required="true" close-text="Close"  ng-hide="true" />
             <span class="input-group-btn">
               <button type="button" class="btn btn-default" ng-click="open($event,'Malaria')"><i class="icon-date"></i></button>
             </span>
@@ -628,7 +628,7 @@
         <div class="col-sm-12">
           <div class="col-sm-3">
             <div class="input-group">
-              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="IFACalendarDate" is-open="openedIFA" ng-required="true" close-text="Close"  ng-hide="true" />
+              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="IFACalendarDate" is-open="openedIFA" max-date="getDate()" ng-required="true" close-text="Close"  ng-hide="true" />
               <span class="input-group-btn">
                 <button type="button" class="btn btn-default" ng-click="open($event,'IFA')"><i class="icon-date"></i></button>
               </span>
@@ -668,7 +668,7 @@
         <div class="col-sm-12">
           <div class="col-sm-3">
             <p class="input-group">
-                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="BPCalendarDate" is-open="openedBP" ng-required="true" close-text="Close" ng-hide="true" />
+                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="BPCalendarDate" is-open="openedBP" max-date="getDate()" ng-required="true" close-text="Close" ng-hide="true" />
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-default" ng-click="open($event,'BP')"><i class="icon-date"></i></button>
                 </span>
@@ -725,7 +725,7 @@
       <div class="col-sm-12">
         <div class="col-sm-3">
           <div class="input-group">
-            <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="UPCalendarDate" is-open="openedUP"  ng-required="true" close-text="Close"  ng-hide="true" />
+            <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="UPCalendarDate" is-open="openedUP" max-date="getDate()" ng-required="true" close-text="Close"  ng-hide="true" />
             <span class="input-group-btn">
               <button type="button" class="btn btn-default" ng-click="open($event,'UP')"><i class="icon-date"></i></button>
             </span>
@@ -779,7 +779,7 @@
       <div class="col-sm-12">
         <div class="col-sm-3">
           <div class="input-group">
-            <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="SwellingCalendarDate" is-open="openedSwelling"  ng-required="true" close-text="Close"  ng-hide="true" />
+            <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="SwellingCalendarDate" is-open="openedSwelling" max-date="getDate()" ng-required="true" close-text="Close"  ng-hide="true" />
             <span class="input-group-btn">
               <button type="button" class="btn btn-default" ng-click="open($event,'Swelling')"><i class="icon-date"></i></button>
             </span>
@@ -834,7 +834,7 @@
       <div class="col-sm-12">
         <div class="col-sm-3">
           <div class="input-group">
-            <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="FitsCalendarDate" is-open="openedFits"  ng-required="true" close-text="Close"  ng-hide="true" />
+            <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="FitsCalendarDate" is-open="openedFits" max-date="getDate()" ng-required="true" close-text="Close"  ng-hide="true" />
             <span class="input-group-btn">
               <button type="button" class="btn btn-default" ng-click="open($event,'Fits')"><i class="icon-date"></i></button>
             </span>
@@ -887,7 +887,7 @@
       <div class="col-sm-12">
         <div class="col-sm-3">
           <div class="input-group">
-            <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="USCalendarDate" is-open="openedUS"  ng-required="true" close-text="Close"  ng-hide="true" />
+            <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="USCalendarDate" is-open="openedUS" max-date="getDate()" ng-required="true" close-text="Close"  ng-hide="true" />
             <span class="input-group-btn">
               <button type="button" class="btn btn-default" ng-click="open($event,'US')"><i class="icon-date"></i></button>
             </span>
@@ -940,7 +940,7 @@
       <div class="col-sm-12">
         <div class="col-sm-3">
           <div class="input-group">
-            <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="FeverCalendarDate" is-open="openedFever"  ng-required="true" close-text="Close"  ng-hide="true" />
+            <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="FeverCalendarDate" is-open="openedFever" max-date="getDate()" ng-required="true" close-text="Close"  ng-hide="true" />
             <span class="input-group-btn">
               <button type="button" class="btn btn-default" ng-click="open($event,'Fever')"><i class="icon-date"></i></button>
             </span>
@@ -994,7 +994,7 @@
       <div class="col-sm-12">
         <div class="col-sm-3">
           <div class="input-group">
-            <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="FoulSmellCalendarDate" is-open="openedFoulSmell"  ng-required="true" close-text="Close"  ng-hide="true" />
+            <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="FoulSmellCalendarDate" is-open="openedFoulSmell" max-date="getDate()" ng-required="true" close-text="Close"  ng-hide="true" />
             <span class="input-group-btn">
               <button type="button" class="btn btn-default" ng-click="open($event,'FoulSmell')"><i class="icon-date"></i></button>
             </span>
@@ -1047,7 +1047,7 @@
       <div class="col-sm-12">
         <div class="col-sm-3">
           <div class="input-group">
-            <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="WeaknessCalendarDate" is-open="openedWeakness"  ng-required="true" close-text="Close"  ng-hide="true" />
+            <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="WeaknessCalendarDate" is-open="openedWeakness" max-date="getDate()" ng-required="true" close-text="Close"  ng-hide="true" />
             <span class="input-group-btn">
               <button type="button" class="btn btn-default" ng-click="open($event,'Weakness')"><i class="icon-date"></i></button>
             </span>
