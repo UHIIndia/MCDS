@@ -658,7 +658,7 @@
            <span ng-hide="matchArray.BPVisits == 1 && lastObj.BPVisits.monthNo == visitDetails.BPVisits[month.monthNo].monthNo">{{visitDetails.BPVisits[month.monthNo].value}}</span>  
            <span ng-show="lastObj.BPVisits.monthNo == month.monthNo">{{lastObj.BPVisits.value == 'High'?'High':'Normal'}}</span> 
           </div>
-          <div class="col-sm-1">{{lastObj.BPVisits.value == 'High'?'High':'Normal'}}</span></div>
+          <div class="col-sm-1">{{lastObj.BPVisits.value}}</div>
           <div class="col-sm-1">&nbsp;</div>
         </div>
       </div>
@@ -1027,12 +1027,12 @@
       </div>
     </div>
     <div class="col-sm-10 anc-outcome">
-       <div class="col-sm-1" ng-class="{'dead': visitDetails.weaknessVisits[month.monthNo].value == 'yes' && 
-          visitDetails.weaknessVisits[month.monthNo].monthNo != lastObj.weaknessVisits.monthNo|| lastObj.weaknessVisits.value == 'yes' && lastObj.weaknessVisits.monthNo == month.monthNo,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">  
+       <div class="col-sm-1" ng-class="{'dead': visitDetails.weaknessVisits[month.monthNo].value == '+' && 
+          visitDetails.weaknessVisits[month.monthNo].monthNo != lastObj.weaknessVisits.monthNo|| lastObj.weaknessVisits.value == '+' && lastObj.weaknessVisits.monthNo == month.monthNo,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">  
          <span ng-hide="matchArray.weaknessVisits == 1 && lastObj.weaknessVisits.monthNo == visitDetails.weaknessVisits[month.monthNo].monthNo">{{visitDetails.weaknessVisits[month.monthNo].value}}</span>  
-         <span ng-show="lastObj.weaknessVisits.monthNo == month.monthNo">{{lastObj.weaknessVisits.value == 'yes'?'+':'-'}}</span> 
+         <span ng-show="lastObj.weaknessVisits.monthNo == month.monthNo">{{lastObj.weaknessVisits.value}}</span> 
         </div>
-      <div class="col-sm-1">{{lastObj.weaknessVisits.value == 'yes'?'+':'-'}}</div>
+      <div class="col-sm-1">{{lastObj.weaknessVisits.value}}</div>
       <div class="col-sm-1">&nbsp;</div>
     </div>
   </div>
@@ -1055,10 +1055,10 @@
         </div>
         <div class="col-sm-9 radio-group">
           <div>
-            <input type="radio" ng-model="WeaknessOutcome"  ng-value="'no'"  name="WeaknessCheck" id="radioWeakness65" ng-change="updateWeakness()">
+            <input type="radio" ng-model="WeaknessOutcome"  ng-value="'-'"  name="WeaknessCheck" id="radioWeakness65" ng-change="updateWeakness()">
             <label for="radioWeakness65">No</label></div>
             <div>            
-             <input type="radio" ng-model="WeaknessOutcome" name="WeaknessCheck" ng-value="'yes'" id="radioWeakness64" ng-change="updateWeakness()">
+             <input type="radio" ng-model="WeaknessOutcome" name="WeaknessCheck" ng-value="'+'" id="radioWeakness64" ng-change="updateWeakness()">
              <label for="radioWeakness64">Yes</label> </div>
            </div>
          </div>

@@ -1223,6 +1223,9 @@ angular.module('uhiApp.controllers')
             return {monthID: e.monthID, value: e.otherInfection};
             }).value();
          weaknessVisits = getVisits(storedweaknessVisits);    
+         for(var i=0;i< weaknessVisits.length ;i++){
+            weaknessVisits[i].value = (weaknessVisits[i].value == 'yes'?'+':'-')
+         }
         $scope.visitDetails.weaknessVisits = _.indexBy(weaknessVisits, 'monthNo')
      }else{
 
@@ -1315,14 +1318,10 @@ angular.module('uhiApp.controllers')
     );
    
    //watching birthoutcome 
-   var BirthOutcomeMethods =[{'name': 'girl'},{'name':'boy'},{'name':'misscarriage'}];
-   var birthgenderList;
+   $scope.birthGender={};
+   $scope.birthGender.name="girl"
    $scope.selectBirthGender=function(gender){
-        birthgenderList = BirthOutcomeMethods.filter(function(e) {
-          return e.name == gender;
-        });
-       $scope.birthGender = birthgenderList[0];
-       womanData.birthOutcome = birthgenderList[0].name;
+       $scope.birthGender.name=gender;
     }
     $scope.FPMethod =-1;
     //LOGIC FOR sELECTING fp METHOD
@@ -1659,7 +1658,7 @@ $scope.opened=false;
                  fever = null;
             }
             if($scope.visitDetails.weaknessVisits[i] != undefined){     //for fits
-                 otherInfection = $scope.visitDetails.weaknessVisits[i].value;
+                 otherInfection = ($scope.visitDetails.weaknessVisits[i].value == "+"?'yes':'no');
             }else{
                  otherInfection = null;
             }
@@ -1675,7 +1674,8 @@ $scope.opened=false;
             if($scope.MaternalOutcome  && $scope.BirthOutcome ){
                 womanData.maternalOutcome = $scope.MaternalOutcome;
                 womanData.birthOutcome = $scope.BirthOutcome;
-               WomanService.updateWomanDetails(womanData);
+                WomanService.updateWomanDetails(womanData);
+                //call child service   $scope.birthGender.name  fp method
             }else if($scope.MaternalOutcome == undefined){
                 alert("please select maternal outcome");    
             }else if($scope.BirthOutcome == undefined){
@@ -1683,6 +1683,7 @@ $scope.opened=false;
             }
         }else{
               WomanService.updateWomanDetails(womanData);
+                //call child service
         }
     }
 });
