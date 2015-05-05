@@ -4,3 +4,7 @@
   overflow-x: hidden;
   overflow-y: auto;
 }
+
+.dropdown-menu td .btn[disabled]{
+  opacity: 0.3;
+}
