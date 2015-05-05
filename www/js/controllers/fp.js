@@ -57,6 +57,7 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
     }
 
     $scope.methodUseDate = null;
+    $scope.editingActiveForWindow = null;
   };
 
   $scope.response = 'unanswered';
@@ -85,6 +86,8 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
         $scope.showMessage = true;
       }
     }
+
+    $scope.editingActiveForWindow = new Date().toISOString();
   };
 
   $scope.responseDate = new Date();
@@ -97,7 +100,7 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
     $scope.opened = !$scope.opened;
   };
 
-  $scope.$watch('methodUseDate', function enableMessage(n) {
+  $scope.$watch('methodUseDate', function enableMessage(n, o) {
     if(n) {
       $scope.showMessage = true;
       if($scope.FPMethod && $scope.FPMethod.id === 3) {
@@ -107,6 +110,10 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
       } else if($scope.FPMethod && $scope.FPMethod.id === 6) {
         $scope.futureImportantDate = calculateNextDate(6);
       }
+    }
+
+    if(n && n !== o){
+      $scope.editingActiveForWindow = new Date($scope.methodUseDate).toISOString();
     }
   });
 
@@ -147,6 +154,7 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
       methodRecord.visitDate = new Date().toISOString();
       updateOrCreateMethodRecord(methodRecord);
       WomanService.updateWomanDetails($scope.woman);
+      $scope.editingActiveForWindow = null;
       updateMethodCalendar();
     }
   };
@@ -156,6 +164,7 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
 
   function updateMethodCalendar() {
     $scope.methodCalendar = {};
+    $scope.methodCalendar.currentMonth = new Date().getMonth() + 1;
     $scope.methodCalendar.thisYear = new Date().getFullYear();
     var oldestYearTimestamp = _.chain($scope.woman.familyPlanningVisits)
       .pluck('methodUseDate')
@@ -212,25 +221,18 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
 
   updateMethodCalendar();
 
-  $scope.methodCalendar.currentMonth = new Date().getMonth() + 1;
+  $scope.editingActiveForWindow = null;
 
   $scope.isVisible = function(yearData, month, methodID) {
-    var flag;
-    if(methodID === 0) {
-      flag = (yearData.methods[month] && yearData.methods[month].methodID === 0) || ($scope.FPMethod && $scope.FPMethod.id === 0 && $scope.methodCalendar.currentMonth === month && $scope.methodCalendar.thisYear === yearData.year && $scope.response !== 'unanswered');
-    } else if(methodID === 1) {
-      flag = (yearData.methods[month] && yearData.methods[month].methodID === 1) || ($scope.FPMethod && $scope.FPMethod.id === 1 && $scope.methodCalendar.currentMonth === month && $scope.methodCalendar.thisYear === yearData.year && $scope.response !== 'unanswered');
-    } else if(methodID === 2) {
-      flag = (yearData.methods[month] && yearData.methods[month].methodID === 2) || ($scope.FPMethod && $scope.FPMethod.id === 2 && $scope.methodCalendar.currentMonth === month && $scope.methodCalendar.thisYear === yearData.year && $scope.response !== 'unanswered');
-    } else if(methodID === 3) {
-      flag = (yearData.methods[month] && yearData.methods[month].methodID === 3) || ($scope.FPMethod && $scope.FPMethod.id === 3 && $scope.methodUseDate && $scope.methodUseDate.getMonth()+1 === month && $scope.methodUseDate.getFullYear() === yearData.year);
-    } else if(methodID === 4) {
-      flag = (yearData.methods[month] && yearData.methods[month].methodID === 4) || ($scope.FPMethod && $scope.FPMethod.id === 4 && $scope.methodUseDate && $scope.methodUseDate.getMonth()+1 === month && $scope.methodUseDate.getFullYear() === yearData.year);
-    } else if(methodID === 5) {
-      flag = (yearData.methods[month] && yearData.methods[month].methodID === 5) || ($scope.FPMethod && $scope.FPMethod.id === 5 && $scope.methodUseDate && $scope.methodUseDate.getMonth()+1 === month && $scope.methodUseDate.getFullYear() === yearData.year);
-    } else if(methodID === 6) {
-      flag = (yearData.methods[month] && yearData.methods[month].methodID === 6) || ($scope.FPMethod && $scope.FPMethod.id === 6  && $scope.methodUseDate && $scope.methodUseDate.getMonth()+1 === month && $scope.methodUseDate.getFullYear() === yearData.year);
+    var flagHistory, flagPreview, flagPreviewActiveForThisMonth, flag;
+    flagHistory = yearData.methods[month] && yearData.methods[month].methodID === methodID;
+    flagPreviewActiveForThisMonth = (new Date($scope.editingActiveForWindow).getMonth() + 1) === month && (new Date($scope.editingActiveForWindow).getFullYear()) === yearData.year;
+    if(methodID === 0 || methodID === 1 || methodID === 2) {
+      flagPreview = $scope.FPMethod && $scope.FPMethod.id === methodID && $scope.methodCalendar.currentMonth === month && $scope.methodCalendar.thisYear === yearData.year && $scope.response !== 'unanswered';
+    } else if(methodID === 3 || methodID === 4 || methodID === 5 || methodID === 6) {
+      flagPreview = $scope.FPMethod && $scope.FPMethod.id === methodID && $scope.methodUseDate && $scope.methodUseDate.getMonth()+1 === month && $scope.methodUseDate.getFullYear() === yearData.year;
     }
+    flag = (flagHistory && !flagPreviewActiveForThisMonth) || flagPreview;
     return flag;
   };
 
