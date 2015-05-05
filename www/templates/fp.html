@@ -152,13 +152,13 @@
             <div class="col-sm-1">{{ yearData.year }}</div>
             <div class="col-sm-11">
               <div class="col-sm-1" ng-repeat="month in months" ng-class="{highlight: yearData.methods[month].highlight}">
-                <span class="glyphicon glyphicon-remove" ng-show="yearData.methods[month].methodID === 0 || (FPMethod.id === 0 && methodCalendar.currentMonth === month && methodCalendar.thisYear === yearData.year && response !== 'unanswered')"></span>
-                <img src="img/condom-pic.png" class="img-responsive" ng-show="yearData.methods[month].methodID === 1 || (FPMethod.id === 1 && methodCalendar.currentMonth === month && methodCalendar.thisYear === yearData.year && response !== 'unanswered')" />
-                <img src="img/ocp-pic.png"  class="img-responsive" ng-show="yearData.methods[month].methodID === 2 || (FPMethod.id === 2 && methodCalendar.currentMonth === month && methodCalendar.thisYear === yearData.year && response !== 'unanswered')" />
-                <img src="img/dmpa-pic.png" class="img-responsive" ng-show="yearData.methods[month].methodID === 3 || (FPMethod.id === 3 && methodUseDate && methodUseDate.getMonth()+1 === month && methodUseDate.getFullYear() === yearData.year)" />
-                <img src="img/iucd-pic.png" class="img-responsive" ng-show="yearData.methods[month].methodID === 4 || (FPMethod.id === 4 && methodUseDate && methodUseDate.getMonth()+1 === month && methodUseDate.getFullYear() === yearData.year)" />
-                <img src="img/fst-pic.png"  class="img-responsive" ng-show="yearData.methods[month].methodID === 5 || (FPMethod.id === 5 && methodUseDate && methodUseDate.getMonth()+1 === month && methodUseDate.getFullYear() === yearData.year)" />
-                <img src="img/mst-pic.png"  class="img-responsive" ng-show="yearData.methods[month].methodID === 6 || (FPMethod.id === 6  && methodUseDate && methodUseDate.getMonth()+1 === month && methodUseDate.getFullYear() === yearData.year)" />
+                <span class="glyphicon glyphicon-remove" ng-show="isVisible(yearData, month, 0)"></span>
+                <img src="img/condom-pic.png" class="img-responsive" ng-show="isVisible(yearData, month, 1)" />
+                <img src="img/ocp-pic.png"  class="img-responsive" ng-show="isVisible(yearData, month, 2)" />
+                <img src="img/dmpa-pic.png" class="img-responsive" ng-show="isVisible(yearData, month, 3)" />
+                <img src="img/iucd-pic.png" class="img-responsive" ng-show="isVisible(yearData, month, 4)" />
+                <img src="img/fst-pic.png"  class="img-responsive" ng-show="isVisible(yearData, month, 5)" />
+                <img src="img/mst-pic.png"  class="img-responsive" ng-show="isVisible(yearData, month, 6)" />
               </div>
             </div>
          </div>
