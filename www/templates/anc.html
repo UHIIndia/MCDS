@@ -212,7 +212,6 @@
          <span ng-hide="matchArray.anmVisits == 1 && lastObj.anmVisits.monthNo == visitDetails.anmVisits[month.monthNo].monthNo">{{visitDetails.anmVisits[month.monthNo].value}}</span>  
          <span ng-show="lastObj.anmVisits.monthNo == month.monthNo">{{lastObj.anmVisits.value}}</span>  
          </div> 
-          <!--<div ng-class="{'col-sm-1':true,'weak': month.monthNo === nextANMVisitMonth,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray"> <span ng-show="lastANMVistMonth == month.monthNo">{{lastANMVisitDate}}</span></div>-->
           <div class="col-sm-1">{{ANMCountTotal}}</div>
           <div class="col-sm-1">&nbsp;</div>
         </div>
@@ -291,8 +290,10 @@
           </div>
         </div>
         <div class="col-sm-10 anc-outcome">
-           <!--<div class="col-sm-1 healthy"><span ng-show="lastTTMonth == -1">{{lastTTCount}}</span></div>-->
-           <div ng-class="{'col-sm-1':true,'weak': month.monthNo === nextTTMonth && alertTT ==  true,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray"> <span ng-show="lastTTMonth == month.monthNo">{{lastTTCount}}</span></div>
+           <div class="col-sm-1" ng-class="{'weak': month.monthNo === nextTTMonth && alertTT ==  true,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">  
+           <span ng-hide="matchArray.TTVisits == 1 && lastObj.TTVisits.monthNo == visitDetails.TTVisits[month.monthNo].monthNo">{{visitDetails.TTVisits[month.monthNo].value}}</span>  
+           <span ng-show="lastObj.TTVisits.monthNo == month.monthNo">{{lastObj.TTVisits.value}}</span> 
+          </div>
           <div class="col-sm-1">{{totalTTCount}}</div>
           <div class="col-sm-1">&nbsp;</div>
         </div>
@@ -617,8 +618,6 @@
        <span ng-hide="matchArray.IFAVisits == 1 && lastObj.IFAVisits.monthNo == visitDetails.IFAVisits[month.monthNo].monthNo">{{visitDetails.IFAVisits[month.monthNo].value}}</span>  
        <span ng-show="lastObj.IFAVisits.monthNo == month.monthNo">{{lastObj.IFAVisits.value}}</span>  
       </div>
-<!--
-      <div ng-class="{'col-sm-1':true,'weak':month.monthNo == nextIFAVisit  && alertIFA == true,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray"> <span ng-show="lastIFAMonth == month.monthNo">{{lastIFACount}}</span></div>-->
       <div class="col-sm-1">{{totalIFACount}}</div>
       <div class="col-sm-1">&nbsp;</div>
     </div>

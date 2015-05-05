@@ -502,49 +502,35 @@ angular.module('uhiApp.controllers')
 
 
 //LOGIC FOR TT
-  // $scope.enteredTT = lastPregnancyTTCount;
 //need to apply the loop as a the last anc object can be empty for HB
     $scope.TTCalendarDate = todayDate;
+    var TTVisits=[];
     var totalTTCount =0;
-    var lastTTCount=0,lastTTObject,lastTTMonth;
-    var lastPregnancyTTCount=0;
-     var extraCount=0;
     if($scope.newWoman == false){
-        angular.forEach(womanData.ANC, function(ANCObj, index){
-            if(ANCObj.TT != null){console.log("in");
-                totalTTCount=parseInt(totalTTCount) + parseInt(ANCObj.TT);
-            }
-        })
-        lastTTObject=_.chain(womanData.ANC).map(function(e) { 
-            return {month: e.monthID, value: e.TT};
-            })
+         var storedTTVisits =_.chain(womanData.ANC)
             .filter(function(e){ 
-                return e.value;
-            })
-            .sortBy('month')
-            .last()
-            .value();
-         if(lastTTObject != undefined){
-           lastTTMonth = $scope.monthsArray[lastTTObject.month-1].monthNo;
-           lastTTCount = lastTTObject.value;
-         }
-        $scope.lastTTCount = lastTTCount;
-        selectedMonth = $scope.monthsArray.filter(function(e) {
-          return e.monthNo == lastTTMonth;
-        });
-        $scope.pregnancylastTTMonth= (selectedMonth[0] == undefined ?'':selectedMonth[0].pregnancyMonthNo);
+                return e.TT;
+            }).map(function(e) { 
+            return {monthID: e.monthID,value: e.TT};
+            }).value();
+        TTVisits = getVisits(storedTTVisits);
+        for(var i=0;i < TTVisits.length;i++){
+            totalTTCount = parseInt(totalTTCount) + parseInt(TTVisits[i].value);
+        }
+        $scope.lastTTMonth = (TTVisits.length == 0?'': TTVisits[TTVisits.length -1].monthNo);
+        $scope.visitDetails.TTVisits = _.indexBy(TTVisits, 'monthNo')
         if(totalTTCount >=2){
             $scope.nextTTMonth=0;
             $scope.alertTT= false;
         }else if(totalTTCount == 1 || totalTTCount == 0){
             if($scope.lastTTMonth == currentMonth){
-                if(currentMonth == $scope.monthsArray[7].monthNo){        // if current mon is 8    next visit is 9
+                if(currentMonth == $scope.monthsArray[8].monthNo){        // if current mon is 8    next visit is 9
                     if(currentMonth == 12){
                         $scope.nextTTMonth = 1; 
                     }else{
                         $scope.nextTTMonth = currentMonth + 1;  
                     }                  //   checked
-                }else if(currentMonth == $scope.monthsArray[8].monthNo){   //if current month is 9  nect visit is 10 and it goes out
+                }else if(currentMonth == $scope.monthsArray[9].monthNo){   //if current month is 9  nect visit is 10 and it goes out
                     if(currentMonth == 12){
                         $scope.nextTTMonth = 1; 
                     }else{
@@ -558,7 +544,7 @@ angular.module('uhiApp.controllers')
                     }                                                      //if current mon is 7or less..it will add 2.. //checked
                 }
             }else{
-                if(currentMonth == $scope.monthsArray[7].monthNo ){             //if current month is 8
+                if(currentMonth == $scope.monthsArray[8].monthNo ){             //if current month is 8
                     if($scope.lastTTMonth == currentMonth - 1){                         //if calendar mon is 7 an d current is 8
                         $scope.nextANMVisitMonth = currentMonth + 1;                       //checked
                     }else if($scope.lastANMVistMonth == 12 &&  currentMonth == 1){
@@ -566,7 +552,7 @@ angular.module('uhiApp.controllers')
                     }else{
                         $scope.nextTTMonth = currentMonth;                       //if cal month is 6 or less and current is 8 ..
                     }
-                }else if(currentMonth == $scope.monthsArray[8].monthNo ){       //if the current mon is 9
+                }else if(currentMonth == $scope.monthsArray[9].monthNo ){       //if the current mon is 9
                     $scope.nextTTMonth = currentMonth;                               //
                 }else{                                                  //if the current month is 7  or less
                     if($scope.lastTTMonth == currentMonth - 1){                    //if the calendar mon is 1 less
@@ -581,9 +567,9 @@ angular.module('uhiApp.controllers')
             $scope.alertTT= true;
         }    
     }else{
-            $scope.nextTTMonth = currentMonth;
-            $scope.lastTTCount='';
-            $scope.alertTT = true;
+            //$scope.nextTTMonth = currentMonth;
+            //$scope.lastTTCount='';
+            //$scope.alertTT = true;
     }
      $scope.totalTTCount = totalTTCount;
     var finalCount=totalTTCount;
@@ -593,37 +579,31 @@ angular.module('uhiApp.controllers')
                 if (TTInitializing) {
                 $timeout(function() { TTInitializing = false; });
                 } else {
-                    totalTTCount=finalCount+1;
-                    lastTTCount=1;
+                    totalTTCount = finalCount+1;
+                    lastTTCount = 1;
+                    $scope.enteredTT = ($scope.enteredTT == undefined || $scope.enteredTT == ''? 0:$scope.enteredTT);
                     var TTCalendarDate = UtilityService.convertDateFormat($scope.TTCalendarDate);
                     var TTCalendaMonth = UtilityService.showMonthFromDate(TTCalendarDate);
                     var TTCalendarYear = $scope.TTCalendarDate.getFullYear();
-                //case when past mon is not the same as current month
-                    var selectedMonth = $scope.monthsArray.filter(function(e) {
-                      return e.monthNo == TTCalendaMonth;
-                    });
-                    if( selectedMonth.length == 0 || selectedMonth.length == 1 && TTCalendarYear !=  selectedMonth[0].monthYear){
-                         $scope.lastTTMonth = 0;
-                         $scope.pregnancylastTTMonth= 0;
-                    }else{
-                        $scope.lastTTMonth = TTCalendaMonth;
-                        $scope.pregnancylastTTMonth= selectedMonth[0].pregnancyMonthNo;
+                    checkUpforPale("TTVisits",TTCalendaMonth,lastTTCount,TTCalendarYear);
+                    var lastStoredMonth = (TTVisits.length == 0 ?'' :TTVisits[TTVisits.length-1].pregnancyMonthNo);
+                    var selectedmonth = $scope.lastObj.TTVisits.pregnancyMonthNo;
+                    if(lastStoredMonth < selectedmonth){
+                        $scope.lastTTMonth = $scope.lastObj.TTVisits.monthNo;
                     }
-                    $scope.lastTTDate = TTCalendarDate;  
-                    $scope.enteredTT = ( $scope.enteredTT == undefined ? 0:$scope.enteredTT);
-                    var enteredTT=$scope.enteredTT;
+                    var enteredTT = $scope.enteredTT;   //TOTSL TT doesnt include entered tt
                        if(totalTTCount >=2){         //if the total tt in current preg is 2 or more..no need for more
-                            $scope.nextTTMonth=0;
+                            $scope.nextTTMonth = -1;
                             $scope.alertTT= false;
                         }else if(totalTTCount == 1  && enteredTT < 1 || totalTTCount == 0){ //if total is 0...then must
                             if($scope.lastTTMonth == currentMonth){                         //if the total is 1..then in previous 1  then no else must
-                                if(currentMonth == $scope.monthsArray[7].monthNo){        // if current mon is 8    next visit is 9
+                                if(currentMonth == $scope.monthsArray[8].monthNo){        // if current mon is 8    next visit is 9
                                     if(currentMonth == 12){
                                         $scope.nextTTMonth = 1; 
                                     }else{
                                         $scope.nextTTMonth = currentMonth + 1;  
                                     }                  //   checked
-                                }else if(currentMonth == $scope.monthsArray[8].monthNo){   //if current month is 9  nect visit is 10 and it goes out
+                                }else if(currentMonth == $scope.monthsArray[9].monthNo){   //if current month is 9  nect visit is 10 and it goes out
                                     if(currentMonth == 12){
                                         $scope.nextTTMonth = 1; 
                                     }else{
@@ -637,7 +617,7 @@ angular.module('uhiApp.controllers')
                                     }                                                      //if current mon is 7or less..it will add 2.. //checked
                                 }
                             }else{
-                                if(currentMonth == $scope.monthsArray[7].monthNo ){             //if current month is 8
+                                if(currentMonth == $scope.monthsArray[8].monthNo ){             //if current month is 8
                                     if($scope.lastTTMonth == currentMonth - 1){                         //if calendar mon is 7 an d current is 8
                                         $scope.nextANMVisitMonth = currentMonth + 1;                       //checked
                                     }else if($scope.lastANMVistMonth == 12 &&  currentMonth == 1){
@@ -645,7 +625,7 @@ angular.module('uhiApp.controllers')
                                     }else{
                                         $scope.nextTTMonth = currentMonth;                       //if cal month is 6 or less and current is 8 ..
                                     }
-                                }else if(currentMonth == $scope.monthsArray[8].monthNo ){       //if the current mon is 9
+                                }else if(currentMonth == $scope.monthsArray[9].monthNo ){       //if the current mon is 9
                                     $scope.nextTTMonth = currentMonth;                               //
                                 }else{                                                  //if the current month is 7  or less
                                     if($scope.lastTTMonth == currentMonth - 1){                    //if the calendar mon is 1 less
@@ -663,43 +643,37 @@ angular.module('uhiApp.controllers')
                         }
                     totalTTCount = parseInt(totalTTCount) + parseInt(enteredTT);
                     $scope.totalTTCount = totalTTCount;
-                    $scope.lastTTCount = lastTTCount;
              }       
         }
     );
 
    $scope.updateTT=function(){
-                    totalTTCount=finalCount+1;
-                    lastTTCount=1;
+            if($scope.enteredTT){
+                         totalTTCount = finalCount+1;
+                    lastTTCount = 1;
+                    $scope.enteredTT = ($scope.enteredTT == undefined ? 0:$scope.enteredTT);
                     var TTCalendarDate = UtilityService.convertDateFormat($scope.TTCalendarDate);
                     var TTCalendaMonth = UtilityService.showMonthFromDate(TTCalendarDate);
                     var TTCalendarYear = $scope.TTCalendarDate.getFullYear();
-                    //case when past mon is not the same as current month
-                    var selectedMonth = $scope.monthsArray.filter(function(e) {
-                      return e.monthNo == TTCalendaMonth;
-                    });
-                    if( selectedMonth.length == 0 || selectedMonth.length == 1 && TTCalendarYear !=  selectedMonth[0].monthYear){
-                         $scope.lastTTMonth = 0;
-                         $scope.pregnancylastTTMonth = 0;
-                    }else{
-                       $scope.lastTTMonth = TTCalendaMonth;
-                       $scope.pregnancylastTTMonth= selectedMonth[0].pregnancyMonthNo;
+                    checkUpforPale("TTVisits",TTCalendaMonth,lastTTCount,TTCalendarYear);
+                    var lastStoredMonth = (TTVisits.length == 0 ?'' :TTVisits[TTVisits.length-1].pregnancyMonthNo);
+                    var selectedmonth = $scope.lastObj.TTVisits.pregnancyMonthNo;
+                    if(lastStoredMonth < selectedmonth){
+                        $scope.lastTTMonth = $scope.lastObj.TTVisits.monthNo;
                     }
-                    $scope.lastTTDate = TTCalendarDate;  
-                    $scope.enteredTT = ( $scope.enteredTT == undefined ? 0:$scope.enteredTT);
-                    var enteredTT=$scope.enteredTT;
+                    var enteredTT = $scope.enteredTT;   //TOTSL TT doesnt include entered tt
                        if(totalTTCount >=2){         //if the total tt in current preg is 2 or more..no need for more
-                            $scope.nextTTMonth=0;
+                            $scope.nextTTMonth = -1;
                             $scope.alertTT= false;
                         }else if(totalTTCount == 1  && enteredTT < 1 || totalTTCount == 0){ //if total is 0...then must
                             if($scope.lastTTMonth == currentMonth){                         //if the total is 1..then in previous 1  then no else must
-                                if(currentMonth == $scope.monthsArray[7].monthNo){        // if current mon is 8    next visit is 9
+                                if(currentMonth == $scope.monthsArray[8].monthNo){        // if current mon is 8    next visit is 9
                                     if(currentMonth == 12){
                                         $scope.nextTTMonth = 1; 
                                     }else{
                                         $scope.nextTTMonth = currentMonth + 1;  
                                     }                  //   checked
-                                }else if(currentMonth == $scope.monthsArray[8].monthNo){   //if current month is 9  nect visit is 10 and it goes out
+                                }else if(currentMonth == $scope.monthsArray[9].monthNo){   //if current month is 9  nect visit is 10 and it goes out
                                     if(currentMonth == 12){
                                         $scope.nextTTMonth = 1; 
                                     }else{
@@ -713,7 +687,7 @@ angular.module('uhiApp.controllers')
                                     }                                                      //if current mon is 7or less..it will add 2.. //checked
                                 }
                             }else{
-                                if(currentMonth == $scope.monthsArray[7].monthNo ){             //if current month is 8
+                                if(currentMonth == $scope.monthsArray[8].monthNo ){             //if current month is 8
                                     if($scope.lastTTMonth == currentMonth - 1){                         //if calendar mon is 7 an d current is 8
                                         $scope.nextANMVisitMonth = currentMonth + 1;                       //checked
                                     }else if($scope.lastANMVistMonth == 12 &&  currentMonth == 1){
@@ -721,7 +695,7 @@ angular.module('uhiApp.controllers')
                                     }else{
                                         $scope.nextTTMonth = currentMonth;                       //if cal month is 6 or less and current is 8 ..
                                     }
-                                }else if(currentMonth == $scope.monthsArray[8].monthNo ){       //if the current mon is 9
+                                }else if(currentMonth == $scope.monthsArray[9].monthNo ){       //if the current mon is 9
                                     $scope.nextTTMonth = currentMonth;                               //
                                 }else{                                                  //if the current month is 7  or less
                                     if($scope.lastTTMonth == currentMonth - 1){                    //if the calendar mon is 1 less
@@ -739,9 +713,7 @@ angular.module('uhiApp.controllers')
                         }
                     totalTTCount = parseInt(totalTTCount) + parseInt(enteredTT);
                     $scope.totalTTCount = totalTTCount;
-                    $scope.lastTTCount = lastTTCount;
-
-
+            }                
    }
 
 //LOGIC FOR ANAEMIA
@@ -1268,75 +1240,6 @@ angular.module('uhiApp.controllers')
                 }
     }
 
-     function updateRow(index) {
-        var currentValue,currentMonth,currentDate;
-        if(index == 0){  //pale 0
-            currentValue= $scope.paleOutcome;
-            currentDate= UtilityService.convertDateFormat($scope.PaleCalendarDate);
-            currentYear= $scope.PaleCalendarDate.getFullYear();
-        }else if(index == 1){
-            currentValue= $scope.blindOutcome;
-            currentDate= UtilityService.convertDateFormat($scope.NightBlindCalendarDate);
-            currentYear= $scope.NightBlindCalendarDate.getFullYear();
-        }else if(index == 2){
-            currentValue= $scope.enteredHB;
-            currentDate= UtilityService.convertDateFormat($scope.HBCalendarDate);  
-            currentYear= $scope.HBCalendarDate.getFullYear(); 
-        }else if(index == 3){
-            currentValue= $scope.bleedingOutcome;
-            currentDate= UtilityService.convertDateFormat($scope.BleedingCalendarDate); 
-            currentYear= $scope.BleedingCalendarDate.getFullYear();  
-        }else if(index == 4){
-            currentValue= $scope.enteredWeight;
-            currentDate= UtilityService.convertDateFormat($scope.WeightCalendarDate);   
-            currentYear= $scope.WeightCalendarDate.getFullYear();
-        }else if(index == 5){
-            currentValue= $scope.malariaOutcome;
-            currentDate= UtilityService.convertDateFormat($scope.MalariaCalendarDate);   
-            currentYear= $scope.MalariaCalendarDate.getFullYear();
-        }else if(index == 6){
-            currentValue= $scope.UPOutcome;
-            currentDate= UtilityService.convertDateFormat($scope.UPCalendarDate);   
-            currentYear= $scope.UPCalendarDate.getFullYear();
-        }else if(index == 7){
-            currentValue= $scope.SwellingOutcome;
-            currentDate= UtilityService.convertDateFormat($scope.SwellingCalendarDate);   
-            currentYear= $scope.SwellingCalendarDate.getFullYear();
-        }else if(index == 8){
-            currentValue= $scope.FitsOutcome;
-            currentDate= UtilityService.convertDateFormat($scope.FitsCalendarDate);   
-            currentYear= $scope.FitsCalendarDate.getFullYear(); 
-        }else if(index == 9){
-            currentValue= $scope.USOutcome;
-            currentDate= UtilityService.convertDateFormat($scope.USCalendarDate);   
-            currentYear= $scope.USCalendarDate.getFullYear();
-        }else if(index == 10){
-            currentValue= $scope.FeverOutcome;
-            currentDate= UtilityService.convertDateFormat($scope.FeverCalendarDate);   
-            currentYear= $scope.FeverCalendarDate.getFullYear();  
-        }else if(index == 11){
-            currentValue= $scope.FoulSmellOutcome;
-            currentDate= UtilityService.convertDateFormat($scope.FoulSmellCalendarDate);   
-            currentYear= $scope.FoulSmellCalendarDate.getFullYear();
-        }else if(index == 12){
-            currentValue= $scope.WeaknessOutcome;
-            currentDate= UtilityService.convertDateFormat($scope.WeaknessCalendarDate);   
-            currentYear= $scope.WeaknessCalendarDate.getFullYear(); 
-        }else if(index == 13){
-            currentValue= $scope.BPOutcome;
-            currentDate= UtilityService.convertDateFormat($scope.BPCalendarDate);   
-            currentYear= $scope.BPCalendarDate.getFullYear(); 
-        }
-        var currentMonth = UtilityService.showMonthFromDate(currentDate);
-        if(index == 0){
-             checkUpforPale("paleEyeVisits",currentMonth,currentValue,currentYear);
-        }else if(index == 1){
-             checkUpforPale("nightBlindVisits",currentMonth,currentValue,currentYear);
-        }else{
-            checkUp(index,currentMonth,currentValue,currentYear);
-        }
-        
-     }
 
      function updateRowforVisits(index,outcome,calendarDate){
         var currentValue,currentMonth,currentDate,currentYear;
@@ -1538,12 +1441,13 @@ angular.module('uhiApp.controllers')
 $scope.opened=false;
     $scope.openedANM=false;
     $scope.openedWeight=false;
+    $scope.openedTT = false;
     $scope.openedHB = false;
     $scope.openedPale=false;
     $scope.openedNightBlind=false;
     $scope.openedBleeding=false;
     $scope.openedMalaria=false;//UPCalendarDate
-     $scope.openedBP=false;//UPCalendarDate
+    $scope.openedBP=false;//UPCalendarDate
     $scope.openedUP=false;//openedFits
     $scope.openedSwelling=false;
     $scope.openedFits=false;//openedUS
@@ -1564,6 +1468,8 @@ $scope.opened=false;
             $scope.openedANM = true;
         }else if(name == "weight"){
             $scope.openedWeight = true;
+        }else if(name == "TT"){
+            $scope.openedTT = true;
         }else if(name == "HB"){
             $scope.openedHB = true;
         }else if(name == "Pale"){
@@ -1650,8 +1556,8 @@ $scope.opened=false;
 
         //save button functionality
      $scope.saveANCDetails =function(){
-        var VisitItem=["paleEyeVisits","nightBlindVisits","ashaVisits","anmVisits","wtVisits","hbVisits","malariaVisits","bleedingVisits","upVisits","swellingVisits","fitsVisits","usVisits","feverVisits","foulsmellVisits","weaknessVisits","BPVisits","IFAVisits"];
-        for(var i=0;i<17;i++){  //if there is an entry
+        var VisitItem=["paleEyeVisits","nightBlindVisits","ashaVisits","anmVisits","wtVisits","hbVisits","malariaVisits","bleedingVisits","upVisits","swellingVisits","fitsVisits","usVisits","feverVisits","foulsmellVisits","weaknessVisits","BPVisits","IFAVisits","TTVisits"];
+        for(var i=0;i<18;i++){  //if there is an entry
             if( $scope.lastObj[VisitItem[i]] != undefined){
                 if($scope.matchArray[VisitItem[i]] == 1){
                 //if there is a value mismatch..then update it
@@ -1681,8 +1587,8 @@ $scope.opened=false;
             }else{
                 weight = null;
             }
-             if($scope.pregnancylastTTMonth == i){
-                TT = $scope.lastTTCount
+             if($scope.visitDetails.TTVisits[i] !=  undefined){
+                TT = $scope.visitDetails.TTVisits[i].value
             }else{
                 TT = null;
             }
