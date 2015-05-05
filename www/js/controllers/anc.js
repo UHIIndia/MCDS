@@ -1566,11 +1566,13 @@ $scope.opened=false;
                     }else{  //if there is a new entry
                         $scope.visitDetails[VisitItem[i]][$scope.lastObj[VisitItem[i]].monthNo]=$scope.lastObj[VisitItem[i]];
                     }
-                }else{
-                        $scope.visitDetails[VisitItem[i]] =  $scope.lastObj[VisitItem[i]];
+                }else{  
+                        var visits =[];
+                        visits.push($scope.lastObj[VisitItem[i]]);
+                        $scope.visitDetails[VisitItem[i]] =  _.indexBy(visits, 'pregnancyMonthNo') 
                 }
             }
-             $scope.visitDetails[VisitItem[i]] =  _.indexBy($scope.visitDetails[VisitItem[i]], 'pregnancyMonthNo')
+             $scope.visitDetails[VisitItem[i]] =  _.indexBy($scope.visitDetails[VisitItem[i]], 'pregnancyMonthNo') 
         }
         var ANC =[];
         var monthID, ASHAVisit,ANMVisit,weight,TT,HB,paleEye,bleeding,malaria,IFATablets,BP,swelling,headache,urineProtein,urineSugar,nightBlindness,foulSmellingDischarge,fever,otherInfection,lastUpdateDateTime;
