@@ -1048,6 +1048,9 @@ angular.module('uhiApp.controllers')
             return {monthID: e.monthID, value: e.urineProtein};
             }).value();
          upVisits = getVisits(storedupVisits);    
+         for(var i=0;i< upVisits.length ;i++){
+            upVisits[i].value = (upVisits[i].value == 'yes'?'+':'-')
+         } 
         $scope.visitDetails.upVisits = _.indexBy(upVisits, 'monthNo')
      }else{
 
@@ -1637,7 +1640,7 @@ $scope.opened=false;
                  malaria = null;
             }     
             if($scope.visitDetails.upVisits[i] != undefined){     //for pale eye
-                 urineProtein = $scope.visitDetails.upVisits[i].value;
+                 urineProtein = ($scope.visitDetails.upVisits[i].value == "+"?'yes':'no');
             }else{
                  urineProtein = null;
             }

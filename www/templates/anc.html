@@ -705,12 +705,12 @@
       </div>
     </div>
     <div class="col-sm-10 anc-outcome">
-      <div class="col-sm-1" ng-class="{'dead': visitDetails.upVisits[month.monthNo].value == 'yes' && 
-          visitDetails.upVisits[month.monthNo].monthNo != lastObj.upVisits.monthNo|| lastObj.upVisits.value == 'yes' && lastObj.upVisits.monthNo == month.monthNo,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">  
+      <div class="col-sm-1" ng-class="{'dead': visitDetails.upVisits[month.monthNo].value == '+' && 
+          visitDetails.upVisits[month.monthNo].monthNo != lastObj.upVisits.monthNo|| lastObj.upVisits.value == '+' && lastObj.upVisits.monthNo == month.monthNo,'healthy': month.monthNo == 0}" ng-repeat="month in monthsArray">  
          <span ng-hide="matchArray.upVisits == 1 && lastObj.upVisits.monthNo == visitDetails.upVisits[month.monthNo].monthNo">{{visitDetails.upVisits[month.monthNo].value }}</span>  
-         <span ng-show="lastObj.upVisits.monthNo == month.monthNo">{{lastObj.upVisits.value == 'yes'?'+':'-'}}</span> 
+         <span ng-show="lastObj.upVisits.monthNo == month.monthNo">{{lastObj.upVisits.value}}</span> 
       </div>
-      <div class="col-sm-1">{{lastObj.upVisits.value == 'yes'?'+':'-'}}</div>
+      <div class="col-sm-1">{{lastObj.upVisits.value}}</div>
       <div class="col-sm-1">&nbsp;</div>
     </div>
   </div>
@@ -733,11 +733,11 @@
         </div>
         <div class="col-sm-9 radio-group">
           <div>
-            <input type="radio" ng-model="UPOutcome"  ng-value="'no'"  name="UPCheck"  id="radio55" ng-change="updateUP()">
+            <input type="radio" ng-model="UPOutcome"  ng-value="'-'"  name="UPCheck"  id="radio55" ng-change="updateUP()">
             <label for="radio55">No</label>
           </div>
           <div>
-            <input type="radio" ng-model="UPOutcome" name="UPCheck" ng-value="'yes'"  id="radio54" ng-change="updateUP()">
+            <input type="radio" ng-model="UPOutcome" name="UPCheck" ng-value="'+'"  id="radio54" ng-change="updateUP()">
             <label for="radio54">Yes</label> 
           </div>
         </div>
