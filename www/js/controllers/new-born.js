@@ -78,7 +78,7 @@ angular.module('uhiApp.controllers')
    };
 /* calender methods ends here--  */
   $scope.navigateToChildImmunization = function() {
-    $state.go('immu');
+    $state.go('immunisation');
   };
   
   // grid methods 

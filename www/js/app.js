@@ -55,6 +55,16 @@ angular.module('uhiApp', ['ionic', 'ngCordova', 'uhiApp.controllers', 'uhiApp.se
     templateUrl: "templates/fp.html",
     controller: 'FpController'
   })
+  .state('newborn', {
+    url: "/newborn",
+    templateUrl: "templates/new-born.html",
+    controller: "newBornController"
+  })
+  .state('immunisation', {
+    url: "/immunisation",
+    templateUrl: "templates/immunisation.html",
+    controller: 'ImmunisationController'
+  })
   .state('mapWomen', {
     url: "/map-women",
     templateUrl: "templates/map-women.html",
@@ -94,15 +104,6 @@ angular.module('uhiApp', ['ionic', 'ngCordova', 'uhiApp.controllers', 'uhiApp.se
     url: "/film-children",
     templateUrl: "templates/film-children.html",
     controller: 'FilmChildrenController'
-  })
-  .state('newborn', {
-    url: "/newborn",
-    templateUrl: "templates/new-born.html",
-    controller: "newBornController"
-  })
-  .state('immu', {
-    url: "/immu",
-    templateUrl: "templates/immu.html"
   });
 
   // if none of the above states are matched, use this as the fallback
