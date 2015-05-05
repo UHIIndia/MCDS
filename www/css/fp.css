@@ -130,9 +130,6 @@
 	display:inline-block;
 }
 .fp-calender{
-	background: #f0f0f0;
-	border: 1px #000 solid;
-	border-bottom: none;
 	text-align: center;
 }
 .fp-calender .fp-calender-head{
@@ -154,24 +151,47 @@
 .fp-calender-head > div:last-child > div{
 	height: 100%;
 }
-.fp-calender .fp-calender-head > div:first-child, .fp-calender-body > div > div:first-child{
+.fp-calender .fp-calender-head > div:first-child,
+.fp-calender-body .fp-calender-row > div:first-child,
+.fp-calender .fp-calender-head > div:last-child > div,
+.fp-calender-body .fp-calender-row > div:last-child > div{
 	border-right:1px #000 solid;
 }
 .fp-calender .fp-calender-head > div, .fp-calender-body > div > div{
 	padding: 0;
 }
-.fp-calender .fp-calender-head > div:last-child > div, .fp-calender-body > div > div:last-child > div{
-	border-right:1px #000 solid;
+.fp-calender-head div, .fp-calender-head div:first-child,
+ .fp-calender-row > div:first-child{
+ 	font-family: OpenSans-Semibold;
+	padding: 8px 0 0 0;
+	font-size: 16px;
 }
-.fp-calender .fp-calender-head > div:last-child > div:last-child, .fp-calender-body > div > div:last-child > div:last-child{
-	border-right:none;
-}
-.fp-calender-body > div > div:first-child, .fp-calender-body > div > div:last-child > div,  .fp-calender-body > div > div:last-child{
+.fp-calender-body .fp-calender-row > div:first-child,
+.fp-calender-body .fp-calender-row > div:last-child > div, 
+.fp-calender-body .fp-calender-row > div:last-child{
 	height: 34px;
 }
 .fp-calender-body{
 	height: 80px;
 	overflow: auto;
+}
+.fp-calender .fp-calender-head > div:first-child,
+.fp-calender .fp-calender-head > div:last-child{
+border-top: 1px #000 solid;
+}
+.fp-calender .fp-calender-head > div:first-child,
+.fp-calender-row > div:first-child{
+	border-left: 1px #000 solid;
+}
+.fp-calender .fp-calender-head > div:last-child > div:last-child,
+.fp-calender-row > div:last-child > div:last-child{
+	border-right: 1px #000 solid;
+}
+.fp-calender-row{
+	background: #f0f0f0;
+}
+.fp-calender-body .fp-calender-row > div:last-child > div{
+	padding: 5px;
 }
 
 .current-fp-method{
@@ -187,7 +207,7 @@
 }
 
 .current-fp-method .fp-methods{
-	padding: 10px;
+	padding: 10px 10px 5px;
 	border: none;
 	text-align: center;
 }
@@ -279,6 +299,7 @@
 	padding: 0;
 	list-style: none;
 	text-align: center;
+	margin:0;
 }
 .question ul li{
 	display: inline;
@@ -345,7 +366,7 @@
 }
 
 .video-thumbnail{
-  width: 150px;
+	border: 1px #000 solid;
 }
 
 .scroll-x{
