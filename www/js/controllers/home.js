@@ -57,7 +57,7 @@ angular.module('uhiApp.controllers')
                       $state.go('newborn');
                       break;
                       case 2: 
-                      $state.go('immu');
+                      $state.go('immunisation');
                       break;
                       case 0:
                       alert('This child is older than 3 years');

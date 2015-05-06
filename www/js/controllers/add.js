@@ -14,14 +14,19 @@ if(displayID){
   //load Image from Imgaes Folder
   var imgURI = UtilityService.loadImage($scope.woman.womanID);
   imgURI ? $scope.imgURI =imgURI : $scope.imgURI ="img/woman-sample-profile-picture.png";
-   ChildService.getChildren($scope.woman.womanID).length ?
-  $scope.children = ChildService.getChildren($scope.woman.womanID) : $scope.children = [{}];
-  angular.forEach($scope.children, function(childObj, index){   
-   var totalDays = UtilityService.calcAge(childObj.dob, false);
+   if(ChildService.getChildren($scope.woman.womanID).length){
+     $scope.children = ChildService.getChildren($scope.woman.womanID);
+     angular.forEach($scope.children, function(childObj, index){   
+      var totalDays = UtilityService.calcAge(childObj.dob, false);
       childObj.ageMonths = parseInt(totalDays /30);
       childObj.ageDays = totalDays%30;
-  });
-   $scope.savedChildren =angular.copy($scope.children);
+     });
+     $scope.savedChildren =angular.copy($scope.children);
+   } else {
+     $scope.children = [{}];
+   }    
+   
+  
  } else {
   alert("Woman Not in list, Navigating back to home page");
   $state.go("home");
@@ -299,7 +304,7 @@ $scope.navigateToChild = function($index) {
         if(days<=42){     
           $state.go('newborn');
         } else {
-          $state.go('immu');
+          $state.go('immunisation');
         }  
     }, function(err){});
       
