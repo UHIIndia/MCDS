@@ -1530,7 +1530,7 @@ $scope.opened=false;
                 if(isEligibleForEDD){
                     var EDDCalendarDate = UtilityService.addDaysToDate(LMPDate, 279);
                      $scope.EDDCalendarDate  =UtilityService.convertDateFormat(EDDCalendarDate);
-                     $scope.LMPCalendarDate  =UtilityService.convertDateFormat(LMPCalendarDate);
+                     $scope.LMPCalendarDate  =UtilityService.convertDateFormat(LMPDate);
                 } else{
                     $scope.noEDD = true;
                 }
