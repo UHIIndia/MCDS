@@ -27,12 +27,13 @@
             <div class="col-sm-9">
              <div class="input-group date-picker">  
               <!--max date year-month-date -->
-              <input type="text" class="form-control" datepicker-popup=dd/MM/yy ng-model="LMPCalendarDate"  max-date="minEDD"
+              <input type="text" class="form-control" datepicker-popup="dd/MM/yy" ng-model="LMPCalendarDate"  max-date="minEDD"
               is-open="openedLMP"  datepicker-options="dateOptions"  ng-required="true" ng-disabled="disableButton" close-text="Close"  ng-blur="setEDD();">
               <span class="input-group-btn">
                <button type="button" class="btn btn-default" ng-click="open($event,'LMP')" ng-disabled="disableButton"><i class="icon-date-medium"></i></button>
              </span>
            </div>
+           <span ng-class="{'active':true}" ng-show="noEDD" >LMP should be 45 days before current date</span>
          </div>
        </div>
        <div class="col-sm-4">
@@ -679,13 +680,13 @@
           <input type="text" class="form-control" ng-model="enteredBPHigh" ng-blur="updateBPNo();"> /
           <input type="text" class="form-control" ng-model="enteredBPLow" ng-blur="updateBPNo();">
             <div class="radio-group">
-            <div>
-            <input type="radio" ng-model="BPOutcome"  ng-value="'High'" name="BPCheck" id="radio35BP" ng-change="updateBP()">
-            <label for="radio35BP" class="control-label"></label>
-          </div>
            <div>
             <input type="radio" ng-model="BPOutcome" name="BPCheck" ng-value="'Normal'"  id="radio34BP" ng-change="updateBP()">
             <label for="radio34BP" class="control-label"></label> 
+          </div>
+          <div>
+            <input type="radio" ng-model="BPOutcome"  ng-value="'High'" name="BPCheck" id="radio35BP" ng-change="updateBP()">
+            <label for="radio35BP" class="control-label"></label>
           </div>
             </div>
           </div>
@@ -1110,7 +1111,7 @@
  <div class="col-sm-2">
   &nbsp;
 </div>
-<div class="col-sm-10 fp-methods"  ng-disabled="dateOfDelivery" ng-class="{'disableCls':dateOfDelivery == false}">
+<div class="col-sm-10 fp-methods"  ng-disabled="dateOfDelivery" ng-class="{'enabled':dateOfDelivery == false}">
   <ul>
     <li>
       <div ng-click="selectFPMethod(0)" ng-class="{'active': FPMethod.id===0 && dateOfDelivery == false}"><span>&nbsp;</span></div>
@@ -1147,7 +1148,7 @@
 </div>
 <div class="row">
   <div class="col-sm-12 text-right">
-    <button class="default-btn" ng-click="" ng-show="pregWomanExist" ng-disabled="dateOfDelivery">Go to new born</button>
+    <button class="default-btn" ng-click="gotoNewBorn()" ng-show="pregWomanExist" ng-disabled="dateOfDelivery" ng-class="{'activeNewBorn':dateOfDelivery == false}">Go to new born</button>
     <button class="default-btn" ng-click="saveANCDetails()"ng-show="pregWomanExist">Save</button>
   </div>
 </div>

@@ -95,8 +95,9 @@ angular.module('uhiApp.controllers')
     $scope.pregWomanExist=true;
     $scope.disableButton=false;
     $scope.pregWomanName= womanData.name;
-    $scope.ancDOB = womanData.dob;
-    $scope.ancAge =womanData.age;
+    $scope.pregWomanPath = UtilityService.loadImage(womanData.womanID);
+    //$scope.ancDOB = womanData.dob;
+    $scope.ancAge =UtilityService.calcAge(womanData.dob, true);
     $scope.newWoman=false;
 
     $scope.enterPregnantWomanDetails=function(){
@@ -112,12 +113,9 @@ angular.module('uhiApp.controllers')
     if(womanData.LMP == null || womanData.EDD == null ){           //a new woamn
         $scope.enterButton=true;
         $scope.pregWomanExist=false;
-      
-        // showPregDetails(LMP,EDD);
     }else{
         var LMP =  womanData.LMP; // 9/2/2015
         var EDD = womanData.EDD;
-        $scope.pregWomanPath = UtilityService.loadImage(womanData.womanID);
         showPregDetails(LMP,EDD);
     }
     function showPregDetails(LMP,EDD){
@@ -134,10 +132,8 @@ angular.module('uhiApp.controllers')
     $scope.chooseMonth = 5;
     var todayDate=new Date();
      $scope.symptomData=[];
-    var VisitItem=["paleEyeVisits","nightBlindVisits"];
-   
     $scope.totalAshaCount = 0;
-     currentMonth = todayDate.getMonth()+1;         //get the current month
+    currentMonth = todayDate.getMonth()+1;         //get the current month
 
 
     //need to derive the first month of pregnancy
@@ -1517,24 +1513,26 @@ $scope.opened=false;
              $scope.openedDOD=true;
         }
     }
-    $scope.setEDD = function(){
 
+
+    $scope.noEDD = false;
+    $scope.setEDD = function(){
         if($scope.LMPCalendarDate){
+            $scope.noEDD = false;
             var LMPDate = $scope.LMPCalendarDate,
                 isEligibleForEDD,
                 currDate = new Date(),
                 ineligibleDate;  //an edd is set only if lmp is 45 days before the current date
-
             if(LMPDate){
                 ineligibleDate = UtilityService.addDaysToDate(LMPDate, 44);
                 // if current date is equal to or greater than in eligible date then set edd after 40 weeks of LMP date
                 isEligibleForEDD = new Date(currDate.getFullYear(), currDate.getMonth(), currDate.getDate()).getTime() - ineligibleDate.getTime() >= 0;
                 if(isEligibleForEDD){
                     var EDDCalendarDate = UtilityService.addDaysToDate(LMPDate, 279);
-                     $scope.EDDCalendarDate  =UtilityService.convertDateFormat($scope.EDDCalendarDate );
+                     $scope.EDDCalendarDate  =UtilityService.convertDateFormat(EDDCalendarDate);
                      $scope.LMPCalendarDate  =UtilityService.convertDateFormat(LMPCalendarDate);
                 } else{
-                    $scope.EDDCalendarDate ="";
+                    $scope.noEDD = true;
                 }
 
             }
@@ -1563,7 +1561,10 @@ $scope.opened=false;
             }
         }
     }
+    //go to new born
+    $scope.gotoNewBorn=function(){
 
+    }
 
         //save button functionality
      $scope.saveANCDetails =function(){
