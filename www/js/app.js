@@ -30,6 +30,7 @@ angular.module('uhiApp', ['ionic', 'ngCordova', 'uhiApp.controllers', 'uhiApp.se
   // setup the state for the login directive
   .state('login', {
     url: "/login",
+    cache: false,
     templateUrl: "templates/login.html",
     controller: 'LoginController'
   })
@@ -37,71 +38,85 @@ angular.module('uhiApp', ['ionic', 'ngCordova', 'uhiApp.controllers', 'uhiApp.se
   // setup the abstract state for the home directive
   .state('home', {
     url: "/home",
+    cache: false,
     templateUrl: "templates/home.html",
     controller: 'HomeController'
   })
   .state('add', {
     url: "/add",
+    cache: false,
     templateUrl: "templates/add.html",
     controller: 'AddController'
   })
   .state('anc', {
     url: "/anc",
+    cache: false,
     templateUrl: "templates/anc.html",
     controller: 'AncController'
   })
   .state('fp', {
     url: "/fp",
+    cache: false,
     templateUrl: "templates/fp.html",
     controller: 'FpController'
   })
   .state('newborn', {
     url: "/newborn",
+    cache: false,
     templateUrl: "templates/new-born.html",
     controller: "newBornController"
   })
   .state('immunisation', {
     url: "/immunisation",
+    cache: false,
     templateUrl: "templates/immunisation.html",
     controller: 'ImmunisationController'
   })
   .state('mapWomen', {
     url: "/map-women",
+    cache: false,
     templateUrl: "templates/map-women.html",
     controller: 'MapWomenController'
   })
   .state('mapChildren', {
     url: "/map-children",
+    cache: false,
     templateUrl: "templates/map-children.html",
     controller: 'MapChildrenController'
   })
   .state('listWomen', {
     url: "/list-women",
+    cache: false,
     templateUrl: "templates/list-women.html",
     controller: 'ListWomenController'
   })
   .state('listChildren', {
     url: "/list-children",
+    cache: false,
     templateUrl: "templates/list-children.html",
     controller: 'ListChildrenController'
   })
   .state('reportWomen', {
     url: "/report-women",
+    cache: false,
     templateUrl: "templates/report-women.html",
     controller: 'ReportWomenController'
   })
   .state('reportChildren', {
     url: "/report-children",
+    cache: false,
     templateUrl: "templates/report-children.html",
     controller: 'ReportChildrenController'
   })
   .state('filmWomen', {
     url: "/film-women",
+    cache: false,
     templateUrl: "templates/film-women.html",
     controller: 'FilmWomenController'
   })
   .state('filmChildren', {
     url: "/film-children",
+    cache: false,
     templateUrl: "templates/film-children.html",
     controller: 'FilmChildrenController'
   });
