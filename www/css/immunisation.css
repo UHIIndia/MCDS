@@ -118,14 +118,13 @@ height: 103px;
 	margin-bottom: 15px;
 }
 .immu-month-body-wrapper .months-row{
-	margin-bottom: 10px;
 }
 .immu-month-body-wrapper .months-row > div > div:last-child,
 .immu-month-body-wrapper .months-row > div {
 	padding: 0;
 }
 .immu-month-body-wrapper .months-row > div > div:last-child > div{
-	height: 104px;
+	height: 70px;
 	background: #fff;
 	border: 1px #000 solid;
 	min-width: 65px;
@@ -150,17 +149,22 @@ height: 103px;
 .months-fixed-block .calender-block{
 	background: #fff;
 	border: 1px #000 solid;
-	height: 104px;
+	height: 70px;
 	border-right:none;
 }
 .months-fixed-block .image{
 	width: 40%;
 	float: left;
-	margin-right: 2%;
+	margin-left: 2%;
 }
 .months-fixed-block .video{
 	width: 58%;
 	float: left;
+  font-size: 12px;
+}
+
+.months-fixed-block .video .img-responsive{
+  width: 70px;
 }
 
 .immu-month-body-wrapper .months-row > div > div:last-child div > div {

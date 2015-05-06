@@ -24,8 +24,8 @@
           </div>
         </div>
         <div class="col-sm-4 age-group">
-          <label class="col-sm-2">Age (m,d)</label>
-          <div class="col-sm-10">
+          <label class="col-sm-3">Age (m,d)</label>
+          <div class="col-sm-9">
             <div class="col-sm-4">
               <input type="text" class="form-control" disabled="" ng-model="childDisplay.age.months">
             </div>
@@ -56,16 +56,19 @@
 
         </div>
       </div>
+
       <div class="immu-month-body-wrapper">
+
         <div class="clearfix months-row">
           <div class="col-sm-12">
             <div class="col-sm-4 months-fixed-block">
               <div class="col-sm-7">
-                <div class="image">
-                  <img src="img/injection-img.gif" class="img-responsive">
-                </div>
                 <div class="video">
-                  <img src="img/immu-video1.gif" class="img-responsive">
+                  <img src="img/immunisation/preview-1-bcg.gif" class="img-responsive">
+                  <div>BCG</div>
+                </div>
+                <div class="image">
+                  <img src="img/immunisation/vaccination-1-bcg.gif" class="img-responsive">
                 </div>
               </div>
               <div class="col-sm-5 calender-block">
@@ -79,6 +82,175 @@
             </div>
           </div>
         </div>
+
+        <div class="clearfix months-row">
+          <div class="col-sm-12">
+            <div class="col-sm-4 months-fixed-block">
+              <div class="col-sm-7">
+                <div class="video">
+                  <img src="img/immunisation/preview-2-opv.gif" class="img-responsive">
+                  <div>OPV</div>
+                </div>
+                <div class="image">
+                  <img src="img/immunisation/vaccination-2-opv.gif" class="img-responsive">
+                </div>
+              </div>
+              <div class="col-sm-5 calender-block">
+                <i class="icon-date pull-right"></i>
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <div class="col-sm-1" ng-repeat="information in monthInformationData">
+                <div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="clearfix months-row">
+          <div class="col-sm-12">
+            <div class="col-sm-4 months-fixed-block">
+              <div class="col-sm-7">
+                <div class="video">
+                  <img src="img/immunisation/preview-3-hep-v.gif" class="img-responsive">
+                  <div>HEP-B</div>
+                </div>
+                <div class="image">
+                  <img src="img/immunisation/vaccination-3-hep-b.gif" class="img-responsive">
+                </div>
+              </div>
+              <div class="col-sm-5 calender-block">
+                <i class="icon-date pull-right"></i>
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <div class="col-sm-1" ng-repeat="information in monthInformationData">
+                <div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="clearfix months-row">
+          <div class="col-sm-12">
+            <div class="col-sm-4 months-fixed-block">
+              <div class="col-sm-7">
+                <div class="video">
+                  <img src="img/immunisation/preview-4-dpt.gif" class="img-responsive">
+                  <div>DPT</div>
+                </div>
+                <div class="image">
+                  <img src="img/immunisation/vaccination-4-dpt.gif" class="img-responsive">
+                </div>
+              </div>
+              <div class="col-sm-5 calender-block">
+                <i class="icon-date pull-right"></i>
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <div class="col-sm-1" ng-repeat="information in monthInformationData">
+                <div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="clearfix months-row">
+          <div class="col-sm-12">
+            <div class="col-sm-4 months-fixed-block">
+              <div class="col-sm-7">
+                <div class="video">
+                  <img src="img/immunisation/preview-5-measles.gif" class="img-responsive">
+                  <div>Measles</div>
+                </div>
+                <div class="image">
+                  <img src="img/immunisation/vaccination-5-measles.gif" class="img-responsive">
+                </div>
+              </div>
+              <div class="col-sm-5 calender-block">
+                <i class="icon-date pull-right"></i>
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <div class="col-sm-1" ng-repeat="information in monthInformationData">
+                <div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="clearfix months-row">
+          <div class="col-sm-12">
+            <div class="col-sm-4 months-fixed-block">
+              <div class="col-sm-7">
+                <div class="video">
+                  <img src="img/immunisation/preview-6-vit-a.gif" class="img-responsive">
+                  <div>Vitamin-A</div>
+                </div>
+                <div class="image">
+                  <img src="img/immunisation/vaccination-6-vit-a.gif" class="img-responsive">
+                </div>
+              </div>
+              <div class="col-sm-5 calender-block">
+                <i class="icon-date pull-right"></i>
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <div class="col-sm-1" ng-repeat="information in monthInformationData">
+                <div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="clearfix months-row">
+          <div class="col-sm-12">
+            <div class="col-sm-4 months-fixed-block">
+              <div class="col-sm-7">
+                <div class="video">
+                  <img src="img/immunisation/preview-7-weight.gif" class="img-responsive">
+                  <div>Weight</div>
+                </div>
+                <div class="image">
+                  <img src="img/immunisation/vaccination-7-weight.gif" class="img-responsive">
+                </div>
+              </div>
+              <div class="col-sm-5 calender-block">
+                <i class="icon-date pull-right"></i>
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <div class="col-sm-1" ng-repeat="information in monthInformationData">
+                <div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="clearfix months-row">
+          <div class="col-sm-12">
+            <div class="col-sm-4 months-fixed-block">
+              <div class="col-sm-7">
+                <div class="video">
+                  <img src="img/immunisation/preview-8-weak.gif" class="img-responsive">
+                  <div>Weak/Sick/Fever</div>
+                </div>
+                <div class="image">
+                  <img src="img/immunisation/vaccination-8-weak.gif" class="img-responsive">
+                </div>
+              </div>
+              <div class="col-sm-5 calender-block">
+                <i class="icon-date pull-right"></i>
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <div class="col-sm-1" ng-repeat="information in monthInformationData">
+                <div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
