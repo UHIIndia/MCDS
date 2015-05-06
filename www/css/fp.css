@@ -191,7 +191,11 @@ border-top: 1px #000 solid;
 	background: #f0f0f0;
 }
 .fp-calender-body .fp-calender-row > div:last-child > div{
-	padding: 5px;
+	padding:0;
+	line-height: 30px;
+}
+.fp-calender-body .fp-calender-row > div:last-child > div img{
+	display: inline-block;
 }
 
 .current-fp-method{
