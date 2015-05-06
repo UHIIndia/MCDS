@@ -201,7 +201,7 @@ angular.module('uhiApp.services')
        return imgURL;
      } catch(e){
       //alert("this is browser, set a default Image");
-      return;
+      return "img/woman-sample-profile-picture.png";
      }
      
     },

@@ -1,8 +1,10 @@
 angular.module('uhiApp.controllers')
-.controller('AncController', function($scope,$timeout,UtilityService,familyPlanning,videos,WomanService,$location) {
+.controller('AncController', function($scope,$state,$timeout,UtilityService,familyPlanning,videos,WomanService,ChildService,$location) {
  var womanDisplayID = UtilityService.getWomanDisplayID();
+// womanDisplayID="pop.3"
+console.log(womanDisplayID);
   var womanData = WomanService.getWomanDetails(womanDisplayID);
-    
+    console.log(womanData);
     var womanData1= { "womanID": "0121230250012001", // city+slum+worker+house+woman
         "name": null,
         "dob":  '20/12/1989',//'20/12/1989',
@@ -91,10 +93,11 @@ angular.module('uhiApp.controllers')
     var pregnancyMonthNoArray=[];
     var monthNo,LMP,EDD,currentMonth;
     $scope.dateOfDelivery=true;
+    $scope.enableNewBorn =true;
     $scope.enterButton = false;
     $scope.pregWomanExist=true;
     $scope.disableButton=false;
-    $scope.pregWomanName= womanData.name;
+    $scope.pregWomanName = (womanData == undefined?'' :womanData.name);
     $scope.pregWomanPath = UtilityService.loadImage(womanData.womanID);
     //$scope.ancDOB = womanData.dob;
     $scope.ancAge =UtilityService.calcAge(womanData.dob, true);
@@ -1562,8 +1565,12 @@ $scope.opened=false;
         }
     }
     //go to new born
+     var childObj = {};
     $scope.gotoNewBorn=function(){
-
+         var childDisplayID = childObj.displayID;
+         UtilityService.setChildDisplayID(childDisplayID).then(function(success){
+            $state.go('newborn');
+        },function(error){})
     }
 
         //save button functionality
@@ -1687,8 +1694,21 @@ $scope.opened=false;
             if($scope.MaternalOutcome  && $scope.BirthOutcome ){
                 womanData.maternalOutcome = $scope.MaternalOutcome;
                 womanData.birthOutcome = $scope.BirthOutcome;
+                //$scope.birthGender.name="girl"
+                if($scope.BirthOutcome == "LiveBirth"){
+                    childObj.motherID = womanData.womanID;
+                    childObj.motherDisplayID= womanData.displayID;
+                    childObj.motherName = womanData.name;
+                    childObj.fatherName = womanData.husbandName;
+                    childObj.phone = womanData.phone;
+                    childObj.house =womanData.house;
+                    childObj.gender = $scope.birthGender.name;
+                    childObj.dob = UtilityService.convertDateFormat($scope.DODCalendarDate);
+                    var childID = ChildService.addNewChild(childObj);
+                    $scope.disableNewBorn = false;
+                }
                 WomanService.updateWomanDetails(womanData);
-                //call child service   $scope.birthGender.name  fp method
+                //call child service   $scope.birthGender.name  
             }else if($scope.MaternalOutcome == undefined){
                 alert("please select maternal outcome");    
             }else if($scope.BirthOutcome == undefined){

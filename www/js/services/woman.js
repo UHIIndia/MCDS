@@ -73,10 +73,7 @@ angular.module('uhiApp.services')
       womanObj.maternalOutcome = null;
       womanObj.birthOutcome = null;
       womanObj.FPMethod = null;
-      womanObj.ANC = null;
-      womanObj.slum = null;
-      womanObj.worker = null;
-      womanObj.registrationDate = null;
+      womanObj.ANC = null;      
       womenList.push(womanObj);      
       FileService.writeToLocalStorage(womenList, true);
         console.log(womenList);

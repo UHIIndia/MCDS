@@ -10,7 +10,7 @@
             <div class="clearfix">
               <div class="col-sm-2">
                 <div class="mother-profile">
-                  <div class="photo"><img src="pregWomanPath" class="img-responsive"></div>
+                  <div class="photo"><img ng-src="{{pregWomanPath}}" class="img-responsive"></div>
                   <div>{{pregWomanName}}</div>
                 </div>
               </div>
@@ -98,7 +98,7 @@
           <div class="col-sm-5">
 
            <div class="input-group date-picker"> 
-            <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="DODCalendarDate" is-open="openedDOD"  ng-required="true"close-text="Close" />
+            <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="DODCalendarDate" is-open="openedDOD"  max-date="getDate()"  ng-required="true"close-text="Close" />
             <span class="input-group-btn">
               <button type="button" class="btn btn-default" ng-click="open($event,'DOD')"><i class="icon-date-small"></i></button>
             </span>
@@ -273,7 +273,7 @@
               </div>
             </div>
             <div class="col-sm-9 text-right">
-              <label class="control-label">Weight</label> <input type="text" class="form-control" ng-model="enteredWeight" ng-blur="updateWeight();"><label class="control-label">Kg</label>
+              <label class="control-label">Weight</label> <input type="number" class="form-control" ng-model="enteredWeight" ng-blur="updateWeight();"><label class="control-label">Kg</label>
             </div>
           </div>
         </div>
@@ -302,7 +302,7 @@
       <div class="col-sm-3 anc-calender-add">
       <form class="form-horizontal">
         <div class="form-group">
-         <div class="col-sm-12 text-right"><label class="control-label">TT in last pregnancy</label> <input type="text" class="form-control" ng-model="enteredTT"  ng-blur="updateTT();"/></div>
+         <div class="col-sm-12 text-right"><label class="control-label">TT in last pregnancy</label> <input type="number" class="form-control" ng-model="enteredTT"  ng-blur="updateTT();"/></div>
         </div>
        <div class="form-group"> 
         <div class="col-sm-12">
@@ -316,12 +316,12 @@
           </div>
           <div class="col-sm-9 radio-group">   
           <div>
-            <input type="radio" ng-model="TTOutcome"  ng-value="'no'"  name="TTCheck" id="radio5TT">
-            <label for="radio5TT">No</label>
+            <!--<input type="radio" ng-model="TTOutcome"  ng-value="'no'"  name="TTCheck" id="radio5TT">
+            <label for="radio5TT">No</label>-->
           </div>    
             <div>
-            <input type="radio" ng-model="TTOutcome" name="TTCheck" ng-value="'yes'" id="radio4TT">
-             <label for="radio4TT">Yes</label> 
+            <!--<input type="radio" ng-model="TTOutcome" name="TTCheck" ng-value="'yes'" id="radio4TT">
+             <label for="radio4TT">Yes</label> -->
           </div>      
             
             
@@ -372,7 +372,7 @@
           </div>
           <div class="col-sm-9 radio-group">
             <div>
-              <input type="text" class="form-control" ng-model="enteredHB"  ng-blur="updateHB();"/>
+              <input type="number" class="form-control" ng-model="enteredHB"  ng-blur="updateHB();"/>
               <label>HB 10</label> 
             </div>
           </div>
@@ -636,7 +636,7 @@
             </div>
           </div>
           <div class="col-sm-9 text-right">
-            <label class="control-label">Quantity</label> <input type="text" class="form-control" ng-model="enteredIFA" ng-blur="updateIFA();"><label class="control-label">Kg</label>
+            <label class="control-label">Quantity</label> <input type="number" class="form-control" ng-model="enteredIFA" ng-blur="updateIFA();"><label class="control-label">Kg</label>
           </div>
         </div>
       </div>
@@ -677,8 +677,8 @@
           </div>
           <div class="col-sm-9 bp-select">
           <div> > 140 / > 90 High Normal</div>
-          <input type="text" class="form-control" ng-model="enteredBPHigh" ng-blur="updateBPNo();"> /
-          <input type="text" class="form-control" ng-model="enteredBPLow" ng-blur="updateBPNo();">
+          <input type="number" class="form-control" ng-model="enteredBPHigh" ng-blur="updateBPNo();"> /
+          <input type="number" class="form-control" ng-model="enteredBPLow" ng-blur="updateBPNo();">
             <div class="radio-group">
            <div>
             <input type="radio" ng-model="BPOutcome" name="BPCheck" ng-value="'Normal'"  id="radio34BP" ng-change="updateBP()">
@@ -1148,8 +1148,8 @@
 </div>
 <div class="row">
   <div class="col-sm-12 text-right">
-    <button class="default-btn" ng-click="gotoNewBorn()" ng-show="pregWomanExist" ng-disabled="dateOfDelivery" ng-class="{'activeNewBorn':dateOfDelivery == false}">Go to new born</button>
-    <button class="default-btn" ng-click="saveANCDetails()"ng-show="pregWomanExist">Save</button>
+    <button class="default-btn" ng-click="gotoNewBorn()" ng-show="pregWomanExist" ng-disabled="disableNewBorn" ng-class="{'activeNewBorn':disableNewBorn == false}">Go to new born</button>
+    <button class="default-btn" ng-click="saveANCDetails()" ng-show="pregWomanExist">Save</button>
   </div>
 </div>
 </div>
