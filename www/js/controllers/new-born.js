@@ -8,7 +8,7 @@ angular.module('uhiApp.controllers')
     var displayID = UtilityService.getChildDisplayID();
     console.log(displayID);
     // hard code display id for dev 
-    displayID = "H-1.1.1";
+    //displayID = "H-1.1.1";
     if(!displayID){
       console.log('should not be here, child is not added in system');
     } else {
@@ -235,8 +235,11 @@ angular.module('uhiApp.controllers')
   
   $scope.navigateToMotherFP = function() {
     // set mother's visible/display ID
-    UtilityService.setWomanDisplayID($scope.child.motherDisplayID);
-    $state.go('fp');
+    UtilityService.setWomanDisplayID($scope.child.motherDisplayID).then(
+      function(success){
+        $state.go('fp');
+      }, function(err){});
+    
   };
   
   $scope.saveDetails = function() {

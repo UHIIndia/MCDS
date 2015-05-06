@@ -49,8 +49,8 @@ angular.module('uhiApp.controllers')
                     alert('There is no child with this ID, Please check this ID');
                     return;
                   }
-                  UtilityService.setChildDisplayID(childDisplayID);
-                  //check if this child is new born 
+                  UtilityService.setChildDisplayID(childDisplayID).then(function(){
+                      //check if this child is new born 
                   var isNewBorn = ChildService.isNewBorn(childDisplayID);
                   switch(isNewBorn){
                       case 1: 
@@ -61,7 +61,9 @@ angular.module('uhiApp.controllers')
                       break;
                       case 0:
                       alert('This child is older than 3 years');
-                  }                                   
+                  }   
+                  }, function(err){});
+                                                
                     
                 } else { //go to woman page
                   var womanDisplayID = $scope.houseNo+"."+$scope.womanNo;
@@ -69,8 +71,11 @@ angular.module('uhiApp.controllers')
                     alert('This woman is not registerd, please check this ID');
                     return;
                   }
-                  UtilityService.setWomanDisplayID(womanDisplayID)
-                    $state.go('add');
+                  UtilityService.setWomanDisplayID(womanDisplayID).then(function(success){
+    console.log(success);
+    $state.go('add');
+  }, function(err){console.log('some error in setting woman display id')});
+                    
                 }
             } else {
                 alert('Please put a woman no. to go to woman or child page');
@@ -79,7 +84,9 @@ angular.module('uhiApp.controllers')
     };
     
     $scope.addWoman = function () {
-      UtilityService.setWomanDisplayID(null);
-      $state.go('add');
+      UtilityService.setWomanDisplayID(null).then(function(success){
+        $state.go('add');
+      }, function(err){});
+      
     }
 });

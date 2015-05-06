@@ -9,13 +9,20 @@ angular.module('uhiApp.services')
       livingChildren: 'Living Children can not be greater than number of children birth alive'
     },
     setWomanDisplayID: function (id) {
+      var deferred = $q.defer();
       womanDisplayID = id;
+      deferred.resolve('woman Id is set');
+      return deferred.promise;
+      
     },
     getWomanDisplayID : function() {
       return womanDisplayID;
     },
     setChildDisplayID: function (id) {
+      var deferred = $q.defer();
       childDisplayID = id;
+      deferred.resolve('child Id is set');
+      return deferred.promise;
     },
     getChildDisplayID : function() {
       return childDisplayID;

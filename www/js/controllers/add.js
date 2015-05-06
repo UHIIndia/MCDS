@@ -293,13 +293,16 @@ $scope.navigateToChild = function($index) {
     alert('This child id more than 2 years old, please select a child less than 2 years old');
     return;
   } else {
-    UtilityService.setChildDisplayID(childDisplayID);
-    var days = child.ageMonths * 30 + child.ageDays;
-    if(days<=42){     
-      $state.go('newborn');
-    } else {
-      $state.go('immu');
-    }    
+    UtilityService.setChildDisplayID(childDisplayID).then(function(success){
+      console.info(success);
+      var days = child.ageMonths * 30 + child.ageDays;
+        if(days<=42){     
+          $state.go('newborn');
+        } else {
+          $state.go('immu');
+        }  
+    }, function(err){});
+      
   }  
 }
 $scope.navigateToWoman = function() {
@@ -309,12 +312,15 @@ $scope.navigateToWoman = function() {
     // no woman has been added yet
     return;
   }
-  UtilityService.setWomanDisplayID(woman.displayID);
-  if(woman.isPregnant === true){
-    $state.go('anc');
-  } else {
-    $state.go('fp');
-  }
+  UtilityService.setWomanDisplayID(woman.displayID).then(function(success){
+    console.log(success);
+    if(woman.isPregnant === true){
+      $state.go('anc');
+    } else {
+      $state.go('fp');
+    }
+  }, function(err){console.log('some error in setting woman display id')});
+  
 }
 $scope.validations = {
  validateSave: function(){
