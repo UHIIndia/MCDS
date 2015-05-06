@@ -22,16 +22,16 @@
             <form class="form-horizontal" name="loginForm" novalidate>
                 <div>
                     <label class="control-label">CITY</label>
-                    <input type="text" value="542">
+                    <input type="number" value="542">
                 </div>
                 <div>
                     <label class="control-label">SLUM</label>
-                    <input type="text" value="123">
+                    <input type="number" value="123">
                 </div>
                 <div>
                     <label class="control-label">WORKER</label>
                     <div class="has-error">
-                        <input type="text" ng-model="workerCode" name="workerCode" required>
+                        <input type="number" ng-model="workerCode" name="workerCode" min="0" required>
                         <span ng-show="required">Required</span>
                         <span ng-show="incorrect">Incorrect code</span>
                     </div>

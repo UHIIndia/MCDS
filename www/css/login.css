@@ -48,7 +48,7 @@
 	vertical-align: middle;
 	padding-top: 0;
 }
-.app-login-bottom input[type="text"] {
+.app-login-bottom input[type="number"], .app-login-bottom input[type="text"] {
 	width: 90px;
 	margin-right: 45px;
 	padding-left:5px;
