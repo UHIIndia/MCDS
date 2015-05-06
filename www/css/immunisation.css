@@ -1,5 +1,6 @@
 .immu-wrapper .light-blue-block{
 	padding-top: 15px;
+  padding-bottom: 15px;
 	margin-bottom: 15px;
 }
 .immu-wrapper .light-blue-block label{
@@ -192,4 +193,20 @@ height: 103px;
 .immu-footer .videos-block + div {
   padding-right: 0;
   padding-top: 40px;
+}
+
+.sex-boy{
+  display: inline-block;
+  background-image: url('../img/children/girl.png');
+  background-size: 100%;
+  width: 30px;
+  height: 30px;
+}
+
+.sex-girl{
+  display: inline-block;
+  background-image: url('../img/children/girl.png');
+  background-size: 100%;
+  width: 30px;
+  height: 30px;
 }
