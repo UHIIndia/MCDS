@@ -25,32 +25,6 @@
 .immu-months-wrapper{
 	padding: 0;
 }
-/*	background: #fff;
-.immu-months-wrapper .immu-months-head{
-	background: #fff;
-	border:1px #000 solid;
-}
-.immu-months-wrapper .immu-months-head > div{
-	padding: 0;
-}
-.immu-months-wrapper .immu-months-head > div > div{
-	font-family: OpenSans-Semibold;
-	height: 57px;
-	border-right: 1px #000 solid;
-	display: inline-block;
-	padding:5px 8px;
-	width: 11.11%;
-	text-align: center;
-}
-.immu-months-wrapper .immu-months-head > div > div .month{
-	font-size: 12px;
-}
-.immu-months-wrapper .immu-months-head > div > div .month-name{
-	font-size: 16px;
-}
-.immu-months-wrapper .immu-months-head > div > div:last-child{
-	border-right: none;
-}*/
 
 .immu-month-body > div > div{
 	padding: 0;
@@ -140,7 +114,6 @@ height: 103px;
 .immu-table-wrapper{
 	overflow: auto;
 	white-space: nowrap;
-	height: 200px;
 	margin-bottom: 15px;
 }
 .immu-month-body-wrapper .months-row{
