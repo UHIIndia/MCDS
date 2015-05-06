@@ -38,7 +38,13 @@ angular.module('uhiApp.services')
       var child = this.getChildDetails(id);
       var dob = child.dob;
       var days = UtilityService.calcAge(dob, false);
-      return days <= 42 ;
+      if(days > 36*30){
+        return 0; // this child is more than 3 years old
+      } else if(days <=42){
+        return 1; // child less than 42 days
+      } else {
+        return 2; // child less than 36 months
+      }
     },
     getChildDetails : function(childID){
       for (var i = 0; i < childrenList.length; i++) {

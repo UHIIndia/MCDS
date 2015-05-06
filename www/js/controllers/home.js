@@ -51,7 +51,17 @@ angular.module('uhiApp.controllers')
                   }
                   UtilityService.setChildDisplayID(childDisplayID);
                   //check if this child is new born 
-                  ChildService.isNewBorn(childDisplayID) ? $state.go('newborn') : $state.go('immu');                  
+                  var isNewBorn = ChildService.isNewBorn(childDisplayID);
+                  switch(isNewBorn){
+                      case 1: 
+                      $state.go('newborn');
+                      break;
+                      case 2: 
+                      $state.go('immu');
+                      break;
+                      case 0:
+                      alert('This child is older than 3 years');
+                  }                                   
                     
                 } else { //go to woman page
                   var womanDisplayID = $scope.houseNo+"."+$scope.womanNo;

@@ -19,7 +19,8 @@ angular.module('uhiApp.controllers')
       setAge();
       if(!$scope.child.newBornDetails.length){
         setDatesInHeader();
-      }      
+      }
+      // initialize action 
     }
   }
   function setAge() {
@@ -82,6 +83,7 @@ angular.module('uhiApp.controllers')
   };
   
   // grid methods 
+  // method returns column based on a date string 
   function getColumn(dateStr) {
     var col;
     angular.forEach($scope.child.newBornDetails, function(detail, index){
@@ -92,8 +94,15 @@ angular.module('uhiApp.controllers')
     }); 
     return col;
   }
- 
-  var lastUpdated ={};
+  // check if column is last column
+  function isLastColumn(col) {
+    if($scope.child.newBornDetails.length - 1 > col)
+      return false;
+      return true;
+  }
+  var lastUpdated ={}; //keeps last updated column for each row
+  $scope.actionAlert ={}; // keeps action alert col for each row
+  
   function setLastUpdated(row, col){
     var prevCol = lastUpdated[row];
     if(prevCol>=0){
@@ -108,7 +117,15 @@ angular.module('uhiApp.controllers')
     var dateStr = UtilityService.convertDateFormat($scope.weightDate);
     var col = getColumn(dateStr);    
     // set value for selected grid
-    col>=0 ? setWeightValue(dateStr, col): alert('Please select a valid date from calender');      
+    if(col>=0) {
+      setWeightValue(dateStr, col);
+      //set action alert 
+      if(!isLastColumn(col)){
+        $scope.actionAlert['weight'] = col+1;
+      }      
+    } else {
+      alert('Please select a valid date from calender');     
+    }
     }    
   });
   
@@ -118,7 +135,8 @@ angular.module('uhiApp.controllers')
       if($scope.weight){
         //set last updated col for this row
         setLastUpdated('weight',col);
-        dayOfDetail.weight = $scope.weight;       
+        dayOfDetail.weight = $scope.weight;
+        
         // 
       } else alert('Please select weight for child');
      

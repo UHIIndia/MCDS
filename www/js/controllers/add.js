@@ -289,7 +289,7 @@ $scope.selectedGenderForChild = function(child, isGirl) {
 $scope.navigateToChild = function($index) {
   var child = $scope.savedChildren[$index];
   var childDisplayID = child.displayID;
-  if(child.ageMonths > 24){
+  if(child.ageMonths > 36){
     alert('This child id more than 2 years old, please select a child less than 2 years old');
     return;
   } else {

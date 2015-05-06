@@ -59,7 +59,8 @@
             </br><span>Weight</span>
 		</div>
 		<div class="col-sm-10 newborn-tbody">
-			<div class="col-sm-1" ng-repeat = "item in child.newBornDetails"><span>{{item.weight}}</span></div>
+			<div class="col-sm-1" ng-repeat = "item in child.newBornDetails" ng-class="{'action-alert':$index === actionAlert.weight}"><span>{{item.weight}}</span>
+            </div>
 			<div class="col-sm-4">
 				<form class="form-horizontal">
 			      <div class="form-group">
@@ -73,7 +74,7 @@
                         </div>
 			          </div>
 			          <div class="col-sm-9 text-right">
-			             <input type="text" class="form-control" ng-model="weight" ng-blur="selectGrid('0')"><label class="control-label">Weight</label>
+			             <input type="text" class="form-control" ng-model="weight"><label class="control-label">Weight</label>
 			          </div>
 			        </div>
 			      </div>

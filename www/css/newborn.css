@@ -121,3 +121,7 @@
 .newborn-footer .videos-block + div button:last-child{
 	margin-right: 0;
 }
+
+.newborn-wrapper .action-alert {
+  background-color: yellow !important;
+}
