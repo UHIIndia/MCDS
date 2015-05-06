@@ -45,150 +45,15 @@
       <div class="immu-months-wrapper clearfix">
         <div class="col-sm-4"></div>
         <div class="col-sm-8 immu-months">
-          <div class="col-sm-1">
-            <div class="month">Month 1</div>
-            <div class="month-name">Oct</div>
+
+          <div class="col-sm-1" ng-repeat="month in monthLabels">
+            <div class="month">
+              <span>Month</span>
+              <span>{{ month.id }}</span>
+            </div>
+            <div class="month-name">{{ month.name }}</div>
           </div>
-          <div class="col-sm-1">
-            <div class="month">Month 2</div>
-            <div class="month-name">Nov</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 3</div>
-            <div class="month-name">Dec</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 4</div>
-            <div class="month-name">Jan</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 5</div>
-            <div class="month-name">Oct</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 6</div>
-            <div class="month-name">Oct</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 7</div>
-            <div class="month-name">Oct</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 8</div>
-            <div class="month-name">Oct</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 9</div>
-            <div class="month-name">Oct</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 10</div>
-            <div class="month-name">Oct</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 11</div>
-            <div class="month-name">Oct</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 12</div>
-            <div class="month-name">Oct</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 13</div>
-            <div class="month-name">Oct</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 14</div>
-            <div class="month-name">Oct</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 15</div>
-            <div class="month-name">Oct</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 16</div>
-            <div class="month-name">Oct</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 17</div>
-            <div class="month-name">Oct</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 18</div>
-            <div class="month-name">Oct</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 19</div>
-            <div class="month-name">Oct</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 20</div>
-            <div class="month-name">Oct</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 21</div>
-            <div class="month-name">Oct</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 22</div>
-            <div class="month-name">Oct</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 23</div>
-            <div class="month-name">Oct</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 24</div>
-            <div class="month-name">Oct</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 25</div>
-            <div class="month-name">Oct</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 26</div>
-            <div class="month-name">Oct</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 27</div>
-            <div class="month-name">Oct</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 28</div>
-            <div class="month-name">Oct</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 29</div>
-            <div class="month-name">Oct</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 30</div>
-            <div class="month-name">Oct</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 31</div>
-            <div class="month-name">Oct</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 32</div>
-            <div class="month-name">Oct</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 33</div>
-            <div class="month-name">Oct</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 34</div>
-            <div class="month-name">Oct</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 35</div>
-            <div class="month-name">Oct</div>
-          </div>
-          <div class="col-sm-1">
-            <div class="month">Month 36</div>
-            <div class="month-name">Oct</div>
-          </div>
+
         </div>
       </div>
       <div class="immu-month-body-wrapper">
@@ -208,44 +73,9 @@
               </div>
             </div>
             <div class="col-sm-8">
-              <div class="col-sm-1">
-                <div class="date">16/10/2014</div>
+              <div class="col-sm-1" ng-repeat="information in monthInformationData">
+                <div></div>
               </div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
-              <div class="col-sm-1"><div></div></div>
             </div>
           </div>
         </div>
