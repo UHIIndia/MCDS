@@ -319,8 +319,11 @@
 .fp-methods-wrapper{
 	margin-top: -15px;
 }
-.fp-methods-wrapper .fp-methods.disableCls{
+.fp-methods-wrapper .fp-methods{
 	opacity: 0.5;
+}
+.fp-methods-wrapper .fp-methods.enabled{
+	opacity:1;
 }
 .fp-methods-wrapper > div:first-child{
 	width: 12%;
@@ -390,6 +393,12 @@
 	border-radius: 0;
 	width: 56px;
 }
+.fp-methods ul li div.active{
+	border: 2px #000 solid;
+}
+.fp-methods ul li div.active span{
+	height: 42px;
+}
 
 .bp-select{
 	font-family: OpenSans-Semibold;
@@ -413,3 +422,30 @@
 	vertical-align: text-top;
 }
 
+button.activeNewBorn{
+	-webkit-animation: 1500ms ease 0s normal none infinite running glowing;
+}
+
+@-webkit-keyframes glowing {
+  0% { background-color: #5f941e; -webkit-box-shadow: 0 0 3px #5f941e; }
+  50% { background-color: #89c53f; -webkit-box-shadow: 0 0 10px #89c53f; }
+  100% { background-color: #5f941e; -webkit-box-shadow: 0 0 3px #5f941e; }
+}
+
+@-moz-keyframes glowing {
+  0% { background-color: #5f941e; -moz-box-shadow: 0 0 3px #5f941e; }
+  50% { background-color: #89c53f; -moz-box-shadow: 0 0 10px #89c53f; }
+  100% { background-color: #5f941e; -moz-box-shadow: 0 0 3px #5f941e; }
+}
+
+@-o-keyframes glowing {
+  0% { background-color: #5f941e; box-shadow: 0 0 3px #5f941e; }
+  50% { background-color: #89c53f; box-shadow: 0 0 10px #89c53f; }
+  100% { background-color: #5f941e; box-shadow: 0 0 3px #5f941e; }
+}
+
+@keyframes glowing {
+  0% { background-color: #5f941e; box-shadow: 0 0 3px #5f941e; }
+  50% { background-color: #89c53f; box-shadow: 0 0 10px #89c53f; }
+  100% { background-color: #5f941e; box-shadow: 0 0 3px #5f941e; }
+}
