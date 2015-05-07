@@ -8,7 +8,7 @@ angular.module('uhiApp.controllers')
     var displayID = UtilityService.getChildDisplayID();
     console.log(displayID);
     // hard code display id for dev 
-    //displayID = "H-1.1.1";
+    displayID = "zz.1.1";
     if(!displayID){
       console.log('should not be here, child is not added in system');
     } else {
@@ -30,7 +30,8 @@ angular.module('uhiApp.controllers')
   }
   function setDatesInHeader() {
     var dob = UtilityService.convertToDate($scope.child.dob);
-    var days= [1, 2, 3, 7, 14, 21, 28, 42];    
+   // var days= [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 42]; 
+    var days= [1, 2, 3, 4, 5, 6, 7];
     angular.forEach(days, function(day, index){
       var date = UtilityService.convertDateFormat(UtilityService.addDaysToDate(dob, day-1));
       var obj ={day: day, date: date};
@@ -101,7 +102,7 @@ angular.module('uhiApp.controllers')
       return true;
   }
   var lastUpdated ={}; //keeps last updated column for each row
-  $scope.actionAlert ={}; // keeps action alert col for each row
+  $scope.alerts ={}; // keeps action alert col for each row
   
   function setLastUpdated(row, col){
     var prevCol = lastUpdated[row];
@@ -111,24 +112,21 @@ angular.module('uhiApp.controllers')
     }
     lastUpdated[row] = col;
   }
-  $scope.$watch('weightDate', function(){
+  $scope.$watch('weightDate', watchHandler0);
+  $scope.$watch('weight', watchHandler0);
+   function watchHandler0(){
     if($scope.weightDate){
       console.log('weightDate: '+ $scope.weightDate +" active row :"+activeRow);
     var dateStr = UtilityService.convertDateFormat($scope.weightDate);
     var col = getColumn(dateStr);    
     // set value for selected grid
     if(col>=0) {
-      setWeightValue(dateStr, col);
-      //set action alert 
-      if(!isLastColumn(col)){
-        $scope.actionAlert['weight'] = col+1;
-      }      
+      setWeightValue(dateStr, col);           
     } else {
       alert('Please select a valid date from calender');     
     }
     }    
-  });
-  
+  }
    function setWeightValue(date, col) {
     var dayOfDetail = $scope.child.newBornDetails[col];       
       // check if a there is a value for weight
@@ -136,13 +134,19 @@ angular.module('uhiApp.controllers')
         //set last updated col for this row
         setLastUpdated('weight',col);
         dayOfDetail.weight = $scope.weight;
-        
+         //set action alert 
+        if(!isLastColumn(col)){
+          $scope.alerts['weight'] = col+1;
+        }else {
+          $scope.alerts['weight'] = null;
+        }
         // 
-      } else alert('Please select weight for child');
-     
+      }    
   }
   
-  $scope.$watch('ASHAVisitDate', function(){
+  $scope.$watch('ASHAVisitDate', watchHandler1);
+  $scope.$watch('ASHAVisit', watchHandler1);
+  function watchHandler1(){
     if($scope.ASHAVisitDate){
       console.log('ASHAVisitDate: '+ $scope.ASHAVisitDate +" active row :"+activeRow);
     var dateStr = UtilityService.convertDateFormat($scope.ASHAVisitDate);
@@ -150,18 +154,20 @@ angular.module('uhiApp.controllers')
     // set value for selected grid
     col>=0 ? setASHAVisitValue(dateStr, col): alert('Please select a valid date from calender');      
     }    
-  });
-  
+  }
    function setASHAVisitValue(date, col) {
     var dayOfDetail = $scope.child.newBornDetails[col]; 
      setLastUpdated('ASHAVisit',col);
       // can apply separate logic for each row  
-      dayOfDetail.ASHAVisit = date;
+      //dayOfDetail.ASHAVisit = date;
+     dayOfDetail.ASHAVisit = $scope.ASHAVisit;
       //
     
   }
   
-  $scope.$watch('ANMVisitDate', function(){
+  $scope.$watch('ANMVisitDate', watchHandler2);
+  $scope.$watch('ANMVisit', watchHandler2);
+  function watchHandler2(){
     if($scope.ANMVisitDate){
       console.log('ANMVisitDate: '+ $scope.ANMVisitDate +" active row :"+activeRow);
     var dateStr = UtilityService.convertDateFormat($scope.ANMVisitDate);
@@ -169,17 +175,18 @@ angular.module('uhiApp.controllers')
     // set value for selected grid
     col>=0 ? setANMVisitValue(dateStr, col): alert('Please select a valid date from calender');      
     }    
-  });
-  
+  }
    function setANMVisitValue(date, col) {
     var dayOfDetail = $scope.child.newBornDetails[col];
-      setLastUpdated('ANMVisit',col);
-      dayOfDetail.ANMVisit = date;
+      setLastUpdated('ANMVisit',col);      
+     dayOfDetail.ANMVisit = $scope.ANMVisit;
       //
     
   }
   
-  $scope.$watch('breastFeedDate', function(){
+  $scope.$watch('breastFeedDate', watchHandler3);
+  $scope.$watch('breastFeed', watchHandler3);
+  function watchHandler3(){
     if($scope.breastFeedDate){
       console.log('breastFeedDate: '+ $scope.breastFeedDate +" active row :"+activeRow);
     var dateStr = UtilityService.convertDateFormat($scope.breastFeedDate);
@@ -187,17 +194,18 @@ angular.module('uhiApp.controllers')
     // set value for selected grid
     col>=0 ? setBreastFeedDateValue(dateStr, col): alert('Please select a valid date from calender');      
     }    
-  });
-  
+  }
    function setBreastFeedDateValue(date, col) {
     var dayOfDetail = $scope.child.newBornDetails[col];
        setLastUpdated('breastFeed',col);
-      dayOfDetail.breastFeed = date;
+      dayOfDetail.breastFeed = $scope.breastFeed;
       //
     
   }
   
-  $scope.$watch('wrapCapDate', function(){
+  $scope.$watch('wrapCapDate', watchHandler4);
+  $scope.$watch('wrapCap', watchHandler4);
+  function watchHandler4(){
     if($scope.wrapCapDate){
       console.log('wrapCapDate: '+ $scope.wrapCapDate +" active row :"+activeRow);
     var dateStr = UtilityService.convertDateFormat($scope.wrapCapDate);
@@ -205,17 +213,18 @@ angular.module('uhiApp.controllers')
     // set value for selected grid
     col>=0 ? setWrapCapDateValue(dateStr, col): alert('Please select a valid date from calender');      
     }    
-  });
-  
+  }
    function setWrapCapDateValue(date, col) {
     var dayOfDetail = $scope.child.newBornDetails[col];
      setLastUpdated('wrapCap',col);
-      dayOfDetail.wrapCap = date;
+      dayOfDetail.wrapCap = $scope.wrapCap;
       //
     
   }
   
-  $scope.$watch('sickDate', function(){
+  $scope.$watch('sickDate', watchHandler5);
+  $scope.$watch('sick', watchHandler5);
+  function watchHandler5(){
     if($scope.sickDate){
       console.log('sickDate: '+ $scope.sickDate +" active row :"+activeRow);
     var dateStr = UtilityService.convertDateFormat($scope.sickDate);
@@ -223,12 +232,11 @@ angular.module('uhiApp.controllers')
     // set value for selected grid
     col>=0 ? setSickDateValue(dateStr, col): alert('Please select a valid date from calender');      
     }    
-  });
-  
+  }
    function setSickDateValue(date, col) {
     var dayOfDetail = $scope.child.newBornDetails[col];
     setLastUpdated('sick',col);
-      dayOfDetail.sick = date;
+      dayOfDetail.sick = $scope.sick;
       //
     
   } 
