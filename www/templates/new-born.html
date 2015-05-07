@@ -2,30 +2,302 @@
 
 <div class="tabs-content blue-bg">
 	<div class="newborn-wrapper">
-	<div class="clearfix light-blue-block">
-		<div class="col-sm-12">
-			<div class="col-sm-4">
-				<label class="col-sm-6">Mother Name</label>
-				<div class="col-sm-6"><input type="text" class="form-control" placeholder="lata" ng-model="child.motherName" ng-disabled="true"></div>
-			</div>
-			<div class="col-sm-3">
-				<label class="col-sm-5">Baby Name</label>
-				<div class="col-sm-7"><input type="text" class="form-control" placeholder="Pinky" ng-model="child.name" ng-disabled="true"></div>
-			</div>
-			<div class="col-sm-2">
-				<label class="col-sm-4">DOB</label>
-				<div class="col-sm-8"><input type="text" class="form-control" placeholder="16/10/2014" ng-model="child.dob" ng-disabled="true"></div>
-			</div>
-			<div class="col-sm-3 age-group">
-				<label class="col-sm-2">Age</label>
-				<div class="col-sm-10">
-					<div class="col-sm-4"><input type="text" class="form-control" placeholder="MM" ng-model="child.ageMonths" ng-disabled = "true"></div>
-					<div class="col-sm-4"><input type="text" class="form-control" placeholder="DD" ng-model="child.ageDays" ng-disabled="true"></div>
-					<div class="col-sm-4"><i ng-class="getChildIcon()">&nbsp;</i></div>
+
+		<div class="clearfix light-blue-block">
+			<div class="col-sm-12">
+				<div class="col-sm-4">
+					<label class="col-sm-6">Mother Name</label>
+					<div class="col-sm-6"><input type="text" class="form-control" placeholder="lata" ng-model="child.motherName" ng-disabled="true"></div>
+				</div>
+				<div class="col-sm-3">
+					<label class="col-sm-5">Baby Name</label>
+					<div class="col-sm-7"><input type="text" class="form-control" placeholder="Pinky" ng-model="child.name" ng-disabled="true"></div>
+				</div>
+				<div class="col-sm-2">
+					<label class="col-sm-4">DOB</label>
+					<div class="col-sm-8"><input type="text" class="form-control" placeholder="16/10/2014" ng-model="child.dob" ng-disabled="true"></div>
+				</div>
+				<div class="col-sm-3 age-group">
+					<label class="col-sm-2">Age</label>
+					<div class="col-sm-10">
+						<div class="col-sm-4"><input type="text" class="form-control" placeholder="MM" ng-model="child.ageMonths" ng-disabled = "true"></div>
+						<div class="col-sm-4"><input type="text" class="form-control" placeholder="DD" ng-model="child.ageDays" ng-disabled="true"></div>
+						<div class="col-sm-4"><i ng-class="getChildIcon()">&nbsp;</i></div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+
+		<div class="clearfix newborn-table-wrapper">
+			<div class="left-block">
+				<div class="videos-wrapper">
+					<div class="block blank">
+						
+					</div>
+					<div class="block">
+						<div class="video">
+							<img src="img/newborn-weight.jpg"  ng-click="video.play(0)">
+						</div>
+						<div  class="title">Weight</div>
+					</div>
+					<div class="block">
+						<div class="video">
+							<img src="img/newborn-weight.jpg"  ng-click="video.play(0)">
+						</div>
+						<div class="title">ASHA <br>AWW Visit</div>
+					</div>
+					<div class="block">
+						<div class="video">
+							<img src="img/newborn-weight.jpg"  ng-click="video.play(0)">
+						</div>
+						<div class="title">ANM <br>Doctor Checkup</div>
+					</div>
+					<div class="block">
+						<div class="video">
+							<img src="img/newborn-weight.jpg"  ng-click="video.play(0)">
+						</div>
+						<div class="title">Breastfeed every 2-3 Hours</div>
+					</div>
+					<div class="block">
+						<div class="video">
+							<img src="img/newborn-weight.jpg"  ng-click="video.play(0)">
+						</div>
+						<div class="title">Wrapped + Capped</div>
+					</div>
+					<div class="block">
+						<div class="video">
+							<img src="img/newborn-weight.jpg"  ng-click="video.play(0)">
+						</div>
+						<div class="title">Sick/Weak/Fever</div>
+					</div>
+				</div>
+				<div class="calender-wrapper">
+					<div class="birth-situation">
+						<div>
+							<input type="checkbox" id="preterm" name="" ng-model="child.isPreterm"><label for="preterm">Preterm</label>
+						</div>
+						<div>
+							<input type="checkbox" id="lbw" name="birthDay" ng-model="child.isLBW"><label for="lbw">LBW</label>
+						</div>
+						<div>
+							<input type="checkbox" id="weak" name="birthDay" ng-model="child.isWeak"><label for="weak">Weak/Sick</label>
+						</div>
+					</div>
+					<div class="block">
+						<div class="col-sm-4">
+							<div class="input-group">
+                <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="weightDate" is-open="isOpenPosition['0']"  max-date="getMaxDate()" min-date="getMinDate();" datepicker-options="dateOptions" close-text="Close" datepicker-append-to-body="true" ng-hide="true"/>
+                <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="openCalender($event, '0')"><i class="icon-date"></i></button>
+                </span>
+              </div>
+						</div>
+						<div class="col-sm-8 text-right"><input type="text" class="form-control" ng-model="weight"><label>Weight</label></div>
+					</div>
+					<div class="block">
+						<div class="col-sm-4">
+							<div class="input-group">
+                <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="ASHAVisitDate" is-open="isOpenPosition['1']"  max-date="getMaxDate()" min-date="getMinDate();" datepicker-options="dateOptions" close-text="Close" datepicker-append-to-body="true" ng-hide="true" />
+                <span class="input-group-btn">
+                 <button type="button" class="btn btn-default" ng-click="openCalender($event, '1')"><i class="icon-date"></i></button>
+                </span>
+              </div>
+						</div>
+						<div class="col-sm-8 text-right radio-block">
+							<div>
+		            <input type="radio"  name="radio1" id="Yes" value="Yes">
+		            <label for="Yes">Yes</label>
+	          	</div>
+							<div>
+		            <input type="radio"  name="radio1" id="no" value="no">
+		            <label for="no">No</label>
+	          	</div>
+						</div>
+					</div>
+					<div class="block">
+						<div class="col-sm-4">
+							<div class="input-group">
+                <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="ANMVisitDate" is-open="isOpenPosition['2']"  max-date="getMaxDate()" min-date="getMinDate();" datepicker-options="dateOptions" close-text="Close" datepicker-append-to-body="true" ng-hide="true" />
+                <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="openCalender($event, '2')"><i class="icon-date"></i></button>
+                </span>
+              </div>
+						</div>
+						<div class="col-sm-8 text-right radio-block">
+							<div>
+		            <input type="radio"  name="radio1" id="Yes" value="Yes">
+		            <label for="Yes">Yes</label>
+	          	</div>
+							<div>
+		            <input type="radio"  name="radio1" id="no" value="no">
+		            <label for="no">No</label>
+	          	</div>
+						</div>
+					</div>
+					<div class="block">
+						<div class="col-sm-4">
+							<div class="input-group">
+                <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="breastFeedDate" is-open="isOpenPosition['3']"  max-date="getMaxDate()" min-date="getMinDate();" datepicker-options="dateOptions" close-text="Close" datepicker-append-to-body="true" ng-hide="true" />
+                <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="openCalender($event, '3')"><i class="icon-date"></i></button>
+                </span>
+           		</div>
+						</div>
+						<div class="col-sm-8 text-right radio-block">
+							<div>
+		            <input type="radio"  name="radio1" id="Yes" value="Yes">
+		            <label for="Yes">Yes</label>
+	          	</div>
+							<div>
+		            <input type="radio"  name="radio1" id="no" value="no">
+		            <label for="no">No</label>
+	          	</div>
+						</div>
+					</div>
+					<div class="block">
+						<div class="col-sm-4">
+							<div class="input-group">
+                <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="wrapCapDate" is-open="isOpenPosition['4']"  max-date="getMaxDate()" min-date="getMinDate();" datepicker-options="dateOptions" close-text="Close" datepicker-append-to-body="true" ng-hide="true" />
+                <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="openCalender($event, '4')"><i class="icon-date"></i></button>
+                </span>
+              </div>
+						</div>
+						<div class="col-sm-8 text-right radio-block">
+							<div>
+		            <input type="radio"  name="radio1" id="Yes" value="Yes">
+		            <label for="Yes">Yes</label>
+	          	</div>
+							<div>
+		            <input type="radio"  name="radio1" id="no" value="no">
+		            <label for="no">No</label>
+	          	</div>
+						</div>
+					</div>
+					<div class="block">
+						<div class="col-sm-4">
+							<div class="input-group">
+                <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="sickDate" is-open="isOpenPosition['5']"  max-date="getMaxDate()" min-date="getMinDate();" datepicker-options="dateOptions" close-text="Close" datepicker-append-to-body="true" ng-hide="true" />
+                <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="openCalender($event, '5')"><i class="icon-date"></i></button>
+                </span>
+               </div>
+						</div>
+						<div class="col-sm-8 text-right radio-block">
+							<div>
+		            <input type="radio"  name="radio1" id="Yes" value="Yes">
+		            <label for="Yes">Yes</label>
+	          	</div>
+							<div>
+		            <input type="radio"  name="radio1" id="no" value="no">
+		            <label for="no">No</label>
+	          	</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="right-block">
+				<div class="newborn-day-wrapper">
+					<div class="newborn-day-header">
+						<div class="col-sm-1">
+							<span class="day">Birth <br> Day</span>
+						</div>
+						<div class="col-sm-1">
+							<span class="date">04-10-2014</span>
+							<span class="day">Day 2</span>
+						</div>
+						<div class="col-sm-1">
+							<span class="date">04-10-2014</span>
+							<span class="day">Day 3</span>
+						</div>
+						<div class="col-sm-1">
+							<span class="date">04-10-2014</span>
+							<span class="day">Day 3</span>
+						</div>
+						<div class="col-sm-1">
+							<span class="date">04-10-2014</span>
+							<span class="day">Day 3</span>
+						</div>
+						<div class="col-sm-1">
+							<span class="date">04-10-2014</span>
+							<span class="day">Day 3</span>
+						</div>
+						<div class="col-sm-1">
+							<span class="date">04-10-2014</span>
+							<span class="day">Day 3</span>
+						</div>
+						<div class="col-sm-1">
+							<span class="date">04-10-2014</span>
+							<span class="day">Day 3</span>
+						</div>
+						<div class="col-sm-1">
+							<span class="date">04-10-2014</span>
+							<span class="day">Day 3</span>
+						</div>
+						<div class="col-sm-1">
+							<span class="date">04-10-2014</span>
+							<span class="day">Day 3</span>
+						</div>
+						<div class="col-sm-1">
+							<span class="date">04-10-2014</span>
+							<span class="day">Day 3</span>
+						</div>
+						<div class="col-sm-1">
+							<span class="date">04-10-2014</span>
+							<span class="day">Day 3</span>
+						</div>
+						<div class="col-sm-1">
+							<span class="date">04-10-2014</span>
+							<span class="day">Day 3</span>
+						</div>
+						<div class="col-sm-1">
+							<span class="date">04-10-2014</span>
+							<span class="day">Day 3</span>
+						</div>
+						<div class="col-sm-1">
+							<span class="date">04-10-2014</span>
+							<span class="day">Day 3</span>
+						</div>
+						<div class="col-sm-1">
+							<span class="date">04-10-2014</span>
+							<span class="day">Day 3</span>
+						</div>
+					</div>
+					<div class="newborn-day-body">
+						<div class="newborn-day-row">
+							<div  class="col-sm-1" ng-repeat = "item in child.newBornDetails" ng-class="{'action-alert':$index === actionAlert.weight}">
+								<span>{{item.weight}}</span>
+							</div>
+						</div>
+						<div class="newborn-day-row">
+							<div  class="col-sm-1" ng-repeat = "item in child.newBornDetails">
+								 {{item.ASHAVisit}}
+							</div>
+						</div>
+						<div class="newborn-day-row">
+							<div  class="col-sm-1" ng-repeat = "item in child.newBornDetails">
+								 {{item.ANMVisit}}
+							</div>
+						</div>
+						<div class="newborn-day-row">
+							<div  class="col-sm-1" ng-repeat = "item in child.newBornDetails">
+								 {{item.breastFeed}}
+							</div>
+						</div>
+						<div class="newborn-day-row">
+							<div  class="col-sm-1" ng-repeat = "item in child.newBornDetails">
+								 {{item.wrapCap}}
+							</div>
+						</div>
+						<div class="newborn-day-row">
+							<div  class="col-sm-1" ng-repeat = "item in child.newBornDetails">
+								 {{item.sick}}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
 	<!-- new born table-->
 <!-- new born table head row-->
@@ -265,14 +537,9 @@
 	</div>
 </div>
 
-<div class="clearfix newborn-footer">
+<div class="row">
 	<div class="col-sm-12">
-		<div class="col-sm-6 videos-block">
-			<a href="#"><img src="img/newborn-video4.jpg"></a>
-			<a href="#"><img src="img/newborn-video5.jpg"></a>
-			<a href="#"><img src="img/newborn-video6.jpg"></a>
-		</div>
-		<div class="col-sm-6 text-right">
+		<div class="text-right">
 			<button class="default-btn" ng-click="navigateToChildImmunization();">Go To Immunization</button>
 			<button class="default-btn" ng-click="navigateToMotherFP();">Go To FP</button>
 			<button class="default-btn" ng-click="saveDetails();">Save</button>

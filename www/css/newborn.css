@@ -99,29 +99,126 @@
 .transform-y100{
 	transform:translateY(100%);
 }
-.newborn-footer > div{
-	padding: 0;
-}
-.newborn-footer .videos-block{
-	padding-left: 0;
-}
-.newborn-footer .videos-block + div{
-	padding-right: 0;
-	padding-top: 40px;
-}
-.newborn-footer .videos-block a{
-	margin-right: 20px;
-}
-.newborn-footer .videos-block a:last-child{
-	margin-right: 0;
-}
-.newborn-footer .videos-block + div button{
-	margin-right: 15px;
-}
-.newborn-footer .videos-block + div button:last-child{
-	margin-right: 0;
-}
 
 .newborn-wrapper .action-alert {
   background-color: yellow !important;
+}
+
+/*---new css-----*/
+.newborn-table-wrapper .left-block{
+	width: 38.46%;	
+	float: left;
+	padding-left: 0;
+	padding-right: 3px;
+}
+.newborn-table-wrapper .left-block .videos-wrapper{
+	width:38.09%;
+	float: left;
+}
+.newborn-table-wrapper .left-block .calender-wrapper{
+	width:61.91%;
+	float: left;
+}
+.newborn-table-wrapper .right-block{
+	width: 61.54%;
+	float: left;
+	overflow: auto;
+  white-space: nowrap;
+}
+.newborn-day-header{
+	border-left: none;
+	height: 57px;
+	margin-bottom: 5px;
+}
+.newborn-day-header > div, .newborn-day-body .newborn-day-row > div{
+	height: 55px;
+	text-align: center;
+	background: #fff;
+	border: 1px #000 solid;
+	padding:10px 5px 0;
+	display: inline-block;
+	min-width: 73px;
+	vertical-align: top;
+	float: none;
+	margin-right: -5px;
+}
+.newborn-day-header > div:first-child{
+	border-left: 1px #000 solid;
+}
+.newborn-day-header > div:last-child{
+	border-right: 1px #000 solid;
+}
+.newborn-day-header span{
+	display:block; 
+}
+.newborn-day-header .day{
+	font-family: OpenSans-Semibold;
+	font-size:16px;
+	line-height: 1.2;
+}
+.newborn-day-header .date{
+	font-size: 11px;
+	margin-bottom:2px;
+}
+.newborn-day-body{
+	margin-bottom: 10px;
+}
+.newborn-day-body .newborn-day-row{
+	height: 47px;
+}
+.newborn-day-body .newborn-day-row > div{
+	height: 45px;
+	min-width: 73px;
+}
+.birth-situation{
+	background:#f9f9f9;
+	border: 1px #000 solid;
+	height: 57px;
+	padding:5px;
+	margin-bottom: 5px;
+}
+.birth-situation > div{
+	float: left;
+  margin-right: 10px;
+}
+.left-block .block.blank{
+	height: 57px;
+	margin-bottom: 5px;
+}
+.left-block  .videos-wrapper .block .title{
+	font-family: OpenSans-Semibold;
+	float: left;
+	font-size: 12px;
+	width: 66px;
+}
+.left-block  .videos-wrapper .block{
+	margin-bottom: 3px;
+}
+.left-block .block .video{
+	margin-right: 5px;
+	float: left;
+}
+.left-block .calender-wrapper .block{
+	background: #f9f9f9;
+	border: 1px #000 solid;
+	height: 47px;
+	padding: 5px;
+	margin-bottom: 3px;
+}
+.left-block .calender-wrapper input[type="text"]{
+	width: 54px;
+	display: inline-block;
+}
+.left-block .calender-wrapper input[type="text"] + label{
+	padding-left: 5px;
+}
+.left-block .calender-wrapper .radio-block{
+	padding-top:5px;
+	padding-right: 0;
+}
+.left-block .calender-wrapper .radio-block > div{
+	display: inline-block;
+}
+.left-block .calender-wrapper .radio-block div:first-child{
+	margin-right: 8px;
 }
