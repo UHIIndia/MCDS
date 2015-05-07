@@ -72,10 +72,10 @@
 		height: 115px;
 	}
 	.app-tabs li {	
-		min-width:91px;
+		min-width:102px;
 	}
 	.app-tabs li:last-child {
-		min-width: 49px;
+		min-width: 48px;
 	}
 	.anc-calender-top > div:first-child, .anc-calender-bottom .anc-row > div:first-child{
 		width: 72%;

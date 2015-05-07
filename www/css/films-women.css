@@ -14,9 +14,10 @@ border-top:none;
 }
 .film-women-wrapper .nav-tabs li.active a{
 	background: #f467a7;
-	color:#fff;
+	color:#000;
 	border:1px #fff solid;
 	border-bottom-color: transparent;
+	cursor: pointer;
 
 }
 
@@ -24,6 +25,8 @@ border-top:none;
 	background: #faafba;
 	color:#000;
 	border: 1px #fff solid;
+	  padding: 4px 15px;
+	  height: 34px;
 }
 
 .film-women-wrapper .video{
@@ -40,4 +43,23 @@ border-top:none;
 
 .film-women-wrapper .video img{
 	max-width: 218px;
+}
+
+.film-women-wrapper .all{
+	background: #d3d3d3 !important;
+}
+.film-women-wrapper .family{
+	background: #faafba !important;
+}
+.film-women-wrapper .pregnancy{
+	background: #faafba !important;
+}
+
+.film-women-wrapper .child{
+	background: #b2dfee !important;
+}
+
+.film-women-wrapper .nav-tabs li a img{
+	vertical-align: top;
+	padding-right: 5px;
 }
