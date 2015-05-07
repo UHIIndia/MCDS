@@ -1574,6 +1574,7 @@ $scope.opened=false;
     }
 
         //save button functionality
+     $scope.visitDetailss={}
      $scope.saveANCDetails =function(){
         var VisitItem=["paleEyeVisits","nightBlindVisits","ashaVisits","anmVisits","wtVisits","hbVisits","malariaVisits","bleedingVisits","upVisits","swellingVisits","fitsVisits","usVisits","feverVisits","foulsmellVisits","weaknessVisits","BPVisits","IFAVisits","TTVisits"];
         for(var i=0;i<18;i++){  //if there is an entry
@@ -1584,106 +1585,111 @@ $scope.opened=false;
                         $scope.visitDetails[VisitItem[i]][$scope.lastObj[VisitItem[i]].monthNo].value=$scope.lastObj[VisitItem[i]].value;
                     }else{  //if there is a new entry
                         $scope.visitDetails[VisitItem[i]][$scope.lastObj[VisitItem[i]].monthNo]=$scope.lastObj[VisitItem[i]];
+                        $scope.matchArray[VisitItem[i]]=1;
                     }
                 }else{  
                         var visits =[];
                         visits.push($scope.lastObj[VisitItem[i]]);
-                        $scope.visitDetails[VisitItem[i]] =  _.indexBy(visits, 'pregnancyMonthNo') 
+                        $scope.matchArray[VisitItem[i]]=1;
+                        $scope.visitDetails[VisitItem[i]] =visits;
+                        $scope.visitDetailss[VisitItem[i]] =  _.indexBy(visits, 'pregnancyMonthNo') 
                 }
             }
-             $scope.visitDetails[VisitItem[i]] =  _.indexBy($scope.visitDetails[VisitItem[i]], 'pregnancyMonthNo') 
+             $scope.visitDetailss[VisitItem[i]] =  _.indexBy($scope.visitDetails[VisitItem[i]], 'pregnancyMonthNo') 
         }
         var ANC =[];
         var monthID, ASHAVisit,ANMVisit,weight,TT,HB,paleEye,bleeding,malaria,IFATablets,BP,swelling,headache,urineProtein,urineSugar,nightBlindness,foulSmellingDischarge,fever,otherInfection,lastUpdateDateTime;
+        
+
         for(var i=0;i<=9;i++){ 
             monthID = i;
-            if($scope.visitDetails.ashaVisits[i] !=  undefined){
-                ASHAVisit = $scope.visitDetails.ashaVisits[i].value;
+            if($scope.visitDetailss.ashaVisits[i] !=  undefined){
+                ASHAVisit = $scope.visitDetailss.ashaVisits[i].value;
             }else{
                 ASHAVisit = null;
             }
-            if($scope.visitDetails.anmVisits[i] !=  undefined){
-                ANMVisit = $scope.visitDetails.anmVisits[i].value;
+            if($scope.visitDetailss.anmVisits[i] !=  undefined){
+                ANMVisit = $scope.visitDetailss.anmVisits[i].value;
             }else{
                 ANMVisit = null;
             }
-            if($scope.visitDetails.wtVisits[i] !=  undefined){     //for weight
-                 weight = $scope.visitDetails.wtVisits[i].value
+            if($scope.visitDetailss.wtVisits[i] !=  undefined){     //for weight
+                 weight = $scope.visitDetailss.wtVisits[i].value
             }else{
                 weight = null;
             }
-             if($scope.visitDetails.TTVisits[i] !=  undefined){
-                TT = $scope.visitDetails.TTVisits[i].value
+             if($scope.visitDetailss.TTVisits[i] !=  undefined){
+                TT = $scope.visitDetailss.TTVisits[i].value
             }else{
                 TT = null;
             }
-             if($scope.visitDetails.IFAVisits[i] !=  undefined){
-                IFATablets = $scope.visitDetails.IFAVisits[i].value
+             if($scope.visitDetailss.IFAVisits[i] !=  undefined){
+                IFATablets = $scope.visitDetailss.IFAVisits[i].value
             }else{
                 IFATablets = null;
             }
-            if( $scope.visitDetails.paleEyeVisits[i] !=  undefined){     //for pale eye
-                    paleEye = $scope.visitDetails.paleEyeVisits[i].value;
+            if( $scope.visitDetailss.paleEyeVisits[i] !=  undefined){     //for pale eye
+                    paleEye = $scope.visitDetailss.paleEyeVisits[i].value;
             }else{
                 paleEye = null;
             }
-            if($scope.visitDetails.nightBlindVisits[i] != undefined){     //for night blind
-                 nightBlindness = $scope.visitDetails.nightBlindVisits[i].value;
+            if($scope.visitDetailss.nightBlindVisits[i] != undefined){     //for night blind
+                 nightBlindness = $scope.visitDetailss.nightBlindVisits[i].value;
             }else{
                  nightBlindness = null;
             }
-            if($scope.visitDetails.hbVisits[i] != undefined){     //for night blind
-                 HB = $scope.visitDetails.hbVisits[i].value;
+            if($scope.visitDetailss.hbVisits[i] != undefined){     //for night blind
+                 HB = $scope.visitDetailss.hbVisits[i].value;
             }else{
                  HB = null;
             }
-            if($scope.visitDetails.bleedingVisits[i] != undefined){     //for night blind
-                 bleeding = $scope.visitDetails.bleedingVisits[i].value;
+            if($scope.visitDetailss.bleedingVisits[i] != undefined){     //for night blind
+                 bleeding = $scope.visitDetailss.bleedingVisits[i].value;
             }else{
                  bleeding = null;
             }
-            if($scope.visitDetails.malariaVisits[i] != undefined){     //for night blind
-                 malaria = $scope.visitDetails.malariaVisits[i].value;
+            if($scope.visitDetailss.malariaVisits[i] != undefined){     //for night blind
+                 malaria = $scope.visitDetailss.malariaVisits[i].value;
             }else{
                  malaria = null;
             }     
-            if($scope.visitDetails.upVisits[i] != undefined){     //for pale eye
-                 urineProtein = ($scope.visitDetails.upVisits[i].value == "+"?'yes':'no');
+            if($scope.visitDetailss.upVisits[i] != undefined){     //for pale eye
+                 urineProtein = ($scope.visitDetailss.upVisits[i].value == "+"?'yes':'no');
             }else{
                  urineProtein = null;
             }
-            if($scope.visitDetails.swellingVisits[i] != undefined){     //for night blind
-                 swelling =  $scope.visitDetails.swellingVisits[i].value;
+            if($scope.visitDetailss.swellingVisits[i] != undefined){     //for night blind
+                 swelling =  $scope.visitDetailss.swellingVisits[i].value;
             }else{
                  swelling = null;
             }
-            if($scope.visitDetails.fitsVisits[i] != undefined){     //for fits
-                 headache =  $scope.visitDetails.fitsVisits[i].value;
+            if($scope.visitDetailss.fitsVisits[i] != undefined){     //for fits
+                 headache =  $scope.visitDetailss.fitsVisits[i].value;
             }else{
                  headache = null;
             }
-            if($scope.visitDetails.usVisits[i] != undefined){     //for pale eye
-                 urineSugar =  ($scope.visitDetails.usVisits[i].value  == "+"?'yes':'no');
+            if($scope.visitDetailss.usVisits[i] != undefined){     //for pale eye
+                 urineSugar =  ($scope.visitDetailss.usVisits[i].value  == "+"?'yes':'no');
             }else{
                  urineSugar = null;
             }
-            if($scope.visitDetails.foulsmellVisits[i] != undefined){     //for night blind
-                 foulSmellingDischarge = ($scope.visitDetails.foulsmellVisits[i].value  == "+"?'yes':'no');
+            if($scope.visitDetailss.foulsmellVisits[i] != undefined){     //for night blind
+                 foulSmellingDischarge = ($scope.visitDetailss.foulsmellVisits[i].value  == "+"?'yes':'no');
             }else{
                  foulSmellingDischarge = null;
             }
-            if($scope.visitDetails.feverVisits[i] != undefined){     //for fits
-                 fever = ($scope.visitDetails.feverVisits[i].value== "+"?'yes':'no');
+            if($scope.visitDetailss.feverVisits[i] != undefined){     //for fits
+                 fever = ($scope.visitDetailss.feverVisits[i].value== "+"?'yes':'no');
             }else{
                  fever = null;
             }
-            if($scope.visitDetails.weaknessVisits[i] != undefined){     //for fits
-                 otherInfection = ($scope.visitDetails.weaknessVisits[i].value == "+"?'yes':'no');
+            if($scope.visitDetailss.weaknessVisits[i] != undefined){     //for fits
+                 otherInfection = ($scope.visitDetailss.weaknessVisits[i].value == "+"?'yes':'no');
             }else{
                  otherInfection = null;
             }
-            if($scope.visitDetails.BPVisits[i] != undefined){     //for fits
-                 BP = $scope.visitDetails.BPVisits[i].value;
+            if($scope.visitDetailss.BPVisits[i] != undefined){     //for fits
+                 BP = $scope.visitDetailss.BPVisits[i].value;
             }else{
                  BP = null;
             }
