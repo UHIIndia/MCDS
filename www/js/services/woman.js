@@ -59,6 +59,8 @@ angular.module('uhiApp.services')
       var womanID = generateActualWomanID(womanObj.name, womanObj.dob);
       var displayID = generateVisibleWomanID(womanObj.house);
       // add this woman to women List
+      var dateISO = UtilityService.convertToDate(womanObj.dob).toISOString();
+      womanObj.dob = dateISO;
       womanObj.womanID = womanID;
       womanObj.displayID = displayID;
       womanObj.city =UtilityService.getCityCode();

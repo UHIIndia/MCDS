@@ -7,7 +7,7 @@ if(displayID){
  if($scope.woman){
   // update age for woman
   $scope.womanAge= (function(){
-   if($scope.woman.dob){    
+   if($scope.woman.dob){
     return UtilityService.calcAge($scope.woman.dob, true);
    } 
   }());
@@ -22,6 +22,7 @@ if(displayID){
       childObj.ageDays = totalDays%30;
      });
      $scope.savedChildren =angular.copy($scope.children);
+     sortChildren();
    } else {
      $scope.children = [{}];
    }    
@@ -208,7 +209,7 @@ $scope.saveDetails = function($event){
       //this is an update to child
       ChildService.updateChildDetails(childObj);
     }
-    $scope.savedChildren.push(childObj);   
+    $scope.savedChildren.push(angular.copy(childObj));   
      
     } else{
       // no name of child 
@@ -216,15 +217,11 @@ $scope.saveDetails = function($event){
     
   });
   // sort saved children on age youngest to oldest
-  $scope.savedChildren.sort(function(childA, childB){
-    var daysA = childA.ageMonths * 30 + childA.ageDays;
-    var daysB = childB.ageMonths * 30 + childB.ageDays;
-    return daysA - daysB;
-  });
+ sortChildren();
  // update child related data (livingChildren and dob of youngest child)
   if($scope.savedChildren.length){
     $scope.woman.livingChildrenCount = $scope.savedChildren.length;
-    $scope.woman.youngestChildDob = $scope.savedChildren[0].dob; // array is already sorted from youngest to oldest
+    //$scope.woman.youngestChildDob = $scope.savedChildren[0].dob; // array is already sorted from youngest to oldest
     WomanService.updateWomanDetails($scope.woman);
   }
       
@@ -356,6 +353,16 @@ $scope.validations = {
   return null;
  }   
 }
-  
+function sortChildren() {
+  // sort saved children on age youngest to oldest
+  $scope.savedChildren.sort(function(childA, childB){
+    /*var daysA = childA.ageMonths * 30 + childA.ageDays;
+    var daysB = childB.ageMonths * 30 + childB.ageDays;
+    return daysA - daysB;*/
+    var childADob = new Date(childA.dob);
+    var childBDob = new Date(childB.dob);
+    return childBDob - childADob;
+  });
+}  
 
 });

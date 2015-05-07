@@ -8,7 +8,7 @@ angular.module('uhiApp.controllers')
     var displayID = UtilityService.getChildDisplayID();
     console.log(displayID);
     // hard code display id for dev 
-    displayID = "zz.1.1";
+    //displayID ? displayID=displayID: displayID ="h1.1.1";
     if(!displayID){
       console.log('should not be here, child is not added in system');
     } else {
@@ -16,22 +16,24 @@ angular.module('uhiApp.controllers')
       $scope.child = ChildService.getChildDetails(displayID);
       //$scope.child.newBornDetails = [];
       //set age for child  
-      setAge();
+      $scope.dobChild = UtilityService.convertDateFormat(new Date($scope.child.dob)); // child.dob is saved in ISO string
+      setAge($scope.dobChild);
       if(!$scope.child.newBornDetails.length){
         setDatesInHeader();
       }
       // initialize action 
     }
   }
-  function setAge() {
-    var days= UtilityService.calcAge($scope.child.dob, false);
+  function setAge(dob) {
+    // dob is "dd/mm/yyyy"
+    var days= UtilityService.calcAge(dob, false);
     $scope.child.ageMonths = parseInt(days/30);
     $scope.child.ageDays = days%30;
   }
   function setDatesInHeader() {
-    var dob = UtilityService.convertToDate($scope.child.dob);
-   // var days= [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 42]; 
-    var days= [1, 2, 3, 4, 5, 6, 7];
+    var dob = UtilityService.convertToDate($scope.dobChild);
+    var days= [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 42]; 
+    //var days= [1, 2, 3, 4, 5, 6, 7];
     angular.forEach(days, function(day, index){
       var date = UtilityService.convertDateFormat(UtilityService.addDaysToDate(dob, day-1));
       var obj ={day: day, date: date};

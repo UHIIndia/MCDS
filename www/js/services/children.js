@@ -62,6 +62,8 @@ angular.module('uhiApp.services')
     addNewChild : function(childObj){
      var childID = generateActualChildID(childObj.motherID, childObj.name, childObj.dob); // motherID + AR1502015
      var displayID = generateVisibleChildID(childObj.motherDisplayID); //house#.womanNo.childno
+      var dateISO = UtilityService.convertToDate(childObj.dob).toISOString();
+      childObj.dob = dateISO;
       childObj.childID = childID;
       childObj.displayID = displayID;
       childObj.city =UtilityService.getCityCode();

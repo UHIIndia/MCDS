@@ -15,7 +15,7 @@
 				</div>
 				<div class="col-sm-2">
 					<label class="col-sm-4">DOB</label>
-					<div class="col-sm-8"><input type="text" class="form-control" placeholder="16/10/2014" ng-model="child.dob" ng-disabled="true"></div>
+					<div class="col-sm-8"><input type="text" class="form-control" placeholder="16/10/2014" ng-model="dobChild" ng-disabled="true"></div>
 				</div>
 				<div class="col-sm-3 age-group">
 					<label class="col-sm-2">Age</label>
@@ -105,11 +105,11 @@
 						</div>
 						<div class="pull-right radio-block">
 							<div>
-		            <input type="radio"  name="radio1" id="Yes" value="Yes"  ng-model="ASHAVisit" ng-value="true">
+		            <input type="radio"  ng-model="ASHAVisit" ng-value="true">
 		            <label for="Yes">Yes</label>
 	          	</div>
 							<div>
-		            <input type="radio"  name="radio1" id="no" value="no"  ng-model="ASHAVisit" ng-value="false">
+		            <input type="radio"  ng-model="ASHAVisit" ng-value="false">
 		            <label for="no">No</label>
 	          	</div>
 						</div>
@@ -125,11 +125,11 @@
 						</div>
 						<div class="pull-right radio-block">
 							<div>
-		            <input type="radio"  name="radio1" id="Yes" value="Yes"  ng-model="ANMVist" ng-value="true">
+		            <input type="radio"  ng-model="ANMVisit" ng-value="true">
 		            <label for="Yes">Yes</label>
 	          	</div>
 							<div>
-		            <input type="radio"  name="radio1" id="no" value="no"  ng-model="ANMVist" ng-value="false">
+		            <input type="radio"  ng-model="ANMVisit" ng-value="false">
 		            <label for="no">No</label>
 	          	</div>
 						</div>
@@ -145,11 +145,11 @@
 						</div>
 						<div class="pull-right radio-block">
 							<div>
-		            <input type="radio"  name="radio1" id="Yes" value="Yes"  ng-model="breastFeed" ng-value="yes">
+		            <input type="radio"  ng-model="breastFeed" ng-value="true">
 		            <label for="Yes">Yes</label>
 	          	</div>
 							<div>
-		            <input type="radio"  name="radio1" id="no" value="no"  ng-model="breastFeed" ng-value="false">
+		            <input type="radio"  ng-model="breastFeed" ng-value="false">
 		            <label for="no">No</label>
 	          	</div>
 						</div>
@@ -165,11 +165,11 @@
 						</div>
 						<div class="pull-right radio-block">
 							<div>
-		            <input type="radio"  name="radio1" id="Yes" value="Yes" ng-model="wrapCap" ng-value="yes">
+		            <input type="radio" ng-model="wrapCap" ng-value="true">
 		            <label for="Yes">Yes</label>
 	          	</div>
 							<div>
-		            <input type="radio"  name="radio1" id="no" value="no" ng-model="wrapCap" ng-value="false">
+		            <input type="radio"  ng-model="wrapCap" ng-value="false">
 		            <label for="no">No</label>
 	          	</div>
 						</div>
@@ -184,11 +184,11 @@
               </div>
 							<input type="text" class="form-control"><label>Temp</label>
 							<div>
-		            <input type="radio"  name="radio1" id="Yes" value="Yes" ng-model="sick" ng-value="yes">
+		            <input type="radio" ng-model="sick" ng-value="true">
 		            <label for="Yes">Yes</label>
 	          	</div>
 							<div>
-		            <input type="radio"  name="radio1" id="no" value="no" ng-model="sick" ng-value="false">
+		            <input type="radio"  ng-model="sick" ng-value="false">
 		            <label for="no">No</label>
 	          	</div>
 						</div>
@@ -205,33 +205,38 @@
 					</div>
 					<div class="newborn-day-body">
 						<div class="newborn-day-row">
-							<div  class="col-sm-1" ng-repeat = "item in child.newBornDetails" ng-class="{'action-alert':$index === actionAlert.weight}">
+							<div  class="col-sm-1" ng-repeat = "item in child.newBornDetails" ng-class="{'action-alert':$index === alerts.weight}">
 								<span>{{item.weight}}</span>
 							</div>
 						</div>
 						<div class="newborn-day-row">
 							<div  class="col-sm-1" ng-repeat = "item in child.newBornDetails">
-								 {{item.ASHAVisit}}
+                              <span ng-if ="item.ASHAVisit === true">Yes</span>
+              <span ng-if ="item.ASHAVisit === false">No</span>
 							</div>
 						</div>
 						<div class="newborn-day-row">
 							<div  class="col-sm-1" ng-repeat = "item in child.newBornDetails">
-								 {{item.ANMVisit}}
+                              <span ng-if ="item.ANMVisit === true">Yes</span>
+              <span ng-if ="item.ANMVisit === false">No</span>
 							</div>
 						</div>
 						<div class="newborn-day-row">
 							<div  class="col-sm-1" ng-repeat = "item in child.newBornDetails">
-								 {{item.breastFeed}}
+                              <span ng-if ="item.breastFeed === true">Yes</span>
+              <span ng-if ="item.breastFeed === false">No</span>
 							</div>
 						</div>
 						<div class="newborn-day-row">
 							<div  class="col-sm-1" ng-repeat = "item in child.newBornDetails">
-								 {{item.wrapCap}}
+                              <span ng-if ="item.wrapCap === true">Yes</span>
+              <span ng-if ="item.wrapCap === false">No</span>
 							</div>
 						</div>
 						<div class="newborn-day-row">
 							<div  class="col-sm-1" ng-repeat = "item in child.newBornDetails">
-								 {{item.sick}}
+                              <span ng-if ="item.sick === true">Yes</span>
+              <span ng-if ="item.sick === false">No</span>
 							</div>
 						</div>
 					</div>

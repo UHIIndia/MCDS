@@ -38,10 +38,15 @@ angular.module('uhiApp.services')
     },
     calcAge: function(dob, inYear){
       if(!angular.isDate(dob)){
-        //its a dd/mm/yyyy string 
-        var arr = dob.split('/');
-        var mmddyyyyStr = arr[1]+"/"+arr[0]+"/"+arr[2];
-        dob = new Date(mmddyyyyStr);
+        if(dob.indexOf('/')>0){
+          //its a dd/mm/yyyy string 
+          var arr = dob.split('/');
+          var mmddyyyyStr = arr[1]+"/"+arr[0]+"/"+arr[2];
+          dob = new Date(mmddyyyyStr);
+        } else {
+          //this is ISO string
+          dob = new Date(dob);
+        }        
       }
         var currDate =new Date(),
         diffYear = currDate.getFullYear() - dob.getFullYear(),
