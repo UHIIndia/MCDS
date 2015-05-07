@@ -94,8 +94,8 @@ console.log(womanDisplayID);
     var monthNo,LMP,EDD,currentMonth;
     $scope.dateOfDelivery=true;
     $scope.enableNewBorn =true;
-    $scope.enterButton = false;
-    $scope.pregWomanExist=true;
+    $scope.enterButton = true;
+    $scope.pregWomanExist=false;
     $scope.disableButton=false;
     $scope.pregWomanName = (womanData == undefined?'' :womanData.name);
     $scope.pregWomanPath = UtilityService.loadImage(womanData.womanID);
@@ -117,12 +117,13 @@ console.log(womanDisplayID);
         $scope.enterButton=true;
         $scope.pregWomanExist=false;
     }else{
+         $scope.enterButton=false;
         var LMP =  womanData.LMP; // 9/2/2015
         var EDD = womanData.EDD;
         showPregDetails(LMP,EDD);
     }
     function showPregDetails(LMP,EDD){
-     
+    $scope.detailSaved=false; 
     $scope.pregWomanExist=true;                //already exists
     $scope.disableButton=true;       
     $scope.LMPCalendarDate = LMP;
@@ -1714,6 +1715,7 @@ $scope.opened=false;
                     $scope.disableNewBorn = false;
                 }
                 WomanService.updateWomanDetails(womanData);
+                $scope.detailSaved=true;
                 //call child service   $scope.birthGender.name  
             }else if($scope.MaternalOutcome == undefined){
                 alert("please select maternal outcome");    
@@ -1722,6 +1724,7 @@ $scope.opened=false;
             }
         }else{
               WomanService.updateWomanDetails(womanData);
+              $scope.detailSaved=true; 
                 //call child service
         }
     }

@@ -449,3 +449,10 @@ button.activeNewBorn{
   50% { background-color: #89c53f; box-shadow: 0 0 10px #89c53f; }
   100% { background-color: #5f941e; box-shadow: 0 0 3px #5f941e; }
 }
+
+.hide-on-load{
+	display :none;
+}
+.show-on-render{
+	display: block;
+}

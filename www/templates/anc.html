@@ -33,7 +33,7 @@
                <button type="button" class="btn btn-default" ng-click="open($event,'LMP')" ng-disabled="disableButton"><i class="icon-date-medium"></i></button>
              </span>
            </div>
-           <span ng-class="{'active':true}" ng-show="noEDD" >LMP should be 45 days before current date</span>
+           <span class="hide-on-load" ng-class="{'active':true,'show-on-render':noEDD}" >LMP should be 45 days before current date</span>
          </div>
        </div>
        <div class="col-sm-4">
@@ -66,7 +66,7 @@
     <div class="col-sm-1">&nbsp;</div>
     <div class="col-sm-1">&nbsp;</div>
   </div>
-  <div class="col-sm-12 months-activity" ng-show="pregWomanExist">
+  <div class="col-sm-12 months-activity hide-on-load" ng-class="{'show-on-render':pregWomanExist}" >
     <div class="vertical-txt month-heading">Months</div>
     <div class="col-sm-1"><div class="vertical-txt">Past 3 Years</div></div>
     <div class="col-sm-1">1st <img src="img/maternal-1st.gif" class="img-responsive"></div>
@@ -88,7 +88,7 @@
 <div class="col-sm-3">
   <!--Mother age details Form-->
   <!--birthoutcome Form-->  
-  <div class="birth-outcome" ng-show="pregWomanExist">
+  <div class="birth-outcome hide-on-load" ng-class="{'show-on-render':pregWomanExist}">
     <form class="form-horizontal clearfix">
       <h4>Birth Outcome:</h4>
       <!--DOB starts-->
@@ -140,7 +140,7 @@
 </div>
 
     <!--maternal outcome-->
-    <div class="maternal-outcome"  ng-show="pregWomanExist">
+    <div class="maternal-outcome hide-on-load" ng-class="{'show-on-render':pregWomanExist}">
       <h4>Maternal Outcome:</h4>
       <div class="radio-list clearfix">
         <div>
@@ -160,7 +160,7 @@
      </div>
    </div>
    <!--anc calender body-->
-   <div class="clearfix anc-calender-bottom" ng-show="pregWomanExist">
+   <div class="clearfix anc-calender-bottom hide-on-load" ng-class="{'show-on-render':pregWomanExist}">
      
     <div class="anc-row clearfix">
       <div class="col-sm-9">
@@ -1145,11 +1145,13 @@
 </div>
 </div>
 
+
 </div>
 <div class="row">
-  <div class="col-sm-12 text-right">
-    <button class="default-btn" ng-click="gotoNewBorn()" ng-show="pregWomanExist" ng-disabled="disableNewBorn" ng-class="{'activeNewBorn':disableNewBorn == false}">Go to new born</button>
-    <button class="default-btn" ng-click="saveANCDetails()" ng-show="pregWomanExist">Save</button>
+  <div class="col-sm-12 text-right hide-on-load" ng-class="{'show-on-render':pregWomanExist}">
+    <button class="default-btn" ng-click="gotoNewBorn()"  ng-disabled="disableNewBorn" ng-class="{'activeNewBorn':disableNewBorn == false}">Go to new born</button>
+    <button class="default-btn" ng-click="saveANCDetails()" >Save</button>
+    <div ng-show="detailSaved">Details saved</div>
   </div>
 </div>
 </div>
