@@ -1,6 +1,6 @@
 .newborn-wrapper .light-blue-block{
-	padding-top: 15px;
-	margin-bottom: 15px;
+	padding-top: 10px;
+	margin-bottom: 10px;
 }
 .newborn-wrapper .light-blue-block label{
 	text-align: left;
@@ -21,117 +21,33 @@
 	padding-left: 0;
 
 }
-
-.newborn-thead-wrapper > div > div:first-child,
-.newborn-tbody-wrapper > div > div > div:first-child{
-	padding-left: 0;
-}
-.newborn-thead-wrapper .newborn-thead{
-	background: #fff;
-	padding-right: 0;
-	padding-left: 0;
-	border:1px #000 solid;
-	height: 57px;
-	margin-bottom: 5px;
-}
-.newborn-thead-wrapper .newborn-thead > div{
-	border-right:1px #000 solid;
-	height: 55px;	
-	padding: 3px;
-}
-
-.newborn-thead-wrapper .newborn-thead > div:last-child{
-	border-right: none;
-	background: #f9f9f9;
-}
-.newborn-thead-wrapper .newborn-thead .day{
-	font-family: OpenSans-Semibold;
-	font-size: 16px;
-	text-align: center;
-}
-.newborn-thead-wrapper .newborn-thead .date{
-	font-size: 11px;
-	margin-top: 5px;
-	text-align: center;
-}
-.newborn-thead .birth-situation > div{
-	float: left;
-	margin-right:10px;
-}
-.newborn-tbody-wrapper > div{
-	margin-bottom: 10px;
-}
-.newborn-tbody-wrapper .newborn-tbody{
-	border: 1px #000 solid;
-	padding-left:0;
-	padding-right: 0;
-}
-.newborn-tbody-wrapper .newborn-tbody > div{
-	border-right:1px #000 solid;
-	height: 103px;
-	background: #fff;
-}
-.newborn-tbody-wrapper .newborn-tbody > div:last-child{
-	border-right:none;
-	background: #f9f9f9;
-}
-.radio-group > div {
-	float: right;
-	margin-right: 20px;
-}
-.radio-group > div:first-child{
-	margin-right: 0;
-}
-.newborn-tbody-wrapper{
-	height: 250px;
-	overflow: auto;
-	margin-bottom: 15px;
-}
-.newborn-tbody input[type="text"] {
-  width: 40px;
-  display: inline-block;
-  margin: 0 10px;
-}
-.newborn-thead-wrapper > div, .newborn-tbody-wrapper > div > div{
-	padding: 0;
-}
-
-.transform-y100{
-	transform:translateY(100%);
-}
-
-.newborn-wrapper .action-alert {
-  background-color: yellow !important;
-}
-
 /*---new css-----*/
 .newborn-table-wrapper .left-block{
-	width: 38.46%;	
+	width: 41.8%;	
 	float: left;
 	padding-left: 0;
 	padding-right: 3px;
 }
 .newborn-table-wrapper .left-block .videos-wrapper{
-	width:38.09%;
+	width:35.09%;
 	float: left;
 }
 .newborn-table-wrapper .left-block .calender-wrapper{
-	width:61.91%;
+	width:64.91%;
 	float: left;
 }
 .newborn-table-wrapper .right-block{
-	width: 61.54%;
+	width:58.2%;
 	float: left;
 	overflow: auto;
   white-space: nowrap;
 }
 .newborn-day-header{
 	border-left: none;
-	height: 57px;
 	margin-bottom: 5px;
 }
 .newborn-day-header > div, .newborn-day-body .newborn-day-row > div{
-	height: 55px;
+	height: 57px;
 	text-align: center;
 	background: #fff;
 	border: 1px #000 solid;
@@ -164,10 +80,10 @@
 	margin-bottom: 10px;
 }
 .newborn-day-body .newborn-day-row{
-	height: 47px;
+	margin-bottom: 3px;
 }
 .newborn-day-body .newborn-day-row > div{
-	height: 45px;
+	height: 53px;
 	min-width: 73px;
 }
 .birth-situation{
@@ -181,6 +97,10 @@
 	float: left;
   margin-right: 10px;
 }
+.left-block  .videos-wrapper .block{
+	margin-bottom: 3px;
+	height: 53px;
+}
 .left-block .block.blank{
 	height: 57px;
 	margin-bottom: 5px;
@@ -191,9 +111,6 @@
 	font-size: 12px;
 	width: 66px;
 }
-.left-block  .videos-wrapper .block{
-	margin-bottom: 3px;
-}
 .left-block .block .video{
 	margin-right: 5px;
 	float: left;
@@ -201,12 +118,12 @@
 .left-block .calender-wrapper .block{
 	background: #f9f9f9;
 	border: 1px #000 solid;
-	height: 47px;
+	height: 53px;
 	padding: 5px;
 	margin-bottom: 3px;
 }
 .left-block .calender-wrapper input[type="text"]{
-	width: 54px;
+	width: 45px;
 	display: inline-block;
 }
 .left-block .calender-wrapper input[type="text"] + label{
@@ -221,4 +138,11 @@
 }
 .left-block .calender-wrapper .radio-block div:first-child{
 	margin-right: 8px;
+}
+.calender-wrapper .temp-date{
+	float: left;
+	width: 32px;
+}
+.calender-wrapper .date-block{
+	width: 35px;
 }

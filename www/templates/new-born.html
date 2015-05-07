@@ -36,37 +36,37 @@
 					</div>
 					<div class="block">
 						<div class="video">
-							<img src="img/newborn-weight.jpg"  ng-click="video.play(0)">
+							<img src="img/newborn/newborn-weight.jpg"  ng-click="video.play(0)">
 						</div>
 						<div  class="title">Weight</div>
 					</div>
 					<div class="block">
 						<div class="video">
-							<img src="img/newborn-weight.jpg"  ng-click="video.play(0)">
+							<img src="img/newborn/newborn-asha.jpg"  ng-click="video.play(1)">
 						</div>
 						<div class="title">ASHA <br>AWW Visit</div>
 					</div>
 					<div class="block">
 						<div class="video">
-							<img src="img/newborn-weight.jpg"  ng-click="video.play(0)">
+							<img src="img/newborn/newborn-anm.jpg"  ng-click="video.play(2)">
 						</div>
 						<div class="title">ANM <br>Doctor Checkup</div>
 					</div>
 					<div class="block">
 						<div class="video">
-							<img src="img/newborn-weight.jpg"  ng-click="video.play(0)">
+							<img src="img/newborn/newborn-breastfeed.jpg"  ng-click="video.play(3)">
 						</div>
 						<div class="title">Breastfeed every 2-3 Hours</div>
 					</div>
 					<div class="block">
 						<div class="video">
-							<img src="img/newborn-weight.jpg"  ng-click="video.play(0)">
+							<img src="img/newborn/newborn-wrapped.jpg"  ng-click="video.play(4)">
 						</div>
 						<div class="title">Wrapped + Capped</div>
 					</div>
 					<div class="block">
 						<div class="video">
-							<img src="img/newborn-weight.jpg"  ng-click="video.play(0)">
+							<img src="img/newborn/newborn-fever.jpg"  ng-click="video.play(5)">
 						</div>
 						<div class="title">Sick/Weak/Fever</div>
 					</div>
@@ -84,7 +84,7 @@
 						</div>
 					</div>
 					<div class="block">
-						<div class="col-sm-4">
+						<div class="pull-left date-block">
 							<div class="input-group">
                 <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="weightDate" is-open="isOpenPosition['0']"  max-date="getMaxDate()" min-date="getMinDate();" datepicker-options="dateOptions" close-text="Close" datepicker-append-to-body="true" ng-hide="true"/>
                 <span class="input-group-btn">
@@ -92,10 +92,10 @@
                 </span>
               </div>
 						</div>
-						<div class="col-sm-8 text-right"><input type="text" class="form-control" ng-model="weight"><label>Weight</label></div>
+						<div class="pull-right"><input type="text" class="form-control" ng-model="weight"><label>Weight</label></div>
 					</div>
 					<div class="block">
-						<div class="col-sm-4">
+						<div class="pull-left date-block">
 							<div class="input-group">
                 <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="ASHAVisitDate" is-open="isOpenPosition['1']"  max-date="getMaxDate()" min-date="getMinDate();" datepicker-options="dateOptions" close-text="Close" datepicker-append-to-body="true" ng-hide="true" />
                 <span class="input-group-btn">
@@ -103,7 +103,7 @@
                 </span>
               </div>
 						</div>
-						<div class="col-sm-8 text-right radio-block">
+						<div class="pull-right radio-block">
 							<div>
 		            <input type="radio"  name="radio1" id="Yes" value="Yes"  ng-model="ASHAVisit" ng-value="true">
 		            <label for="Yes">Yes</label>
@@ -115,7 +115,7 @@
 						</div>
 					</div>
 					<div class="block">
-						<div class="col-sm-4">
+						<div class="pull-left date-block">
 							<div class="input-group">
                 <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="ANMVisitDate" is-open="isOpenPosition['2']"  max-date="getMaxDate()" min-date="getMinDate();" datepicker-options="dateOptions" close-text="Close" datepicker-append-to-body="true" ng-hide="true" />
                 <span class="input-group-btn">
@@ -123,7 +123,7 @@
                 </span>
               </div>
 						</div>
-						<div class="col-sm-8 text-right radio-block">
+						<div class="pull-right radio-block">
 							<div>
 		            <input type="radio"  name="radio1" id="Yes" value="Yes"  ng-model="ANMVist" ng-value="true">
 		            <label for="Yes">Yes</label>
@@ -135,7 +135,7 @@
 						</div>
 					</div>
 					<div class="block">
-						<div class="col-sm-4">
+						<div class="pull-left date-block">
 							<div class="input-group">
                 <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="breastFeedDate" is-open="isOpenPosition['3']"  max-date="getMaxDate()" min-date="getMinDate();" datepicker-options="dateOptions" close-text="Close" datepicker-append-to-body="true" ng-hide="true" />
                 <span class="input-group-btn">
@@ -143,7 +143,7 @@
                 </span>
            		</div>
 						</div>
-						<div class="col-sm-8 text-right radio-block">
+						<div class="pull-right radio-block">
 							<div>
 		            <input type="radio"  name="radio1" id="Yes" value="Yes"  ng-model="breastFeed" ng-value="yes">
 		            <label for="Yes">Yes</label>
@@ -155,7 +155,7 @@
 						</div>
 					</div>
 					<div class="block">
-						<div class="col-sm-4">
+						<div class="pull-left date-block">
 							<div class="input-group">
                 <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="wrapCapDate" is-open="isOpenPosition['4']"  max-date="getMaxDate()" min-date="getMinDate();" datepicker-options="dateOptions" close-text="Close" datepicker-append-to-body="true" ng-hide="true" />
                 <span class="input-group-btn">
@@ -163,7 +163,7 @@
                 </span>
               </div>
 						</div>
-						<div class="col-sm-8 text-right radio-block">
+						<div class="pull-right radio-block">
 							<div>
 		            <input type="radio"  name="radio1" id="Yes" value="Yes" ng-model="wrapCap" ng-value="yes">
 		            <label for="Yes">Yes</label>
@@ -175,15 +175,14 @@
 						</div>
 					</div>
 					<div class="block">
-						<div class="col-sm-4">
-							<div class="input-group">
+						<div class="text-right radio-block">
+							<div class="input-group temp-date">
                 <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="sickDate" is-open="isOpenPosition['5']"  max-date="getMaxDate()" min-date="getMinDate();" datepicker-options="dateOptions" close-text="Close" datepicker-append-to-body="true" ng-hide="true" />
                 <span class="input-group-btn">
                 <button type="button" class="btn btn-default" ng-click="openCalender($event, '5')"><i class="icon-date"></i></button>
                 </span>
-               </div>
-						</div>
-						<div class="col-sm-8 text-right radio-block">
+              </div>
+							<input type="text" class="form-control"><label>Temp</label>
 							<div>
 		            <input type="radio"  name="radio1" id="Yes" value="Yes" ng-model="sick" ng-value="yes">
 		            <label for="Yes">Yes</label>
