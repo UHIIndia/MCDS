@@ -92,7 +92,7 @@
                 </span>
               </div>
 						</div>
-						<div class="pull-right"><input type="text" class="form-control" ng-model="weight" ng-blur="watchHandler0();"><label>Weight</label></div>
+						<div class="pull-right"><input type="text" class="form-control" ng-model="weight" ng-blur="watchHandler0();"><label>Weight (kg)</label></div>
 					</div>
 					<div class="block">
 						<div class="pull-left date-block">
@@ -182,7 +182,7 @@
                 <button type="button" class="btn btn-default" ng-click="openCalender($event, '5')"><i class="icon-date"></i></button>
                 </span>
               </div>
-							<input type="text" class="form-control"><label>Temp</label>
+							<input type="text" class="form-control" ng-model="temp" ng-blur="watchHandler5();"><label>Temp(<sup>o</sup>F)</label>
 							<div>
 		            <input type="radio" ng-model="sick" ng-value="true">
 		            <label for="Yes">Yes</label>
@@ -222,21 +222,21 @@
 							</div>
 						</div>
 						<div class="newborn-day-row">
-							<div  class="col-sm-1" ng-repeat = "item in child.newBornDetails">
+							<div  class="col-sm-1" ng-repeat = "item in child.newBornDetails" ng-class="{'yellow-alert':$index === rows[3].yellowAlert}">
                               <span ng-if ="item.breastFeed === true">Yes</span>
               <span ng-if ="item.breastFeed === false">No</span>
 							</div>
 						</div>
 						<div class="newborn-day-row">
-							<div  class="col-sm-1" ng-repeat = "item in child.newBornDetails">
+							<div  class="col-sm-1" ng-repeat = "item in child.newBornDetails" ng-class="{'red-alert':isRedCell(4, $index)}">
                               <span ng-if ="item.wrapCap === true">Yes</span>
               <span ng-if ="item.wrapCap === false">No</span>
 							</div>
 						</div>
 						<div class="newborn-day-row">
-							<div  class="col-sm-1" ng-repeat = "item in child.newBornDetails">
-                              <span ng-if ="item.sick === true">Yes</span>
-              <span ng-if ="item.sick === false">No</span>
+							<div  class="col-sm-1" ng-repeat = "item in child.newBornDetails" ng-class="{'yellow-alert':$index === rows[5].yellowAlert, 'red-alert':isRedCell(5, $index)}">
+                              <span ng-if ="item.sick === true">Yes</br> {{item.temp}}</span>
+              <span ng-if ="item.sick === false">No </br>{{item.temp}}</span>
 							</div>
 						</div>
 					</div>
