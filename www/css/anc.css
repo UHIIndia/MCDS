@@ -307,7 +307,8 @@
 .anc-calender-add .form-group{
 	margin-bottom: 10px;
 }
-.anc-calender-add input[type="text"]{
+.anc-calender-add input[type="text"], 
+.anc-calender-add input[type="number"]{
 	width:40px;
 	display: inline-block;
 	margin: 0 10px;
@@ -404,6 +405,7 @@
 	font-family: OpenSans-Semibold;
 	padding: 0;
 }
+
 .bp-select .radio-group{
 	display: inline-block;
 	margin-top: 10px;
@@ -413,7 +415,7 @@
 	margin-left: 8px;
 }
 
-.bp-select input[type="text"]{
+.bp-select input[type="number"], .bp-select input[type="text"]{
 	margin: 0;
 }
 .bp-select label{
@@ -455,4 +457,11 @@ button.activeNewBorn{
 }
 .show-on-render{
 	display: block;
+}
+.radio-group > div:first-child {
+    margin-right: 0;
+}
+.radio-group > div {
+    float: right;
+    margin-right: 20px;
 }
