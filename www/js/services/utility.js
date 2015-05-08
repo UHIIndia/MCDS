@@ -37,17 +37,7 @@ angular.module('uhiApp.services')
      return workerCode;
     },
     calcAge: function(dob, inYear){
-      if(!angular.isDate(dob)){
-        if(dob.indexOf('/')>0){
-          //its a dd/mm/yyyy string 
-          var arr = dob.split('/');
-          var mmddyyyyStr = arr[1]+"/"+arr[0]+"/"+arr[2];
-          dob = new Date(mmddyyyyStr);
-        } else {
-          //this is ISO string
-          dob = new Date(dob);
-        }        
-      }
+      dob = this.convertToDate(dob);
         var currDate =new Date(),
         diffYear = currDate.getFullYear() - dob.getFullYear(),
         diffMonth = currDate.getMonth() - dob.getMonth(),
@@ -101,15 +91,7 @@ angular.module('uhiApp.services')
     showMonthFromDate:function(date){console.log("showMonFromDate")
         var dateArray = date.split("/");
         return dateArray[1];
-    },
-     convertToDate:function(date){console.log("showMonFromDate")
-        var dateArray = date.split("/");
-        var year=dateArray[2];
-        var month=dateArray[1] ;
-        var day=dateArray[0]
-        var date =new date(year,month,day)
-        return date;
-    },
+    },     
     convertDateFormat:function(date){
         var day=date.getDate();
         var month=date.getMonth()+1;
@@ -265,11 +247,16 @@ angular.module('uhiApp.services')
     
     },
     convertToDate: function(date){
-      if(!angular.isDate(date)){
-        //its a dd/mm/yyyy string 
-        var arr = date.split('/');
-        var mmddyyyyStr = arr[1]+"/"+arr[0]+"/"+arr[2];
-        date = new Date(mmddyyyyStr);
+      if(!angular.isDate(date)){        
+        if(date.indexOf('/')>0){
+          //its a dd/mm/yyyy string 
+          var arr = date.split('/');
+          var mmddyyyyStr = arr[1]+"/"+arr[0]+"/"+arr[2];
+          date = new Date(mmddyyyyStr);
+        } else {
+          //this is ISO string
+          date = new Date(date);
+        }   
       }
       return date;
     }

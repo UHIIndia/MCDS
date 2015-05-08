@@ -92,7 +92,7 @@
                 </span>
               </div>
 						</div>
-						<div class="pull-right"><input type="text" class="form-control" ng-model="weight"><label>Weight</label></div>
+						<div class="pull-right"><input type="text" class="form-control" ng-model="weight" ng-blur="watchHandler0();"><label>Weight</label></div>
 					</div>
 					<div class="block">
 						<div class="pull-left date-block">
@@ -205,18 +205,18 @@
 					</div>
 					<div class="newborn-day-body">
 						<div class="newborn-day-row">
-							<div  class="col-sm-1" ng-repeat = "item in child.newBornDetails" ng-class="{'action-alert':$index === alerts.weight}">
+							<div  class="col-sm-1" ng-repeat = "item in child.newBornDetails" ng-class="{'yellow-alert':$index === rows[0].yellowAlert, 'red-alert':isRedCell(0, $index)}">
 								<span>{{item.weight}}</span>
 							</div>
 						</div>
 						<div class="newborn-day-row">
-							<div  class="col-sm-1" ng-repeat = "item in child.newBornDetails">
+							<div  class="col-sm-1" ng-repeat = "item in child.newBornDetails" ng-class="{'yellow-alert':$index === rows[1].yellowAlert}">
                               <span ng-if ="item.ASHAVisit === true">Yes</span>
               <span ng-if ="item.ASHAVisit === false">No</span>
 							</div>
 						</div>
 						<div class="newborn-day-row">
-							<div  class="col-sm-1" ng-repeat = "item in child.newBornDetails">
+							<div  class="col-sm-1" ng-repeat = "item in child.newBornDetails" ng-class="{'yellow-alert':$index === rows[2].yellowAlert}">
                               <span ng-if ="item.ANMVisit === true">Yes</span>
               <span ng-if ="item.ANMVisit === false">No</span>
 							</div>

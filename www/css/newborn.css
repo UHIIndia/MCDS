@@ -146,3 +146,11 @@
 .calender-wrapper .date-block{
 	width: 35px;
 }
+.newborn-wrapper .yellow-alert {
+  background-color: yellow !important;
+}
+
+.newborn-wrapper .red-alert {
+  background-color: red !important;
+}
+

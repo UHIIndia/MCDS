@@ -3,12 +3,37 @@ angular.module('uhiApp.controllers')
   
   //get child Details  
   var activeRow = null; // this keeps a track of active row
- 
+  $scope.rows = [
+    {
+      "name":"weight"
+    },
+    {
+      "name":"ASHAVisit"
+    },
+     {
+      "name":"ANMVisit"
+    },
+    {
+      "name":"breastFeed"
+    },
+     {
+      "name":"wrapCap"
+    },
+    {
+      "name":"sick"
+    } 
+  ];
+  $scope.isRedCell = function (row, index) {
+    var redAlerts = $scope.rows[row].redAlerts;
+    if(redAlerts && redAlerts.indexOf(index) >= 0){
+      return true;
+    }
+  }
   function init(){
     var displayID = UtilityService.getChildDisplayID();
     console.log(displayID);
     // hard code display id for dev 
-    //displayID ? displayID=displayID: displayID ="h1.1.1";
+    displayID ? displayID=displayID: displayID ="h1.1.1";
     if(!displayID){
       console.log('should not be here, child is not added in system');
     } else {
@@ -19,17 +44,142 @@ angular.module('uhiApp.controllers')
       $scope.dobChild = UtilityService.convertDateFormat(new Date($scope.child.dob)); // child.dob is saved in ISO string
       setAge($scope.dobChild);
       if(!$scope.child.newBornDetails.length){
+        // no details exist
         setDatesInHeader();
+        initActionAlerts(false);
+      } else {
+        initActionAlerts(true);
       }
-      // initialize action 
+      // initialize action i.e mark yellow and red boxes for each row
+      
+      
     }
   }
+  function initActionAlerts(isDetailsExist) {
+    if(!isDetailsExist) {
+      //set yellow boxes only
+      setWeightYellowCell(-1);
+      //set for others also
+      setASHAVisitYellowCell(-1);
+      setANMVisitYellowCell(-1);
+    } else {
+      setWeightYellowCell(getLatestSavedColumn($scope.rows[0].name));
+      setRedCells($scope.rows[0].name);
+      setASHAVisitYellowCell(getLatestSavedColumn($scope.rows[1].name));
+      setANMVisitYellowCell(getLatestSavedColumn($scope.rows[2].name));
+    }    
+  }
+  function setRedCells(row) {
+    var newBornDetails = $scope.child.newBornDetails;
+    var length = newBornDetails.length;
+    for(var i=length-1; i >= 0; i--){
+      var val = newBornDetails[i][row]
+      if(val){
+        switch(row){
+          case "weight" :
+            setWeightRedCell(val, i);
+            break;
+        }
+      }
+    }    
+  }
+  function getLatestSavedColumn(row) {
+    var newBornDetails = $scope.child.newBornDetails;
+    var length = newBornDetails.length;
+    for(var i=length-1; i >= 0; i--){
+      if(newBornDetails[i][row]){
+        break;
+      }
+    }
+    return i;
+  }
+  
+  function setWeightYellowCell(col) {
+    var currCol = getColumn(UtilityService.convertDateFormat(new Date()));
+    if(col < 0){
+      //default current day is yellow
+      $scope.rows[0].yellowAlert = currCol;
+    } else if(isLastColumn(col)){
+       $scope.rows[0].yellowAlert = null;          
+     }else if (col < 13 && currCol < 13) {
+        $scope.rows[0].yellowAlert = 13; //day14
+     } else if (col < 27 && currCol < 27) {
+         $scope.rows[0].yellowAlert = 27; //day28
+     } else {
+       $scope.rows[0].yellowAlert = 28; //day42
+     }
+     
+  }
+  
+  function setWeightRedCell(val, col) {
+    var prevColVal; 
+    var redAlerts = $scope.rows[0].redAlerts? $scope.rows[0].redAlerts : [];
+    if(val < 2.5){
+      if(!redAlerts.length || redAlerts.indexOf(col) === -1){
+        redAlerts.push(col);
+      }
+    } else {
+      // check the last entered prev val 
+      for(var c = col-1; c >= 0; c--){
+         var value = $scope.child.newBornDetails[c].weight;
+        if(value) {
+          prevColVal = value;
+          break;
+        }
+      }
+      if(val < prevColVal){
+        if(!redAlerts.length || redAlerts.indexOf(col) === -1){
+        redAlerts.push(col);
+        }
+      } else {
+        if(redAlerts.length && redAlerts.indexOf(col) > -1){
+        // remove this col from red alerts
+          redAlerts.splice(redAlerts.indexOf(col), 1);
+        }
+      }
+    }
+    $scope.rows[0].redAlerts = redAlerts;
+  }
+  
+  function setASHAVisitYellowCell(col) {
+    var currCol = getColumn(UtilityService.convertDateFormat(new Date()));
+    if(col < 0){
+      //default current day is yellow
+      $scope.rows[1].yellowAlert = currCol;
+    } else if(isLastColumn(col)){
+       $scope.rows[1].yellowAlert = null;          
+     }else if (col < 1 && currCol < 1) {
+        $scope.rows[1].yellowAlert = 1; //day2
+     } else if (col < 6 && currCol < 6) {
+         $scope.rows[1].yellowAlert = 6; //day7
+     } else if(currCol < 13){
+       $scope.rows[1].yellowAlert = 13; //day14
+     }
+  }
+  
+  function setANMVisitYellowCell(col) {
+    var currCol = getColumn(UtilityService.convertDateFormat(new Date()));
+    if(col < 0){
+      //default current day is yellow
+      $scope.rows[2].yellowAlert = currCol;
+    } else if(isLastColumn(col)){
+       $scope.rows[2].yellowAlert = null;          
+     }else if (col < 13 && currCol < 13) {
+        $scope.rows[2].yellowAlert = 13; //day14
+     } else if (col < 27 && currCol < 27) {
+         $scope.rows[2].yellowAlert = 27; //day28
+     } else if(currCol < 28){
+       $scope.rows[2].yellowAlert = 28; //day42
+     }
+  }
+  
   function setAge(dob) {
     // dob is "dd/mm/yyyy"
     var days= UtilityService.calcAge(dob, false);
     $scope.child.ageMonths = parseInt(days/30);
     $scope.child.ageDays = days%30;
   }
+  
   function setDatesInHeader() {
     var dob = UtilityService.convertToDate($scope.dobChild);
     var days= [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 42]; 
@@ -103,9 +253,7 @@ angular.module('uhiApp.controllers')
       return false;
       return true;
   }
-  var lastUpdated ={}; //keeps last updated column for each row
-  $scope.alerts ={}; // keeps action alert col for each row
-  
+  var lastUpdated ={}; //keeps last updated column for each row  
   function setLastUpdated(row, col){
     var prevCol = lastUpdated[row];
     if(prevCol>=0){
@@ -114,9 +262,8 @@ angular.module('uhiApp.controllers')
     }
     lastUpdated[row] = col;
   }
-  $scope.$watch('weightDate', watchHandler0);
-  $scope.$watch('weight', watchHandler0);
-   function watchHandler0(){
+  
+  $scope.watchHandler0 = function() {
     if($scope.weightDate){
       console.log('weightDate: '+ $scope.weightDate +" active row :"+activeRow);
     var dateStr = UtilityService.convertDateFormat($scope.weightDate);
@@ -127,24 +274,24 @@ angular.module('uhiApp.controllers')
     } else {
       alert('Please select a valid date from calender');     
     }
-    }    
-  }
-   function setWeightValue(date, col) {
+    }   
+  };
+  $scope.$watch('weightDate', $scope.watchHandler0);  
+   
+  function setWeightValue(date, col) {
     var dayOfDetail = $scope.child.newBornDetails[col];       
       // check if a there is a value for weight
       if($scope.weight){
         //set last updated col for this row
         setLastUpdated('weight',col);
         dayOfDetail.weight = $scope.weight;
-         //set action alert 
-        if(!isLastColumn(col)){
-          $scope.alerts['weight'] = col+1;
-        }else {
-          $scope.alerts['weight'] = null;
-        }
+         //set action alerts 
+        setWeightYellowCell(col);
+        setWeightRedCell($scope.weight, col);
         // 
       }    
-  }
+  }  
+  
   
   $scope.$watch('ASHAVisitDate', watchHandler1);
   $scope.$watch('ASHAVisit', watchHandler1);
@@ -163,6 +310,7 @@ angular.module('uhiApp.controllers')
       // can apply separate logic for each row  
       //dayOfDetail.ASHAVisit = date;
      dayOfDetail.ASHAVisit = $scope.ASHAVisit;
+     setASHAVisitYellowCell(col);
       //
     
   }
@@ -182,6 +330,7 @@ angular.module('uhiApp.controllers')
     var dayOfDetail = $scope.child.newBornDetails[col];
       setLastUpdated('ANMVisit',col);      
      dayOfDetail.ANMVisit = $scope.ANMVisit;
+     setANMVisitYellowCell(col);
       //
     
   }
