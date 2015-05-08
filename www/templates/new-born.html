@@ -92,7 +92,7 @@
                 </span>
               </div>
 						</div>
-						<div class="pull-right"><input type="text" class="form-control" ng-model="weight" ng-blur="watchHandler0();"><label>Weight (kg)</label></div>
+						<div class="pull-right"><input type="number" class="form-control" ng-model="weight" ng-blur="watchHandler0();"><label>Weight (kg)</label></div>
 					</div>
 					<div class="block">
 						<div class="pull-left date-block">
@@ -182,7 +182,7 @@
                 <button type="button" class="btn btn-default" ng-click="openCalender($event, '5')"><i class="icon-date"></i></button>
                 </span>
               </div>
-							<input type="text" class="form-control" ng-model="temp" ng-blur="watchHandler5();"><label>Temp(<sup>o</sup>F)</label>
+							<input type="number" class="form-control" ng-model="temp" ng-blur="watchHandler5();"><label>Temp(<sup>o</sup>F)</label>
 							<div>
 		            <input type="radio" ng-model="sick" ng-value="true">
 		            <label for="Yes">Yes</label>
