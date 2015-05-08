@@ -23,80 +23,28 @@
 
 }
 
-.immu-months-wrapper{
-	padding: 0;
-}
 
-.immu-month-body > div > div{
-	padding: 0;
-	border: 1px #000 solid;
-}
-.immu-month-body > div > div > div{
-background: #fff;
-border-right: 1px #000 solid;
-padding: 0;
-height: 103px;
-}
-.immu-month-body > div > div > div:last-child{
-	border-right: none;
-}
 
-.month-col{
-	padding: 0;
-	width: 11.11%;
-}
-.month-head-cell{
-	font-family: OpenSans-Semibold;
-	background: #fff;
-	text-align: center;
-	height: 57px;
-	border: 1px #000 solid;
-	padding-top: 5px;
+
+
+
+
+.immu-months{
 	margin-bottom: 5px;
-}
-.month-head-cell .month{
-	font-size: 12px;
-}
-.month-head .month-name{
-	font-size: 16px;
-}
-.month-col .month-cell{
-	height: 105px;
-	background: #fff;
-	border:1px #000 solid;
-	font-size: 11px;
-	text-align:center;
-	margin-bottom: 10px;
-}
-.month-col .month-cell > div{
-	padding-top: 42px;
-}
-.immu-months-wrapper .month-col{
-	float: none;
-	display: inline-block;
-}
-
-.immu-wrapper .weak{
-  background: #ffff00 !important;
-}
-
-.immu-months-wrapper {
-	margin-bottom: 5px;
-}
-.immu-months-wrapper > div:first-child{
-	height: 57px;
+	height: 43px;
 }
 .immu-months > div{
 	font-family: OpenSans-Semibold;
 		background: #fff;
 	border:1px #000 solid;
 	padding: 0;
-	height: 57px;
+	height: 43px;
 	text-align: center;
-	padding-top: 5px;
-	min-width: 65px;
+	padding-top: 3px;
+	min-width: 75px;
 	float: none;
 	display: inline-block;
+	margin-right: -1px;
 }
 .immu-months-wrapper > div:first-child{
 	padding-left: 0;
@@ -111,11 +59,7 @@ height: 103px;
 }
 .immu-months .month-name{
 	font-size: 16px;
-}
-.immu-table-wrapper{
-	overflow: auto;
-	white-space: nowrap;
-	margin-bottom: 15px;
+	line-height: 1;
 }
 .immu-month-body-wrapper .months-row{
 }
@@ -214,3 +158,98 @@ height: 103px;
   width: 30px;
   height: 30px;
 }
+
+/*--new css--*/
+.months-row{
+	margin-bottom: 3px;	
+}
+.months-row > div{
+	width: 75px;
+	height: 36px;
+	border: 1px #000 solid;
+	background: #fff;
+	padding: 0;
+	display: inline-block;
+	float: none;
+	vertical-align: top;
+	margin-right: -1px;
+}
+.immu-table-wrapper{
+	margin-bottom: 10px;
+}
+.immu-table-wrapper .left-block{
+	float: left;
+	width: 28.82%;
+	padding: 0;
+	padding-right: 3px;
+}
+.immu-table-wrapper .right-block{
+	float: left;
+	width: 71.18%;
+	padding: 0;
+	overflow: auto;
+	white-space: nowrap;
+}
+.left-block  .videos-wrapper .block{
+	margin-bottom: 3px;
+	height: 36px;
+}
+.left-block .blank-block{
+	height: 43px;
+	margin-bottom: 5px;
+}
+.left-block .videos-wrapper{
+	float: left;
+	width: 45.60%;
+}
+.left-block .calendar-wrapper{
+	float: left;
+	width: 54.4%;
+}
+.left-block  .videos-wrapper .block .title{
+	font-family: OpenSans-Semibold;
+	float: left;
+	font-size: 12px;
+	width:65px;
+}
+.left-block .block .video{
+	margin-right: 5px;
+	float: left;
+}
+.left-block .calendar-wrapper > div{
+	margin-bottom: 3px;
+	height: 36px;
+}
+.left-block .calendar-wrapper .left-block,
+.left-block .calendar-wrapper .right-block,
+.left-block .calendar-wrapper .full-block{
+	border: 1px #000 solid;
+	background: #fff;
+	height: 36px;
+}
+.left-block .calendar-wrapper .left-block{
+	float: left;
+	width: 26%;
+  padding-right: 0;
+  margin-right: 2%;
+}
+.left-block .calendar-wrapper .right-block{
+	float: left;
+	width: 72%;
+}
+.calendar-weak > div, .calendar-weak .radio-block > div{
+	float: left;
+}
+.calendar-weak .date-block{
+	width: 32px;
+}
+.calendar-weak .radio-block{
+	padding-top: 5px;
+}
+.calendar-weak .radio-block > div{
+	margin-left: 5px;
+}
+.calendar-weak .radio-block label{
+	padding-left: 22px;
+}
+
