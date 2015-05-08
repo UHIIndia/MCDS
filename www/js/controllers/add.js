@@ -41,7 +41,7 @@ if(displayID){
 }
 $scope.alerts={
   age: {type: 'danger', msg: "Age should be between 11 and 99"},
-  house:{type: 'danger', msg: "House no can not be blank"}
+  house:{type: 'danger', msg: "House no. can not be blank"}
 }
 $scope.isWomanPregnant = function(){
   if($scope.woman.womanID && $scope.woman.isPregnant === true){
@@ -190,7 +190,7 @@ $scope.saveDetails = function($event){
   //$scope.savedChildren=angular.copy($scope.children);
  $scope.savedChildren = [];
   angular.forEach( $scope.children, function(childObj, index){   
-    if(childObj.name){
+    if(childObj.dob && childObj.name){
       var mother= $scope.woman;      
         childObj.motherID = mother.womanID;
         childObj.motherDisplayID= mother.displayID;
@@ -212,7 +212,8 @@ $scope.saveDetails = function($event){
     $scope.savedChildren.push(angular.copy(childObj));   
      
     } else{
-      // no name of child 
+      // no dob of child 
+      alert("Please enter dob and name for child no. : "+index+1);
     } 
     
   });
@@ -328,7 +329,7 @@ $scope.validations = {
  validateSave: function(){
   var woman = $scope.woman; var childList =$scope.children;
   if(!woman.house){
-   return 'house no can not be blank!';
+   return 'House no. can not be blank!';
   }
   if(woman.name && woman.name.length ==1){
    return 'Please provide atleast 2 characters in name';
