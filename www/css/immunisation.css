@@ -216,6 +216,16 @@
 	margin-right: 5px;
 	float: left;
 }
+.left-block .calendar-wrapper .date-block{
+	padding-left: 5px;
+	padding-top: 2px;
+}
+.calendar-wrapper .calender-weight input{
+	height: 30px;
+}
+.calendar-wrapper .calender-weight input + span{
+	padding-left: 5px;
+}
 .left-block .calendar-wrapper > div{
 	margin-bottom: 3px;
 	height: 36px;
@@ -226,6 +236,7 @@
 	border: 1px #000 solid;
 	background: #fff;
 	height: 36px;
+	padding: 2px;
 }
 .left-block .calendar-wrapper .left-block{
 	float: left;
