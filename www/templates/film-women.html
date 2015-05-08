@@ -4,127 +4,58 @@
 	<div class="film-women-wrapper">
 
 	 <ul id="myTab" class="nav nav-tabs" role="tablist" ng-init="tab = 1">
-      <li ng-class="{active:tab===1}"><a href="javascript:void(0)"  ng-click="tab = 1" class="all"><img src="img/films/video-icon.png">All Videos</a></li>
-      <li ng-class="{active:tab===2}"><a href="javascript:void(0)" ng-click="tab = 2" class="family"><img src="img/films/family-planning-icon.png">Family Planning</a></li>
-      <li ng-class="{active:tab===3}"><a href="javascript:void(0)" ng-click="tab = 3" class="pregnancy"><img src="img/films/pregnancy-icon.png">Pregnancy</a></li>
-      <li ng-class="{active:tab===4}"><a href="javascript:void(0)" ng-click="tab = 4" class="child"><img src="img/films/child-icon.png">Child</a></li>
+      <li ng-class="{active:tab===1}"><a href="javascript:void(0)"  ng-click="selectVideoTab(1)" class="all"><img src="img/films/video-icon.png">All Videos</a></li>
+      <li ng-class="{active:tab===2}"><a href="javascript:void(0)" ng-click="selectVideoTab(2)" class="family"><img src="img/films/family-planning-icon.png">Family Planning</a></li>
+      <li ng-class="{active:tab===3}"><a href="javascript:void(0)" ng-click="selectVideoTab(3)" class="pregnancy"><img src="img/films/pregnancy-icon.png">Pregnancy</a></li>
+      <li ng-class="{active:tab===4}"><a href="javascript:void(0)" ng-click="selectVideoTab(4)" class="child"><img src="img/films/child-icon.png">Child</a></li>
     </ul>
 
      <div id="myTabContent" class="tab-content" ng-class="{all:tab===1, family:tab===2, pregnancy:tab===3, child:tab===4 }">
       <div ng-show="tab === 1">
-       	<div class="video">
-          <img src="img/film-women-img.jpg">
-          <div>Female Sterilization</div>
-          <div>kaise apnayen mahila nasbandi</div>
-        </div>
-        <div class="video">
-          <img src="img/film-women-img.jpg">
-          <div>Female Sterilization</div>
-          <div>kaise apnayen mahila nasbandi</div>
+       	<div class="video" ng-repeat="video in video.all track by $index" ng-click="playVideo({{$index}})">
+          <video width=218  height= 155>
+              <source ng-src="{{video.path}}" type="video/mp4">
+          </video>
+          <div>{{video.methodName}}</div>
+          <div>{{video.methodMsg}}</div>
         </div>
       </div>
       <div ng-show="tab === 2">
-                <div class="video">
-          <img src="img/film-women-img.jpg">
-          <div>Female Sterilization</div>
-          <div>kaise apnayen mahila nasbandi</div>
-        </div>
-        <div class="video">
-          <img src="img/film-women-img.jpg">
-          <div>Female Sterilization</div>
-          <div>kaise apnayen mahila nasbandi</div>
-        </div>
-                <div class="video">
-          <img src="img/film-women-img.jpg">
-          <div>Female Sterilization</div>
-          <div>kaise apnayen mahila nasbandi</div>
-        </div>
-        <div class="video">
-          <img src="img/film-women-img.jpg">
-          <div>Female Sterilization</div>
-          <div>kaise apnayen mahila nasbandi</div>
+        <div class="video" ng-repeat="video in video.fpList track by $index" ng-click="playVideo({{$index}})">
+          <video width=218  height= 155>
+              <source ng-src="{{video.path}}" type="video/mp4">
+          </video>
+          <div>{{video.methodName}}</div>
+          <div>{{video.methodMsg}}</div>
         </div>
       </div>
         <div ng-show="tab === 3">
-                  <div class="video">
-          <img src="img/film-women-img.jpg">
-          <div>Female Sterilization</div>
-          <div>kaise apnayen mahila nasbandi</div>
+          <div class="video" ng-repeat="video in video.anclist track by $index" ng-click="playVideo({{$index}})">
+            <video width=218  height= 155>
+                <source ng-src="{{video.path}}" type="video/mp4">
+            </video>
+          <div>{{video.methodName}}</div>
+          <div>{{video.methodMsg}}</div>
+          </div>
         </div>
-        <div class="video">
-          <img src="img/film-women-img.jpg">
-          <div>Female Sterilization</div>
-          <div>kaise apnayen mahila nasbandi</div>
-        </div>        <div class="video">
-          <img src="img/film-women-img.jpg">
-          <div>Female Sterilization</div>
-          <div>kaise apnayen mahila nasbandi</div>
+        <div ng-show="tab === 4">
+          <div class="video" ng-repeat="video in video.childlist track by $index" ng-click="playVideo({{$index}})">
+            <video width=218  height= 155>
+                <source ng-src="{{video.path}}" type="video/mp4">
+            </video>
+            <div>{{video.methodName}}</div>
+            <div>{{video.methodMsg}}</div>
+          </div>        
         </div>
-        <div class="video">
-          <img src="img/film-women-img.jpg">
-          <div>Female Sterilization</div>
-          <div>kaise apnayen mahila nasbandi</div>
-        </div>        <div class="video">
-          <img src="img/film-women-img.jpg">
-          <div>Female Sterilization</div>
-          <div>kaise apnayen mahila nasbandi</div>
-        </div>
-        <div class="video">
-          <img src="img/film-women-img.jpg">
-          <div>Female Sterilization</div>
-          <div>kaise apnayen mahila nasbandi</div>
-        </div>        <div class="video">
-          <img src="img/film-women-img.jpg">
-          <div>Female Sterilization</div>
-          <div>kaise apnayen mahila nasbandi</div>
-        </div>
-        <div class="video">
-          <img src="img/film-women-img.jpg">
-          <div>Female Sterilization</div>
-          <div>kaise apnayen mahila nasbandi</div>
-        </div>
-      </div>
-              <div ng-show="tab === 4">
-                  <div class="video">
-          <img src="img/film-women-img.jpg">
-          <div>Female Sterilization</div>
-          <div>kaise apnayen mahila nasbandi</div>
-        </div>
-        <div class="video">
-          <img src="img/film-women-img.jpg">
-          <div>Female Sterilization</div>
-          <div>kaise apnayen mahila nasbandi</div>
-        </div>        <div class="video">
-          <img src="img/film-women-img.jpg">
-          <div>Female Sterilization</div>
-          <div>kaise apnayen mahila nasbandi</div>
-        </div>
-        <div class="video">
-          <img src="img/film-women-img.jpg">
-          <div>Female Sterilization</div>
-          <div>kaise apnayen mahila nasbandi</div>
-        </div>        <div class="video">
-          <img src="img/film-women-img.jpg">
-          <div>Female Sterilization</div>
-          <div>kaise apnayen mahila nasbandi</div>
-        </div>
-        <div class="video">
-          <img src="img/film-women-img.jpg">
-          <div>Female Sterilization</div>
-          <div>kaise apnayen mahila nasbandi</div>
-        </div>        <div class="video">
-          <img src="img/film-women-img.jpg">
-          <div>Female Sterilization</div>
-          <div>kaise apnayen mahila nasbandi</div>
-        </div>
-        <div class="video">
-          <img src="img/film-women-img.jpg">
-          <div>Female Sterilization</div>
-          <div>kaise apnayen mahila nasbandi</div>
-        </div>
-      </div>
-
-    </div>
+     </div>
   </div>
 	</div>
+</div>
+<div ng-if="showVideo" ng-click="stopVideo()">
+  <div class="video-overlay"></div>
+  <div class="video-full-screen" ng-click="$event.stopPropagation()">
+    <video id="selected-video" class="video-full-screen" controls>
+      <source ng-src="{{videoPath}}" type="video/mp4">
+    </video>
+  </div>
 </div>
