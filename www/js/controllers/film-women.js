@@ -1,4 +1,4 @@
-angular.module('uhiApp.controllers').controller('FilmWomenController', function($scope,$timeout, $rootScope,videos) {
+angular.module('uhiApp.controllers').controller('FilmWomenController', function($scope,UtilityService,$timeout, $rootScope,videos) {
 
     $scope.video = {};
     var allVideos=[]
@@ -9,7 +9,7 @@ angular.module('uhiApp.controllers').controller('FilmWomenController', function(
     $scope.video.childlist = videos.getChildVideos();
     allVideos = ($scope.video.fpList).concat($scope.video.childlist ,$scope.video.fpList);
     $scope.video.all=allVideos;
-    selectedList = $scope.video.all;
+    var index = UtilityService.getVideoTab();
     $scope.selectVideoTab =function(tabIndex){
       $scope.tab = tabIndex;
       if(tabIndex == 0){
@@ -22,6 +22,8 @@ angular.module('uhiApp.controllers').controller('FilmWomenController', function(
         selectedList = $scope.video.childlist;
       }
     };
+    $scope.selectVideoTab(index); 
+    UtilityService.setVideoTab(1);
     $scope.playVideo = function(id) {
       var selectedVideo = selectedList[id];
       $scope.showVideo = true;

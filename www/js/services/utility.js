@@ -2,7 +2,7 @@ angular.module('uhiApp.services')
 .factory('UtilityService', function($cordovaFile, $cordovaCamera, $q){
   var cityCode="500", slumCode="200", workerCode="100";
   var dataDir, folder="images"; 
-  var womanDisplayID, childDisplayID;
+  var womanDisplayID, childDisplayID,activeTab =1;
   return {
     alertMessages: {
       liveBirth: 'Live births can not be greater than total pregnencies',
@@ -259,6 +259,12 @@ angular.module('uhiApp.services')
         }   
       }
       return date;
+    },
+    setVideoTab:function(index){
+      activeTab = index;
+    },
+    getVideoTab:function(){
+      return activeTab;
     }
   }
 });
