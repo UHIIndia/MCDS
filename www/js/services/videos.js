@@ -106,7 +106,7 @@ angular.module('uhiApp.services').factory('videos',function($window){
     {
       'id': 5,
       'filename': 'papf.mp4',
-      'title': 'Anaemia',
+      'title': 'PAPF',
       'methodName':'Prepare for your delivery',
       'methodMsg':'(Prasav ki tayyari karein)'
     },
@@ -123,14 +123,14 @@ angular.module('uhiApp.services').factory('videos',function($window){
       'title': 'Night Blind',
       'methodName':'Take care of yourself after delivery',
       'methodMsg':'(Prasav ke bad apni dekhbhaal karein)'
-    }/*,
+    },
     {
       'id': 8,
-      'filename': 'bleeding.mp4',
-      'title': 'Bleeding',
-      'methodName':'Male Sterilization',
-      'methodMsg':'(kaise apnayen purush nasbandi)'
-    },
+      'filename': 'anemia.mp4',
+      'title': 'Anaemia',
+      'methodName':'Take care of yourself',
+      'methodMsg':'(Prasav ke dauran apni dekhbhaal karein)'
+    }/*,
     {
       'id': 9,
       'filename': 'malaria.mp4',
