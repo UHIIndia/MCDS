@@ -205,12 +205,15 @@
       <div class="right-block">
 
         <div class="immu-months">
-          <div class="col-sm-1" ng-repeat="month in monthLabels">
+          <div class="col-sm-1" ng-repeat="month in monthLabels track by $index">
           <div class="month">
             <span>Month</span>
             <span>{{ month.id }}</span>
           </div>
-          <div class="month-name">{{ month.name }}</div>
+          <div class="month-name">
+            <span>{{ month.name }}</span>
+            <span ng-show="$first">{{ childDisplay.dob | date:'yyyy' }}</span>
+          </div>
         </div>
         </div>
 
