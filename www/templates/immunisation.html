@@ -48,7 +48,7 @@
         <div class="videos-wrapper">
           <div class="block">
             <div class="video">
-              <img src="img/immunisation/immunisation-bcg.jpg"  ng-click="video.play(0)">
+              <img src="img/immunisation/immunisation-bcg.jpg">
             </div>
             <div  class="title">BCG</div>
           </div>
@@ -60,37 +60,37 @@
           </div>
           <div class="block">
             <div class="video">
-              <img src="img/immunisation/immunisation-hepb.jpg"  ng-click="video.play(2)">
+              <img src="img/immunisation/immunisation-hepb.jpg">
             </div>
             <div class="title">HEP-B</div>
           </div>
           <div class="block">
             <div class="video">
-              <img src="img/immunisation/immunisation-dtp.jpg"  ng-click="video.play(3)">
+              <img src="img/immunisation/immunisation-dtp.jpg">
             </div>
             <div class="title">DTP</div>
           </div>
           <div class="block">
             <div class="video">
-              <img src="img/immunisation/immunisation-measles.jpg"  ng-click="video.play(4)">
+              <img src="img/immunisation/immunisation-measles.jpg">
             </div>
             <div class="title">MEASLES</div>
           </div>
           <div class="block">
             <div class="video">
-              <img src="img/immunisation/immunisation-vitamin-a.jpg"  ng-click="video.play(5)">
+              <img src="img/immunisation/immunisation-vitamin-a.jpg" ng-click="video.play(2)">
             </div>
             <div class="title">VITAMIN-A</div>
           </div>
           <div class="block">
             <div class="video">
-              <img src="img/immunisation/immunisation-weight.jpg"  ng-click="video.play(5)">
+              <img src="img/immunisation/immunisation-weight.jpg">
             </div>
             <div class="title">Weight</div>
           </div>
           <div class="block">
             <div class="video">
-              <img src="img/immunisation/immunisation-weak.jpg"  ng-click="video.play(5)">
+              <img src="img/immunisation/immunisation-weak.jpg">
             </div>
             <div class="title">Weak/Sick/Fever</div>
           </div>
@@ -274,5 +274,15 @@
           <button class="default-btn">Save</button>     
       </div>
     </div>
+  </div>
+</div>
+
+<div ng-if="video.show" ng-click="video.stop()">
+  <div class="video-overlay"></div>
+  <div class="video-full-screen" ng-click="$event.stopPropagation()">
+    <video id="selected-video" class="video-full-screen" controls>
+      <source ng-src="{{video.path}}" type="video/mp4">
+    </video>
+    <span class="video-close-icon glyphicon glyphicon-remove-circle" ng-click="video.stop()"></span>
   </div>
 </div>

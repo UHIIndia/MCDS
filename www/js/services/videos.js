@@ -3,16 +3,11 @@ angular.module('uhiApp.services').factory('videos',function($window){
   var baseVideosPath;
   var isDevice = false;
 
-  // run only on device
-  try{
-    baseVideosPath = cordova.file.externalDataDirectory + 'videos/';
-  }catch(e){
-    baseVideosPath = "videos/";
-    console.log(e);
-  }
-
   if($window.cordova){
+    baseVideosPath = cordova.file.externalDataDirectory + 'videos/';
     isDevice = true;
+  } else {
+    baseVideosPath = "videos/";
   }
 
   var familyPlanningVideos = [
@@ -240,45 +235,56 @@ angular.module('uhiApp.services').factory('videos',function($window){
     }
   ];
 
+  var immunisationVideos = [
+    {
+      'id': 1,
+      'filename': 'poliodrops.mp4',
+      'title': 'Polio',
+      'message':'Bache ko polio ki khurak dilvaaein'
+    },
+    {
+      'id': 2,
+      'filename': 'vitamina.mp4',
+      'title': 'Vitamin A',
+      'message':'Bache ko Vitamin A ki khurak dilvaaein'
+    }
+  ];
+
   var getFamilyPlanningVideos = function() {
-    var list;
-    familyPlanningVideos.map(function(e) {
-      if(isDevice) {
-        e.path =  baseVideosPath + e.filename;
-      } else {
-        e.path = 'videos/sample.mp4'
-      }
-    });
+    addPathToVideoCollection(familyPlanningVideos);
     return familyPlanningVideos;
   };
 
   var getANCVideos = function() {
-    var list;
-    ancVideos.map(function(e) {
-      if(isDevice) {
-        e.path =  baseVideosPath + e.filename;
-      } else {
-        e.path = 'videos/sample.mp4'
-      }
-    });
+    addPathToVideoCollection(ancVideos);
     return ancVideos;
   };
 
   var getChildVideos = function() {
-    var list;
-    childVideos.map(function(e) {
+    addPathToVideoCollection(childVideos);
+    return childVideos;
+  };
+
+  var getImmunisationVideos = function() {
+    addPathToVideoCollection(immunisationVideos);
+    return immunisationVideos;
+  };
+
+  function addPathToVideoCollection(videoCollection) {
+    videoCollection.map(function(e) {
       if(isDevice) {
         e.path =  baseVideosPath + e.filename;
       } else {
-        e.path = 'videos/sample.mp4'
+        e.path = baseVideosPath + 'sample.mp4'
       }
     });
-    return childVideos;
-  };
+    return videoCollection;
+  }
 
   return {
     getFamilyPlanningVideos: getFamilyPlanningVideos,
     getANCVideos : getANCVideos,
-    getChildVideos : getChildVideos
+    getChildVideos : getChildVideos,
+    getImmunisationVideos:getImmunisationVideos
   }
 });

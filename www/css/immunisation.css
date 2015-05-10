@@ -261,3 +261,12 @@
 	padding-left: 22px;
 }
 
+.video-close-icon{
+  color: #fff;
+  z-index: 5;
+  top: -30px;
+  right: -20px;
+  float: right;
+  font-size: 20px;
+  padding: 20px;
+}

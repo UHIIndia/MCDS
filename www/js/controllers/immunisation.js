@@ -1,4 +1,4 @@
-angular.module('uhiApp.controllers').controller('ImmunisationController', function($scope, UtilityService, ChildService) {
+angular.module('uhiApp.controllers').controller('ImmunisationController', function($scope, $timeout, UtilityService, ChildService, videos) {
 
   var displayID = UtilityService.getChildDisplayID();
   $scope.child = ChildService.getChildDetails(displayID);
@@ -145,6 +145,26 @@ angular.module('uhiApp.controllers').controller('ImmunisationController', functi
   ];
 
   $scope.monthInformationData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36];
+
+  $scope.video = {};
+
+  $scope.video.list = videos.getImmunisationVideos();
+
+  $scope.video.play = function(id) {
+    var selectedVideo = $scope.video.list.filter(function(e) {
+      return e.id === id;
+    });
+    $scope.video.path = selectedVideo[0].path;
+    $scope.video.show = true;
+    $timeout(function() {
+      document.getElementById('selected-video').play();
+    }, 0);
+  };
+
+  $scope.video.stop = function() {
+    document.getElementById('selected-video').pause();
+    $scope.video.show = false;
+  };
 
   function calculateChildAge(pastDate) {
     var date = new Date(pastDate);
