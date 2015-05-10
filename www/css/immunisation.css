@@ -174,16 +174,17 @@
 .immu-table-wrapper{
 	margin-bottom: 10px;
 }
-.immu-table-wrapper .left-block{
+.immu-table-wrapper > .left-block{
 	float: left;
 	width: 28.82%;
 	padding: 0;
 	padding-right: 3px;
 }
-.immu-table-wrapper .right-block{
+.immu-table-wrapper > .right-block{
 	float: left;
 	width: 71.18%;
 	padding: 0;
+  overflow-x: auto;
 	white-space: nowrap;
 }
 .left-block  .videos-wrapper .block{
