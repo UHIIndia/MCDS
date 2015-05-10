@@ -4,8 +4,8 @@ angular.module('uhiApp.controllers').controller('ImmunisationController', functi
   $scope.child = ChildService.getChildDetails(displayID);
 
   $scope.childDisplay = angular.copy($scope.child);
-  $scope.childDisplay.age = calculateChildAge($scope.childDisplay.dob);
 
+  $scope.childDisplay.age = calculateChildAge($scope.childDisplay.dob);
   var monthNameArray = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   var rawMonthLabels = new Array(36);
   $scope.monthLabels = _.chain(rawMonthLabels)
@@ -38,6 +38,41 @@ angular.module('uhiApp.controllers').controller('ImmunisationController', functi
   $scope.video.stop = function() {
     document.getElementById('selected-video').pause();
     $scope.video.show = false;
+  };
+
+  $scope.vaccinationSelectedDate = {
+    1: null,
+    2: null,
+    3: null,
+    4: null,
+    5: null,
+    6: null,
+    7: null,
+    8: null
+  };
+
+  $scope.isWeak = null;
+
+  $scope.isOpenForVaccination = {
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+    5: false,
+    6: false,
+    7: false,
+    8: false
+  };
+
+  $scope.openCalendar = function(vaccinationId, $event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+
+    _.each($scope.isOpenForVaccination, function(value) {
+      value = false;
+    });
+
+    $scope.isOpenForVaccination[vaccinationId] = true;
   };
 
   function calculateChildAge(pastDate) {

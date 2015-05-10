@@ -184,7 +184,6 @@
 	float: left;
 	width: 71.18%;
 	padding: 0;
-	overflow: auto;
 	white-space: nowrap;
 }
 .left-block  .videos-wrapper .block{
@@ -222,6 +221,9 @@
 }
 .calendar-wrapper .calender-weight input + span{
 	padding-left: 5px;
+}
+.weight-measurement{
+  padding-left: 0;
 }
 .left-block .calendar-wrapper > div{
 	margin-bottom: 3px;
@@ -270,3 +272,27 @@
   font-size: 20px;
   padding: 20px;
 }
+
+/* important tags as AngularUI directive doesn't support positioning of popup yet, #1012 */
+
+.date-picker-row.four .dropdown-menu{
+  top: -30px !important;
+}
+
+.date-picker-row.five .dropdown-menu{
+  top: -70px !important;
+}
+
+.date-picker-row.six .dropdown-menu{
+  top: -110px !important;
+}
+
+.date-picker-row.seven .dropdown-menu{
+  top: -150px !important;
+}
+
+.date-picker-row.eight .dropdown-menu{
+  top: -190px !important;
+}
+
+

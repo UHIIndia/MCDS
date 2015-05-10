@@ -96,106 +96,125 @@
           </div>
         </div>
         <div class="calendar-wrapper">
-          <div class="clearfix">
+          <div class="date-picker-row one">
             <div class="left-block">
              <img src="img/immunisation/vaccination1.png" class="img-responsive">
             </div>
             <div class="right-block">
               <div class="input-group text-right">
-                <input type="text" class="form-control" ng-hide="true"/>
-                <span class="input-group-btn">
-                <button type="button" class="btn btn-default"><i class="icon-date-medium"></i></button>
+                <div datepicker-popup="" ng-model="vaccinationSelectedDate[1]" is-open="isOpenForVaccination[1]" ng-required="true" close-text="Close"></div>
+                <span class="input-group-btn" ng-click="openCalendar(1, $event)">
+                  <button type="button" class="btn btn-default">
+                    <i class="icon-date-medium"></i>
+                  </button>
                 </span>
               </div>
             </div>
           </div>
-          <div class="clearfix">
+          <div class="date-picker-row two">
             <div class="left-block">
              <img src="img/immunisation/vaccination2.png" class="img-responsive">
             </div>
             <div class="right-block">
               <div class="input-group text-right">
-                <input type="text" class="form-control" ng-hide="true"/>
-                <span class="input-group-btn">
-                <button type="button" class="btn btn-default"><i class="icon-date-medium"></i></button>
+                <div datepicker-popup="" ng-model="vaccinationSelectedDate[2]" is-open="isOpenForVaccination[2]" ng-required="true" close-text="Close"></div>
+                <span class="input-group-btn" ng-click="openCalendar(2, $event)">
+                  <button type="button" class="btn btn-default">
+                    <i class="icon-date-medium"></i>
+                  </button>
                 </span>
               </div>
             </div>
           </div>
-          <div class="clearfix">
+          <div class="date-picker-row three">
             <div class="left-block">
              <img src="img/immunisation/vaccination1.png" class="img-responsive">
             </div>
             <div class="right-block">
               <div class="input-group text-right">
-                <input type="text" class="form-control" ng-hide="true"/>
-                <span class="input-group-btn">
-                <button type="button" class="btn btn-default"><i class="icon-date-medium"></i></button>
+                <div datepicker-popup="" ng-model="vaccinationSelectedDate[3]" is-open="isOpenForVaccination[3]" ng-required="true" close-text="Close"></div>
+                <span class="input-group-btn" ng-click="openCalendar(3, $event)">
+                  <button type="button" class="btn btn-default">
+                    <i class="icon-date-medium"></i>
+                  </button>
                 </span>
               </div>
             </div>
           </div>
-          <div class="clearfix">
+          <div class="date-picker-row four">
             <div class="left-block">
              <img src="img/immunisation/vaccination1.png" class="img-responsive">
             </div>
             <div class="right-block">
               <div class="input-group text-right">
-                <input type="text" class="form-control" ng-hide="true"/>
-                <span class="input-group-btn">
-                <button type="button" class="btn btn-default"><i class="icon-date-medium"></i></button>
+                <div datepicker-popup="" ng-model="vaccinationSelectedDate[4]" is-open="isOpenForVaccination[4]" ng-required="true" close-text="Close"></div>
+                <span class="input-group-btn" ng-click="openCalendar(4, $event)">
+                  <button type="button" class="btn btn-default">
+                    <i class="icon-date-medium"></i>
+                  </button>
                 </span>
               </div>
             </div>
           </div>
-          <div class="clearfix">
+          <div class="date-picker-row five">
             <div class="left-block">
              <img src="img/immunisation/vaccination1.png" class="img-responsive">
             </div>
             <div class="right-block">
               <div class="input-group text-right">
-                <input type="text" class="form-control" ng-hide="true"/>
-                <span class="input-group-btn">
-                <button type="button" class="btn btn-default"><i class="icon-date-medium"></i></button>
+                <div datepicker-popup="" ng-model="vaccinationSelectedDate[5]" is-open="isOpenForVaccination[5]" ng-required="true" close-text="Close"></div>
+                <span class="input-group-btn" ng-click="openCalendar(5, $event)">
+                  <button type="button" class="btn btn-default">
+                    <i class="icon-date-medium"></i>
+                  </button>
                 </span>
               </div>
             </div>
           </div>
-          <div class="clearfix">
+          <div class="date-picker-row six">
             <div class="left-block">
              <img src="img/immunisation/vaccination2.png" class="img-responsive">
             </div>
             <div class="right-block">
               <div class="input-group text-right">
-                <input type="text" class="form-control" ng-hide="true"/>
-                <span class="input-group-btn">
-                <button type="button" class="btn btn-default"><i class="icon-date-medium"></i></button>
+                <div datepicker-popup="" ng-model="vaccinationSelectedDate[6]" is-open="isOpenForVaccination[6]" ng-required="true" close-text="Close"></div>
+                <span class="input-group-btn" ng-click="openCalendar(6, $event)">
+                  <button type="button" class="btn btn-default">
+                    <i class="icon-date-medium"></i>
+                  </button>
                 </span>
               </div>
             </div>
           </div>
-          <div class="full-block calender-weight">          
+          <div class="date-picker-row seven full-block calender-weight">
             <div class="input-group">
-                <input type="text" class="form-control"/>
-                <span class="input-group-btn">
-                <button type="button" class="btn btn-default"><i class="icon-date-medium"></i></button>
-                </span>
+              <div class="col-sm-12 weight-measurement">
+                <input type="number" class="form-control"/>
+              </div>
+              <div datepicker-popup="" ng-model="vaccinationSelectedDate[7]" is-open="isOpenForVaccination[7]" ng-required="true" close-text="Close"></div>
+              <span class="input-group-btn" ng-click="openCalendar(7, $event)">
+                <button type="button" class="btn btn-default">
+                  <i class="icon-date-medium"></i>
+                </button>
+              </span>
             </div>
           </div>
-          <div class="full-block calendar-weak">          
+          <div class="date-picker-row eight full-block calendar-weak">
             <div class="input-group date-block">
-                <input type="text" class="form-control" ng-hide="true"/>
-                <span class="input-group-btn">
-                <button type="button" class="btn btn-default"><i class="icon-date-medium"></i></button>
+                <div datepicker-popup="" ng-model="vaccinationSelectedDate[8]" is-open="isOpenForVaccination[8]" ng-required="true" close-text="Close"></div>
+                <span class="input-group-btn" ng-click="openCalendar(8, $event)">
+                  <button type="button" class="btn btn-default">
+                    <i class="icon-date-medium"></i>
+                  </button>
                 </span>
             </div>
             <div class="radio-block">
               <div>
-                <input type="radio" ng-value="true">
-                <label for="Yes">Yes</label>
+                <input id="yes" type="radio" name="isWeak" ng-value="true" ng-model="isWeak">
+                <label for="yes">Yes</label>
               </div>
               <div>
-                <input type="radio" ng-value="false">
+                <input id="no" type="radio" name="isWeak" ng-value="false" ng-model="isWeak">
                 <label for="no">No</label>
               </div>
             </div>
