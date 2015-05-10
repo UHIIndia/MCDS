@@ -1149,7 +1149,7 @@
 </div>
 <div class="row">
   <div class="col-sm-12 text-right hide-on-load" ng-class="{'show-on-render':pregWomanExist}">
-    <button class="default-btn" ng-click="gotoNewBorn()"  ng-disabled="disableNewBorn" ng-class="{'activeNewBorn':disableNewBorn == false}">Go to new born</button>
+    <button class="default-btn" ng-click="gotoNewBorn()" ng-hide="dateOfDelivery" ng-disabled="disableNewBorn" ng-class="{'activeNewBorn':disableNewBorn == false}">Go to new born</button>
     <button class="default-btn" ng-click="saveANCDetails()" >Save</button>
     <div ng-show="detailSaved">Details saved</div>
   </div>

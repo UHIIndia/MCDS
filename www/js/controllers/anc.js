@@ -104,6 +104,7 @@ console.log(womanDisplayID);
     $scope.newWoman=false;
 
     $scope.enterPregnantWomanDetails=function(){
+         $scope.enterButton=false;
         if($scope.LMPCalendarDate && $scope.EDDCalendarDate){
               $scope.pregWomanExist=true;
               $scope.newWoman=true;
@@ -138,7 +139,7 @@ console.log(womanDisplayID);
      $scope.symptomData=[];
     $scope.totalAshaCount = 0;
     currentMonth = todayDate.getMonth()+1;         //get the current month
-
+    $scope.disableNewBorn =true;
 
     //need to derive the first month of pregnancy
     var d = new Date();
@@ -244,7 +245,6 @@ console.log(womanDisplayID);
             } else {
 
                 // do whatever you were going to do
-                $scope.ashaCountTotal = ashaVisits.length +1;
                 //to ensure last mon doesnt retain the last changed value
                 $scope.lastAshaVistMonth = (ashaVisits.length == 0?'': ashaVisits[ashaVisits.length -1].monthNo);
                // var diff = UtilityService.calcDiffDates(pastYrTime,$scope.ashaCalendarDate);
@@ -252,6 +252,11 @@ console.log(womanDisplayID);
                 var ashaCalendarMonth = UtilityService.showMonthFromDate(ashaCalendarDate);
                 var ashaCalendarYear = $scope.ashaCalendarDate.getFullYear();
                 checkUpforPale("ashaVisits",ashaCalendarMonth,ashaCalendarDate,ashaCalendarYear);
+                if($scope.matchArray.ashaVisits == 1){
+                    $scope.ashaCountTotal = ashaVisits.length
+                }else{
+                     $scope.ashaCountTotal = ashaVisits.length +1;
+                }
                 var lastStoredMonth = (ashaVisits.length == 0 ?'' :ashaVisits[ashaVisits.length-1].pregnancyMonthNo);
                 var selectedmonth = $scope.lastObj.ashaVisits.pregnancyMonthNo;
                 if(lastStoredMonth < selectedmonth){
@@ -337,7 +342,6 @@ console.log(womanDisplayID);
                 $timeout(function() { ANMInitializing = false; });
             } else {
                 // do whatever you were going to do
-                $scope.ANMCountTotal = anmVisits.length +1;
                 //to ensure last mon doesnt retain the last changed value
                 $scope.lastANMVistMonth = (anmVisits.length == 0?'': anmVisits[anmVisits.length -1].monthNo);
                // var diff = UtilityService.calcDanmVisitsiffDates(pastYrTime,$scope.ashaCalendarDate);
@@ -345,6 +349,11 @@ console.log(womanDisplayID);
                 var anmCalendarMonth = UtilityService.showMonthFromDate(anmCalendarDate);
                 var anmCalendarYear = $scope.ANMCalendarDate.getFullYear();
                 checkUpforPale("anmVisits",anmCalendarMonth,anmCalendarDate,anmCalendarYear);
+                if($scope.matchArray.anmVisits == 1){
+                     $scope.ANMCountTotal = anmVisits.length;
+                }else{
+                     $scope.ANMCountTotal = anmVisits.length +1;
+                }
                 var lastStoredMonth = (anmVisits.length == 0?'' :anmVisits[anmVisits.length-1].pregnancyMonthNo);
                 var selectedmonth = $scope.lastObj.anmVisits.pregnancyMonthNo;
                 if(lastStoredMonth < selectedmonth){
@@ -581,6 +590,7 @@ console.log(womanDisplayID);
                 } else {
                     totalTTCount = finalCount+1;
                     lastTTCount = 1;
+                     scope.lastTTMonth = (TTVisits.length == 0?'': TTVisits[TTVisits.length -1].monthNo);
                     $scope.enteredTT = ($scope.enteredTT == undefined || $scope.enteredTT == ''? 0:$scope.enteredTT);
                     var TTCalendarDate = UtilityService.convertDateFormat($scope.TTCalendarDate);
                     var TTCalendaMonth = UtilityService.showMonthFromDate(TTCalendarDate);
@@ -649,8 +659,9 @@ console.log(womanDisplayID);
 
    $scope.updateTT=function(){
             if($scope.enteredTT){
-                         totalTTCount = finalCount+1;
+                     totalTTCount = finalCount+1;
                     lastTTCount = 1;
+                     $scope.lastTTMonth = (TTVisits.length == 0?'': TTVisits[TTVisits.length -1].monthNo);
                     $scope.enteredTT = ($scope.enteredTT == undefined ? 0:$scope.enteredTT);
                     var TTCalendarDate = UtilityService.convertDateFormat($scope.TTCalendarDate);
                     var TTCalendaMonth = UtilityService.showMonthFromDate(TTCalendarDate);
@@ -911,7 +922,7 @@ console.log(womanDisplayID);
         $scope.lastIFAMonth = (IFAVisits.length == 0?'': IFAVisits[IFAVisits.length -1].monthNo);
         $scope.visitDetails.IFAVisits = _.indexBy(IFAVisits, 'monthNo')
         if(totalIFACount <= 100){
-            if(lastIFAMonth == currentMonth){
+            if($scope.lastIFAMonth == currentMonth){
                 if(currentMonth == 12){
                      $scope.nextIFAVisit = 1;
                 }else{
@@ -933,19 +944,24 @@ console.log(womanDisplayID);
         function() {
                 if($scope.enteredIFA){
                     var currentIFA = $scope.enteredIFA;
-                    $scope.totalIFACount = parseInt(totalIFACount) + parseInt(currentIFA);
+                    $scope.lastIFAMonth = (IFAVisits.length == 0?'': IFAVisits[IFAVisits.length -1].monthNo);
                     var lastIFADate = UtilityService.convertDateFormat($scope.IFACalendarDate);
                     var lastIFAMonth = UtilityService.showMonthFromDate(lastIFADate);
                     var lastIFAYear = $scope.IFACalendarDate.getFullYear();
                     checkUpforPale("IFAVisits",lastIFAMonth,currentIFA,lastIFAYear);
                     //case when past mon is not the same as current month
+                    if($scope.matchArray.IFAVisits == 1){
+                        $scope.totalIFACount = parseInt(totalIFACount) + parseInt(currentIFA) - parseInt($scope.visitDetails.IFAVisits[$scope.lastObj.IFAVisits.monthNo].value);
+                    }else{
+                         $scope.totalIFACount = parseInt(totalIFACount) + parseInt(currentIFA);
+                    }
                     var lastStoredMonth = (IFAVisits.length == 0 ?'' :IFAVisits[IFAVisits.length-1].pregnancyMonthNo);
                     var selectedmonth = $scope.lastObj.IFAVisits.pregnancyMonthNo;
                     if(lastStoredMonth < selectedmonth){
-                        $scope.lastIFAMonth = $scope.lastObj.IFAVisits.monthNo;
+                        $scope.lastIFAMonth  = $scope.lastObj.IFAVisits.monthNo;
                     }
                     if($scope.totalIFACount <= 100){
-                        if(lastIFAMonth == currentMonth){
+                        if( $scope.lastIFAMonth  == currentMonth){
                             if(currentMonth == 12){
                                  $scope.nextIFAVisit = 1;
                             }else{
@@ -965,19 +981,24 @@ console.log(womanDisplayID);
     $scope.updateIFA=function(){
          if(isNaN($scope.enteredIFA) == false){
                     var currentIFA = $scope.enteredIFA;
-                    $scope.totalIFACount = parseInt(totalIFACount) + parseInt(currentIFA);
+                    $scope.lastIFAMonth = (IFAVisits.length == 0?'': IFAVisits[IFAVisits.length -1].monthNo);
                     var lastIFADate = UtilityService.convertDateFormat($scope.IFACalendarDate);
                     var lastIFAMonth = UtilityService.showMonthFromDate(lastIFADate);
                     var lastIFAYear = $scope.IFACalendarDate.getFullYear();
                     checkUpforPale("IFAVisits",lastIFAMonth,currentIFA,lastIFAYear);
                     //case when past mon is not the same as current month
+                    if($scope.matchArray.IFAVisits == 1){
+                        $scope.totalIFACount = parseInt(totalIFACount) + parseInt(currentIFA) - parseInt($scope.visitDetails.IFAVisits[$scope.lastObj.IFAVisits.monthNo].value);
+                    }else{
+                         $scope.totalIFACount = parseInt(totalIFACount) + parseInt(currentIFA);
+                    }
                     var lastStoredMonth = (IFAVisits.length == 0 ?'' :IFAVisits[IFAVisits.length-1].pregnancyMonthNo);
                     var selectedmonth = $scope.lastObj.IFAVisits.pregnancyMonthNo;
                     if(lastStoredMonth < selectedmonth){
-                        $scope.lastIFAMonth = $scope.lastObj.IFAVisits.monthNo;
+                        $scope.lastIFAMonth  = $scope.lastObj.IFAVisits.monthNo;
                     }
                     if($scope.totalIFACount <= 100){
-                        if(lastIFAMonth == currentMonth){
+                        if( $scope.lastIFAMonth  == currentMonth){
                             if(currentMonth == 12){
                                  $scope.nextIFAVisit = 1;
                             }else{
@@ -1703,6 +1724,7 @@ $scope.opened=false;
                 womanData.birthOutcome = $scope.BirthOutcome;
                 //$scope.birthGender.name="girl"
                 if($scope.BirthOutcome == "LiveBirth"){
+                    womanData.isPregnant =false;
                     childObj.motherID = womanData.womanID;
                     childObj.motherDisplayID= womanData.displayID;
                     childObj.motherName = womanData.name;
