@@ -1,3 +1,3 @@
-angular.module('uhiApp.controllers').controller('MapWomenController', function($scope, $rootScope) {
+angular.module('uhiApp.controllers').controller('MapWomenController', function($scope) {
 
 });

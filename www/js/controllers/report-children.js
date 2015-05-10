@@ -1,3 +1,3 @@
-angular.module('uhiApp.controllers').controller('ReportChildrenController', function($scope, $rootScope) {
+angular.module('uhiApp.controllers').controller('ReportChildrenController', function($scope) {
 
 });

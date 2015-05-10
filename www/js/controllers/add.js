@@ -1,4 +1,4 @@
-angular.module('uhiApp.controllers').controller('AddController',function ($scope, $state, $stateParams, $rootScope, WomanService, ChildService, UtilityService, $cordovaCamera){
+angular.module('uhiApp.controllers').controller('AddController',function ($scope, $state, $stateParams, WomanService, ChildService, UtilityService, $cordovaCamera){
 
     var imgData;  var displayID = UtilityService.getWomanDisplayID();
 if(displayID){

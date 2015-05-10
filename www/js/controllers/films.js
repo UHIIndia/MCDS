@@ -1,4 +1,4 @@
-angular.module('uhiApp.controllers').controller('FilmsController', function($scope,UtilityService,$timeout, $rootScope,videos) {
+angular.module('uhiApp.controllers').controller('FilmsController', function($scope,UtilityService,$timeout, videos) {
 
     $scope.video = {};
     var allVideos=[]
