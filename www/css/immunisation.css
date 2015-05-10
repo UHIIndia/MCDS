@@ -1,7 +1,7 @@
 .immu-wrapper .light-blue-block{
 	padding-top: 15px;
   padding-bottom: 15px;
-	margin-bottom: 15px;
+	margin-bottom: 21px;
 }
 .immu-wrapper .light-blue-block label{
 	text-align: left;
@@ -22,12 +22,6 @@
 	padding-left: 0;
 
 }
-
-
-
-
-
-
 
 .immu-months{
 	margin-bottom: 5px;
@@ -116,6 +110,9 @@
 	width: 100%;
 }
 /*--immu footer---*/
+.immu-footer{
+  padding: 11px 0;
+}
 .immu-footer > div{
 	padding: 0;
 }
