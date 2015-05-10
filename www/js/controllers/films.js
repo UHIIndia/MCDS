@@ -1,4 +1,4 @@
-angular.module('uhiApp.controllers').controller('FilmWomenController', function($scope,UtilityService,$timeout, $rootScope,videos) {
+angular.module('uhiApp.controllers').controller('FilmsController', function($scope,UtilityService,$timeout, $rootScope,videos) {
 
     $scope.video = {};
     var allVideos=[]
@@ -22,7 +22,7 @@ angular.module('uhiApp.controllers').controller('FilmWomenController', function(
         selectedList = $scope.video.childlist;
       }
     };
-    $scope.selectVideoTab(index); 
+    $scope.selectVideoTab(index);
     UtilityService.setVideoTab(1);
     $scope.playVideo = function(id) {
       var selectedVideo = selectedList[id];

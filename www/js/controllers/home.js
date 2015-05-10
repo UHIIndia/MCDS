@@ -16,12 +16,12 @@ angular.module('uhiApp.controllers')
 
     $scope.showFilmsPregnant = function(){
         UtilityService.setVideoTab(3);
-        $state.go("filmWomen");
+        $state.go("films");
     };
 
     $scope.showFilmsFP = function(){
         UtilityService.setVideoTab(2);
-        $state.go("filmWomen");
+        $state.go("films");
     };
 
     $scope.mapBabies = function(){
@@ -38,7 +38,7 @@ angular.module('uhiApp.controllers')
 
     $scope.showFilmsBabies = function(){
         UtilityService.setVideoTab(4);
-        $state.go("filmWomen");
+        $state.go("films");
     };
 
     $scope.goTo= function(){

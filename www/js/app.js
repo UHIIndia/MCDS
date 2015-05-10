@@ -108,17 +108,11 @@ angular.module('uhiApp', ['ionic', 'ngCordova', 'uhiApp.controllers', 'uhiApp.se
     templateUrl: "templates/report-children.html",
     controller: 'ReportChildrenController'
   })
-  .state('filmWomen', {
-    url: "/film-women",
+  .state('films', {
+    url: "/films",
     cache: false,
-    templateUrl: "templates/film-women.html",
-    controller: 'FilmWomenController'
-  })
-  .state('filmChildren', {
-    url: "/film-children",
-    cache: false,
-    templateUrl: "templates/film-children.html",
-    controller: 'FilmChildrenController'
+    templateUrl: "templates/films.html",
+    controller: 'FilmsController'
   });
 
   // if none of the above states are matched, use this as the fallback
