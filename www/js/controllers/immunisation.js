@@ -75,6 +75,37 @@ angular.module('uhiApp.controllers').controller('ImmunisationController', functi
     $scope.isOpenForVaccination[vaccinationId] = true;
   };
 
+  if(typeof($scope.child.immunisationDetails) === 'undefined') {
+    $scope.child.immunisationDetails = [];
+
+    for(var i=0; i<=35; i++) {
+      var immunisationDetailsForThisMonth ={};
+      immunisationDetailsForThisMonth.monthId = i+1;
+      $scope.child.immunisationDetails.push(immunisationDetailsForThisMonth);
+    }
+  }
+
+  $scope.visibleMonthIndexForVaccine = {
+    1: null,
+    2: null,
+    3: null,
+    4: null,
+    5: null,
+    6: null,
+    7: null,
+    8: null
+  };
+
+  $scope.$watch('vaccinationSelectedDate[1]', function(n) {
+    if(n) {
+      var selectedTime = new Date($scope.vaccinationSelectedDate[1]).getTime();
+      var dobTimeOfChild = new Date($scope.childDisplay.dob).getTime();
+      var timeDiffInMs = selectedTime - dobTimeOfChild;
+      var timeInMonths = Math.floor(timeDiffInMs / (1000*60*60*24*30));
+      $scope.visibleMonthIndexForVaccine[1] = timeInMonths;
+    }
+  });
+
   function calculateChildAge(pastDate) {
     var date = new Date(pastDate);
     var ageInExactDays = (new Date().getTime() - date.getTime()) / (1000*60*60*24);
