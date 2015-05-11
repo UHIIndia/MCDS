@@ -96,13 +96,70 @@ angular.module('uhiApp.controllers').controller('ImmunisationController', functi
     8: null
   };
 
+  var dobTimeOfChild = new Date($scope.childDisplay.dob).getTime();
+  var selectedTime, timeDiffInMs, timeInMonths;
+
   $scope.$watch('vaccinationSelectedDate[1]', function(n) {
     if(n) {
-      var selectedTime = new Date($scope.vaccinationSelectedDate[1]).getTime();
-      var dobTimeOfChild = new Date($scope.childDisplay.dob).getTime();
-      var timeDiffInMs = selectedTime - dobTimeOfChild;
-      var timeInMonths = Math.floor(timeDiffInMs / (1000*60*60*24*30));
-      $scope.visibleMonthIndexForVaccine[1] = timeInMonths;
+      selectedTime = new Date($scope.vaccinationSelectedDate[1]).getTime();
+      timeDiffInMs = selectedTime - dobTimeOfChild;
+      $scope.visibleMonthIndexForVaccine[1] = Math.floor(timeDiffInMs / (1000*60*60*24*30));
+    }
+  });
+
+  $scope.$watch('vaccinationSelectedDate[2]', function(n) {
+    if(n) {
+      selectedTime = new Date($scope.vaccinationSelectedDate[2]).getTime();
+      timeDiffInMs = selectedTime - dobTimeOfChild;
+      $scope.visibleMonthIndexForVaccine[2] = Math.floor(timeDiffInMs / (1000*60*60*24*30));
+    }
+  });
+
+  $scope.$watch('vaccinationSelectedDate[3]', function(n) {
+    if(n) {
+      selectedTime = new Date($scope.vaccinationSelectedDate[3]).getTime();
+      timeDiffInMs = selectedTime - dobTimeOfChild;
+      $scope.visibleMonthIndexForVaccine[3] = Math.floor(timeDiffInMs / (1000*60*60*24*30));
+    }
+  });
+
+  $scope.$watch('vaccinationSelectedDate[4]', function(n) {
+    if(n) {
+      selectedTime = new Date($scope.vaccinationSelectedDate[4]).getTime();
+      timeDiffInMs = selectedTime - dobTimeOfChild;
+      $scope.visibleMonthIndexForVaccine[4] = Math.floor(timeDiffInMs / (1000*60*60*24*30));
+    }
+  });
+
+  $scope.$watch('vaccinationSelectedDate[5]', function(n) {
+    if(n) {
+      selectedTime = new Date($scope.vaccinationSelectedDate[5]).getTime();
+      timeDiffInMs = selectedTime - dobTimeOfChild;
+      $scope.visibleMonthIndexForVaccine[5] = Math.floor(timeDiffInMs / (1000*60*60*24*30));
+    }
+  });
+
+  $scope.$watch('vaccinationSelectedDate[6]', function(n) {
+    if(n) {
+      selectedTime = new Date($scope.vaccinationSelectedDate[6]).getTime();
+      timeDiffInMs = selectedTime - dobTimeOfChild;
+      $scope.visibleMonthIndexForVaccine[6] = Math.floor(timeDiffInMs / (1000*60*60*24*30));
+    }
+  });
+
+  $scope.$watch('vaccinationSelectedDate[7]', function(n) {
+    if(n) {
+      selectedTime = new Date($scope.vaccinationSelectedDate[7]).getTime();
+      timeDiffInMs = selectedTime - dobTimeOfChild;
+      $scope.visibleMonthIndexForVaccine[7] = Math.floor(timeDiffInMs / (1000*60*60*24*30));
+    }
+  });
+
+  $scope.$watch('vaccinationSelectedDate[8]', function(n) {
+    if(n) {
+      selectedTime = new Date($scope.vaccinationSelectedDate[8]).getTime();
+      timeDiffInMs = selectedTime - dobTimeOfChild;
+      $scope.visibleMonthIndexForVaccine[8] = Math.floor(timeDiffInMs / (1000*60*60*24*30));
     }
   });
 
