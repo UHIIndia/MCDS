@@ -206,37 +206,62 @@
 					<div class="newborn-day-body">
 						<div class="newborn-day-row">
 							<div  class="col-sm-1" ng-repeat = "item in child.newBornDetails" ng-class="{'yellow-alert':$index === rows[0].yellowAlert, 'red-alert':isRedCell(0, $index)}">
-								<span>{{item.weight}}</span>
+								<span ng-hide="isValueUpdated('weight', $index)">{{item.weight}}</span>
+                              <span ng-show="isValueUpdated('weight', $index)">{{lastUpdated.weight.val}}</span>
 							</div>
 						</div>
 						<div class="newborn-day-row">
 							<div  class="col-sm-1" ng-repeat = "item in child.newBornDetails" ng-class="{'yellow-alert':$index === rows[1].yellowAlert}">
-                              <span ng-if ="item.ASHAVisit === true">Yes</span>
+                              <div ng-hide="isValueUpdated('ASHAVisit', $index)"><span ng-if ="item.ASHAVisit === true">Yes</span>
               <span ng-if ="item.ASHAVisit === false">No</span>
+                              </div>
+                              <div ng-show="isValueUpdated('ASHAVisit', $index)"><span ng-if ="lastUpdated.ASHAVisit.val === true">Yes</span>
+              <span ng-if ="lastUpdated.ASHAVisit.val === false">No</span>
+                              </div>
+                              
 							</div>
 						</div>
 						<div class="newborn-day-row">
 							<div  class="col-sm-1" ng-repeat = "item in child.newBornDetails" ng-class="{'yellow-alert':$index === rows[2].yellowAlert}">
-                              <span ng-if ="item.ANMVisit === true">Yes</span>
+                              <div ng-hide="isValueUpdated('ANMVisit', $index)"><span ng-if ="item.ANMVisit === true">Yes</span>
               <span ng-if ="item.ANMVisit === false">No</span>
+                              </div>
+                              <div ng-show="isValueUpdated('ANMVisit', $index)"><span ng-if ="lastUpdated.ANMVisit.val === true">Yes</span>
+              <span ng-if ="lastUpdated.ANMVisit.val === false">No</span>
+                              </div>
 							</div>
 						</div>
 						<div class="newborn-day-row">
 							<div  class="col-sm-1" ng-repeat = "item in child.newBornDetails" ng-class="{'yellow-alert':$index === rows[3].yellowAlert}">
-                              <span ng-if ="item.breastFeed === true">Yes</span>
+                              <div ng-hide="isValueUpdated('breastFeed', $index)"><span ng-if ="item.breastFeed === true">Yes</span>
               <span ng-if ="item.breastFeed === false">No</span>
+                              </div>
+                              <div ng-show="isValueUpdated('breastFeed', $index)"><span ng-if ="lastUpdated.breastFeed.val === true">Yes</span>
+              <span ng-if ="lastUpdated.breastFeed.val === false">No</span>
+                              </div>
 							</div>
 						</div>
 						<div class="newborn-day-row">
 							<div  class="col-sm-1" ng-repeat = "item in child.newBornDetails" ng-class="{'red-alert':isRedCell(4, $index)}">
-                              <span ng-if ="item.wrapCap === true">Yes</span>
+                              <div ng-hide="isValueUpdated('wrapCap', $index)"><span ng-if ="item.wrapCap === true">Yes</span>
               <span ng-if ="item.wrapCap === false">No</span>
+                              </div>
+                              <div ng-show="isValueUpdated('wrapCap', $index)"><span ng-if ="lastUpdated.wrapCap.val === true">Yes</span>
+              <span ng-if ="lastUpdated.wrapCap.val === false">No</span>
+                              </div>
 							</div>
 						</div>
 						<div class="newborn-day-row">
 							<div  class="col-sm-1" ng-repeat = "item in child.newBornDetails" ng-class="{'yellow-alert':$index === rows[5].yellowAlert, 'red-alert':isRedCell(5, $index)}">
-                              <span ng-if ="item.sick === true">Yes</br> {{item.temp}}</span>
-              <span ng-if ="item.sick === false">No </br>{{item.temp}}</span>
+                              <div ng-hide="isValueUpdated('sick', $index)"><span ng-if ="item.sick === true">Yes</span></br> {{item.temp}}
+              <span ng-if ="item.sick === false">No</span></br>
+                          <span ng-hide="isValueUpdated('temp', $index)">{{item.temp}}</span>
+                          <span ng-show="isValueUpdated('temp', $index)">{{lastUpdated.temp.val}}</span>
+                              </div>
+                              <div ng-show="isValueUpdated('sick', $index)"><span ng-if ="lastUpdated.sick.val === true">Yes</span>
+              <span ng-if ="lastUpdated.sick.val === false">No</span></br> <span ng-hide="isValueUpdated('temp', $index)">{{item.temp}}</span>
+                          <span ng-show="isValueUpdated('temp', $index)">{{lastUpdated.temp.val}}</span>
+                              </div>                              
 							</div>
 						</div>
 					</div>
