@@ -39,6 +39,7 @@
 	float: none;
 	display: inline-block;
 	margin-right: -1px;
+  vertical-align: top;
 }
 .immu-months-wrapper > div:first-child{
 	padding-left: 0;
@@ -223,14 +224,10 @@
 .immu-table-wrapper .calendar-wrapper .calender-weight input + span{
 	padding-left: 5px;
 }
-<<<<<<< Updated upstream
 .weight-measurement{
   padding-left: 0;
 }
-.left-block .calendar-wrapper > div{
-=======
 .immu-table-wrapper .left-block .calendar-wrapper > div{
->>>>>>> Stashed changes
 	margin-bottom: 3px;
 	height: 36px;
 }
