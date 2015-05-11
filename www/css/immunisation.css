@@ -187,64 +187,68 @@
   overflow-x: auto;
 	white-space: nowrap;
 }
-.left-block  .videos-wrapper .block{
+.immu-table-wrapper .left-block  .videos-wrapper .block{
 	margin-bottom: 3px;
 	height: 36px;
 }
-.left-block .blank-block{
+.immu-table-wrapper .left-block .blank-block{
 	height: 43px;
 	margin-bottom: 5px;
 }
-.left-block .videos-wrapper{
+.immu-table-wrapper .left-block .videos-wrapper{
 	float: left;
 	width: 45.60%;
 }
-.left-block .calendar-wrapper{
+.immu-table-wrapper .left-block .calendar-wrapper{
 	float: left;
 	width: 54.4%;
 }
-.left-block  .videos-wrapper .block .title{
+.immu-table-wrapper .left-block  .videos-wrapper .block .title{
 	font-family: OpenSans-Semibold;
 	float: left;
 	font-size: 12px;
 	width:65px;
 }
-.left-block .block .video{
+.immu-table-wrapper .left-block .block .video{
 	margin-right: 5px;
 	float: left;
 }
-.left-block .calendar-wrapper .date-block{
+.immu-table-wrapper.left-block .calendar-wrapper .date-block{
 	padding-left: 5px;
 	padding-top: 2px;
 }
-.calendar-wrapper .calender-weight input{
+.immu-table-wrapper .calendar-wrapper .calender-weight input{
 	height: 30px;
 }
-.calendar-wrapper .calender-weight input + span{
+.immu-table-wrapper .calendar-wrapper .calender-weight input + span{
 	padding-left: 5px;
 }
+<<<<<<< Updated upstream
 .weight-measurement{
   padding-left: 0;
 }
 .left-block .calendar-wrapper > div{
+=======
+.immu-table-wrapper .left-block .calendar-wrapper > div{
+>>>>>>> Stashed changes
 	margin-bottom: 3px;
 	height: 36px;
 }
-.left-block .calendar-wrapper .left-block,
-.left-block .calendar-wrapper .right-block,
-.left-block .calendar-wrapper .full-block{
+.immu-table-wrapper .left-block .calendar-wrapper .left-block,
+.immu-table-wrapper .left-block .calendar-wrapper .right-block,
+.immu-table-wrapper .left-block .calendar-wrapper .full-block{
 	border: 1px #000 solid;
 	background: #fff;
 	height: 36px;
 	padding: 2px;
 }
-.left-block .calendar-wrapper .left-block{
+.immu-table-wrapper .left-block .calendar-wrapper .left-block{
 	float: left;
 	width: 26%;
   padding-right: 0;
   margin-right: 2%;
 }
-.left-block .calendar-wrapper .right-block{
+.immu-table-wrapper .left-block .calendar-wrapper .right-block{
 	float: left;
 	width: 72%;
 }
