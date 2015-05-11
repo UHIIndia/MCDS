@@ -246,18 +246,20 @@ console.log(womanDisplayID);
 
                 // do whatever you were going to do
                 //to ensure last mon doesnt retain the last changed value
-                $scope.lastAshaVistMonth = (ashaVisits.length == 0?'': ashaVisits[ashaVisits.length -1].monthNo);
+                $scope.visitDetails.ashaVisits = _.indexBy($scope.visitDetails.ashaVisits, 'monthNo')
+                var listArray = _.sortBy($scope.visitDetails.ashaVisits,'pregnancyMonthNo');
+                $scope.lastAshaVistMonth = (listArray.length == 0?'': listArray[listArray.length -1].monthNo);
                // var diff = UtilityService.calcDiffDates(pastYrTime,$scope.ashaCalendarDate);
                 var ashaCalendarDate = UtilityService.convertDateFormat($scope.ashaCalendarDate);
                 var ashaCalendarMonth = UtilityService.showMonthFromDate(ashaCalendarDate);
                 var ashaCalendarYear = $scope.ashaCalendarDate.getFullYear();
                 checkUpforPale("ashaVisits",ashaCalendarMonth,ashaCalendarDate,ashaCalendarYear);
                 if($scope.matchArray.ashaVisits == 1){
-                    $scope.ashaCountTotal = ashaVisits.length
+                    $scope.ashaCountTotal = listArray.length
                 }else{
-                     $scope.ashaCountTotal = ashaVisits.length +1;
+                     $scope.ashaCountTotal = listArray.length +1;
                 }
-                var lastStoredMonth = (ashaVisits.length == 0 ?'' :ashaVisits[ashaVisits.length-1].pregnancyMonthNo);
+                var lastStoredMonth = (listArray.length == 0 ?'' :listArray[listArray.length-1].pregnancyMonthNo);
                 var selectedmonth = $scope.lastObj.ashaVisits.pregnancyMonthNo;
                 if(lastStoredMonth < selectedmonth){
                     $scope.lastAshaVistMonth = $scope.lastObj.ashaVisits.monthNo;
@@ -343,7 +345,9 @@ console.log(womanDisplayID);
             } else {
                 // do whatever you were going to do
                 //to ensure last mon doesnt retain the last changed value
-                $scope.lastANMVistMonth = (anmVisits.length == 0?'': anmVisits[anmVisits.length -1].monthNo);
+                $scope.visitDetails.anmVisits = _.indexBy($scope.visitDetails.anmVisits, 'monthNo')
+                var listArray = _.sortBy($scope.visitDetails.anmVisits,'pregnancyMonthNo');
+                 $scope.lastANMVistMonth = (listArray.length == 0?'': listArray[listArray.length -1].monthNo);
                // var diff = UtilityService.calcDanmVisitsiffDates(pastYrTime,$scope.ashaCalendarDate);
                 var anmCalendarDate = UtilityService.convertDateFormat($scope.ANMCalendarDate);
                 var anmCalendarMonth = UtilityService.showMonthFromDate(anmCalendarDate);
@@ -354,7 +358,7 @@ console.log(womanDisplayID);
                 }else{
                      $scope.ANMCountTotal = anmVisits.length +1;
                 }
-                var lastStoredMonth = (anmVisits.length == 0?'' :anmVisits[anmVisits.length-1].pregnancyMonthNo);
+                var lastStoredMonth = (listArray.length == 0?'' :listArray[listArray.length-1].pregnancyMonthNo);
                 var selectedmonth = $scope.lastObj.anmVisits.pregnancyMonthNo;
                 if(lastStoredMonth < selectedmonth){
                     $scope.lastANMVistMonth = $scope.lastObj.anmVisits.monthNo;
@@ -440,6 +444,7 @@ console.log(womanDisplayID);
     $scope.$watch(function(scope) {return $scope.WeightCalendarDate},
         function() {
                 if($scope.enteredWeight){
+                    $scope.visitDetails.wtVisits = _.indexBy( $scope.visitDetails.wtVisits, 'monthNo')
                     var currentWt = $scope.enteredWeight;
                     updateRowforVisits("wtVisits",currentWt,$scope.WeightCalendarDate);
                     var currentWtMonth = $scope.lastObj.wtVisits.monthNo;
@@ -460,6 +465,7 @@ console.log(womanDisplayID);
     );
     $scope.updateWeight=function(){
        if(isNaN($scope.enteredWeight) == false){
+                      $scope.visitDetails.wtVisits = _.indexBy( $scope.visitDetails.wtVisits, 'monthNo')
                      var currentWt = $scope.enteredWeight;
                     updateRowforVisits("wtVisits",currentWt,$scope.WeightCalendarDate);
                     var currentWtMonth = $scope.lastObj.wtVisits.monthNo;
@@ -588,15 +594,17 @@ console.log(womanDisplayID);
                 if (TTInitializing) {
                 $timeout(function() { TTInitializing = false; });
                 } else {
-                    totalTTCount = finalCount+1;
+                    $scope.visitDetails.TTVisits = _.indexBy($scope.visitDetails.TTVisits, 'monthNo')
+                     var listArray = _.sortBy($scope.visitDetails.TTVisits,'pregnancyMonthNo');
+                    totalTTCount = parseInt(listArray.length)+1;
                     lastTTCount = 1;
-                     scope.lastTTMonth = (TTVisits.length == 0?'': TTVisits[TTVisits.length -1].monthNo);
+                    $scope.lastTTMonth = (listArray.length == 0?'': listArray[listArray.length -1].monthNo);
                     $scope.enteredTT = ($scope.enteredTT == undefined || $scope.enteredTT == ''? 0:$scope.enteredTT);
                     var TTCalendarDate = UtilityService.convertDateFormat($scope.TTCalendarDate);
                     var TTCalendaMonth = UtilityService.showMonthFromDate(TTCalendarDate);
                     var TTCalendarYear = $scope.TTCalendarDate.getFullYear();
                     checkUpforPale("TTVisits",TTCalendaMonth,lastTTCount,TTCalendarYear);
-                    var lastStoredMonth = (TTVisits.length == 0 ?'' :TTVisits[TTVisits.length-1].pregnancyMonthNo);
+                    var lastStoredMonth = (listArray.length == 0 ?'' :listArray[listArray.length-1].pregnancyMonthNo);
                     var selectedmonth = $scope.lastObj.TTVisits.pregnancyMonthNo;
                     if(lastStoredMonth < selectedmonth){
                         $scope.lastTTMonth = $scope.lastObj.TTVisits.monthNo;
@@ -659,15 +667,17 @@ console.log(womanDisplayID);
 
    $scope.updateTT=function(){
             if($scope.enteredTT){
-                     totalTTCount = finalCount+1;
+                    $scope.visitDetails.TTVisits = _.indexBy($scope.visitDetails.TTVisits, 'monthNo')
+                     var listArray = _.sortBy($scope.visitDetails.TTVisits,'pregnancyMonthNo');
+                     totalTTCount = parseInt(listArray.length)+1;
                     lastTTCount = 1;
-                     $scope.lastTTMonth = (TTVisits.length == 0?'': TTVisits[TTVisits.length -1].monthNo);
+                     $scope.lastTTMonth = (listArray.length == 0?'': listArray[listArray.length -1].monthNo);
                     $scope.enteredTT = ($scope.enteredTT == undefined ? 0:$scope.enteredTT);
                     var TTCalendarDate = UtilityService.convertDateFormat($scope.TTCalendarDate);
                     var TTCalendaMonth = UtilityService.showMonthFromDate(TTCalendarDate);
                     var TTCalendarYear = $scope.TTCalendarDate.getFullYear();
                     checkUpforPale("TTVisits",TTCalendaMonth,lastTTCount,TTCalendarYear);
-                    var lastStoredMonth = (TTVisits.length == 0 ?'' :TTVisits[TTVisits.length-1].pregnancyMonthNo);
+                    var lastStoredMonth = (listArray.length == 0 ?'' :listArray[listArray.length-1].pregnancyMonthNo);
                     var selectedmonth = $scope.lastObj.TTVisits.pregnancyMonthNo;
                     if(lastStoredMonth < selectedmonth){
                         $scope.lastTTMonth = $scope.lastObj.TTVisits.monthNo;
@@ -754,6 +764,7 @@ console.log(womanDisplayID);
     $scope.$watch(function(scope) {return $scope.HBCalendarDate},
         function() {
                 if(isNaN($scope.enteredHB)== false){
+                    $scope.visitDetails.hbVisits = _.indexBy($scope.visitDetails.hbVisits, 'monthNo')
                     var currentHB = $scope.enteredHB;
                     updateRowforVisits("hbVisits",currentHB,$scope.HBCalendarDate);
                     if(currentHB < 10){
@@ -767,6 +778,7 @@ console.log(womanDisplayID);
     $scope.updateHB=function(){
         var enteredHB = $scope.enteredHB;
             if(isNaN($scope.enteredHB)== false){
+                    $scope.visitDetails.hbVisits = _.indexBy($scope.visitDetails.hbVisits, 'monthNo')
                     var currentHB = $scope.enteredHB;
                     updateRowforVisits("hbVisits",currentHB,$scope.HBCalendarDate);
                     if(currentHB < 10){
@@ -795,12 +807,14 @@ console.log(womanDisplayID);
     $scope.$watch(function(scope) {return $scope.PaleCalendarDate},
         function() {
                 if($scope.paleOutcome){
+                    $scope.visitDetails.paleEyeVisits = _.indexBy($scope.visitDetails.paleEyeVisits, 'monthNo')
                     updateRowforVisits("paleEyeVisits",$scope.paleOutcome,$scope.PaleCalendarDate);
                 }
         }
     );
     $scope.updatePale=function(){
         if($scope.paleOutcome) {
+                  $scope.visitDetails.paleEyeVisits = _.indexBy($scope.visitDetails.paleEyeVisits, 'monthNo')
                   updateRowforVisits("paleEyeVisits",$scope.paleOutcome,$scope.PaleCalendarDate);
                 }
     }
@@ -824,12 +838,14 @@ console.log(womanDisplayID);
     $scope.$watch(function(scope) {return $scope.NightBlindCalendarDate},
     function() {
                 if($scope.blindOutcome){
+                    $scope.visitDetails.nightBlindVisits = _.indexBy($scope.visitDetails.nightBlindVisits, 'monthNo')
                     updateRowforVisits("nightBlindVisits",$scope.blindOutcome,$scope.NightBlindCalendarDate);
                 }
         }
     );
     $scope.updateBlind=function(){
         if($scope.blindOutcome) {
+                   $scope.visitDetails.nightBlindVisits = _.indexBy($scope.visitDetails.nightBlindVisits, 'monthNo')
                    updateRowforVisits("nightBlindVisits",$scope.blindOutcome,$scope.NightBlindCalendarDate);
                 }
     }
@@ -853,12 +869,14 @@ console.log(womanDisplayID);
     $scope.$watch(function(scope) {return $scope.BleedingCalendarDate},
         function() {
                 if($scope.bleedingOutcome){
+                    $scope.visitDetails.bleedingVisits = _.indexBy($scope.visitDetails.bleedingVisits, 'monthNo')
                     updateRowforVisits("bleedingVisits",$scope.bleedingOutcome,$scope.BleedingCalendarDate);
                 }
         }
     );
     $scope.updateBleed=function(){
         if($scope.bleedingOutcome) {
+                   $scope.visitDetails.bleedingVisits = _.indexBy($scope.visitDetails.bleedingVisits, 'monthNo')
                    updateRowforVisits("bleedingVisits",$scope.bleedingOutcome,$scope.BleedingCalendarDate);
                 }
     }
@@ -891,12 +909,14 @@ console.log(womanDisplayID);
     $scope.$watch(function(scope) {return $scope.MalariaCalendarDate},
         function() {
                 if($scope.malariaOutcome){
+                   $scope.visitDetails.malariaVisits = _.indexBy($scope.visitDetails.malariaVisits, 'monthNo')
                    updateRowforVisits("malariaVisits",$scope.malariaOutcome,$scope.MalariaCalendarDate);
                 }
         }
     );
     $scope.updateMalaria=function(){
         if($scope.malariaOutcome) {
+                   $scope.visitDetails.malariaVisits = _.indexBy($scope.visitDetails.malariaVisits, 'monthNo')  
                    updateRowforVisits("malariaVisits",$scope.malariaOutcome,$scope.MalariaCalendarDate);
                 }
     }
@@ -943,8 +963,14 @@ console.log(womanDisplayID);
      $scope.$watch(function(scope) {return $scope.IFACalendarDate},
         function() {
                 if($scope.enteredIFA){
+                    var totalIFACount =0;
+                    $scope.visitDetails.IFAVisits = _.indexBy($scope.visitDetails.IFAVisits, 'monthNo')
+                    var listArray = _.sortBy($scope.visitDetails.IFAVisits,'pregnancyMonthNo');
+                    for(var i=0;i<listArray.length;i++){
+                        totalIFACount +=parseInt(listArray[i].value);
+                    }
                     var currentIFA = $scope.enteredIFA;
-                    $scope.lastIFAMonth = (IFAVisits.length == 0?'': IFAVisits[IFAVisits.length -1].monthNo);
+                    $scope.lastIFAMonth = (listArray.length == 0?'': listArray[listArray.length -1].monthNo);
                     var lastIFADate = UtilityService.convertDateFormat($scope.IFACalendarDate);
                     var lastIFAMonth = UtilityService.showMonthFromDate(lastIFADate);
                     var lastIFAYear = $scope.IFACalendarDate.getFullYear();
@@ -955,7 +981,7 @@ console.log(womanDisplayID);
                     }else{
                          $scope.totalIFACount = parseInt(totalIFACount) + parseInt(currentIFA);
                     }
-                    var lastStoredMonth = (IFAVisits.length == 0 ?'' :IFAVisits[IFAVisits.length-1].pregnancyMonthNo);
+                    var lastStoredMonth = (listArray.length == 0 ?'' :listArray[listArray.length-1].pregnancyMonthNo);
                     var selectedmonth = $scope.lastObj.IFAVisits.pregnancyMonthNo;
                     if(lastStoredMonth < selectedmonth){
                         $scope.lastIFAMonth  = $scope.lastObj.IFAVisits.monthNo;
@@ -980,8 +1006,14 @@ console.log(womanDisplayID);
     );
     $scope.updateIFA=function(){
          if(isNaN($scope.enteredIFA) == false){
+                    var totalIFACount =0;
+                    $scope.visitDetails.IFAVisits = _.indexBy($scope.visitDetails.IFAVisits, 'monthNo')
+                    var listArray = _.sortBy($scope.visitDetails.IFAVisits,'pregnancyMonthNo');
+                    for(var i=0;i<listArray.length;i++){
+                        totalIFACount +=parseInt(listArray[i].value);
+                    }
                     var currentIFA = $scope.enteredIFA;
-                    $scope.lastIFAMonth = (IFAVisits.length == 0?'': IFAVisits[IFAVisits.length -1].monthNo);
+                    $scope.lastIFAMonth = (listArray.length == 0?'': listArray[listArray.length -1].monthNo);
                     var lastIFADate = UtilityService.convertDateFormat($scope.IFACalendarDate);
                     var lastIFAMonth = UtilityService.showMonthFromDate(lastIFADate);
                     var lastIFAYear = $scope.IFACalendarDate.getFullYear();
@@ -992,7 +1024,7 @@ console.log(womanDisplayID);
                     }else{
                          $scope.totalIFACount = parseInt(totalIFACount) + parseInt(currentIFA);
                     }
-                    var lastStoredMonth = (IFAVisits.length == 0 ?'' :IFAVisits[IFAVisits.length-1].pregnancyMonthNo);
+                    var lastStoredMonth = (listArray.length == 0 ?'' :listArray[listArray.length-1].pregnancyMonthNo);
                     var selectedmonth = $scope.lastObj.IFAVisits.pregnancyMonthNo;
                     if(lastStoredMonth < selectedmonth){
                         $scope.lastIFAMonth  = $scope.lastObj.IFAVisits.monthNo;
@@ -1011,6 +1043,7 @@ console.log(womanDisplayID);
                     }else{
                         $scope.alertIFA = false;
                     }
+
                 }
     }
 
@@ -1033,6 +1066,7 @@ console.log(womanDisplayID);
     $scope.$watch(function(scope) {return $scope.BPCalendarDate},
         function() {
                 if($scope.BPOutcome){
+                     $scope.visitDetails.BPVisits = _.indexBy($scope.visitDetails.BPVisits, 'monthNo')
                     updateRowforVisits("BPVisits",$scope.BPOutcome,$scope.BPCalendarDate);
                 }
         }
@@ -1040,6 +1074,7 @@ console.log(womanDisplayID);
     //WHEN THE USER SELECTS YES OR NO
     $scope.updateBP=function(){
         if($scope.BPOutcome) {
+                    $scope.visitDetails.BPVisits = _.indexBy($scope.visitDetails.BPVisits, 'monthNo')
                     updateRowforVisits("BPVisits",$scope.BPOutcome,$scope.BPCalendarDate);
         }
     }
@@ -1079,12 +1114,14 @@ console.log(womanDisplayID);
     $scope.$watch(function(scope) {return $scope.UPCalendarDate},
         function() {
                 if($scope.UPOutcome){
+                    $scope.visitDetails.upVisits = _.indexBy($scope.visitDetails.upVisits, 'monthNo')
                     updateRowforVisits("upVisits",$scope.UPOutcome,$scope.UPCalendarDate);
                 }
         }
     );
     $scope.updateUP=function(){
         if($scope.UPOutcome) {
+                  $scope.visitDetails.upVisits = _.indexBy($scope.visitDetails.upVisits, 'monthNo')
                    updateRowforVisits("upVisits",$scope.UPOutcome,$scope.UPCalendarDate);
                 }
     }
@@ -1109,12 +1146,14 @@ console.log(womanDisplayID);
     $scope.$watch(function(scope) {return $scope.SwellingCalendarDate},
         function() {
                 if($scope.SwellingOutcome){
+                     $scope.visitDetails.swellingVisits = _.indexBy($scope.visitDetails.swellingVisits, 'monthNo')
                      updateRowforVisits("swellingVisits",$scope.SwellingOutcome,$scope.SwellingCalendarDate);
                 }
         }
     );
     $scope.updateSwelling=function(){
         if($scope.SwellingOutcome) {
+                  $scope.visitDetails.swellingVisits = _.indexBy($scope.visitDetails.swellingVisits, 'monthNo')
                   updateRowforVisits("swellingVisits",$scope.SwellingOutcome,$scope.SwellingCalendarDate);
         }
     }
@@ -1138,12 +1177,14 @@ console.log(womanDisplayID);
     $scope.$watch(function(scope) {return $scope.FitsCalendarDate},
         function() {
                 if($scope.FitsOutcome){
+                     $scope.visitDetails.fitsVisits = _.indexBy($scope.visitDetails.fitsVisits, 'monthNo')
                      updateRowforVisits("fitsVisits",$scope.FitsOutcome,$scope.FitsCalendarDate);
                 }
         }
     );
     $scope.updateFits=function(){
         if($scope.FitsOutcome) {
+                    $scope.visitDetails.fitsVisits = _.indexBy($scope.visitDetails.fitsVisits, 'monthNo')
                     updateRowforVisits("fitsVisits",$scope.FitsOutcome,$scope.FitsCalendarDate);
                 }
     }
@@ -1170,12 +1211,14 @@ console.log(womanDisplayID);
     $scope.$watch(function(scope) {return $scope.USCalendarDate},
         function() {
                 if($scope.USOutcome){
+                    $scope.visitDetails.usVisits = _.indexBy($scope.visitDetails.usVisits, 'monthNo')
                     updateRowforVisits("usVisits",$scope.USOutcome,$scope.USCalendarDate);
                 }
         }
     );
     $scope.updateUS=function(){
         if($scope.USOutcome) {
+                  $scope.visitDetails.usVisits = _.indexBy($scope.visitDetails.usVisits, 'monthNo')
                   updateRowforVisits("usVisits",$scope.USOutcome,$scope.USCalendarDate);
                 }
     }
@@ -1202,12 +1245,14 @@ console.log(womanDisplayID);
     $scope.$watch(function(scope) {return $scope.FeverCalendarDate},
         function() {
                 if($scope.FeverOutcome){
+                    $scope.visitDetails.feverVisits = _.indexBy($scope.visitDetails.feverVisits, 'monthNo')
                     updateRowforVisits("feverVisits",$scope.FeverOutcome,$scope.FeverCalendarDate);
                 }
         }
     );
     $scope.updateFever=function(){
         if($scope.FeverOutcome) {
+                   $scope.visitDetails.feverVisits = _.indexBy($scope.visitDetails.feverVisits, 'monthNo')  
                    updateRowforVisits("feverVisits",$scope.FeverOutcome,$scope.FeverCalendarDate);
                 }
     }
@@ -1234,12 +1279,14 @@ console.log(womanDisplayID);
     $scope.$watch(function(scope) {return $scope.FoulSmellCalendarDate},
         function() {
                 if($scope.FoulSmellOutcome){
+                    $scope.visitDetails.foulsmellVisits = _.indexBy($scope.visitDetails.foulsmellVisits, 'monthNo')
                     updateRowforVisits("foulsmellVisits",$scope.FoulSmellOutcome,$scope.FoulSmellCalendarDate);
                 }
         }
     );
     $scope.updateFoulSmell=function(){
         if($scope.FoulSmellOutcome) {
+                   $scope.visitDetails.foulsmellVisits = _.indexBy($scope.visitDetails.foulsmellVisits, 'monthNo')
                    updateRowforVisits("foulsmellVisits",$scope.FoulSmellOutcome,$scope.FoulSmellCalendarDate);
                 }
     }
@@ -1266,12 +1313,14 @@ console.log(womanDisplayID);
     $scope.$watch(function(scope) {return $scope.WeaknessCalendarDate},
         function() {
                 if($scope.WeaknessOutcome){
+                   $scope.visitDetails.weaknessVisits = _.indexBy($scope.visitDetails.weaknessVisits, 'monthNo')
                    updateRowforVisits("weaknessVisits",$scope.WeaknessOutcome,$scope.WeaknessCalendarDate);
                 }
         }
     );
     $scope.updateWeakness=function(){
         if($scope.WeaknessOutcome) {
+                   $scope.visitDetails.weaknessVisits = _.indexBy($scope.visitDetails.weaknessVisits, 'monthNo')
                    updateRowforVisits("weaknessVisits",$scope.WeaknessOutcome,$scope.WeaknessCalendarDate);
                 }
     }
