@@ -1,5 +1,5 @@
 angular.module('uhiApp.controllers')
-.controller('newBornController',  function($scope, $state, $timeout, UtilityService, ChildService){ 
+.controller('newBornController',  function($scope, $state, $timeout, UtilityService, ChildService, videos){ 
   
   //get child Details  
   var activeRow = null; // this keeps a track of active row
@@ -33,7 +33,7 @@ angular.module('uhiApp.controllers')
     var displayID = UtilityService.getChildDisplayID();
     console.log(displayID);
     // hard code display id for dev 
-    //displayID ? displayID=displayID: displayID ="h1.1.1";
+    displayID ? displayID=displayID: displayID ="h1.1.1";
     if(!displayID){
       console.log('should not be here, child is not added in system');
     } else {
@@ -374,7 +374,7 @@ angular.module('uhiApp.controllers')
         dayOfDetail.weight = $scope.weight;
          //set action alerts 
         setWeightYellowCell(col);
-        setWeightRedCell($scope.weight, col);
+        setWeightRedCell($scope.weight, col);        
         // 
       }    
   }  
@@ -502,10 +502,18 @@ angular.module('uhiApp.controllers')
     ChildService.updateChildDetails($scope.child);
     //initialize last updated
     lastUpdated ={};
+    //set date as null
+    $scope.weightDate = null;
+    $scope.ASHAVisitDate = null;
+    $scope.ANMVisitDate = null;
+    $scope.breastFeedDate = null;
+    $scope.wrapCapDate = null;
+    $scope.sickDate = null;   
     alert('saved successfully');
   };
   
   // video section starts here 
+  var childVideos = videos.getChildVideos();
   $scope.video ={};
   $scope.video.show = false;
   $scope.video.stop = function() {
@@ -514,7 +522,8 @@ angular.module('uhiApp.controllers')
     $scope.video.show = false;
   };
   $scope.video.play = function(id) {
-    $scope.video.path = "videos/sample.mp4";
+   // $scope.video.path = "videos/sample.mp4";
+    $scope.video.path = childVideos[id+1].path;
     $scope.video.show = true;
     $timeout(function() {
       var videoElem = document.getElementById('video_nb');
