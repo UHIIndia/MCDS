@@ -44,13 +44,13 @@ input.form-control{
 input[type="radio"], input[type="checkbox"] {
   margin-right: 15px !important;
 }
-input[type="radio"]:not(old){
+input[type="radio"]:not(old), input[type="checkbox"]:not(old){
 	/*width   : 28px;*/
 	margin  : 0;
 	padding : 0;
 	opacity : 0;
 }
-input[type=radio]:not(old) + label{
+input[type=radio]:not(old) + label, input[type=checkbox]:not(old) + label{
 	display      : inline-block;
 	margin-left  : -28px;
 	padding-left : 28px;
@@ -63,6 +63,13 @@ input[type=radio]:not(old):checked + label{
 }
 input[type="radio"][disabled] + label{
 	background-position :-218px -407px !important;
+}
+input[type=checkbox]:not(old) + label{
+	background-position: -218px -455px !important;
+	padding-left : 22px;
+}
+input[type=checkbox]:not(old):checked + label{
+	background-position :-218px -486px !important;
 }
 .row{
 	width: auto;

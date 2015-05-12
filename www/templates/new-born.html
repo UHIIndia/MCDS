@@ -5,7 +5,7 @@
 
 		<div class="clearfix light-blue-block">
 			<div class="col-sm-12">
-				<div class="col-sm-4">
+				<div class="col-sm-3">
 					<label class="col-sm-6">Mother Name</label>
 					<div class="col-sm-6"><input type="text" class="form-control" placeholder="lata" ng-model="child.motherName" ng-disabled="true"></div>
 				</div>
@@ -17,12 +17,12 @@
 					<label class="col-sm-4">DOB</label>
 					<div class="col-sm-8"><input type="text" class="form-control" placeholder="16/10/2014" ng-model="dobChild" ng-disabled="true"></div>
 				</div>
-				<div class="col-sm-3 age-group">
-					<label class="col-sm-2">Age</label>
-					<div class="col-sm-10">
-						<div class="col-sm-4"><input type="text" class="form-control" placeholder="MM" ng-model="child.ageMonths" ng-disabled = "true"></div>
-						<div class="col-sm-4"><input type="text" class="form-control" placeholder="DD" ng-model="child.ageDays" ng-disabled="true"></div>
-						<div class="col-sm-4"><i ng-class="getChildIcon()">&nbsp;</i></div>
+				<div class="col-sm-4 age-group">
+					<label class="col-sm-5">Age <sup>(Months/Days)</sup></label>
+					<div class="col-sm-7">
+						<div class="col-sm-5"><input type="text" class="form-control" placeholder="MM" ng-model="child.ageMonths" ng-disabled = "true"></div>
+						<div class="col-sm-5"><input type="text" class="form-control" placeholder="DD" ng-model="child.ageDays" ng-disabled="true"></div>
+						<div class="col-sm-2"><img src="{{getChildIcon()}}"></div>
 					</div>
 				</div>
 			</div>

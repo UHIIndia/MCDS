@@ -317,9 +317,9 @@ angular.module('uhiApp.controllers')
   init();
   $scope.getChildIcon = function(){
     if($scope.child.sex === 'M'){
-      return 'icon-boy';
+      return '../img/children/boy.png';
     } else {
-      return 'icon-girl';
+      return '../img/children/girl.png';
     }
   }
   /* calender Related Methods*/
