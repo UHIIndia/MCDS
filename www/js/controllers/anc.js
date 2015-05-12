@@ -1170,6 +1170,9 @@ console.log(womanDisplayID);
             return {monthID: e.monthID, value: e.headache};
             }).value();
          fitsVisits = getVisits(storedfitsVisits);    
+         for(var i=0;i< fitsVisits.length ;i++){
+            fitsVisits[i].value = (fitsVisits[i].value == 'yes'?'+':'-')
+         } 
         $scope.visitDetails.fitsVisits = _.indexBy(fitsVisits, 'monthNo')
      }else{
 
@@ -1642,6 +1645,22 @@ $scope.opened=false;
          UtilityService.setChildDisplayID(childDisplayID).then(function(success){
             $state.go('newborn');
         },function(error){})
+         womanData.previousPregnancies=[]
+         //copy the ANC data to previous pregnancies and copy it to womanData 
+        womanData.previousPregnancies.FPMethod = womanData.FPMethod;
+        womanData.previousPregnancies.deliveryDate = womanData.deliveryDate;
+        womanData.previousPregnancies.maternalOutcome = womanData.maternalOutcome
+        womanData.previousPregnancies.birthOutcome = womanData.birthOutcome;
+        womanData.previousPregnancies.ANC = angular.copy(womanData.ANC);
+        womanData.ANC =null;
+        womanData.EDD =null;
+        womanData.LMP=null;
+        womanData.FPMethod =null;
+        womanData.birthOutcome =null;
+        womanData.deliveryDate=null; 
+        womanData.isPregnant =false; 
+        womanData.maternalOutcome =null;
+        WomanService.updateWomanDetails(womanData);
     }
 
         //save button functionality
@@ -1773,7 +1792,7 @@ $scope.opened=false;
                 womanData.birthOutcome = $scope.BirthOutcome;
                 //$scope.birthGender.name="girl"
                 if($scope.BirthOutcome == "LiveBirth"){
-                    womanData.isPregnant =false;
+                   
                     childObj.motherID = womanData.womanID;
                     childObj.motherDisplayID= womanData.displayID;
                     childObj.motherName = womanData.name;
@@ -1782,10 +1801,11 @@ $scope.opened=false;
                     childObj.house =womanData.house;
                     childObj.gender = $scope.birthGender.name;
                     childObj.dob = UtilityService.convertDateFormat($scope.DODCalendarDate);
-                    var childID = ChildService.addNewChild(childObj);
+                    var childID = ChildService.addNewChild(childObj);//getChildDetails
+                   // localStorage.setItem('childID',childID);
                     $scope.disableNewBorn = false;
                 }
-                WomanService.updateWomanDetails(womanData);
+                //WomanService.updateWomanDetails(womanData);
                 $scope.detailSaved=true;
                 //call child service   $scope.birthGender.name  
             }else if($scope.MaternalOutcome == undefined){
