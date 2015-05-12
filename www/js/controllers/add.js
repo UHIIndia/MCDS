@@ -14,17 +14,20 @@ if(displayID){
   //load Image from Imgaes Folder
   var imgURI = UtilityService.loadImage($scope.woman.womanID);
   imgURI ? $scope.imgURI =imgURI : $scope.imgURI ="img/woman-sample-profile-picture.png";
-   if(ChildService.getChildren($scope.woman.womanID).length){
-     $scope.children = ChildService.getChildren($scope.woman.womanID);
+   var children = ChildService.getChildren($scope.woman.womanID);
+   if(children.length){
+     $scope.children = children;
      angular.forEach($scope.children, function(childObj, index){   
       var totalDays = UtilityService.calcAge(childObj.dob, false);
       childObj.ageMonths = parseInt(totalDays /30);
-      childObj.ageDays = totalDays%30;
+      childObj.ageDays = totalDays%30;     
      });
      $scope.savedChildren =angular.copy($scope.children);
      sortChildren();
    } else {
      $scope.children = [{}];
+     addWatch($scope.children[$scope.children.length -1]);
+     //
    }    
    
   
@@ -37,11 +40,17 @@ if(displayID){
   $scope.woman.isPregnant = null // default not pregnant
   $scope.children=[{}];
   $scope.savedChildren =[];
+  addWatch($scope.children[$scope.children.length -1], $scope.children.length -1);
   //$scope.woman.dob = getInitialDate();
 }
 $scope.alerts={
   age: {type: 'danger', msg: "Age should be between 11 and 99"},
   house:{type: 'danger', msg: "House no. can not be blank"}
+}
+
+$scope.isDisabled = function(index) {
+  if($scope.children[index].displayID)return true;
+  return false;
 }
 $scope.isWomanPregnant = function(){
   if($scope.woman.womanID && $scope.woman.isPregnant === true){
@@ -57,14 +66,22 @@ $scope.$watch('woman.dob', function(){
   $scope.setAge(true);
 });
 //add watch for child dob to set child age
-angular.forEach($scope.children, function(child, index){
+  function addWatch(child, index) {
+    $scope.$watch(function(scope){
+    $scope.child = child;
+    return $scope.child.dob;
+    }, function(){
+    $scope.setAge(false, index);
+    })
+  }
+/*angular.forEach($scope.children, function(child, index){
   $scope.$watch(function(scope){
     $scope.child = child;
     return $scope.child.dob;
   }, function(){
     $scope.setAge(false, index);
   })
-});
+});*/
 // setting age based on dob
 $scope.setAge = function(inYear, index){
   var dob;
@@ -189,40 +206,49 @@ $scope.saveDetails = function($event){
   //display saved children
   //$scope.savedChildren=angular.copy($scope.children);
  $scope.savedChildren = [];
-  angular.forEach( $scope.children, function(childObj, index){   
-    if(childObj.dob && childObj.name){
+  //iterarte each children to save 
+  for (var i=0; i<$scope.children.length; i++){
+    var childObjInView = $scope.children[i];
+    var childObj = angular.copy(childObjInView);
+    //delete keys which are not required in data
+    delete childObj.ageDays;
+    delete childObj.ageMonths;    
+    if(childObj.name || childObj.dob || childObj.sex) {
+      if(!childObj.dob){
+        alert("Please enter dob for child no. : "+(i+1));
+        continue;
+      }
+      if(!childObj.sex){
+        alert("Please select sex for child no. : "+(i+1));
+        continue;
+      }
       var mother= $scope.woman;      
         childObj.motherID = mother.womanID;
         childObj.motherDisplayID= mother.displayID;
         childObj.motherName = mother.name;
-        childObj.fatherName = mother.husbandName;
-        childObj.phone = mother.phone;
+        childObj.fatherName = mother.husbandName;        
         childObj.house =mother.house;
 
-    if(!childObj.childID){    
+    if(!childObj.displayID){    
        //add new child
-      var childID = ChildService.addNewChild(childObj);
-      childObj.childID = childID;
-      //$scope.children[index].childID = childID;
-
+      var displayID = ChildService.addNewChild(childObj);
+      childObj.displayID = displayID;
+      childObjInView.displayID = displayID;      
     } else {
       //this is an update to child
       ChildService.updateChildDetails(childObj);
     }
-    $scope.savedChildren.push(angular.copy(childObj));   
-     
-    } else{
-      // no dob of child 
-      alert("Please enter dob and name for child no. : "+index+1);
-    } 
-    
-  });
+      childObj.ageDays = childObjInView.ageDays;
+      childObj.ageMonths = childObjInView.ageMonths;
+    $scope.savedChildren.push(angular.copy(childObj));     
+      
+    }
+  }  
   // sort saved children on age youngest to oldest
  sortChildren();
  // update child related data (livingChildren and dob of youngest child)
   if($scope.savedChildren.length){
-    $scope.woman.livingChildrenCount = $scope.savedChildren.length;
-    //$scope.woman.youngestChildDob = $scope.savedChildren[0].dob; // array is already sorted from youngest to oldest
+    $scope.woman.livingChildrenCount = $scope.savedChildren.length;    
     WomanService.updateWomanDetails($scope.woman);
   }
       
@@ -234,6 +260,7 @@ $scope.addMoreChildren = function($event){
  // var childRows = angular.element('.childDetails')
   var childObj={}
   $scope.children.push(childObj);
+  addWatch($scope.children[$scope.children.length -1], $scope.children.length -1);
   $scope.isOpenPosition[$scope.children.length-1] = false;
 };
   /* calender related methods*/
@@ -277,7 +304,7 @@ $scope.openCalender = function($event, isWoman, $index) {
 $scope.getChildIcon = function(child){
   if(child.sex === 'M'){
     return 'icon-boy';
-  } else {
+  } else if(child.sex === 'F'){
     return "icon-girl";
   }
 }
@@ -298,7 +325,7 @@ $scope.navigateToChild = function($index) {
   } else {
     UtilityService.setChildDisplayID(childDisplayID).then(function(success){
       console.info(success);
-      var days = child.ageMonths * 30 + child.ageDays;
+      var days = UtilityService.calcAge(child.dob, false);
         if(days<=42){     
           $state.go('newborn');
         } else {

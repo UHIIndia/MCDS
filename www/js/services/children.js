@@ -74,7 +74,7 @@ angular.module('uhiApp.services')
       childrenList.push(childObj);
       FileService.writeToLocalStorage(childrenList, false);
       console.log(childrenList);
-      return childID;
+      return displayID;
     },
     updateChildDetails: function(childObj){
       // update child details

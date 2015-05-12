@@ -133,17 +133,17 @@
            <div class="input-group">
                       <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="child.dob" is-open="isOpenPosition[$index]"  max-date="getMaxDate(false)" datepicker-options="dateOptions"  datepicker-append-to-body="true"  close-text="Close" ng-disabled="true"/>
                       <span class="input-group-btn">
-                       <button type="button" class="btn btn-default" ng-click="openCalender($event, false, $index)"><i class="icon-date"></i></button>
+                       <button type="button" class="btn btn-default" ng-click="openCalender($event, false, $index)" ng-disabled="isDisabled($index)"><i class="icon-date"></i></button>
                       </span>
             </div>
         </div>
       </div>
       <div class="col-sm-3 age-group">
           <div class="col-sm-6">
-              <input type="number" class="form-control" ng-model="child.ageMonths" ng-blur="setDob(false, $index);" placeholder ="0" min="0">
+              <input type="number" class="form-control" ng-model="child.ageMonths" ng-blur="setDob(false, $index);" placeholder ="0" min="0" ng-disabled="isDisabled($index)">
           </div>
           <div class="col-sm-6">
-              <input type="number" class="form-control" ng-model="child.ageDays" ng-blur="setDob(false, $index);" placeholder="0" min="0" max="42">
+              <input type="number" class="form-control" ng-model="child.ageDays" ng-blur="setDob(false, $index);" placeholder="0" min="0" max="42" ng-disabled="isDisabled($index)">
           </div>
       </div>   
       <div class="col-sm-2 select-child">
