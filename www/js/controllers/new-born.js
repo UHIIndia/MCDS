@@ -3,8 +3,15 @@ angular.module('uhiApp.controllers')
   
   //get child Details  
   var activeRow = null; // this keeps a track of active row
-  var lastUpdated ={}; //keeps last updated column for each row
-  $scope.lastUpdated =lastUpdated;
+   $scope.lastUpdated = {
+    "weight": {},
+    "ASHAVisit" : {},
+    "ANMVisit" : {},
+    "breastFeed" : {},
+    "wrapCap" :{},
+    "sick" :{},
+    "temp" :{}
+  }; //keeps last updated column for each row  
   $scope.rows = [
     {
       "name":"weight"
@@ -27,17 +34,23 @@ angular.module('uhiApp.controllers')
   ];
   // checks if a cell should be marked as red
   $scope.isRedCell = function (row, index) {
-    var redAlerts = $scope.rows[row].redAlerts;
-    if(redAlerts && redAlerts.indexOf(index) >= 0){
-      return true;
-    }
+    var tempRedAlerts
+   if($scope.rows[row].redAlerts){
+      tempRedAlerts = angular.copy( $scope.rows[row].redAlerts);      
+   } else {
+     tempRedAlerts =[];
+   } 
+   tempRedAlerts.push($scope.rows[row].updatedRedAlert); 
+      if(tempRedAlerts && tempRedAlerts.indexOf(index) >= 0){
+        return true;
+      }   
   }
   //init function when the view loads 
   function init(){
     var displayID = UtilityService.getChildDisplayID();
     console.log(displayID);
     // hard code display id for dev 
-    displayID ? displayID=displayID: displayID ="h1.1.1";
+    //displayID ? displayID=displayID: displayID ="h1.1.1";
     if(!displayID){
       console.log('should not be here, child is not added in system');
     } else {
@@ -113,7 +126,7 @@ angular.module('uhiApp.controllers')
   function getHighestCol(row) {
     var currCol= getColumn(UtilityService.convertDateFormat(new Date())),
      mostRecentSavedCol = getLatestSavedColumn(row),
-      updatedCol = lastUpdated[row] ? lastUpdated[row].col : -1;
+      updatedCol = $scope.lastUpdated[row] ? $scope.lastUpdated[row].col : -1;
     var tempArr = [];
        if(currCol >= 0) tempArr.push(currCol);
        if(mostRecentSavedCol >= 0) tempArr.push(mostRecentSavedCol);
@@ -127,12 +140,26 @@ angular.module('uhiApp.controllers')
          $scope.rows[0].yellowAlert = highestCol; //current Day
        }else if (highestCol < 13) {
         $scope.rows[0].yellowAlert = 13; //day14
-       } else if (highestCol < 27) {
+       } else if(highestCol === 13){
+         if($scope.child.newBornDetails[highestCol].weight ||($scope.lastUpdated.weight.col && $scope.lastUpdated.weight.col === highestCol)) {
+           $scope.rows[0].yellowAlert = 27; //day28
+         } else {
+           $scope.rows[0].yellowAlert = 13; //day14
+         }
+       }else if (highestCol > 13 && highestCol < 27) {
         $scope.rows[0].yellowAlert = 27; //day28
        } else if(highestCol === 27){
-        $scope.rows[0].yellowAlert = 28; //day42
-       } else {
-         $scope.rows[0].yellowAlert = null; //no alert
+          if($scope.child.newBornDetails[highestCol].weight || ($scope.lastUpdated.weight.col && $scope.lastUpdated.weight.col === highestCol)) {
+           $scope.rows[0].yellowAlert = 28; //day42
+         } else {
+           $scope.rows[0].yellowAlert = 27; //day14
+         }
+       } else if(highestCol === 28){
+          if($scope.child.newBornDetails[highestCol].weight || ($scope.lastUpdated.weight.col && $scope.lastUpdated.weight.col === highestCol)) {
+           $scope.rows[0].yellowAlert = null; //no alert
+         } else {
+           $scope.rows[0].yellowAlert = 28; //day14
+         }
        }     
   } 
   
@@ -143,11 +170,29 @@ angular.module('uhiApp.controllers')
          $scope.rows[1].yellowAlert = highestCol; //current Day
        }else if (highestCol < 1) {
         $scope.rows[1].yellowAlert = 1; //day2
-       } else if (highestCol < 6) {
+       } else if (highestCol === 1) {
+         if($scope.child.newBornDetails[highestCol].ASHAVisit || ($scope.lastUpdated.ASHAVisit.col && $scope.lastUpdated.ASHAVisit.col === highestCol)) {
+           $scope.rows[1].yellowAlert = 6; //day28
+         } else {
+           $scope.rows[1].yellowAlert = 1; //day14
+         }
+       }else if (highestCol > 1 && highestCol < 6) {
         $scope.rows[1].yellowAlert = 6; //day7
-       } else if(highestCol < 13){
+       } else if (highestCol === 6) {
+         if($scope.child.newBornDetails[highestCol].ASHAVisit || ($scope.lastUpdated.ASHAVisit.col && $scope.lastUpdated.ASHAVisit.col === highestCol)) {
+           $scope.rows[1].yellowAlert = 13; //day 14
+         } else {
+           $scope.rows[1].yellowAlert = 6; //day14
+         }
+       } else if(highestCol >6 && highestCol < 13){
         $scope.rows[1].yellowAlert = 13; //day14
-       } else {
+       } else if (highestCol ===13) {
+         if($scope.child.newBornDetails[highestCol].ASHAVisit || ($scope.lastUpdated.ASHAVisit.col && $scope.lastUpdated.ASHAVisit.col === highestCol)) {
+           $scope.rows[1].yellowAlert = null; //day 14
+         } else {
+           $scope.rows[1].yellowAlert = 13; //day14
+         }
+       }else {
          $scope.rows[1].yellowAlert = null; //no alert
        } 
   }
@@ -159,13 +204,27 @@ angular.module('uhiApp.controllers')
          $scope.rows[2].yellowAlert = highestCol; //current Day
        }else if (highestCol < 13) {
         $scope.rows[2].yellowAlert = 13; //day14
-       } else if (highestCol < 27) {
+       } else if(highestCol === 13){
+         if($scope.child.newBornDetails[highestCol].ANMVisit || ($scope.lastUpdated.ANMVisit.col && $scope.lastUpdated.ANMVisit.col === highestCol)) {
+           $scope.rows[2].yellowAlert = 27; //day28
+         } else {
+           $scope.rows[2].yellowAlert = 13; //day14
+         }
+       }else if (highestCol > 13 && highestCol < 27) {
         $scope.rows[2].yellowAlert = 27; //day28
        } else if(highestCol === 27){
-        $scope.rows[2].yellowAlert = 28; //day42
-       } else {
-         $scope.rows[2].yellowAlert = null; //no alert
-       }
+          if($scope.child.newBornDetails[highestCol].ANMVisit || ($scope.lastUpdated.ANMVisit.col && $scope.lastUpdated.ANMVisit.col === highestCol)) {
+           $scope.rows[2].yellowAlert = 28; //day42
+         } else {
+           $scope.rows[2].yellowAlert = 27; //day14
+         }
+       } else if(highestCol === 28){
+          if($scope.child.newBornDetails[highestCol].ANMVisit || ($scope.lastUpdated.ANMVisit.col && $scope.lastUpdated.ANMVisit.col === highestCol)) {
+           $scope.rows[2].yellowAlert = null; //no alert
+         } else {
+           $scope.rows[2].yellowAlert = 28; //day14
+         }
+       }     
   }
   
   function setBreastFeedYellowCell(col) {
@@ -234,11 +293,17 @@ angular.module('uhiApp.controllers')
   function setWeightRedCell(val, col) {
     var prevColVal; 
     var redAlerts = $scope.rows[0].redAlerts? $scope.rows[0].redAlerts : [];
+    var isUpdated = $scope.isValueUpdated('weight', col);
     if(val < 2.5){
       //check if red alerts is not empty and col does not exist in redAlerts
-      if(!redAlerts.length || redAlerts.indexOf(col) === -1){
+      if(isUpdated){
+        $scope.rows[0].updatedRedAlert = col;
+      } else {
+        if(!redAlerts.length || redAlerts.indexOf(col) === -1){
         redAlerts.push(col);
+        }
       }
+      
     } else {
       // check the last entered prev val 
       for(var c = col-1; c >= 0; c--){
@@ -249,14 +314,24 @@ angular.module('uhiApp.controllers')
         }
       }
       if(val < prevColVal){
-        if(!redAlerts.length || redAlerts.indexOf(col) === -1){
-        redAlerts.push(col);
+        if(isUpdated){
+           $scope.rows[0].updatedRedAlert = col;
+        } else {
+          if(!redAlerts.length || redAlerts.indexOf(col) === -1){
+          redAlerts.push(col);
+          }
         }
+        
       } else {
-        if(redAlerts.length && redAlerts.indexOf(col) > -1){
+        if(isUpdated){
+           $scope.rows[0].updatedRedAlert = -1;
+        } else {
+          if(redAlerts.length && redAlerts.indexOf(col) > -1){
         // remove this col from red alerts
           redAlerts.splice(redAlerts.indexOf(col), 1);
+          }
         }
+        
       }
     }
     $scope.rows[0].redAlerts = redAlerts;
@@ -265,14 +340,31 @@ angular.module('uhiApp.controllers')
   function setWrapCapRedCell(val, col) {
    // red if weight/sick is red for this col and value is no
     var redAlerts = $scope.rows[4].redAlerts? $scope.rows[4].redAlerts : [];
-    if(val === false) {
-      if($scope.rows[0].redAlerts.indexOf(col) > -1 || $scope.rows[5].redAlerts.indexOf(col) > -1){
-        if(!redAlerts.length || redAlerts.indexOf(col) === -1){
-          redAlerts.push(col);
-        }
+    var isUpdated = $scope.isValueUpdated('wrapCap', col);
+    var isWeightRed, isSickRed;    
+    if(val === false) { 
+      if(($scope.rows[0].redAlerts && $scope.rows[0].redAlerts.indexOf(col) > -1)||$scope.rows[0].updatedRedAlert === col){
+        isWeightRed = true;
+      } else {
+        isWeightRed = false;
       }
+      if(($scope.rows[5].redAlerts && $scope.rows[5].redAlerts.indexOf(col) > -1)||$scope.rows[5].updatedRedAlert === col){
+        isSickRed = true;
+      } else {
+        isSickRed = false;
+      }
+      if(isWeightRed || isSickRed){
+        if(isUpdated){
+          $scope.rows[4].updatedRedAlert = col;
+        } else if(!redAlerts.length || redAlerts.indexOf(col) === -1){
+          redAlerts.push(col);
+        } 
+      }            
+      
     } else {
-      if(redAlerts.length && redAlerts.indexOf(col) > -1){
+      if(isUpdated) {
+        $scope.rows[4].updatedRedAlert = -1;
+      } else if(redAlerts.length && redAlerts.indexOf(col) > -1){
         // remove this col from red alerts
           redAlerts.splice(redAlerts.indexOf(col), 1);
         }
@@ -282,12 +374,17 @@ angular.module('uhiApp.controllers')
   
   function setSickRedCell(val, col) {
     var redAlerts = $scope.rows[5].redAlerts? $scope.rows[5].redAlerts : [];
+    var isUpdated = $scope.isValueUpdated('sick', col);
     if(val) {
-      if(!redAlerts.length || redAlerts.indexOf(col) === -1){
+      if(isUpdated){
+        $scope.rows[5].updatedRedAlert = col;
+      } else if(!redAlerts.length || redAlerts.indexOf(col) === -1){
         redAlerts.push(col);
       }
     } else {
-      if(redAlerts.length && redAlerts.indexOf(col) > -1){
+      if(isUpdated){
+        $scope.rows[5].updatedRedAlert = -1;
+      } else if(redAlerts.length && redAlerts.indexOf(col) > -1){
         // remove this col from red alerts
           redAlerts.splice(redAlerts.indexOf(col), 1);
         }
@@ -381,7 +478,7 @@ angular.module('uhiApp.controllers')
   
   $scope.isValueUpdated = function (row, col){
     try{
-      if(lastUpdated[row].col === col){
+      if($scope.lastUpdated[row].col === col){
         return true;
       } else return false;
       
@@ -391,12 +488,12 @@ angular.module('uhiApp.controllers')
     
   }
   function setLastUpdated(row, col){
-   /* var prevCol = lastUpdated[row].col;
+   /* var prevCol = $scope.lastUpdated[row].col;
     if(prevCol>=0){
           //remove the previously set value       
           $scope.child.newBornDetails[prevCol][row]=null; 
     }*/
-    lastUpdated[row]={
+    $scope.lastUpdated[row]={
       "col" : col,
       "val" : $scope[row]
     };
@@ -516,10 +613,11 @@ angular.module('uhiApp.controllers')
      setLastUpdated('wrapCap',col);
    //   dayOfDetail.wrapCap = $scope.wrapCap;
       //
+    setRedCells($scope.rows[4].name);
      setWrapCapRedCell($scope.wrapCap, col);
   }
   $scope.watchHandler5 = function () {
-    if($scope.sickDate && $scope.sick){
+    if($scope.sickDate){
       console.log('sickDate: '+ $scope.sickDate +" active row :"+activeRow);
     var dateStr = UtilityService.convertDateFormat($scope.sickDate);
     var col = getColumn(dateStr);    
@@ -529,18 +627,18 @@ angular.module('uhiApp.controllers')
   };
   $scope.$watch('sickDate', $scope.watchHandler5);
   $scope.$watch('sick', $scope.watchHandler5);
-  
   function setSickDateValue(date, col) {
     if($scope.sick === undefined || $scope.sick === null){
       return ;
     }
     //var dayOfDetail = $scope.child.newBornDetails[col];
     setLastUpdated('sick',col);
-    setLastUpdated('temp', col);
-    //dayOfDetail.sick = $scope.sick;
-    // dayOfDetail.temp = $scope.temp;
+    if($scope.temp){
+     setLastUpdated('temp', col); 
+    } 
       //
     setSickYellowCell(col);
+    setRedCells($scope.rows[5].name);
     setSickRedCell($scope.sick, col);
   } 
   
@@ -559,14 +657,24 @@ angular.module('uhiApp.controllers')
   
   $scope.saveDetails = function() {
     //update in new born details 
-    for(var prop in lastUpdated){
-      var col = lastUpdated[prop].col;
-      var val = lastUpdated[prop].val;
-      $scope.child.newBornDetails[col][prop] = val;
+    for(var prop in $scope.lastUpdated){
+      var col = $scope.lastUpdated[prop].col;
+      var val = $scope.lastUpdated[prop].val;
+      if(col >=0 && val){
+         $scope.child.newBornDetails[col][prop] = val;
+      }     
     }
     ChildService.updateChildDetails($scope.child);
     //initialize last updated
-    lastUpdated ={};
+    $scope.lastUpdated ={
+    "weight": {},
+    "ASHAVisit" : {},
+    "ANMVisit" : {},
+    "breastFeed" : {},
+    "wrapCap" :{},
+    "sick" :{},
+    "temp" :{}
+    };
     //set date as null
     $scope.weightDate = null;
     $scope.ASHAVisitDate = null;

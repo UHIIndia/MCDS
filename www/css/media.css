@@ -1,25 +1,9 @@
 /*----Media queries for large desktop devices-------*/
-@media screen and (min-width: 1200px) {
-	.app-tabs li a{
-		width: 100%;
-	}
-	.app-tabs li:last-child a {
-		width: auto;
-		padding: 20px;
-	}
-	.app-tabs li:first-child a{
-		height: 60px;
-		padding: 18px 0;
-	}
-}
 /*----Media queries for IPad devices-------*/
 @media screen and (min-width: 768px) and (max-width: 1024px) {
 	
 }
 @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-	.app-tabs li{
-		max-width: 98px;
-	}
 	.anc-calender-top > div:first-child, .anc-calender-bottom .anc-row > div:first-child{
 		width: 72%;
 	}
@@ -70,12 +54,6 @@
 	}
 	.home-icons-wrapper .icon-block{
 		height: 115px;
-	}
-	.app-tabs li {	
-		min-width:102px;
-	}
-	.app-tabs li:last-child {
-		min-width: 48px;
 	}
 	.anc-calender-top > div:first-child, .anc-calender-bottom .anc-row > div:first-child{
 		width: 72%;

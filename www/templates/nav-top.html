@@ -1,34 +1,34 @@
 <ul class="app-tabs" ng-controller="navController">
-  <li class="light-green-bg col-lg-2">
+  <li class="light-green-bg">
     <a ui-sref="home">Main Page</a>
   </li>
-  <li class="dark-green-bg col-lg-1" ui-sref-active="active" ng-click="addWoman();">
+  <li class="dark-green-bg" ui-sref-active="active" ng-click="addWoman();">
     <a ui-sref="add"><i class="icon-add-new">&nbsp;</i>Woman</a>
   </li>
-  <li class="pink-bg col-lg-1" ui-sref-active="active">
+  <li class="pink-bg" ui-sref-active="active">
     <a ui-sref="mapWomen"><i class="icon-map-women-sm">&nbsp;</i><span>Map</span></a>
   </li>
-  <li class="blue-bg col-lg-1" ui-sref-active="active">
+  <li class="blue-bg" ui-sref-active="active">
     <a ui-sref="mapChildren"><i class="icon-map-babies-sm">&nbsp;</i><span>Map</span>
     </a>
   </li>
-  <li class="pink-bg col-lg-1" ui-sref-active="active">
+  <li class="pink-bg" ui-sref-active="active">
     <a ui-sref="listWomen"><i class="icon-list-women-sm">&nbsp;</i><span>List</span></a>
   </li>
-  <li class="blue-bg col-lg-1" ui-sref-active="active">
+  <li class="blue-bg" ui-sref-active="active">
     <a ui-sref="listChildren"><i class="icon-list-babies-sm">&nbsp;</i><span>List</span></a>
   </li>
-  <li class="pink-bg col-lg-1" ui-sref-active="active">
+  <li class="pink-bg" ui-sref-active="active">
     <a ui-sref="reportWomen"><i class="icon-report-women-sm">&nbsp;</i><span>Report</span></a>
   </li>
-  <li class="blue-bg col-lg-1" ui-sref-active="active">
+  <li class="blue-bg" ui-sref-active="active">
     <a ui-sref="reportChildren"><i class="icon-report-babies-sm">&nbsp;</i><span>Report</span></a>
   </li>
-  <li class="dark-green-bg col-lg-1" ui-sref-active="active">
+  <li class="dark-green-bg" ui-sref-active="active">
     <a ui-sref="films"><i class="icon-films-fp-sm">&nbsp;</i><span>Films</span></a>
   </li>
-  <li class="settings-bg col-lg-1">
-    <a href="" class="settings-icon" ng-click="settingsOpen=!settingsOpen">Settings</a>
+  <li class="settings-bg">
+    <a href="" ng-click="settingsOpen=!settingsOpen"><i class="settings-icon">Settings</i></a>
     <ul class="settings-popup" ng-show="settingsOpen">
       <li class="clearfix"><a href="#"><span>Export</span> <i class="icon-export pull-right">&nbsp;</i></a></li>
       <li class="clearfix"><a href="#"><span>Import</span> <i class="icon-import pull-right">&nbsp;</i></a></li>
