@@ -238,7 +238,9 @@
 
         <div class="months-row">
           <div class="col-sm-1" ng-repeat="vaccineForThisMonth in child.immunisationDetails">
-            <div class="date">{{ vaccineForThisMonth.BCG | date:'dd/MM/yyyy' }}</div>
+            <div class="date" ng-hide="visibleMonthIndexForVaccine[1] === $index">
+              <span>{{ vaccineForThisMonth.BCG | date:'dd/MM/yyyy' }}</span>
+            </div>
             <div class="date" ng-show="visibleMonthIndexForVaccine[1] === $index">
               <span>{{ vaccinationSelectedDate[1] | date:'dd/MM/yyyy' }}</span>
             </div>
@@ -247,7 +249,9 @@
 
         <div class="months-row">
           <div class="col-sm-1" ng-repeat="vaccineForThisMonth in child.immunisationDetails">
-            <div class="date">{{ vaccineForThisMonth.OPV | date:'dd/MM/yyyy' }}</div>
+            <div class="date" ng-hide="visibleMonthIndexForVaccine[2] === $index">
+              <span>{{ vaccineForThisMonth.OPV | date:'dd/MM/yyyy' }}</span>
+            </div>
             <div class="date" ng-show="visibleMonthIndexForVaccine[2] === $index">
               <span>{{ vaccinationSelectedDate[2] | date:'dd/MM/yyyy' }}</span>
             </div>
@@ -256,7 +260,9 @@
 
         <div class="months-row">
           <div class="col-sm-1" ng-repeat="vaccineForThisMonth in child.immunisationDetails">
-            <div class="date">{{ vaccineForThisMonth['HEP-B'] | date:'dd/MM/yyyy' }}</div>
+            <div class="date" ng-hide="visibleMonthIndexForVaccine[3] === $index">
+              <span>{{ vaccineForThisMonth['HEP-B'] | date:'dd/MM/yyyy' }}</span>
+            </div>
             <div class="date" ng-show="visibleMonthIndexForVaccine[3] === $index">
               <span>{{ vaccinationSelectedDate[3] | date:'dd/MM/yyyy' }}</span>
             </div>
@@ -265,7 +271,9 @@
 
         <div class="months-row">
           <div class="col-sm-1" ng-repeat="vaccineForThisMonth in child.immunisationDetails">
-            <div class="date">{{ vaccineForThisMonth.DPT | date:'dd/MM/yyyy' }}</div>
+            <div class="date" ng-hide="visibleMonthIndexForVaccine[4] === $index">
+              <span>{{ vaccineForThisMonth.DPT | date:'dd/MM/yyyy' }}</span>
+            </div>
             <div class="date" ng-show="visibleMonthIndexForVaccine[4] === $index">
               <span>{{ vaccinationSelectedDate[4] | date:'dd/MM/yyyy' }}</span>
             </div>
@@ -274,7 +282,9 @@
 
         <div class="months-row">
           <div class="col-sm-1" ng-repeat="vaccineForThisMonth in child.immunisationDetails">
-            <div class="date">{{ vaccineForThisMonth.measles | date:'dd/MM/yyyy' }}</div>
+            <div class="date" ng-hide="visibleMonthIndexForVaccine[5] === $index">
+              <span>{{ vaccineForThisMonth.measles | date:'dd/MM/yyyy' }}</span>
+            </div>
             <div class="date" ng-show="visibleMonthIndexForVaccine[5] === $index">
               <span>{{ vaccinationSelectedDate[5] | date:'dd/MM/yyyy' }}</span>
             </div>
@@ -283,7 +293,9 @@
 
         <div class="months-row">
           <div class="col-sm-1" ng-repeat="vaccineForThisMonth in child.immunisationDetails">
-            <div class="date">{{ vaccineForThisMonth['vitamin-a'] | date:'dd/MM/yyyy' }}</div>
+            <div class="date" ng-hide="visibleMonthIndexForVaccine[6] === $index">
+              <span>{{ vaccineForThisMonth['vitamin-a'] | date:'dd/MM/yyyy' }}</span>
+            </div>
             <div class="date" ng-show="visibleMonthIndexForVaccine[6] === $index">
               <span>{{ vaccinationSelectedDate[6] | date:'dd/MM/yyyy' }}</span>
             </div>
@@ -292,7 +304,9 @@
 
         <div class="months-row">
           <div class="col-sm-1" ng-repeat="vaccineForThisMonth in child.immunisationDetails">
-            <div class="date">{{ vaccineForThisMonth.weight | date:'dd/MM/yyyy' }}</div>
+            <div class="date" ng-hide="visibleMonthIndexForVaccine[7] === $index">
+              <span>{{ vaccineForThisMonth.weight | date:'dd/MM/yyyy' }}</span>
+            </div>
             <div class="date" ng-show="visibleMonthIndexForVaccine[7] === $index">
               <span>{{ vaccinationSelectedDate[7] | date:'dd/MM/yyyy' }}</span>
             </div>
@@ -301,7 +315,9 @@
 
         <div class="months-row">
           <div class="col-sm-1" ng-repeat="vaccineForThisMonth in child.immunisationDetails">
-            <div class="date">{{ vaccineForThisMonth.weak | date:'dd/MM/yyyy' }}</div>
+            <div class="date" ng-hide="visibleMonthIndexForVaccine[8] === $index">
+              <span>{{ vaccineForThisMonth.weak | date:'dd/MM/yyyy' }}</span>
+            </div>
             <div class="date" ng-show="visibleMonthIndexForVaccine[8] === $index">
               <span>{{ vaccinationSelectedDate[8] | date:'dd/MM/yyyy' }}</span>
             </div>
