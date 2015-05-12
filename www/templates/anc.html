@@ -184,16 +184,14 @@
           <form class="form-horizontal">
             <div class="form-group">
               <div class="col-sm-12">
-                <div class="col-sm-3">
+                <div class="calendar-icon">
                   <div class="input-group">
                     <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="ashaCalendarDate" is-open="opened"  max-date="getDate()" datepicker-options="dateOptions"  ng-required="true"  close-text="Close" ng-hide="true" />
                     <span class="input-group-btn">
                      <button type="button" class="btn btn-default" ng-click="open($event,'asha')"><i class="icon-date"></i></button>
                    </span>
                  </div>
-               </div>
-               <div class="col-sm-9 radio-group"> 
-               </div>
+                </div>
              </div>
            </div>
          </form>
@@ -219,22 +217,15 @@
       </div>
       <div class="col-sm-3 anc-calender-add">
         <form class="form-horizontal">
-         <div class="form-group">
-          <div class="col-sm-12 text-right">           
-            
-          </div>
-        </div>
         <div class="form-group">
           <div class="col-sm-12">
-            <div class="col-sm-3">
+            <div class="calendar-icon">
               <div class="input-group">
                 <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="ANMCalendarDate" is-open="openedANM" max-date="getDate()" ng-required="true" close-text="Close"  ng-hide="true" />
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-default" ng-click="open($event,'anm')"><i class="icon-date"></i></button>
                 </span>
               </div>
-            </div>
-            <div class="col-sm-9 radio-group">
             </div>
           </div>
         </div>
@@ -264,7 +255,7 @@
       <form class="form-horizontal">
         <div class="form-group">
           <div class="col-sm-12">
-            <div class="col-sm-3">
+            <div class="calendar-icon">
               <div class="input-group">
                 <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="WeightCalendarDate" is-open="openedWeight" max-date="getDate()" ng-required="true" close-text="Close"  ng-hide="true" />
                 <span class="input-group-btn">
@@ -272,7 +263,7 @@
                 </span>
               </div>
             </div>
-            <div class="col-sm-9 text-right">
+            <div class="col-sm-10 text-right">
               <label class="control-label">Weight</label> <input type="number" class="form-control" ng-keypress="checkNumber($event)" ng-model="enteredWeight" ng-blur="updateWeight();"><label class="control-label">Kg</label>
             </div>
           </div>
@@ -306,25 +297,13 @@
         </div>
        <div class="form-group"> 
         <div class="col-sm-12">
-          <div class="col-sm-3">
+          <div class="calendar-icon">
             <div class="input-group">
                 <input type="text" class="form-control"  datepicker-popup="{{format}}" ng-model="TTCalendarDate" is-open="openedTT" max-date="getDate()" ng-required="true" close-text="Close" ng-hide="true"/>
                 <span class="input-group-btn">
                   <button type="button" class="btn btn-default" ng-click="open($event,'TT')"><i class="icon-date"></i></button>
                 </span>
             </div>
-          </div>
-          <div class="col-sm-9 radio-group">   
-          <div>
-            <!--<input type="radio" ng-model="TTOutcome"  ng-value="'no'"  name="TTCheck" id="radio5TT">
-            <label for="radio5TT">No</label>-->
-          </div>    
-            <div>
-            <!--<input type="radio" ng-model="TTOutcome" name="TTCheck" ng-value="'yes'" id="radio4TT">
-             <label for="radio4TT">Yes</label> -->
-          </div>      
-            
-            
           </div>
           </div>
 
@@ -355,14 +334,9 @@
     </div>
     <div class="col-sm-3 anc-calender-add">
       <form class="form-horizontal">
-       <div class="form-group">
-        <div class="col-sm-12 text-right">           
-         
-        </div>
-      </div>
       <div class="form-group">
         <div class="col-sm-12">
-          <div class="col-sm-3">
+          <div class="calendar-icon">
             <div class="input-group">
               <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="HBCalendarDate" is-open="openedHB" max-date="getDate()"  ng-required="true"close-text="Close"  ng-hide="true" />
               <span class="input-group-btn">
@@ -370,7 +344,7 @@
               </span>
             </div>
           </div>
-          <div class="col-sm-9 radio-group">
+          <div class="col-sm-10 radio-group">
             <div>
               <input type="number" class="form-control" ng-keypress="checkNumber($event)" ng-model="enteredHB"  ng-blur="updateHB();"/>
               <label>HB 10</label> 
@@ -404,14 +378,9 @@
   </div>
   <div class="col-sm-3 anc-calender-add">
     <form class="form-horizontal">
-     <div class="form-group">
-      <div class="col-sm-12 text-right">           
-       
-      </div>
-    </div>
     <div class="form-group">
       <div class="col-sm-12">
-        <div class="col-sm-3">
+        <div class="calendar-icon">
           <div class="input-group">
             <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="PaleCalendarDate" is-open="openedPale" max-date="getDate()" ng-required="true"close-text="Close"  ng-hide="true" />
             <span class="input-group-btn">
@@ -419,7 +388,7 @@
             </span>
           </div>
         </div>
-        <div class="col-sm-9 radio-group">
+        <div class="col-sm-10 radio-group">
           <div>
             <input type="radio" ng-model="paleOutcome"  ng-value="'no'"  name="PaleEyeCheck" id="radio5" ng-change="updatePale()">
             <label for="radio5">No</label>
@@ -459,14 +428,9 @@
       </div>
       <div class="col-sm-3 anc-calender-add">
         <form class="form-horizontal">
-         <div class="form-group">
-          <div class="col-sm-12 text-right">           
-           
-          </div>
-        </div>
         <div class="form-group">
           <div class="col-sm-12">
-            <div class="col-sm-3">
+            <div class="calendar-icon">
               <div class="input-group">
                 <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="NightBlindCalendarDate" is-open="openedNightBlind" max-date="getDate()" ng-required="true"close-text="Close"  ng-hide="true" />
                 <span class="input-group-btn">
@@ -474,7 +438,7 @@
                 </span>
               </div>
             </div>
-            <div class="col-sm-9 radio-group">
+            <div class="col-sm-10 radio-group">
               <div>
                 <input type="radio" ng-model="blindOutcome"  ng-value="'no'"  name="BlindCheck" id="radio15" ng-change="updateBlind()">
                 <label for="radio15">No</label>
@@ -515,14 +479,9 @@
   </div>
   <div class="col-sm-3 anc-calender-add">
     <form class="form-horizontal">
-     <div class="form-group">
-      <div class="col-sm-12 text-right">           
-       
-      </div>
-    </div>
     <div class="form-group">
       <div class="col-sm-12">
-        <div class="col-sm-3">
+        <div class="calendar-icon">
           <div class="input-group">
             <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="BleedingCalendarDate" is-open="openedBleeding" max-date="getDate()" ng-required="true" close-text="Close"  ng-hide="true" />
             <span class="input-group-btn">
@@ -530,7 +489,7 @@
             </span>
           </div>
         </div>
-        <div class="col-sm-9 radio-group">
+        <div class="col-sm-10 radio-group">
           <div>
             <input type="radio" ng-model="bleedingOutcome"  ng-value="'no'"  name="BleedCheck" id="radio25" ng-change="updateBleed()">
             <label for="radio25">No</label>
@@ -571,14 +530,9 @@
   </div>
   <div class="col-sm-3 anc-calender-add">
     <form class="form-horizontal">
-     <div class="form-group">
-      <div class="col-sm-12 text-right">           
-       
-      </div>
-    </div>
     <div class="form-group">
       <div class="col-sm-12">
-        <div class="col-sm-3">
+        <div class="calendar-icon">
           <div class="input-group">
             <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="MalariaCalendarDate" is-open="openedMalaria" max-date="getDate()" ng-required="true" close-text="Close"  ng-hide="true" />
             <span class="input-group-btn">
@@ -586,7 +540,7 @@
             </span>
           </div>
         </div>
-        <div class="col-sm-9 radio-group">
+        <div class="col-sm-10 radio-group">
           <div>
             <input type="radio" ng-model="malariaOutcome"  ng-value="'no'"  name="MalariaCheck"  id="radio35" ng-change="updateMalaria()">
             <label for="radio35">No</label>
@@ -627,7 +581,7 @@
     <form class="form-horizontal">
       <div class="form-group">
         <div class="col-sm-12">
-          <div class="col-sm-3">
+          <div class="calendar-icon">
             <div class="input-group">
               <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="IFACalendarDate" is-open="openedIFA" max-date="getDate()" ng-required="true" close-text="Close"  ng-hide="true" />
               <span class="input-group-btn">
@@ -635,7 +589,7 @@
               </span>
             </div>
           </div>
-          <div class="col-sm-9 text-right">
+          <div class="col-sm-10 text-right">
             <label class="control-label">Quantity</label> <input type="number" class="form-control" ng-keypress="checkNumber($event)" ng-model="enteredIFA" ng-blur="updateIFA();"><label class="control-label">Kg</label>
           </div>
         </div>
@@ -666,30 +620,30 @@
       <div class="col-sm-3 anc-calender-add">
       <form class="form-horizontal">
         <div class="form-group">
-        <div class="col-sm-12">
-          <div class="col-sm-3">
-            <p class="input-group">
-                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="BPCalendarDate" is-open="openedBP" max-date="getDate()" ng-required="true" close-text="Close" ng-hide="true" />
-                <span class="input-group-btn">
-                  <button type="button" class="btn btn-default" ng-click="open($event,'BP')"><i class="icon-date"></i></button>
-                </span>
-            </p>
-          </div>
-          <div class="col-sm-9 bp-select">
-          <div> > 140 / > 90 High Normal</div>
-          <input type="number" class="form-control" ng-keypress="checkNumber($event)" ng-model="enteredBPHigh" ng-blur="updateBPNo();"> /
-          <input type="number" class="form-control" ng-keypress="checkNumber($event)" ng-model="enteredBPLow" ng-blur="updateBPNo();">
-            <div class="radio-group">
-           <div>
-            <input type="radio" ng-model="BPOutcome" name="BPCheck" ng-value="'Normal'"  id="radio34BP" ng-change="updateBP()">
-            <label for="radio34BP" class="control-label"></label> 
-          </div>
-          <div>
-            <input type="radio" ng-model="BPOutcome"  ng-value="'High'" name="BPCheck" id="radio35BP" ng-change="updateBP()">
-            <label for="radio35BP" class="control-label"></label>
-          </div>
+          <div class="col-sm-12">
+            <div class="calendar-icon">
+              <div class="input-group">
+                  <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="BPCalendarDate" is-open="openedBP" max-date="getDate()" ng-required="true" close-text="Close" ng-hide="true" />
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open($event,'BP')"><i class="icon-date"></i></button>
+                  </span>
+              </div>
             </div>
+            <div class="col-sm-10"> > 140 / > 90 High Normal</div>         
           </div>
+          <div class="col-sm-10 bp-select">
+            <input type="number" class="form-control" ng-keypress="checkNumber($event)" ng-model="enteredBPHigh" ng-blur="updateBPNo();"> /
+            <input type="number" class="form-control" ng-keypress="checkNumber($event)" ng-model="enteredBPLow" ng-blur="updateBPNo();">
+            <div class="radio-group">
+             <div>
+              <input type="radio" ng-model="BPOutcome" name="BPCheck" ng-value="'Normal'"  id="radio34BP" ng-change="updateBP()">
+              <label for="radio34BP" class="control-label"></label> 
+            </div>
+            <div>
+              <input type="radio" ng-model="BPOutcome"  ng-value="'High'" name="BPCheck" id="radio35BP" ng-change="updateBP()">
+              <label for="radio35BP" class="control-label"></label>
+            </div>
+            </div>
           </div>
         </div>
         </form>
@@ -717,14 +671,9 @@
   </div>
   <div class="col-sm-3 anc-calender-add">
     <form class="form-horizontal">
-     <div class="form-group">
-      <div class="col-sm-12 text-right">           
-       
-      </div>
-    </div>
     <div class="form-group">
       <div class="col-sm-12">
-        <div class="col-sm-3">
+        <div class="calendar-icon">
           <div class="input-group">
             <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="UPCalendarDate" is-open="openedUP" max-date="getDate()" ng-required="true" close-text="Close"  ng-hide="true" />
             <span class="input-group-btn">
@@ -732,7 +681,7 @@
             </span>
           </div>
         </div>
-        <div class="col-sm-9 radio-group">
+        <div class="col-sm-10 radio-group">
           <div>
             <input type="radio" ng-model="UPOutcome"  ng-value="'-'"  name="UPCheck"  id="radio55" ng-change="updateUP()">
             <label for="radio55">No</label>
@@ -771,14 +720,9 @@
   </div>
   <div class="col-sm-3 anc-calender-add">
     <form class="form-horizontal">
-     <div class="form-group">
-      <div class="col-sm-12 text-right">           
-       
-      </div>
-    </div>
     <div class="form-group">
       <div class="col-sm-12">
-        <div class="col-sm-3">
+        <div class="calendar-icon">
           <div class="input-group">
             <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="SwellingCalendarDate" is-open="openedSwelling" max-date="getDate()" ng-required="true" close-text="Close"  ng-hide="true" />
             <span class="input-group-btn">
@@ -786,7 +730,7 @@
             </span>
           </div>
         </div>
-        <div class="col-sm-9 radio-group">
+        <div class="col-sm-10 radio-group">
           <div>
             <input type="radio" ng-model="SwellingOutcome"  ng-value="'no'"  name="SwellingCheck" id="radio65" ng-change="updateSwelling()">
             <label for="radio65">No</label>
@@ -826,14 +770,9 @@
   </div>
   <div class="col-sm-3 anc-calender-add">
     <form class="form-horizontal">
-     <div class="form-group">
-      <div class="col-sm-12 text-right">           
-       
-      </div>
-    </div>
     <div class="form-group">
       <div class="col-sm-12">
-        <div class="col-sm-3">
+        <div class="calendar-icon">
           <div class="input-group">
             <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="FitsCalendarDate" is-open="openedFits" max-date="getDate()" ng-required="true" close-text="Close"  ng-hide="true" />
             <span class="input-group-btn">
@@ -841,7 +780,7 @@
             </span>
           </div>
         </div>
-        <div class="col-sm-9 radio-group">
+        <div class="col-sm-10 radio-group">
           <div>
             <input type="radio" ng-model="FitsOutcome"  ng-value="'no'"  name="FitsCheck" id="radio65Fits" ng-change="updateFits()">
             <label for="radio65Fits">No</label>
@@ -879,14 +818,9 @@
   </div>
   <div class="col-sm-3 anc-calender-add">
     <form class="form-horizontal">
-     <div class="form-group">
-      <div class="col-sm-12 text-right">           
-       
-      </div>
-    </div>
     <div class="form-group">
       <div class="col-sm-12">
-        <div class="col-sm-3">
+        <div class="calendar-icon">
           <div class="input-group">
             <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="USCalendarDate" is-open="openedUS" max-date="getDate()" ng-required="true" close-text="Close"  ng-hide="true" />
             <span class="input-group-btn">
@@ -894,7 +828,7 @@
             </span>
           </div>
         </div>
-        <div class="col-sm-9 radio-group">
+        <div class="col-sm-10 radio-group">
           <div>
             <input type="radio" ng-model="USOutcome"  ng-value="'-'"  name="USCheck" id="radio75" ng-change="updateUS()">
             <label for="radio75">No</label>
@@ -932,14 +866,9 @@
   </div>
   <div class="col-sm-3 anc-calender-add">
     <form class="form-horizontal">
-     <div class="form-group">
-      <div class="col-sm-12 text-right">           
-       
-      </div>
-    </div>
     <div class="form-group">
       <div class="col-sm-12">
-        <div class="col-sm-3">
+        <div class="calendar-icon">
           <div class="input-group">
             <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="FeverCalendarDate" is-open="openedFever" max-date="getDate()" ng-required="true" close-text="Close"  ng-hide="true" />
             <span class="input-group-btn">
@@ -947,7 +876,7 @@
             </span>
           </div>
         </div>
-        <div class="col-sm-9 radio-group">
+        <div class="col-sm-10 radio-group">
           <div>
             <input type="radio" ng-model="FeverOutcome"  ng-value="'-'"  name="FeverCheck" id="radioFever5" ng-change="updateFever()">
             <label for="radioFever5">No</label>
@@ -986,14 +915,9 @@
   </div>
   <div class="col-sm-3 anc-calender-add">
     <form class="form-horizontal">
-     <div class="form-group">
-      <div class="col-sm-12 text-right">           
-       
-      </div>
-    </div>
     <div class="form-group">
       <div class="col-sm-12">
-        <div class="col-sm-3">
+        <div class="calendar-icon">
           <div class="input-group">
             <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="FoulSmellCalendarDate" is-open="openedFoulSmell" max-date="getDate()" ng-required="true" close-text="Close"  ng-hide="true" />
             <span class="input-group-btn">
@@ -1001,7 +925,7 @@
             </span>
           </div>
         </div>
-        <div class="col-sm-9 radio-group">
+        <div class="col-sm-10 radio-group">
           <div>
             <input type="radio" ng-model="FoulSmellOutcome"  ng-value="'-'"  name="FitsCheck"  id="radioFoulsmell65" ng-change="updateFoulSmell()">
             <label for="radioFoulsmell65">No</label>
@@ -1039,14 +963,9 @@
   </div>
   <div class="col-sm-3 anc-calender-add">
     <form class="form-horizontal">
-     <div class="form-group">
-      <div class="col-sm-12 text-right">           
-       
-      </div>
-    </div>
     <div class="form-group">
       <div class="col-sm-12">
-        <div class="col-sm-3">
+        <div class="calendar-icon">
           <div class="input-group">
             <input datepicker-popup="{{format}}" type="text" class="form-control" ng-model="WeaknessCalendarDate" is-open="openedWeakness" max-date="getDate()" ng-required="true" close-text="Close"  ng-hide="true" />
             <span class="input-group-btn">
@@ -1054,7 +973,7 @@
             </span>
           </div>
         </div>
-        <div class="col-sm-9 radio-group">
+        <div class="col-sm-10 radio-group">
           <div>
             <input type="radio" ng-model="WeaknessOutcome"  ng-value="'-'"  name="WeaknessCheck" id="radioWeakness65" ng-change="updateWeakness()">
             <label for="radioWeakness65">No</label></div>

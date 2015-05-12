@@ -96,7 +96,7 @@ input[type=checkbox]:not(old):checked + label{
 .date-picker .dropdown-menu{
 	padding: 5px;
 }
-.date-picker th{
+.dropdown-menu table th{
 	vertical-align: top;
 }
 
