@@ -159,7 +159,7 @@
 
 /*--new css--*/
 .months-row{
-	margin-bottom: 3px;	
+	margin-bottom: 3px;
 }
 .months-row > div{
 	width: 75px;
@@ -297,7 +297,7 @@
   top: -190px !important;
 }
 
-.selected-date{
+.immu-wrapper .date{
   font-size: 12px;
   text-align: center;
   padding-top: 9px;

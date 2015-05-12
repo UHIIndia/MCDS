@@ -1,6 +1,8 @@
-angular.module('uhiApp.controllers').controller('ImmunisationController', function($scope, $timeout, UtilityService, ChildService, videos) {
+angular.module('uhiApp.controllers')
+  .controller('ImmunisationController', function($scope, $timeout, $state, UtilityService, ChildService, videos) {
 
   var displayID = UtilityService.getChildDisplayID();
+  UtilityService.setChildDisplayID(displayID);
   $scope.child = ChildService.getChildDetails(displayID);
 
   $scope.childDisplay = angular.copy($scope.child);
@@ -17,8 +19,6 @@ angular.module('uhiApp.controllers').controller('ImmunisationController', functi
       return e;
     })
     .value();
-
-  $scope.monthInformationData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36];
 
   $scope.video = {};
 
@@ -97,7 +97,7 @@ angular.module('uhiApp.controllers').controller('ImmunisationController', functi
   };
 
   var dobTimeOfChild = new Date($scope.childDisplay.dob).getTime();
-  var selectedTime, timeDiffInMs, timeInMonths;
+  var selectedTime, timeDiffInMs;
 
   $scope.$watch('vaccinationSelectedDate[1]', function(n) {
     if(n) {
@@ -163,6 +163,53 @@ angular.module('uhiApp.controllers').controller('ImmunisationController', functi
     }
   });
 
+  $scope.save = function() {
+    $scope.childDetailsToSave = angular.copy($scope.child);
+    delete $scope.childDetailsToSave.$$hashKey;
+    $scope.childDetailsToSave.immunisationDetails = _.map($scope.childDetailsToSave.immunisationDetails, function(e) {
+      delete e.$$hashKey;
+      return e;
+    });
+
+    // save copy of data in eight rows
+    if($scope.vaccinationSelectedDate[1]) {
+      var positionForBCG = findPositionToSave($scope.vaccinationSelectedDate[1]);
+      $scope.childDetailsToSave.immunisationDetails[positionForBCG].BCG = new Date($scope.vaccinationSelectedDate[1]).toISOString();
+    }
+    if($scope.vaccinationSelectedDate[2]) {
+      var positionForOPV = findPositionToSave($scope.vaccinationSelectedDate[2]);
+      $scope.childDetailsToSave.immunisationDetails[positionForOPV].OPV = new Date($scope.vaccinationSelectedDate[2]).toISOString();
+    }
+    if($scope.vaccinationSelectedDate[3]) {
+      var positionForHEPB = findPositionToSave($scope.vaccinationSelectedDate[3]);
+      $scope.childDetailsToSave.immunisationDetails[positionForHEPB]['HEP-B'] = new Date($scope.vaccinationSelectedDate[3]).toISOString();
+    }
+    if($scope.vaccinationSelectedDate[4]) {
+      var positionForDTP = findPositionToSave($scope.vaccinationSelectedDate[4]);
+      $scope.childDetailsToSave.immunisationDetails[positionForDTP].DPT = new Date($scope.vaccinationSelectedDate[4]).toISOString();
+    }
+    if($scope.vaccinationSelectedDate[5]) {
+      var positionForMeasles = findPositionToSave($scope.vaccinationSelectedDate[5]);
+      $scope.childDetailsToSave.immunisationDetails[positionForMeasles].measles = new Date($scope.vaccinationSelectedDate[5]).toISOString();
+    }
+    if($scope.vaccinationSelectedDate[6]) {
+      var positionForVitaminA = findPositionToSave($scope.vaccinationSelectedDate[6]);
+      $scope.childDetailsToSave.immunisationDetails[positionForVitaminA]['vitamin-a'] = new Date($scope.vaccinationSelectedDate[6]).toISOString();
+    }
+    if($scope.vaccinationSelectedDate[7]) {
+      var positionForWeight = findPositionToSave($scope.vaccinationSelectedDate[7]);
+      $scope.childDetailsToSave.immunisationDetails[positionForWeight].weight = new Date($scope.vaccinationSelectedDate[7]).toISOString();
+    }
+    if($scope.vaccinationSelectedDate[8]) {
+      var positionForWeak = findPositionToSave($scope.vaccinationSelectedDate[8]);
+      $scope.childDetailsToSave.immunisationDetails[positionForWeak].weak = new Date($scope.vaccinationSelectedDate[8]).toISOString();
+      $scope.childDetailsToSave.immunisationDetails[positionForWeak].isWeak = $scope.isWeak;
+    }
+
+    ChildService.updateChildDetails($scope.childDetailsToSave);
+    alert('saved successfully');
+  };
+
   function calculateChildAge(pastDate) {
     var date = new Date(pastDate);
     var ageInExactDays = (new Date().getTime() - date.getTime()) / (1000*60*60*24);
@@ -173,6 +220,12 @@ angular.module('uhiApp.controllers').controller('ImmunisationController', functi
     age.months = months;
     age.days = days;
     return age;
+  }
+
+  function findPositionToSave(selectedDate) {
+    var selectedTime = new Date(selectedDate).getTime();
+    var timeDiffInMs = selectedTime - dobTimeOfChild;
+    return Math.floor(timeDiffInMs / (1000*60*60*24*30));
   }
 
 });
