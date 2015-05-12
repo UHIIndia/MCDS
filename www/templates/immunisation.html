@@ -187,10 +187,10 @@
             </div>
           </div>
           <div class="date-picker-row seven full-block calender-weight">
-            <div class="input-group">
-              <div class="col-sm-12 weight-measurement">
+            
+
                 <input type="number" class="form-control"/>
-              </div>
+             <div class="input-group">
               <div datepicker-popup="" ng-model="vaccinationSelectedDate[7]" is-open="isOpenForVaccination[7]" ng-required="true" close-text="Close"></div>
               <span class="input-group-btn" ng-click="openCalendar(7, $event)">
                 <button type="button" class="btn btn-default">
@@ -208,7 +208,7 @@
                   </button>
                 </span>
             </div>
-            <div class="radio-block">
+            <div class="radio-block pull-right">
               <div>
                 <input id="yes" type="radio" name="isWeak" ng-value="true" ng-model="isWeak">
                 <label for="yes">Yes</label>

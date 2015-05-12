@@ -124,7 +124,7 @@
 	margin-bottom: 3px;
 }
 .left-block .calender-wrapper input[type="text"], .left-block .calender-wrapper input[type="number"]{
-	width: 45px;
+	width: 58px;
 	display: inline-block;
 }
 .left-block .calender-wrapper input[type="text"] + label, .left-block .calender-wrapper input[type="number"] + label{

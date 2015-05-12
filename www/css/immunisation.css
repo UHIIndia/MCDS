@@ -1,7 +1,7 @@
 .immu-wrapper .light-blue-block{
-	padding-top: 15px;
-  padding-bottom: 15px;
-	margin-bottom: 21px;
+	padding-top: 10px;
+  padding-bottom: 10px;
+	margin-bottom: 10px;
 }
 .immu-wrapper .light-blue-block label{
 	text-align: left;
@@ -177,13 +177,13 @@
 }
 .immu-table-wrapper > .left-block{
 	float: left;
-	width: 28.82%;
+	width: 31.82%;
 	padding: 0;
 	padding-right: 3px;
 }
 .immu-table-wrapper > .right-block{
 	float: left;
-	width: 71.18%;
+	width: 68.18%;
 	padding: 0;
   overflow-x: auto;
 	white-space: nowrap;
@@ -219,7 +219,14 @@
 	padding-top: 2px;
 }
 .immu-table-wrapper .calendar-wrapper .calender-weight input{
-	height: 30px;
+	height:26px;
+  padding: 0 3px;
+  width:65px;
+  float: left;
+}
+.immu-table-wrapper .calendar-wrapper .calender-weight input + .input-group{
+  float: right;
+  width: 32px;
 }
 .immu-table-wrapper .calendar-wrapper .calender-weight input + span{
 	padding-left: 5px;
@@ -248,6 +255,10 @@
 .immu-table-wrapper .left-block .calendar-wrapper .right-block{
 	float: left;
 	width: 72%;
+  padding: 4px;
+}
+.immu-table-wrapper .left-block .calendar-wrapper .full-block{
+  padding: 4px;
 }
 .calendar-weak > div, .calendar-weak .radio-block > div{
 	float: left;
@@ -255,11 +266,8 @@
 .calendar-weak .date-block{
 	width: 32px;
 }
-.calendar-weak .radio-block{
-	padding-top: 5px;
-}
 .calendar-weak .radio-block > div{
-	margin-left: 5px;
+	margin-left: 8px;
 }
 .calendar-weak .radio-block label{
 	padding-left: 22px;

@@ -75,7 +75,16 @@ input[type=checkbox]:not(old):checked + label{
 	width: auto;
 	padding: 0;
 }
-
+	.icon-date-small{
+		background-position: -134px -532px !important;
+		height:18px;
+		width:18px;
+	}
+	.icon-date-medium{
+		background-position: -218px -325px !important;
+		height:25px;
+		width:27px;
+	}
 .error{
 	color:#e2354f;
 }
