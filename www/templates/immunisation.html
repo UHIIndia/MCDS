@@ -24,17 +24,17 @@
           </div>
         </div>
         <div class="col-sm-4 age-group">
-          <label class="col-sm-3">Age (m,d)</label>
-          <div class="col-sm-9">
-            <div class="col-sm-4">
+          <label class="col-sm-5">Age<sup>(Months/Days)</sup></label>
+          <div class="col-sm-7">
+            <div class="col-sm-5">
               <input type="text" class="form-control" disabled="" ng-model="childDisplay.age.months">
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-5">
               <input type="text" class="form-control" disabled="" ng-model="childDisplay.age.days">
             </div>
-            <div class="col-sm-4">
-              <div class="sex-boy" ng-show="childDisplay.sex === 'M' "></div>
-              <div class="sex-girl" ng-show="childDisplay.sex === 'F' "></div>
+            <div class="col-sm-2">
+              <div ng-show="childDisplay.sex === 'M' "><img src="img/children/boy.png"></div>
+              <div ng-show="childDisplay.sex === 'F' "><img src="img/children/girl.png"></div>
             </div>
           </div>
         </div>
