@@ -1663,6 +1663,13 @@ $scope.opened=false;
         WomanService.updateWomanDetails(womanData);
     }
 
+    //check for no
+    $scope.checkNumber = function(event){
+        var charCode = (event.which) ? event.which : event.keyCode;
+          if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+            event.preventDefault();
+          return true;
+    }
         //save button functionality
      $scope.visitDetailss={}
      $scope.saveANCDetails =function(){
