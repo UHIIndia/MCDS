@@ -126,4 +126,7 @@ angular.module('uhiApp', ['ionic', 'ngCordova', 'uhiApp.controllers', 'uhiApp.se
         suffix: '.json'
     });
 $translateProvider.preferredLanguage('en');
+})
+.config(function($ionicConfigProvider) {
+  $ionicConfigProvider.views.transition('none');
 });
