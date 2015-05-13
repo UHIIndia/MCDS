@@ -30,10 +30,9 @@
               <input type="text" class="form-control" datepicker-popup="dd/MM/yy" ng-model="LMPCalendarDate"  max-date="minEDD"
               is-open="openedLMP"  datepicker-options="dateOptions"  ng-required="true" ng-disabled="disableButton" close-text="Close"  ng-blur="setEDD();">
               <span class="input-group-btn">
-               <button type="button" class="btn btn-default" ng-click="open($event,'LMP')" ng-disabled="disableButton"><i class="icon-date-medium"></i></button>
+               <button type="button" class="btn btn-default" ng-click="open($event,'LMP')" ng-disabled="disableButton"><i class="icon-date"></i></button>
              </span>
-           </div>
-           <span class="hide-on-load" ng-class="{'active':true,'show-on-render':noEDD}" >LMP should be 45 days before current date</span>
+           </div>          
          </div>
        </div>
        <div class="col-sm-4">
@@ -43,7 +42,7 @@
             <input type="text" class="form-control" datepicker-popup="dd/MM/yy" ng-model="EDDCalendarDate" max-date="maxEDD" 
             min-date ="minEDD"  is-open="openedEDD"  datepicker-options="dateOptions"  ng-required="true" ng-disabled="disableButton"  close-text="Close"  ng-blur="setLMP();"/>
             <span class="input-group-btn">
-             <button type="button" class="btn btn-default" ng-click="open($event,'EDD')" ng-disabled="disableButton"><i class="icon-date-medium"></i></button>
+             <button type="button" class="btn btn-default" ng-click="open($event,'EDD')" ng-disabled="disableButton"><i class="icon-date"></i></button>
            </span>
          </div>
        </div>
@@ -53,6 +52,7 @@
       <button class="default-btn" ng-show = "enterButton" ng-click="enterPregnantWomanDetails()">Enter</button>
     </div>
   </form>
+  <span class="hide-on-load error pink-bg" ng-class="{'active':true,'show-on-render':noEDD}" >LMP should be 45 days before current date</span>
 </div>
 </div> 
 <div class="clearfix">
@@ -135,7 +135,8 @@
          <label  for="radio3childOutcome">Misscarriage/Still birth</label>
        </div>
      </div>
-   </div>    
+   </div> 
+   <span class="error pink-bg">Please enter the Birth Outcome</span>   
  </form>
 </div>
 
@@ -156,6 +157,7 @@
          ng-value="'Dead'" ng-model="MaternalOutcome" ><label for="radiomaternal3">Dead</label>
        </div>
      </div>
+     <span class="error pink-bg">Please enter the Maternal Outcome</span> 
    </div>
      </div>
    </div>

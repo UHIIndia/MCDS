@@ -42,7 +42,6 @@
 	.maternal-outcome, .delivery-details{
 		background: #f467a7;
 		border: 1px #fff solid;
-		border-radius: 6px;
 		padding:5px 10px;
 	}
 	.delivery-details{
@@ -74,7 +73,6 @@
 	.birth-outcome{
 		background: #b2dfee;
 		border: 1px #fff solid;
-		border-radius: 6px;
 		padding:5px 10px;
 		margin-bottom: 15px;
 	}
@@ -170,17 +168,10 @@
 	.delivery-details form > div label.control-label{
 		text-align: left;
 		padding: 0;
+		padding-top: 7px;
 	}
 	.delivery-details form input[type="text"]{
-		height: 22px;
-		border-radius: 3px;
 		border:1px #a8a8a8 solid;
-	}
-	.delivery-details button.default-btn{
-		height: 30px;
-		line-height: 30px;
-		font-size: 16px;
-
 	}
 	.maternal-outcome .radio-list > div, .birth-outcome .radio-list > div{
 		float: left;
@@ -200,7 +191,7 @@
 		padding: 0;
 	}
 	.anc-calender-head .months-name > div{
-		height: 60px;
+		height:70px;
 	}
 	.anc-calender-head .months-activity > div{
 		position: relative;
@@ -463,4 +454,10 @@ opacity: 0.5;
 .anc-calender-add .calendar-icon{
 	width: 40px;
 	float: left;
+}
+
+.error.pink-bg{
+	background: #faafba;
+	padding:2px;
+	font-size: 13px;
 }
