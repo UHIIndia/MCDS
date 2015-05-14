@@ -44,8 +44,8 @@
                 <div class="form-group">
                  <label class="control-label col-sm-5">Age <sub>(years)</sub></label>
                  <div class="col-sm-7">
-                  <input type="number" class="form-control" ng-model="womanAge" name="age" ng-blur="setDob(true)" min="11" max="99" ng-class="{invalid: addForm}">
-                   <alert ng-show="addForm.age.$invalid" type='{{alerts.age.type}}'>{{alerts.age.msg}}</alert>
+                  <input type="text" class="form-control" ng-model="womanAge" name="age" ng-blur="setDob(true)" min="11" max="99" ng-class="{invalid: addForm}" num-only>
+                   <!--<alert ng-show="addForm.age.$invalid" type='{{alerts.age.type}}'>{{alerts.age.msg}}</alert>-->
                 </div>
               </div>
 
@@ -140,10 +140,10 @@
       </div>
       <div class="col-sm-3 age-group">
           <div class="col-sm-6">
-              <input type="number" class="form-control" ng-model="child.ageMonths" ng-blur="setDob(false, $index);" placeholder ="0" min="0" ng-disabled="isDisabled($index)">
+              <input type="text" class="form-control" ng-model="child.ageMonths" ng-blur="setDob(false, $index);" placeholder ="0" min="0" max="600" ng-disabled="isDisabled($index)" num-only>
           </div>
           <div class="col-sm-6">
-              <input type="number" class="form-control" ng-model="child.ageDays" ng-blur="setDob(false, $index);" placeholder="0" min="0" max="42" ng-disabled="isDisabled($index)">
+              <input type="text" class="form-control" ng-model="child.ageDays" ng-blur="setDob(false, $index);" placeholder="0" min="0" max="42" ng-disabled="isDisabled($index)" num-only>
           </div>
       </div>   
       <div class="col-sm-2 select-child">

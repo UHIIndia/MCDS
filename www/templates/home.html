@@ -109,12 +109,14 @@
 
 <div class="home-page-footer clearfix">
        <div class="col-sm-3 col-xs-3 text-left"><a href="#/login" class="footer-btn"><i class="icon-exit">&nbsp;</i>Exit</a></div>
+  <form>
         <div class="col-sm-6 col-xs-5 text-center go-to">       
-            <div class="col-sm-3 col-xs-4"><input type="text" class="form-control" placeholder="House No." ng-model="houseNo"></div>
-             <div class="col-sm-3 col-xs-4"><input type="number" class="form-control" placeholder="Women No." ng-model="womanNo" min="1"></div>
-             <div class="col-sm-3 col-xs-4"><input type="number" class="form-control" placeholder="Child No." ng-model="childNo" min="1"></div>
+            <div class="col-sm-3 col-xs-4"><input type="text" class="form-control" placeholder="House No." ng-model="houseNo" house-code="house-code"></div>
+             <div class="col-sm-3 col-xs-4"><input type="text" class="form-control" placeholder="Women No." ng-model="womanNo" min="1" max="99" num-only="num-only"></div>
+             <div class="col-sm-3 col-xs-4"><input type="text" class="form-control" placeholder="Child No." ng-model="childNo" min="1" max="99" num-only></div>
               <div class="col-sm-2  col-xs-2"><button ng-click="goTo();" class="footer-btn">GO</button> </div>
             </div>
+    </form>
         <div class="col-sm-3  col-xs-4 text-right"><a href="javascript: void(0)" class="footer-btn" ng-click="addWoman();"><i class="icon-add-new"></i>Add New</a></div>
 </div>
 

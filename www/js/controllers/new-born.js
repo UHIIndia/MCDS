@@ -2,7 +2,7 @@ angular.module('uhiApp.controllers')
 .controller('newBornController',  function($scope, $state, $timeout, UtilityService, ChildService, videos){ 
   
   //get child Details  
-  var activeRow = null; // this keeps a track of active row
+  var activeRow = null, lastTimeout =null; // this keeps a track of active row
    $scope.lastUpdated = {
     "weight": {},
     "ASHAVisit" : {},
@@ -44,13 +44,165 @@ angular.module('uhiApp.controllers')
       if(tempRedAlerts && tempRedAlerts.indexOf(index) >= 0){
         return true;
       }   
+  }  
+  
+  $scope.navigateToMotherFP = function() {
+    // set mother's visible/display ID
+    UtilityService.setWomanDisplayID($scope.child.motherDisplayID).then(
+      function(success){
+        $state.go('fp');
+      }, function(err){});
+    
+  };
+  
+  $scope.navigateToChildImmunization = function() {
+    $state.go('immunisation');
+  };
+  
+  $scope.saveDetails = function() {
+    //update in new born details 
+    for(var prop in $scope.lastUpdated){
+      var col = $scope.lastUpdated[prop].col;
+      var val = $scope.lastUpdated[prop].val;
+      if(col >=0 && val){
+         $scope.child.newBornDetails[col][prop] = val;
+      }     
+    }
+    ChildService.updateChildDetails($scope.child);
+    //initialize last updated
+    $scope.lastUpdated ={
+    "weight": {},
+    "ASHAVisit" : {},
+    "ANMVisit" : {},
+    "breastFeed" : {},
+    "wrapCap" :{},
+    "sick" :{},
+    "temp" :{}
+    };
+    //set date as null
+    $scope.weightDate = null;
+    $scope.ASHAVisitDate = null;
+    $scope.ANMVisitDate = null;
+    $scope.breastFeedDate = null;
+    $scope.wrapCapDate = null;
+    $scope.sickDate = null;   
+    alert('saved successfully');
+  };
+  
+  // video section starts here 
+  var childVideos = videos.getChildVideos();
+  $scope.video ={};
+  $scope.video.show = false;
+  $scope.video.stop = function() {
+    var videoElem = document.getElementById('video_nb');
+    videoElem.pause();
+    $scope.video.show = false;
+  };
+  $scope.video.play = function(id) {
+   // $scope.video.path = "videos/sample.mp4";
+    $scope.video.path = childVideos[id+1].path;
+    $scope.video.show = true;
+    $timeout(function() {
+      var videoElem = document.getElementById('video_nb');
+      videoElem.play();
+    }, 1000);
   }
+  // video section ends here 
+  $scope.getChildIcon = function(){
+    if($scope.child.sex === 'M'){
+      return '../img/children/boy.png';
+    } else {
+      return '../img/children/girl.png';
+    }
+  }
+  /* calender Related Methods*/
+ 
+  $scope.dateFormat = "dd/MM/yyyy";
+  $scope.getMaxDate = function() {
+   // max date is last date in new born details array last entry
+    var lastDateStr = $scope.child.newBornDetails[$scope.child.newBornDetails.length -1].date;
+    var lastDate = UtilityService.convertToDate(lastDateStr);
+    var currDate = new Date();
+    if(currDate - lastDate > 0){
+      // return last date as max date 
+       return lastDateStr.split('/').reverse().join('-'); 
+    } else {
+      return currDate.getFullYear()+"-"+(currDate.getMonth()+1)+"-"+currDate.getDate();
+    }
+     
+  };
+  
+  $scope.getMinDate = function() {
+   // min date is firt date in new born details array last entry
+    var firstDate = $scope.child.newBornDetails[0].date;     
+    return firstDate.split('/').reverse().join('-');    
+  };
+  
+  $scope.isOpenPosition = {
+    "0": false,
+    "1": false,
+    "2": false,
+    "3": false,
+    "4": false,
+    "5": false
+  };  
+  $scope.openCalender = function($event, rowNo) {   
+   $event.preventDefault();
+   $event.stopPropagation();
+    activeRow = rowNo;
+    $scope.isOpenPosition[rowNo] = true;    
+   };
+/* calender methods ends here--  */ 
+  $scope.isValueUpdated = function (row, col){
+    try{
+      if($scope.lastUpdated[row].col === col){
+        return true;
+      } else return false;
+      
+    } catch (e){
+      return false;
+      }
+    
+  }
+   $scope.watchHandler0 = function() {
+    if($scope.weightDate){
+      console.log('weightDate: '+ $scope.weightDate +" active row :"+activeRow);
+    var dateStr = UtilityService.convertDateFormat($scope.weightDate);
+    var col = getColumn(dateStr);    
+    // set value for selected grid
+    if(col>=0) {
+      setWeightValue(dateStr, col);           
+    } else {
+      alert('Please select a valid date from calender');     
+    }
+    }   
+  };
+  $scope.$watch('weightDate', $scope.watchHandler0); 
+  $scope.$watch('ASHAVisitDate', watchHandler1);
+  $scope.$watch('ASHAVisit', watchHandler1);
+  $scope.$watch('ANMVisitDate', watchHandler2);
+  $scope.$watch('ANMVisit', watchHandler2);
+  $scope.$watch('breastFeedDate', watchHandler3);
+  $scope.$watch('breastFeed', watchHandler3);
+  $scope.$watch('wrapCapDate', watchHandler4);
+  $scope.$watch('wrapCap', watchHandler4);
+  $scope.watchHandler5 = function () {
+    if($scope.sickDate){
+      console.log('sickDate: '+ $scope.sickDate +" active row :"+activeRow);
+    var dateStr = UtilityService.convertDateFormat($scope.sickDate);
+    var col = getColumn(dateStr);    
+    // set value for selected grid
+    col>=0 ? setSickDateValue(dateStr, col): alert('Please select a valid date from calender');      
+    }    
+  };
+  $scope.$watch('sickDate', $scope.watchHandler5);
+  $scope.$watch('sick', $scope.watchHandler5);
   //init function when the view loads 
   function init(){
     var displayID = UtilityService.getChildDisplayID();
     console.log(displayID);
     // hard code display id for dev 
-    //displayID ? displayID=displayID: displayID ="h1.1.1";
+   // displayID ? displayID=displayID: displayID ="h1.1.1";
     if(!displayID){
       console.log('should not be here, child is not added in system');
     } else {
@@ -409,54 +561,7 @@ angular.module('uhiApp.controllers')
       $scope.child.newBornDetails.push(obj);
     });
     //$scope.headerDates = headerDates;
-  }
-  
-  init();
-  $scope.getChildIcon = function(){
-    if($scope.child.sex === 'M'){
-      return '../img/children/boy.png';
-    } else {
-      return '../img/children/girl.png';
-    }
-  }
-  /* calender Related Methods*/
- 
-  $scope.dateFormat = "dd/MM/yyyy";
-  $scope.getMaxDate = function() {
-   // max date is last date in new born details array last entry
-    var lastDateStr = $scope.child.newBornDetails[$scope.child.newBornDetails.length -1].date;
-    var lastDate = UtilityService.convertToDate(lastDateStr);
-    var currDate = new Date();
-    if(currDate - lastDate > 0){
-      // return last date as max date 
-       return lastDateStr.split('/').reverse().join('-'); 
-    } else {
-      return currDate.getFullYear()+"-"+(currDate.getMonth()+1)+"-"+currDate.getDate();
-    }
-     
-  };
-  
-  $scope.getMinDate = function() {
-   // min date is firt date in new born details array last entry
-    var firstDate = $scope.child.newBornDetails[0].date;     
-    return firstDate.split('/').reverse().join('-');    
-  };
-  
-  $scope.isOpenPosition = {
-    "0": false,
-    "1": false,
-    "2": false,
-    "3": false,
-    "4": false,
-    "5": false
-  };  
-  $scope.openCalender = function($event, rowNo) {   
-   $event.preventDefault();
-   $event.stopPropagation();
-    activeRow = rowNo;
-    $scope.isOpenPosition[rowNo] = true;    
-   };
-/* calender methods ends here--  */ 
+  }  
   // grid methods 
   // method returns column based on a date string 
   function getColumn(dateStr) {
@@ -474,19 +579,8 @@ angular.module('uhiApp.controllers')
     if($scope.child.newBornDetails.length - 1 > col)
       return false;
       return true;
-  }    
+  } 
   
-  $scope.isValueUpdated = function (row, col){
-    try{
-      if($scope.lastUpdated[row].col === col){
-        return true;
-      } else return false;
-      
-    } catch (e){
-      return false;
-      }
-    
-  }
   function setLastUpdated(row, col){
    /* var prevCol = $scope.lastUpdated[row].col;
     if(prevCol>=0){
@@ -498,21 +592,6 @@ angular.module('uhiApp.controllers')
       "val" : $scope[row]
     };
   }
-  
-  $scope.watchHandler0 = function() {
-    if($scope.weightDate){
-      console.log('weightDate: '+ $scope.weightDate +" active row :"+activeRow);
-    var dateStr = UtilityService.convertDateFormat($scope.weightDate);
-    var col = getColumn(dateStr);    
-    // set value for selected grid
-    if(col>=0) {
-      setWeightValue(dateStr, col);           
-    } else {
-      alert('Please select a valid date from calender');     
-    }
-    }   
-  };
-  $scope.$watch('weightDate', $scope.watchHandler0);  
    
   function setWeightValue(date, col) {         
       // check if a there is a value for weight
@@ -524,11 +603,8 @@ angular.module('uhiApp.controllers')
         setRedCells($scope.rows[0].name);
         setWeightRedCell($scope.weight, col);
       }    
-  }  
+  }   
   
-  
-  $scope.$watch('ASHAVisitDate', watchHandler1);
-  $scope.$watch('ASHAVisit', watchHandler1);
   function watchHandler1(){
     if($scope.ASHAVisitDate){
       console.log('ASHAVisitDate: '+ $scope.ASHAVisitDate +" active row :"+activeRow);
@@ -538,6 +614,7 @@ angular.module('uhiApp.controllers')
     col>=0 ? setASHAVisitValue(dateStr, col): alert('Please select a valid date from calender');      
     }    
   }
+  
   function setASHAVisitValue(date, col) {
     if($scope.ASHAVisit === undefined || $scope.ASHAVisit === null){
       return ;
@@ -547,10 +624,8 @@ angular.module('uhiApp.controllers')
      setASHAVisitYellowCell(col);
       //
     
-  }
-  
-  $scope.$watch('ANMVisitDate', watchHandler2);
-  $scope.$watch('ANMVisit', watchHandler2);
+  }  
+ 
   function watchHandler2(){
     if($scope.ANMVisitDate){
       console.log('ANMVisitDate: '+ $scope.ANMVisitDate +" active row :"+activeRow);
@@ -560,6 +635,7 @@ angular.module('uhiApp.controllers')
     col>=0 ? setANMVisitValue(dateStr, col): alert('Please select a valid date from calender');      
     }    
   }
+  
   function setANMVisitValue(date, col) {
      if($scope.ANMVisit === undefined || $scope.ANMVisit === null){
       return ;
@@ -572,8 +648,6 @@ angular.module('uhiApp.controllers')
     
   }
   
-  $scope.$watch('breastFeedDate', watchHandler3);
-  $scope.$watch('breastFeed', watchHandler3);
   function watchHandler3(){
     if($scope.breastFeedDate){
       console.log('breastFeedDate: '+ $scope.breastFeedDate +" active row :"+activeRow);
@@ -583,6 +657,7 @@ angular.module('uhiApp.controllers')
     col>=0 ? setBreastFeedDateValue(dateStr, col): alert('Please select a valid date from calender');      
     }    
   }
+  
   function setBreastFeedDateValue(date, col) {
     if($scope.breastFeed === undefined || $scope.breastFeed === null){
       return ;
@@ -594,8 +669,6 @@ angular.module('uhiApp.controllers')
       setBreastFeedYellowCell(col);
   }
   
-  $scope.$watch('wrapCapDate', watchHandler4);
-  $scope.$watch('wrapCap', watchHandler4);
   function watchHandler4(){
     if($scope.wrapCapDate){
       console.log('wrapCapDate: '+ $scope.wrapCapDate +" active row :"+activeRow);
@@ -605,6 +678,7 @@ angular.module('uhiApp.controllers')
     col>=0 ? setWrapCapDateValue(dateStr, col): alert('Please select a valid date from calender');      
     }    
   }
+  
   function setWrapCapDateValue(date, col) {
     if($scope.wrapCap === undefined || $scope.wrapCap === null){
       return ;
@@ -616,17 +690,7 @@ angular.module('uhiApp.controllers')
     setRedCells($scope.rows[4].name);
      setWrapCapRedCell($scope.wrapCap, col);
   }
-  $scope.watchHandler5 = function () {
-    if($scope.sickDate){
-      console.log('sickDate: '+ $scope.sickDate +" active row :"+activeRow);
-    var dateStr = UtilityService.convertDateFormat($scope.sickDate);
-    var col = getColumn(dateStr);    
-    // set value for selected grid
-    col>=0 ? setSickDateValue(dateStr, col): alert('Please select a valid date from calender');      
-    }    
-  };
-  $scope.$watch('sickDate', $scope.watchHandler5);
-  $scope.$watch('sick', $scope.watchHandler5);
+  
   function setSickDateValue(date, col) {
     if($scope.sick === undefined || $scope.sick === null){
       return ;
@@ -642,67 +706,6 @@ angular.module('uhiApp.controllers')
     setSickRedCell($scope.sick, col);
   } 
   
-  $scope.navigateToMotherFP = function() {
-    // set mother's visible/display ID
-    UtilityService.setWomanDisplayID($scope.child.motherDisplayID).then(
-      function(success){
-        $state.go('fp');
-      }, function(err){});
-    
-  };
-  
-  $scope.navigateToChildImmunization = function() {
-    $state.go('immunisation');
-  };
-  
-  $scope.saveDetails = function() {
-    //update in new born details 
-    for(var prop in $scope.lastUpdated){
-      var col = $scope.lastUpdated[prop].col;
-      var val = $scope.lastUpdated[prop].val;
-      if(col >=0 && val){
-         $scope.child.newBornDetails[col][prop] = val;
-      }     
-    }
-    ChildService.updateChildDetails($scope.child);
-    //initialize last updated
-    $scope.lastUpdated ={
-    "weight": {},
-    "ASHAVisit" : {},
-    "ANMVisit" : {},
-    "breastFeed" : {},
-    "wrapCap" :{},
-    "sick" :{},
-    "temp" :{}
-    };
-    //set date as null
-    $scope.weightDate = null;
-    $scope.ASHAVisitDate = null;
-    $scope.ANMVisitDate = null;
-    $scope.breastFeedDate = null;
-    $scope.wrapCapDate = null;
-    $scope.sickDate = null;   
-    alert('saved successfully');
-  };
-  
-  // video section starts here 
-  var childVideos = videos.getChildVideos();
-  $scope.video ={};
-  $scope.video.show = false;
-  $scope.video.stop = function() {
-    var videoElem = document.getElementById('video_nb');
-    videoElem.pause();
-    $scope.video.show = false;
-  };
-  $scope.video.play = function(id) {
-   // $scope.video.path = "videos/sample.mp4";
-    $scope.video.path = childVideos[id+1].path;
-    $scope.video.show = true;
-    $timeout(function() {
-      var videoElem = document.getElementById('video_nb');
-      videoElem.play();
-    }, 1000);
-  }
-  // video section ends here 
+  init();
   
 });
