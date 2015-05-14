@@ -2,8 +2,8 @@ angular.module('uhiApp.controllers')
 .controller('HomeController', function($scope, $state, UtilityService, WomanService, ChildService) {
 
     //code for tap on enter button
-    $scope.mapWomen = function(){
-        $state.go("mapWomen");
+    $scope.map = function(){
+        $state.go("map");
     };
 
     $scope.listWomen = function(){
@@ -22,10 +22,6 @@ angular.module('uhiApp.controllers')
     $scope.showFilmsFP = function(){
         UtilityService.setVideoTab(2);
         $state.go("films");
-    };
-
-    $scope.mapBabies = function(){
-        $state.go("mapChildren");
     };
 
     $scope.listBabies = function(){

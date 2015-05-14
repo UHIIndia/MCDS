@@ -72,17 +72,11 @@ angular.module('uhiApp', ['ionic', 'ngCordova', 'uhiApp.controllers', 'uhiApp.se
     templateUrl: "templates/immunisation.html",
     controller: 'ImmunisationController'
   })
-  .state('mapWomen', {
-    url: "/map-women",
+  .state('map', {
+    url: "/map",
     cache: false,
-    templateUrl: "templates/map-women.html",
-    controller: 'MapWomenController'
-  })
-  .state('mapChildren', {
-    url: "/map-children",
-    cache: false,
-    templateUrl: "templates/map-children.html",
-    controller: 'MapChildrenController'
+    templateUrl: "templates/map.html",
+    controller: 'MapController'
   })
   .state('listWomen', {
     url: "/list-women",
