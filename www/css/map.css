@@ -1,0 +1,40 @@
+.map-wrapper > .left-block{
+  background: #d9d9d9;
+  border:1px #fff solid;
+  width: 70%;
+  float: left;
+  padding:5px;
+}
+
+.map-wrapper > .right-block{
+  width: 30%;
+  float: left;
+  padding-left: 15px;
+}
+.map-wrapper > .left-block > div{
+  padding: 5px;
+  display: table;
+}
+.women-status-block{
+  background: #fff;
+  border:1px #000 solid;
+  position: relative;
+  height: 157px;
+  display: table-cell;
+  vertical-align: middle;
+  width: 100%;
+  text-align: center;
+}
+.women-status-block span{
+  font-family: OpenSans-Semibold;
+  font-size: 14px;
+  position: absolute;
+  left: 5px;
+  top: 2px;
+}
+.women-status-block.red{
+  background: #ff0000;
+}
+.women-status-block.yellow{
+  background: #ffff00;
+}
