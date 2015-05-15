@@ -38,3 +38,58 @@
 .women-status-block.yellow{
   background: #ffff00;
 }
+.map-wrapper .select-house{
+  margin: 15px 0;
+}
+.map-wrapper .select-house > div{
+  padding: 0;
+}
+.map-wrapper .select-house label{
+  padding: 7px 0 0;
+}
+.map-wrapper .select-house > div:last-child{
+padding-left: 15px;
+text-align: right;
+}
+.vaccine-fp-wrapper{
+  background: #d9d9d9;
+  border:1px #fff solid;
+  padding: 10px;
+}
+.vaccine-fp-wrapper .left-block, .vaccine-fp-wrapper .right-block {
+  padding: 0;
+}
+.vaccine-fp-wrapper .left-block{
+  padding-right: 12px;
+}
+.vaccine-fp-wrapper .icons-block{
+   font-family: OpenSans-Semibold;
+  text-align: center;
+}
+.vaccine-fp-wrapper .icons-block > div{
+  padding: 0;
+}
+.vaccine-fp-wrapper .icons-block div:first-child{
+  padding-right: 4px;
+}
+.vaccine-fp-wrapper .icons-block div:last-child{
+  padding-left: 4px;
+}
+.vaccine-fp-wrapper .icons-block .icon{
+  background: #fff;
+  border: 1px #000 solid;
+  height: 43px;
+  display: table-cell;
+  width: 1%;
+  vertical-align: middle;
+}
+.vaccine-fp-wrapper .icons-block .icon + div{
+  padding: 0;
+  font-size: 11px;
+}
+.vaccine-list .block{
+  font-family: OpenSans-Semibold;
+  margin-bottom: 7px;
+  text-align: center;
+  font-size: 11px;
+}
