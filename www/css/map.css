@@ -39,13 +39,14 @@
   background: #ffff00;
 }
 .map-wrapper .select-house{
-  margin: 15px 0;
+  margin: 10px 0;
 }
 .map-wrapper .select-house > div{
   padding: 0;
 }
 .map-wrapper .select-house label{
   padding: 7px 0 0;
+  font-size: 16px;
 }
 .map-wrapper .select-house > div:last-child{
 padding-left: 15px;
@@ -76,9 +77,8 @@ text-align: right;
   padding-left: 4px;
 }
 .vaccine-fp-wrapper .icons-block .icon{
-  background: #fff;
   border: 1px #000 solid;
-  height: 43px;
+  height: 42px;
   display: table-cell;
   width: 1%;
   vertical-align: middle;
@@ -87,9 +87,99 @@ text-align: right;
   padding: 0;
   font-size: 11px;
 }
-.vaccine-list .block{
+.vaccine-list, .fp-methods-list{
+  margin-top: 12px;
+}
+.vaccine-list .block, .fp-methods-list .block{
   font-family: OpenSans-Semibold;
-  margin-bottom: 7px;
+  margin-bottom:4px;
   text-align: center;
   font-size: 11px;
+  clear: none;
+}
+.vaccine-list .vaccine, .fp-methods-list .fp-method{
+  border: 1px #fff solid;
+  height: 32px;
+}
+.vaccine-list .vaccine.active,
+.fp-methods-list .fp-method.active{
+  border: 2px #000 solid;
+}
+.vaccine-list .vaccine.active span.circle,
+.fp-methods-list .fp-method.active span.circle{
+  height: 28px;
+  width: 28px;
+}
+
+.vaccine-list span.circle, .fp-methods-list span.circle {
+  display: inline-block;
+  background: #fff;
+  height:30px;
+  width:30px;
+  border-radius: 50%;
+  line-height:30px;
+  overflow: hidden;
+}
+.vaccine-list span.square, .fp-methods-list span.square {
+  display: inline-block;
+  width: 30px;
+  height:30px;
+  background: #fff;
+}
+.fp-methods-list .left-block{
+  padding: 0 3px 0;
+}
+.fp-methods-list .right-block{
+  padding: 0 0 0 4px;
+}
+.vaccine-list .block:nth-child(1) .vaccine{
+  background: #e39feb;
+}
+.vaccine-list .block:nth-child(2) .vaccine{
+  background: #fb85ba;
+}
+.vaccine-list .block:nth-child(3) .vaccine{
+  background: #7eb1fc;
+}
+.vaccine-list .block:nth-child(4) .vaccine{
+  background: #47f77c;
+}
+.vaccine-list .block:nth-child(5) .vaccine{
+  background: #367136;
+}
+.vaccine-list .block .vaccine.any,
+.fp-methods-list .block .fp-method.any{
+  background: #7f7f7f;
+  font-size: 14px;
+  padding: 15px 0;
+  color:#fff;
+  height:50px;
+}
+.fp-methods-list .block .fp-method.any{
+  padding:2px;
+  font-size: 12px;
+}
+.fp-methods-list .block .fp-method.any > div:first-child{
+  margin-bottom:4px;
+}
+.vaccine-list .block:nth-child(6) .vaccine{
+  background: #dae538;
+}
+.fp-methods-list .block:nth-child(1) .fp-method{
+  background: #7f7f7f;
+}
+.fp-methods-list .block:nth-child(2) .fp-method{
+  background: #5b9bd5;
+}
+.fp-methods-list .block:nth-child(3) .fp-method{
+  background: #00b050;
+}
+.fp-methods-list .block:nth-child(4) .fp-method{
+  background: #ed7d31;
+}
+.fp-methods-list .block:nth-child(5) .fp-method{
+  background: #7030a0;
+}
+.fp-methods-list .block:nth-child(6) .fp-method{
+  background: #e39feb;
 }
