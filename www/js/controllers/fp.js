@@ -173,7 +173,11 @@ angular.module('uhiApp.controllers').controller('FpController', function($scope,
       })
       .first()
       .value();
-    $scope.methodCalendar.oldestYear = new Date(oldestYearTimestamp).getFullYear();
+    if(oldestYearTimestamp) {
+      $scope.methodCalendar.oldestYear = new Date(oldestYearTimestamp).getFullYear();
+    } else {
+      $scope.methodCalendar.oldestYear = $scope.methodCalendar.thisYear;
+    }
     $scope.methodCalendar.countYearsData = 1 + $scope.methodCalendar.thisYear - $scope.methodCalendar.oldestYear;
     $scope.methodCalendar.data = [];
     var methodArray = [];
