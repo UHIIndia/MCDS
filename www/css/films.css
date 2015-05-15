@@ -63,3 +63,19 @@ border-top:none;
 	vertical-align: top;
 	padding-right: 5px;
 }
+
+.films-container{
+  height: 634px;
+}
+
+.scrollable-area-videos-all{
+  height: 570px;
+}
+
+.overflow-auto{
+  overflow: auto;
+}
+
+.films-container .fill-height{
+  height: 580px;
+}
