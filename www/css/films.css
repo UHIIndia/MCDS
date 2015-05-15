@@ -70,6 +70,9 @@ border-top:none;
 
 .scrollable-area-videos-all{
   height: 570px;
+  margin-top: 0;
+  border: 1px #fff solid;
+  border-top: 1px transparent;
 }
 
 .overflow-auto{
