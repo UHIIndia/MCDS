@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'uhiApp.controllers' is found in js/controllers.js
 // 'uhiApp.services' is found in js/services.js
-angular.module('uhiApp', ['ionic', 'ngCordova', 'uhiApp.controllers', 'uhiApp.services', 'pascalprecht.translate', 'ui.bootstrap'])
+angular.module('uhiApp', ['ionic', 'ngCordova', 'ngTouch', 'uhiApp.controllers', 'uhiApp.services', 'pascalprecht.translate', 'ui.bootstrap'])
 
 
 .run(function($ionicPlatform) {
