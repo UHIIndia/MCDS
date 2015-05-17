@@ -125,10 +125,11 @@
 	.child-details-header > div > div:last-child button{
 		float: right;
 	}
+  .child-details .child-entries-container{
+    background:#b2dfee;
+  }
 	.child-details .child-entries{
-		background:#b2dfee;
 		height:66px;
-		overflow: auto;
 		padding-top: 18px;
 	}
 	.child-entries .form-group {
@@ -235,7 +236,7 @@
 		border-radius:6px;
 		width: 66px;
 		text-align: center;
-		color:#000;	
+		color:#000;
 		background: #faafba;
 		border: 1px #a6a6a6 solid;
 		padding:5px;
@@ -271,7 +272,7 @@
 	}
 	.child-links > div{
 		display: inline-block;
-		margin:10px;	
+		margin:10px;
 		width:200px;
 		font-size: 12px;
 		background: #f1f1f1;
@@ -320,7 +321,7 @@
 	}
 
     #addForm input.ng-invalid.ng-touched {
-      border: solid red 1px; 
+      border: solid red 1px;
       box-shadow: 0 0 3px red;
     }
 .addnew-form-links h4{

@@ -17,7 +17,7 @@
                     <button type="button" class="default-btn" ng-click="captureImage();">Change</button>
                  </div>
 
-                 <div class="col-sm-9">            
+                 <div class="col-sm-9">
 
                   <div class="form-group">
                    <label class="control-label col-sm-5">Name</label>
@@ -30,7 +30,7 @@
                  <div class="form-group">
                    <label class="control-label col-sm-5">Date of Birth</label>
                    <div class="col-sm-7">
-                    <div class="input-group date-picker">                 
+                    <div class="input-group date-picker">
                      <div class="input-group">
                     <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="woman.dob" init-date="getInitialDate()" is-open="isWomanDobCalenderOpen"  max-date="getMaxDate(true)" datepicker-options="dateOptions" close-text="Close" ng-disabled="true" />
                     <span class="input-group-btn">
@@ -64,19 +64,19 @@
 
           <div class="form-group">
            <label class="control-label col-sm-5">Currently Pregnant</label>
-           <div class="col-sm-7 pregnant-status">        
+           <div class="col-sm-7 pregnant-status">
              <div>
                <input type="radio" name="yesNoRadio" id="yesRadio" ng-model="woman.isPregnant" ng-value="true"><label for="yesRadio" >Yes <i class="icon-pregnant-yes">&nbsp;</i></label>
              </div>
              <div>
-               <input type="radio" name="yesNoRadio" id="noRadio"  ng-model="woman.isPregnant" ng-value="false"><label for="noRadio">No <i class="icon-pregnant-no">&nbsp;</i></label>                   
+               <input type="radio" name="yesNoRadio" id="noRadio"  ng-model="woman.isPregnant" ng-value="false"><label for="noRadio">No <i class="icon-pregnant-no">&nbsp;</i></label>
              </div>
            </div>
          </div>
 
 
        </div>
-     </div> 
+     </div>
         </div>
       </div>
       <!--basic info form-->
@@ -117,45 +117,56 @@
            </div>
            <div class="col-sm-2">
 
-             <span>Sex</span>        
+             <span>Sex</span>
            </div>
          </div>
        </div>
-       <div class="col-sm-12 child-entries">
-
-
-      <div class="form-group"  ng-repeat="child in children">
-        <div class="col-sm-3">
-         <input type="text" class="form-control" ng-model="child.name" char-only="char-only">
-       </div>
-       <div class="col-sm-4">
-         <div class="input-group date-picker">    
-           <div class="input-group">
-                      <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="child.dob" is-open="isOpenPosition[$index]"  max-date="getMaxDate(false)" datepicker-options="dateOptions"  datepicker-append-to-body="true"  close-text="Close" ng-disabled="true"/>
-                      <span class="input-group-btn">
-                       <button type="button" class="btn btn-default" ng-click="openCalender($event, false, $index)" ng-disabled="isDisabled($index)"><i class="icon-date"></i></button>
-                      </span>
-            </div>
-        </div>
-      </div>
-      <div class="col-sm-3 age-group">
-          <div class="col-sm-6">
-              <input type="text" class="form-control" ng-model="child.ageMonths" ng-blur="setDob(false, $index);" placeholder ="0" min="0" max="600" ng-disabled="isDisabled($index)" num-only>
-          </div>
-          <div class="col-sm-6">
-              <input type="text" class="form-control" ng-model="child.ageDays" ng-blur="setDob(false, $index);" placeholder="0" min="0" max="42" ng-disabled="isDisabled($index)" num-only>
-          </div>
-      </div>   
-      <div class="col-sm-2 select-child">
-        <div class="girl-child"><input type="radio" ng-model="child.sex" value="F"><i class="icon-select-girl" ng-class="selectedGenderForChild(child,true);">&nbsp;</i></div>
-        <div class="boy-child"><input type="radio" ng-model="child.sex" value="M"><i class="icon-select-boy" ng-class="selectedGenderForChild(child, false);">&nbsp;</i></div>
-      </div>        
-      </div>
-      </div>  
+       <ion-scroll class="child-entries-container">
+         <div class="col-sm-12 child-entries">
+           <div class="form-group" ng-repeat="child in children">
+             <div class="col-sm-3">
+               <input type="text" class="form-control" ng-model="child.name" char-only="char-only">
+             </div>
+             <div class="col-sm-4">
+               <div class="input-group date-picker">
+                 <div class="input-group">
+                   <input type="text" class="form-control" datepicker-popup="{{dateFormat}}" ng-model="child.dob"
+                          is-open="isOpenPosition[$index]" max-date="getMaxDate(false)" datepicker-options="dateOptions"
+                          datepicker-append-to-body="true" close-text="Close" ng-disabled="true"/>
+          <span class="input-group-btn">
+           <button type="button" class="btn btn-default" ng-click="openCalender($event, false, $index)"
+                   ng-disabled="isDisabled($index)"><i class="icon-date"></i></button>
+          </span>
+                 </div>
+               </div>
+             </div>
+             <div class="col-sm-3 age-group">
+               <div class="col-sm-6">
+                 <input type="text" class="form-control" ng-model="child.ageMonths" ng-blur="setDob(false, $index);"
+                        placeholder="0" min="0" max="600" ng-disabled="isDisabled($index)" num-only>
+               </div>
+               <div class="col-sm-6">
+                 <input type="text" class="form-control" ng-model="child.ageDays" ng-blur="setDob(false, $index);" placeholder="0"
+                        min="0" max="42" ng-disabled="isDisabled($index)" num-only>
+               </div>
+             </div>
+             <div class="col-sm-2 select-child">
+               <div class="girl-child">
+                 <input type="radio" ng-model="child.sex" value="F">
+                 <i class="icon-select-girl" ng-class="selectedGenderForChild(child,true);">&nbsp;</i>
+               </div>
+               <div class="boy-child">
+                 <input type="radio" ng-model="child.sex" value="M">
+                 <i class="icon-select-boy" ng-class="selectedGenderForChild(child, false);">&nbsp;</i>
+               </div>
+             </div>
+           </div>
+         </div>
+       </ion-scroll>
       <div class="child-details-footer col-sm-12">
         <button type="button" class="default-btn" ng-click="addMoreChildren();">Add Row</button>
-      </div>    
-      
+      </div>
+
           </div>
       </div>
       </div>
