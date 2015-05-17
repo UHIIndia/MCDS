@@ -32,7 +32,7 @@
 			<div class="left-block">
 				<div class="videos-wrapper">
 					<div class="block blank">
-						
+
 					</div>
 					<div class="block">
 						<div class="video">
@@ -218,7 +218,7 @@
                               <div ng-show="isValueUpdated('ASHAVisit', $index)"><span ng-if ="lastUpdated.ASHAVisit.val === true">Yes</span>
               <span ng-if ="lastUpdated.ASHAVisit.val === false">No</span>
                               </div>
-                              
+
 							</div>
 						</div>
 						<div class="newborn-day-row">
@@ -261,7 +261,7 @@
                               <div ng-show="isValueUpdated('sick', $index)"><span ng-if ="lastUpdated.sick.val === true">Yes</span>
               <span ng-if ="lastUpdated.sick.val === false">No</span></br> <span ng-hide="isValueUpdated('temp', $index)">{{item.temp}}</span>
                           <span ng-show="isValueUpdated('temp', $index)">{{lastUpdated.temp.val}}</span>
-                              </div>                              
+                              </div>
 							</div>
 						</div>
 					</div>
@@ -288,6 +288,7 @@
     <video id="video_nb" class="video-full-screen" controls>
       <source ng-src="{{video.path}}" type="video/mp4">
     </video>
+    <span class="video-close-icon glyphicon glyphicon-remove-circle" ng-click="video.stop()"></span>
   </div>
 </div>
 
